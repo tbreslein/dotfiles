@@ -11,10 +11,10 @@ let
   dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./moebius-hardware-configuration.nix
-    ];
+  #imports =
+  #  [ # Include the results of the hardware scan.
+  #    ./moebius-hardware-configuration.nix
+  #  ];
 
   nix = {
     package = pkgs.nixFlakes;
@@ -25,17 +25,17 @@ in
     config.allowUnfree = true;
     overlays = [
       (self: super: {
-        dwm = super.dwm.overrideAttrs (oldAttrs: { 
-          src = fetchGit { 
-            url = "https://gitlab.com/tbreslein/dwm.git"; 
+        dwm = super.dwm.overrideAttrs (oldAttrs: {
+          src = fetchGit {
+            url = "https://gitlab.com/tbreslein/dwm.git";
             ref = "build";
-          }; 
+          };
           postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "config.h" (builtins.readFile "${dwmConfigFile}")} config.def.h";
         });
       })
 
       (self: super: {
-        dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: { 
+        dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
           postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "blocks.h" (builtins.readFile "${dwmblocksConfigFile}")} blocks.def.h";
         });
       })
@@ -51,7 +51,7 @@ in
       grub = {
         enable = true;
         version = 2;
-        devices = ["nodev"];
+        devices = [ "nodev" ];
         efiSupport = true;
         useOSProber = true;
         configurationLimit = 5;
@@ -62,7 +62,7 @@ in
   };
 
   networking.hostName = "moebius"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   time.timeZone = "Europe/Berlin";
 
@@ -125,6 +125,7 @@ in
 
   environment.systemPackages = with pkgs; [
     vim
+    gcc
     wget
     brave
     git
@@ -132,6 +133,8 @@ in
     alacritty
     dmenu
     dwmblocks
+    rnix-lsp
+    nixpkgs-fmt
   ];
 
   # Copy the NixOS configuration file and link it from the resulting system
@@ -142,4 +145,3 @@ in
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
-
