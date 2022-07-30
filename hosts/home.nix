@@ -1,16 +1,14 @@
-{ config, pkgs, user, neovim-nightly-overlays, ... }:
+{ config, pkgs, user, ... }:
 
 {
-  # nixpkgs.overlays = [
-  #   (import (builtins.fetchTarball {
-  #     url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-  #   }))
-  # ];
-  home.username = "tommy";
-  home.homeDirectory = "/home/tommy";
-  home.stateVersion = "22.05";
-  programs.home-manager.enable = true;
+  home = {
+    username = user;
+    homeDirectory = "/home/${user}";
+    stateVersion = "22.05";
+  };
   programs = {
+    home-manager.enable = true;
+    lazygit.enable = true;
     neovim = {
       enable = true;
       package = pkgs.neovim-unwrapped;

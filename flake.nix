@@ -25,6 +25,7 @@
       };
 
       lib = nixpkgs.lib;
+      overlays = [ neovim-nightly-overlay.overlay ];
     in
     {
       nixosConfigurations =
@@ -32,37 +33,8 @@
           import ./hosts
             {
               inherit (nixpkgs) lib;
-              inherit inputs user system home-manager neovim-nightly-overlay;
+              inherit inputs user system home-manager overlays;
             }
         );
-
-      # moebius = lib.nixosSystem
-      #   {
-      #     inherit system;
-      #     modules = [
-      #       ./hosts/moebius
-      #       home-manager.nixosModules.home-manager
-      #       {
-      #         # extraSpecialArgs = {
-      #         #   inherit neovim-nightly-overlay;
-      #         # };
-      #         home-manager.useGlobalPkgs = true;
-      #         home-manager.useUserPackages = true;
-      #         home-manager.users.tommy = import ./home.nix;
-      #       }
-      #     ];
-      #   };
-      #audron = lib.nixosSystem {
-      #  inherit system;
-      #  modules = [ 
-      #    ./hosts/configuration.nix
-      #    home-manager.nixosModules.home-manager
-      #    {
-      #      home-manager.useGlobalPkgs = true;
-      #      home-manager.useUserPackages = true;
-      #      home-manager.users.tommy = import ./home.nix;
-      #    }
-      #  ];
-      #};
     };
 }
