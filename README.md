@@ -36,6 +36,19 @@ Then generate the configs with `nixos-generate-config`, and then `hardware.nix` 
 ## configuration
 
 Get my config, or write a new one.
-In the latter case, when dual booting, make sure that OSProber is activated
-In `hardware.nix`, add "amdgpu" or
+In the latter case, when dual booting, make sure that OSProber is activated.
+In `hardware.nix`, add "amdgpu" or whatever is needed for the GPU.
+
+## install new system with old config
+
+I don't think this works as long as my build is impure because the paths will be fucky
+
+```bash
+# but into the ISO
+# partitioning, luks, formatting...
+sudo -i
+nix-env iA nixos.git
+git clone https://www.gitlab.com/tbreslein/dotfiles /mnt/home/tommy/.dotfiles
+nixos-install --flake .#<host>
+```
 

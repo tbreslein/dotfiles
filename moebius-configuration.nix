@@ -6,8 +6,8 @@
 
 let
   user = "tommy";
-  configDir = "/home/tommy/source/ansible/config";
-  dwmConfigFile = "${configDir}/dwm-config-moebius.h";
+  configDir = "/home/tommy/.dotfiles/config";
+  dwmConfigFile = "${configDir}/dwm-config.h";
   dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";
 in
 {
