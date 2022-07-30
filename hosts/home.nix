@@ -13,6 +13,11 @@
       enable = true;
       package = pkgs.neovim-unwrapped;
       withRuby = true;
+      withPython3 = true;
+      withNodeJs = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
     };
   };
 }
