@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+pushd /home/tommy/.dotfiles && {
+    git pull && \
+        sudo nix flake update && \
+        sudo nixos-rebuild switch --impure --flake .#"$hostname" && \
+        rm -f /home/tommy/.config/nvim/init.vim && \
+        nvim -c 'PackerSync' -c 'TSUpdateSync'
+}
+popd
+
