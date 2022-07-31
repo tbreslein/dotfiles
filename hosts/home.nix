@@ -62,7 +62,6 @@ in
       xclip
       xsel
       xss-lock
-      slock
       pamixer
 
       ripgrep

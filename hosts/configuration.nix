@@ -107,6 +107,8 @@ in
     shell = pkgs.fish;
   };
 
+  programs.slock.enable = true;
+
   environment = {
     systemPackages = with pkgs; [
       vim
