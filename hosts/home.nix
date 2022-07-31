@@ -277,7 +277,7 @@ in
         };
         hostname = {
           ssh_only = false;
-          format = "[$hostname](bold bright-blue)";
+          format = "[$hostname](bold bright-blue): ";
         };
         directory = {
           truncation_length = 7;
