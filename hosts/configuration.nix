@@ -30,6 +30,29 @@ in
           postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "blocks.h" (builtins.readFile "${dwmblocksConfigFile}")} blocks.def.h";
         });
       })
+
+      (final: prev: rec {
+        nyxt = prev.nyxt.overrideAttrs (old: {
+          version = "2.2.4";
+          installPhase = ''
+            gappsWrapperArgs+=(
+              --set WEBKIT_FORCE_SANDBOX 0
+            )
+          '' + old.installPhase;
+        });
+
+        lispPackages = prev.lispPackages // {
+          nyxt = prev.lispPackages.nyxt.overrideAttrs (old: rec {
+            version = "2.2.4";
+            src = prev.fetchFromGitHub {
+              owner = "atlas-engineer";
+              repo = "nyxt";
+              rev = "${version}";
+              sha256 = "12l7ir3q29v06jx0zng5cvlbmap7p709ka3ik6x29lw334qshm9b";
+            };
+          });
+        };
+      })
     ];
   };
 
@@ -125,6 +148,7 @@ in
       dwmblocks
       rnix-lsp
       nixpkgs-fmt
+      nyxt
     ];
   };
 
