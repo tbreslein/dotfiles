@@ -64,6 +64,7 @@ in
       xss-lock
       slock
       pamixer
+      nyxt
 
       ripgrep
       fd
