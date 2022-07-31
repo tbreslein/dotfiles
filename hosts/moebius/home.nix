@@ -49,6 +49,7 @@
       megasync &
       dwmblocks &
       birdtray &
+      feh --bg-center $HOME/MEGA/Wallpaper/ok_21-9.jpg $HOME/MEGA/Wallpaper/bonfire.jpg
     '';
   };
 }
