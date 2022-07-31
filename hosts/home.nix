@@ -130,7 +130,7 @@ in
             style = "Regular";
           };
         };
-        schemes = {
+        colors = {
 
           # gruvbox_hard_dark
           primary = {
