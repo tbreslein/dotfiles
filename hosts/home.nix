@@ -93,27 +93,17 @@ in
     ];
 
     file = {
-      # dwm-volume = {
-      #   executable = true;
-      #   target = ".local/bin/dwm-volume";
-      #   source = "../scripts/dwm-volume";
-      # };
-      # launch-dwm = {
-      #   executable = true;
-      #   target = ".local/bin/launch-dwm";
-      #   source = "../scripts/launch-dwm";
-      # };
-      # scrot-screenshot = {
-      #   executable = true;
-      #   target = ".local/bin/scrot-screenshot";
-      #   source = "../scripts/scrot-screenshot";
-      # };
       scripts = {
         executable = true;
         recursive = true;
         source = ../scripts;
         target = ".local/bin/";
       };
+      # nvimconfig = {
+      #   recursive = false;
+      #   source = ../config/nvim;
+      #   target = ".config/nvim";
+      # };
     };
   };
 
@@ -215,6 +205,28 @@ in
       shellInit = ''
         fish_add_path $HOME/.local/bin
       '';
+      plugins = [
+        {
+          name = "done";
+          src = pkgs.fetchFromGitHub
+            {
+              owner = "franciscolourenco";
+              repo = "done";
+              rev = "d6abb267bb3fb7e987a9352bc43dcdb67bac9f06";
+              sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
+            };
+        }
+        {
+          name = "theme_gruvbox";
+          src = pkgs.fetchFromGitHub
+            {
+              owner = "Jomik";
+              repo = "fish-gruvbox";
+              rev = "80a6f3a7b31beb6f087b0c56cbf3470204759d1c";
+              sha256 = "vL2/Nm9Z9cdaptx8sJqbX5AnRtfd68x4ZKWdQk5Cngo=";
+            };
+        }
+      ];
     };
 
     fzf = {
