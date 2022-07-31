@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+/usr/bin/brave \
+    --use-gl=desktop \
+    --enable-features=VaapiVideoDecoder \
+    --enable-gpu-rasterization \
+    --enable-oop-rasterization \
+    --enable-accelerated-video-decode \
+    --disable-features=UseChromeOSDirectVideoDecoder
+

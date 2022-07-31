@@ -58,6 +58,7 @@ in
   time.timeZone = "Europe/Berlin";
 
   services = {
+    geoclue2.enable = true;
     interception-tools = {
       enable = true;
       plugins = with pkgs; [ interception-tools-plugins.caps2esc ];
@@ -82,6 +83,12 @@ in
       windowManager.dwm.enable = true;
     };
     printing.enable = true;
+    serverFlagsSection = ''
+      Option "BlankTime" "0"
+      Option "StandbyTime" "0"
+      Option "SuspendTime" "0"
+      Option "OffTime" "0"
+    '';
   };
 
   # Enable sound.
@@ -104,21 +111,29 @@ in
     name = user;
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "audio" "networkmanager" "lp" "scanner" ];
+    shell = pkgs.fish;
   };
 
-  environment.systemPackages = with pkgs; [
-    vim
-    gcc
-    wget
-    brave
-    git
-    htop
-    alacritty
-    dmenu
-    dwmblocks
-    rnix-lsp
-    nixpkgs-fmt
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      vim
+      st
+      gcc
+      wget
+      curl
+      gnutar
+      p7zip
+      unrar
+      zip
+      unzip
+      git
+      htop
+      dmenu
+      dwmblocks
+      rnix-lsp
+      nixpkgs-fmt
+    ];
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

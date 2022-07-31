@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+while true; do
+    # log dwm stderror to $HOME/.dwm.log
+    dwm 2> ~/.dwm.log
+    # or disable error logging
+    #dwm >/dev/null 2>&1
+done
+

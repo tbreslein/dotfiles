@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Credit: https://github.com/moverest/sway-interactive-screenshot/blob/master/sway-interactive-screenshot
+
+CHOICE=$1
+readonly SAVEDIR=~/Pictures
+mkdir -p -- "${SAVEDIR}"
+readonly FILENAME="${SAVEDIR}/$(date +'%Y-%m-%d-%H%M%S_screenshot.png')"
+readonly EXPANDED_FILENAME="${FILENAME/#\~/$HOME}"
+
+case $CHOICE in
+    fullscreen)
+        scrot "$EXPANDED_FILENAME"
+        ;;
+    region)
+        scrot -s "$EXPANDED_FILENAME"
+        ;;
+    '')
+        notify-send "Screenshot" "Cancelled"
+        exit 0
+        ;;
+esac
+
+xclip -selection clipboard -t image/png -i ${EXPANDED_FILENAME}
+notify-send "Screnshot" "File saved as <i>'$FILENAME'</i> and copied to the clipboard." -i ${EXPANDED_FILENAME}
+
