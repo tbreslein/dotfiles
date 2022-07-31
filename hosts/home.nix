@@ -23,6 +23,7 @@ in
       MAIL = mail;
       EDITOR = editor;
       VISUAL = visual;
+      _JAVA_AWT_WM_NONREPARENTING = 1;
     };
     shellAliases = {
       g = "git";
@@ -204,6 +205,7 @@ in
       enable = shell == "fish";
       shellInit = ''
         fish_add_path $HOME/.local/bin
+        theme_gruvbox dark hard
       '';
       plugins = [
         {
