@@ -74,7 +74,6 @@ in
       videoDrivers = [ "amdgpu" ];
       layout = "us";
       displayManager = {
-        startx.enable = true;
         defaultSession = "none+dwm";
         lightdm.enable = true;
         autoLogin.enable = true;
