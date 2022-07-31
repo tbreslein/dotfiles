@@ -1,8 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 
 let
   user = "tommy";
@@ -11,11 +7,6 @@ let
   dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";
 in
 {
-  #imports =
-  #  [ # Include the results of the hardware scan.
-  #    ./moebius-hardware-configuration.nix
-  #  ];
-
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
@@ -67,7 +58,6 @@ in
   time.timeZone = "Europe/Berlin";
 
   services = {
-    #getty.autologinUser = "tommy";
     interception-tools = {
       enable = true;
       plugins = with pkgs; [ interception-tools-plugins.caps2esc ];
@@ -81,6 +71,7 @@ in
     xserver = {
       enable = true;
       videoDrivers = [ "amdgpu" ];
+      layout = "us";
       displayManager = {
         startx.enable = true;
         defaultSession = "none+dwm";
@@ -88,18 +79,10 @@ in
         autoLogin.enable = true;
         autoLogin.user = "tommy";
       };
-      #displayManager.sddm.enable = true;
-      #desktopManager.plasma5.enable = true;
       windowManager.dwm.enable = true;
     };
+    printing.enable = true;
   };
-
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:escape";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound.
   sound = {
@@ -115,12 +98,12 @@ in
       extraPackages = with pkgs; [ amdvlk rocm-opencl-icd rocm-opencl-runtime ];
       extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
-
   };
 
   users.users.tommy = {
+    name = user;
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "networkmanager" "lp" "scanner" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "audio" "networkmanager" "lp" "scanner" ];
   };
 
   environment.systemPackages = with pkgs; [

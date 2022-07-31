@@ -1,5 +1,5 @@
 { config, pkgs, neovim-nightly, ... }:
 
 {
-  programs.alacritty.font.size = 12;
+  programs.alacritty.font.size = 9;
 }
