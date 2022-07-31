@@ -205,7 +205,6 @@ in
       enable = shell == "fish";
       shellInit = ''
         fish_add_path $HOME/.local/bin
-        theme_gruvbox dark hard
       '';
       plugins = [
         {

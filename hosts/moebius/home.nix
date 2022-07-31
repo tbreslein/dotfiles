@@ -2,7 +2,7 @@
 
 {
   programs = {
-    alacritty.settings.font.size = 10;
+    alacritty.settings.font.size = 12;
     # autorandr.profiles = {
     #   "regular" = {
     #     fingerprint = {
