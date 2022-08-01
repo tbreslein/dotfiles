@@ -37,7 +37,8 @@ Then generate the configs with `nixos-generate-config`, and then `hardware.nix` 
 
 Get my config, or write a new one.
 In the latter case, when dual booting, make sure that OSProber is activated.
-In `hardware.nix`, add "amdgpu" or whatever is needed for the GPU.
+In `hardware.nix`, add `amdgpu` to `boot.initrd.kernelModules` and `server.xserver.videoDrivers` or
+whatever is needed for the GPU, so that the GPU modules are loaded as soon as possible.
 
 ## install new system with old config
 

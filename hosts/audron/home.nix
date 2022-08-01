@@ -53,7 +53,6 @@
       dwmblocks &
       birdtray &
       xset s 180 120
-      xss-lock -- slock &
     '';
   };
 }
