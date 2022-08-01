@@ -1,0 +1,19 @@
+- fix cursor theme
+- config gpg
+- config pass
+- config protonmail-bridge
+- add protonmail to thunderbird
+- get either neomutt or aerc working
+- pray that nyxt is working soon...
+- add bitwarden cli (https://nixos.wiki/wiki/Bitwarden ; https://github.com/bitwarden/clients)
+- configure lorri (https://github.com/nix-community/lorri)
+- get working: {
+    docker
+    virt-manager
+    hedis
+    capturedlambda
+    hydromonad
+    playgrounds
+    android-studio / android emulators
+  }
+
