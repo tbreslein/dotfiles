@@ -73,6 +73,7 @@ in
     udev.extraRules = ''
       SUBSYSTEM=="pci", ATTR{vendor}=="0x8086", ATTR{device}=="0xa0e0", ATTR{power/control}="on"
     '';
+
     xserver = {
       libinput.enable = true; #touchpad
       serverFlagsSection = ''

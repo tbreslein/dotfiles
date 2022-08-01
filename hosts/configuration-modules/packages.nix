@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 let
+  # can't I make this pure by using a relative path?
+  # dwmConfigFile = ./config/dwm-config.h;
+  # dwmblocksConfigFile = ./dwmblocks-config.h;
+
   configDir = "/home/tommy/.dotfiles/config";
   dwmConfigFile = "${configDir}/dwm-config.h";
   dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";

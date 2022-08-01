@@ -18,15 +18,18 @@ in
     (./home-manager-modules/terminal.nix { inherit font; })
     (./home-manager-modules/terminaltools.nix { inherit editor shell; })
   ];
+
   home = {
     username = user;
     homeDirectory = "/home/${user}";
     stateVersion = "22.05";
+
     pointerCursor = {
       x11.enable = true;
       package = pkgs.quintom-cursor-theme;
       name = "quintom-cursor-theme";
     };
+
     sessionVariables = {
       BROWSER = browser;
       MAIL = mail;
@@ -34,9 +37,6 @@ in
       VISUAL = visual;
       _JAVA_AWT_WM_NONREPARENTING = 1;
     };
-
-    # packages = with pkgs; [
-    # ];
 
     file = {
       scripts = {
@@ -53,11 +53,6 @@ in
     };
   };
 
-  programs = {
-    home-manager.enable = true;
-  };
-
-  xsession = {
-    enable = true;
-  };
+  programs.home-manager.enable = true;
+  xsession.enable = true;
 }
