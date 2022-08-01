@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, editor, shell, ... }:
+{ pkgs, editor, nvimPkg, shell, ... }:
 
 {
   home = {
@@ -39,14 +39,16 @@
       enable = true;
       userEmail = "tommy.breslein@protonmail.com";
       userName = "tbreslein";
-      push.default = true;
-      pull.rebase = true;
-      core.editor = "${editor}";
+      extraConfig = {
+        push.default = "current";
+        pull.rebase = true;
+        core.editor = "${editor}";
+      };
     };
 
     neovim = {
       enable = true;
-      package = pkgs.neovim-unwrapped;
+      package = nvimPkg;
       withRuby = true;
       withPython3 = true;
       withNodeJs = true;

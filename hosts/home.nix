@@ -2,21 +2,24 @@
 
 let
   browser = "brave";
+  browserPkg = pkgs.brave;
   mail = "thunderbird";
+  mailPkg = pkgs.thunderbird;
   editor = "nvim";
+  nvimPkg = pkgs.neovim-unwrapped;
   visual = "nvim";
   shell = "fish";
   font = "Inconsolata";
 in
 {
   imports = [
-    ./home-manager-modules/coding.nix
-    (./home-manager-modules/desktop.nix { inherit font; })
+    (import ./home-manager-modules/coding.nix { inherit pkgs shell; })
+    (import ./home-manager-modules/desktop.nix { inherit pkgs font; })
     ./home-manager-modules/fonts.nix
-    (./home-manager-modules/gui.nix { inherit browser mail; })
-    (./home-manager-modules/shell.nix { inherit editor shell; })
-    (./home-manager-modules/terminal.nix { inherit font; })
-    (./home-manager-modules/terminaltools.nix { inherit editor shell; })
+    (import ./home-manager-modules/gui.nix { inherit pkgs browserPkg mailPkg; })
+    (import ./home-manager-modules/shell.nix { inherit pkgs editor shell; })
+    (import ./home-manager-modules/terminal.nix { inherit font; })
+    (import ./home-manager-modules/terminaltools.nix { inherit pkgs editor nvimPkg shell; })
   ];
 
   home = {

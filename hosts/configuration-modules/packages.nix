@@ -66,7 +66,7 @@ in
     gamemode.enable = true;
     npm = {
       enable = true;
-      npmrc = = ''
+      npmrc = ''
         prefix = $HOME/.npm
         init-license=BSD-3
         init-author=tbreslein

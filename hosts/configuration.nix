@@ -2,7 +2,7 @@
 
 {
   imports = [
-    (./configuration-modules/users.nix { inherit user; })
+    (import ./configuration-modules/users.nix { inherit config pkgs user; })
     ./configuration-modules/boot.nix
     ./configuration-modules/packages.nix
     ./configuration-modules/printing-scanning.nix

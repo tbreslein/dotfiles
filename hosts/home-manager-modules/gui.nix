@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, browser, mail, ... }:
+{ pkgs, browserPkg, mailPkg, ... }:
 
 {
   home = {
@@ -7,8 +7,8 @@
       tdesktop
       libreoffice-fresh
       discord
-      "${browser}"
-      "${mail}"
+      browserPkg
+      mailPkg
       zoom-us
       birdtray
       megasync

@@ -6,7 +6,7 @@
   services = {
     avahi = {
       enable = true;
-      publish = false;
+      publish.enable = false;
     };
     printing.enable = true;
   };

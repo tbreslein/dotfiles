@@ -1,8 +1,8 @@
 { lib, inputs, system, home-manager, user, overlays, ... }:
 
 let
-  # mkHost = hostName: inputs: system: home-manager: user: overlays: {
-  mkHost = hostName: {
+  # mkHost = hostname: inputs: system: home-manager: user: overlays: {
+  mkHost = hostname: {
     inherit system;
     specialArgs = { inherit user inputs; };
     modules = [
