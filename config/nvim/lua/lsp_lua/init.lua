@@ -214,6 +214,7 @@ local servers = {
     "jsonls",
     "marksman",
     "tailwindcss",
+    "rnix",
 }
 
 for _, lsp in ipairs(servers) do
