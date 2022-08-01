@@ -28,9 +28,12 @@ in
     stateVersion = "22.05";
 
     pointerCursor = {
-      x11.enable = true;
+      x11 = {
+        enable = true;
+        defaultCursor = "X_cursor";
+      };
       package = pkgs.quintom-cursor-theme;
-      name = "quintom-cursor-theme";
+      name = "Quintom_Ink";
     };
 
     sessionVariables = {

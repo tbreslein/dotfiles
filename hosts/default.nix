@@ -7,8 +7,8 @@ let
     specialArgs = { inherit user inputs; };
     modules = [
       "./${hostname}"
-      ./configuration.nix
       { nixpkgs.overlays = overlays; }
+      ./configuration.nix
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;

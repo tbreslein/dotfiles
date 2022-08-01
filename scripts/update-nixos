@@ -4,8 +4,9 @@ pushd /home/tommy/.dotfiles && {
     git pull && \
         sudo nix flake update && \
         sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$hostname" && \
-        rm -f /home/tommy/.config/nvim/init.vim && \
+        rm -f $HOME/.config/nvim/init.vim && \
         nvim -c 'PackerSync' -c 'TSUpdateSync'
+
 }
 popd
 

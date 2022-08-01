@@ -49,9 +49,9 @@
     neovim = {
       enable = true;
       package = nvimPkg;
-      withRuby = true;
-      withPython3 = true;
       withNodeJs = true;
+      withPython3 = true;
+      withRuby = true;
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
