@@ -10,6 +10,7 @@
       openfortivpn
       playerctl
       pamixer
+      pinentry-curses
     ];
   };
 
