@@ -67,7 +67,7 @@ in
     gnupg = {
       agent = {
         enable = true;
-        pinentryFlavor = "curses";
+        pinentryFlavor = "gnome3";
       };
     };
     npm = {
