@@ -4,7 +4,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 6;        /* gaps between windows */
+static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
@@ -137,12 +137,20 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = screenshot_all} },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = screenshot_area} },
-	{ MODKEY,                       XK_less,   spawn,          {.v = mutevolume} },
-	{ MODKEY,                       XK_greater,spawn,          {.v = decvolume} },
-	{ MODKEY,                       XK_question,spawn,         {.v = incvolume} },
-	{ MODKEY|ControlMask,           XK_less,   spawn,          {.v = playerctl_play_pause} },
-	{ MODKEY|ControlMask,           XK_greater,spawn,          {.v = playerctl_prev} },
-	{ MODKEY|ControlMask,           XK_question,spawn,         {.v = playerctl_next} }
+	{ MODKEY|ControlMask,           XK_comma,  spawn,          {.v = mutevolume} },
+	{ MODKEY|ControlMask,           XK_period, spawn,          {.v = decvolume} },
+	{ MODKEY|ControlMask,           XK_question,spawn,         {.v = incvolume} },
+	{ MODKEY|ControlMask,           XK_l,      spawn,          {.v = playerctl_play_pause} },
+	{ MODKEY|ControlMask,           XK_semicolon, spawn,       {.v = playerctl_prev} },
+	{ MODKEY|ControlMask,           XK_colon,  spawn,          {.v = playerctl_next} },
+	{ 0,                            XK_Print,  spawn,          {.v = screenshot_all} },
+	{ MODKEY,                       XK_Print,  spawn,          {.v = screenshot_area} },
+	{ 0,                            XF86XK_AudioMute,        spawn, {.v = mutevolume} },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = decvolume} },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = incvolume} },
+	{ 0,                            XF86XK_AudioPlay,        spawn, {.v = playerctl_play_pause} },
+	{ 0,                            XF86XK_AudioPrev,        spawn, {.v = playerctl_prev} },
+	{ 0,                            XF86XK_AudioNext,        spawn, {.v = playerctl_next} }
 };
 
 /* button definitions */

@@ -25,9 +25,11 @@ in
     overlays = [
       (self: super: {
         dwm = super.dwm.overrideAttrs (oldAttrs: {
+          # src = fetchFromGitHub {
           src = fetchGit {
-            url = "https://gitlab.com/tbreslein/dwm.git";
+            url = "https://github.com/tbreslein/dwm.git";
             ref = "build";
+            rev = "935324695f97fff390b4250d8850584cea38ea82";
           };
           # postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "config.h" (builtins.readFile "${dwmConfigFile}")} config.def.h";
         });
