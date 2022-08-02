@@ -7,7 +7,7 @@ pushd /home/tommy/.dotfiles && {
         if [ $? -ne 0 ]; then
             git add flake.lock && git commit -m 'update flake.lock'
         fi
-        sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$(cat /etc/hostname)" && \
+        sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$(cat /etc/hostname)"
         rm -f "$HOME/.config/nvim/init.vim" && \
         nvim -c 'PackerSync' -c 'TSUpdateSync'
 }

@@ -33,6 +33,10 @@
               EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
       '';
     };
+    xserver = {
+      xkbModel = "pc105";
+      xkbOptions = "";
+    };
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
