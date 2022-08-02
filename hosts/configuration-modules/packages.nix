@@ -64,6 +64,12 @@ in
 
   programs = {
     gamemode.enable = true;
+    gnupg = {
+      agent = {
+        enable = true;
+        pinentryFlavor = "curses";
+      };
+    };
     npm = {
       enable = true;
       npmrc = ''

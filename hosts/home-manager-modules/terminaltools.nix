@@ -10,7 +10,6 @@
       openfortivpn
       playerctl
       pamixer
-      pinentry-curses
     ];
   };
 
@@ -18,7 +17,6 @@
     bottom.enable = true;
     exa.enable = true;
     feh.enable = true;
-    gpg.enable = true;
     lazygit.enable = true;
     nnn.enable = true;
     pandoc.enable = true;
