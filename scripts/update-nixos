@@ -2,11 +2,13 @@
 
 pushd /home/tommy/.dotfiles && {
     git pull && \
-        sudo nix flake update && \
-        sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$hostname" && \
-        rm -f $HOME/.config/nvim/init.vim && \
+        sudo nix flake update
+        if [ "$(git diff --exit-code flake.lock 2&> /dev/null)" -ne 0 ]; then
+            git add flake.lock && git commit -m 'update flake.lock'
+        fi
+        sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$(cat /etc/hostname)" && \
+        rm -f "$HOME/.config/nvim/init.vim" && \
         nvim -c 'PackerSync' -c 'TSUpdateSync'
-
 }
-popd
+popd || exit
 
