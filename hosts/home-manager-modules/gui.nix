@@ -8,6 +8,7 @@
       libreoffice-fresh
       discord
       browserPkg
+      nyxt
       mailPkg
       zoom-us
       birdtray
