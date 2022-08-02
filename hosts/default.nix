@@ -1,10 +1,10 @@
-{ lib, inputs, system, home-manager, user, overlays, ... }:
+{ lib, inputs, system, home-manager, user, homeDir, overlays, ... }:
 
 let
   # mkHost = hostname: inputs: system: home-manager: user: overlays: {
   mkHost = hostname: {
     inherit system;
-    specialArgs = { inherit user inputs; };
+    specialArgs = { inherit user homeDir inputs; };
     modules = [
       "./${hostname}"
       { nixpkgs.overlays = overlays; }
@@ -13,7 +13,7 @@ let
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit user inputs; };
+        home-manager.extraSpecialArgs = { inherit user homeDir inputs; };
         home-manager.users.${user} = {
           imports = [ (import ./home.nix) ] ++ [ (import "./${hostname}/home.nix") ];
         };

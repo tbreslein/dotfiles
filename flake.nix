@@ -18,6 +18,7 @@
     let
       system = "x86_64-linux";
       user = "tommy";
+      homeDir = "/home/${user}";
 
       pkgs = import nixpkgs {
         inherit system;
@@ -33,7 +34,7 @@
           import ./hosts
             {
               inherit (nixpkgs) lib;
-              inherit inputs user system home-manager overlays;
+              inherit inputs user homeDir system home-manager overlays;
             }
         );
     };

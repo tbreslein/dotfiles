@@ -1,8 +1,9 @@
-{ config, pkgs, user, ... }:
+{ config, pkgs, user, homeDir, ... }:
 
 {
   imports = [
     (import ./configuration-modules/users.nix { inherit config pkgs user; })
+    (import ./configuration-modules/activationScripts.nix { inherit config homeDir; })
   ] ++ [
     ./configuration-modules/boot.nix
     ./configuration-modules/packages.nix
