@@ -59,17 +59,19 @@ in
       dwmblocks
       rnix-lsp
       nixpkgs-fmt
+      gnupg
+      pinentry-curses
     ];
   };
 
   programs = {
     gamemode.enable = true;
-    gnupg = {
-      agent = {
-        enable = true;
-        pinentryFlavor = "gnome3";
-      };
-    };
+    # gnupg = {
+    #   agent = {
+    #     enable = true;
+    #     pinentryFlavor = "gnome3";
+    #   };
+    # };
     npm = {
       enable = true;
       npmrc = ''
