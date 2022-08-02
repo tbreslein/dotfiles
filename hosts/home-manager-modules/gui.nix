@@ -28,6 +28,10 @@
   };
 
   services = {
+    flameshot = {
+      enable = true;
+      settings.General.uiColor = "#fe8019";
+    };
     network-manager-applet.enable = true;
     pasystray.enable = true;
   };
