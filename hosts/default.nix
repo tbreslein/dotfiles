@@ -41,7 +41,7 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit user inputs; };
+        home-manager.extraSpecialArgs = { inherit user homeDir inputs; };
         home-manager.users.${user} = {
           imports = [ (import ./home.nix) ] ++ [ (import ./moebius/home.nix) ];
         };

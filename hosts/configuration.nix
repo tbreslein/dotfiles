@@ -4,9 +4,9 @@
   imports = [
     (import ./configuration-modules/users.nix { inherit config pkgs user; })
     (import ./configuration-modules/activationScripts.nix { inherit config homeDir; })
+    (import ./configuration-modules/packages.nix { inherit config pkgs homeDir; })
   ] ++ [
     ./configuration-modules/boot.nix
-    ./configuration-modules/packages.nix
     ./configuration-modules/printing-scanning.nix
     ./configuration-modules/sound.nix
     ./configuration-modules/virtualisation.nix

@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, homeDir, ... }:
 
 let
   # can't I make this pure by using a relative path?
   # dwmConfigFile = ./config/dwm-config.h;
   # dwmblocksConfigFile = ./dwmblocks-config.h;
 
-  configDir = "/home/tommy/.dotfiles/config";
+  configDir = "${homeDir}/.dotfiles/config";
   dwmConfigFile = "${configDir}/dwm-config.h";
   dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";
 in
@@ -29,7 +29,7 @@ in
           src = fetchGit {
             url = "https://github.com/tbreslein/dwm.git";
             ref = "build";
-            rev = "1cc6df6cdf00a59c97028efec86a5ae1a5ecfcf0";
+            rev = "6d33d0888e61c90236e182b2c58750d56aae4875";
           };
           # postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "config.h" (builtins.readFile "${dwmConfigFile}")} config.def.h";
         });
@@ -63,21 +63,29 @@ in
       nixpkgs-fmt
       gnupg
       pinentry-curses
+      (writeShellScriptBin "update-nixos" ''
+        pushd ${homeDir}/.dotfiles && {
+                git pull && \
+                    sudo nix flake update
+                    git diff --exit-code flake.lock 2&> /dev/null
+                    if [ $? -ne 0 ]; then
+                        git add flake.lock && git commit -m 'update flake.lock'
+                    fi
+                    sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$(cat /etc/hostname)"
+                    rm -f "${homeDir}/.config/nvim/init.vim" && \
+                    nvim -c 'PackerSync' -c 'TSUpdateSync'
+            }
+            popd || exit
+      '')
     ];
   };
 
   programs = {
     gamemode.enable = true;
-    # gnupg = {
-    #   agent = {
-    #     enable = true;
-    #     pinentryFlavor = "gnome3";
-    #   };
-    # };
     npm = {
       enable = true;
       npmrc = ''
-        prefix = $HOME/.npm
+        prefix = ${homeDir}/.npm
         init-license=BSD-3
         init-author=tbreslein
       '';

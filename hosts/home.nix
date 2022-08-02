@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, user, homeDir, ... }:
 
 let
   browser = "brave";
@@ -24,7 +24,7 @@ in
 
   home = {
     username = user;
-    homeDirectory = "/home/${user}";
+    homeDirectory = homeDir;
     stateVersion = "22.05";
 
     pointerCursor = {
@@ -44,19 +44,13 @@ in
       _JAVA_AWT_WM_NONREPARENTING = 1;
     };
 
-    file = {
-      scripts = {
-        executable = true;
-        recursive = true;
-        source = ../scripts;
-        target = ".local/bin/";
-      };
-      # nvimconfig = {
-      #   recursive = false;
-      #   source = ../config/nvim;
-      #   target = ".config/nvim";
-      # };
-    };
+    # file = {
+    # nvimconfig = {
+    #   recursive = false;
+    #   source = ../config/nvim;
+    #   target = ".config/nvim";
+    # };
+    # };
   };
 
   programs.home-manager.enable = true;
