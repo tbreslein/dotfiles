@@ -1,15 +1,15 @@
 { config, homeDir, ... }:
 
+let
+  gpgagentconf = "${homeDir}/.gnupg/gpg-agent.conf";
+in
 {
   system.userActivationScripts = {
     gnupgp = ''
       mkdir -p ${homeDir}/.gnupg
-      touch ${homeDir}/.gnupg/gpg-agent.conf
+      touch ${gpgagentconf}
 
-      grep -q "^pinentry-program *" ${homeDir}/.gnupg/gpg-agent.conf
-      if [ $? -ne 0 ]; then
-        echo "pinentry-program /run/current-system/sw/bin/pinentry-curses" >> "${homeDir}/.gnupg/gpg-agent"
-      fi
+      [[ "^pinentry-program " =~ $(cat "${gpgagentconf}") ]] && echo "pinentry-program /run/current-system/sw/bin/pinentry-curses" >> "${gpgagentconf}"
     '';
   };
 }

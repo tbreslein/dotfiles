@@ -32,7 +32,7 @@ in
 
   moebius = lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit user inputs; };
+    specialArgs = { inherit user inputs homeDir; };
     modules = [
       ./moebius
       ./configuration.nix
