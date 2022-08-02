@@ -135,14 +135,14 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = killxinit} },
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} },
-	{ 0,                            XK_Print,  spawn,          {.v = screenshot_all} },
-	{ MODKEY,                       XK_Print,  spawn,          {.v = screenshot_area} },
-	{ 0,         XF86XK_AudioLowerVolume,      spawn,          {.v = decvolume} },
-	{ 0,         XF86XK_AudioRaiseVolume,      spawn,          {.v = incvolume} },
-	{ 0,         XF86XK_AudioMute,             spawn,          {.v = mutevolume} },
-	{ 0,         XF86XK_AudioPlay,              spawn,          {.v = playerctl_play_pause} },
-	{ 0,         XF86XK_AudioNext,                spawn,          {.v = playerctl_next} },
-	{ 0,         XF86XK_AudioPrev,                spawn,          {.v = playerctl_prev} }
+	{ MODKEY,                       XK_p,      spawn,          {.v = screenshot_all} },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = screenshot_area} },
+	{ MODKEY,                       XK_less,   spawn,          {.v = mutevolume} },
+	{ MODKEY,                       XK_greater,spawn,          {.v = decvolume} },
+	{ MODKEY,                       XK_question,spawn,         {.v = incvolume} },
+	{ MODKEY|ControlMask,           XK_less,   spawn,          {.v = playerctl_play_pause} },
+	{ MODKEY|ControlMask,           XK_greater,spawn,          {.v = playerctl_prev} },
+	{ MODKEY|ControlMask,           XK_question,spawn,         {.v = playerctl_next} }
 };
 
 /* button definitions */
