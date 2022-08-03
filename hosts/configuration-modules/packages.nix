@@ -64,7 +64,8 @@ in
       gnupg
       pinentry-curses
       (writeShellScriptBin "update-nixos" ''
-        pushd ${homeDir}/.dotfiles && {
+        rm -f "${homeDir}/.config/nvim/init.vim" && \
+            pushd ${homeDir}/.dotfiles && {
                 git pull && \
                     sudo nix flake update
                     git diff --exit-code flake.lock 2&> /dev/null
