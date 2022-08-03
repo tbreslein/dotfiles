@@ -1,4 +1,4 @@
-{ pkgs, browserPkg, mailPkg, ... }:
+{ pkgs, ... }:
 
 {
   home = {
@@ -7,9 +7,10 @@
       tdesktop
       libreoffice-fresh
       discord
-      browserPkg
-      nyxt
-      mailPkg
+      firefox
+      brave
+      thunderbird
+      neomutt
       zoom-us
       birdtray
       megasync
