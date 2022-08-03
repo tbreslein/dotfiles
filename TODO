@@ -2,16 +2,13 @@
 - config protonmail-bridge
 - add protonmail to thunderbird
 - get either neomutt or aerc working
-- pray that nyxt is working soon...
-- add bitwarden cli (https://nixos.wiki/wiki/Bitwarden ; https://github.com/bitwarden/clients)
-- configure lorri (https://github.com/nix-community/lorri)
 - get working: {
     docker
     virt-manager
-    hedis
-    capturedlambda
-    hydromonad
-    playgrounds
+    hedis + lorri
+    capturedlambda + lorri
+    hydromonad + lorri
+    playgrounds + lorri
     android-studio / android emulators
   }
 
