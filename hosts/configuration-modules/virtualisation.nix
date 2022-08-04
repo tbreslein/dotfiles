@@ -2,10 +2,9 @@
 
 {
   # virt-manager
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
-  environment.systemPackages = [ pkgs.virt-manager ];
-  users.users.tommy.extraGroups = [ "libvirtd" ];
+  virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  users.users.tommy.extraGroups = [ "vboxusers" ];
 
   # docker
   virtualisation.docker = {
