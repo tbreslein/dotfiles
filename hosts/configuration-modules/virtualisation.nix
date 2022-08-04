@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # virt manager
+  # virt-manager
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
   environment.systemPackages = [ pkgs.virt-manager ];
@@ -12,5 +12,4 @@
     rootless.enable = true;
     autoPrune.enable = true;
   };
-  # users.users.tommy.extraGroups = [ "docker" ];
 }

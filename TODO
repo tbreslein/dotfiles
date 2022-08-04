@@ -1,5 +1,4 @@
 - get working: {
-    docker
     virt-manager
     hedis + lorri
     capturedlambda + lorri
