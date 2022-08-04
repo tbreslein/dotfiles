@@ -30,6 +30,7 @@
       enable = "${shell}" == "fish";
       shellInit = ''
         fish_add_path $HOME/.local/bin
+        set -U fish_greeting
       '';
       plugins = [
         {
