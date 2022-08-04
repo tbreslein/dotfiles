@@ -11,6 +11,7 @@
       brave
       thunderbird
       neomutt
+      protonmail-bridge
       zoom-us
       birdtray
       megasync
