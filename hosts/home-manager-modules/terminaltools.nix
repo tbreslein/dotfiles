@@ -3,6 +3,8 @@
 {
   home = {
     packages = with pkgs; [
+      pass
+      pass-secret-service
       ripgrep
       fd
       imv
