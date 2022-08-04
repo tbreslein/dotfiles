@@ -1,7 +1,3 @@
-- config pass
-- config protonmail-bridge
-- add protonmail to thunderbird
-- get either neomutt or aerc working
 - get working: {
     docker
     virt-manager
