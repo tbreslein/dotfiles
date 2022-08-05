@@ -33,7 +33,7 @@ return require('packer').startup(function(use)
                     globalstatus = true,
                     component_separators = '',
                     section_separators = '',
-                    theme = 'gruvbox',
+                    theme = 'tokyonight',
                 },
                 sections = {
                     lualine_a = {'mode'},
