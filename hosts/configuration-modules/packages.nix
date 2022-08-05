@@ -29,7 +29,7 @@ in
           src = fetchGit {
             url = "https://github.com/tbreslein/dwm.git";
             ref = "build";
-            rev = "1d3c7ce710187634b52c86a2694cd6ae54a18bf6";
+            rev = "c17785ad17a8ea94c6ff695b144d883167b8a749";
           };
           # postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "config.h" (builtins.readFile "${dwmConfigFile}")} config.def.h";
         });
