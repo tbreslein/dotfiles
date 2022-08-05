@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
     use { 'editorconfig/editorconfig-vim' }
     use { 'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end }
     use { 'sainnhe/gruvbox-material' }
+    use { 'folke/tokyonight.nvim' }
 
     use { 'kyazdani42/nvim-web-devicons' }
     use { 'airblade/vim-rooter' }
