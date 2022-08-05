@@ -25,19 +25,29 @@ in
     overlays = [
       (self: super: {
         dwm = super.dwm.overrideAttrs (oldAttrs: {
-          # src = fetchFromGitHub {
-          src = fetchGit {
-            url = "https://github.com/tbreslein/dwm.git";
-            ref = "build";
+          src = fetchFromGitHub {
+            owner = "tbreslein";
+            repo = "dwm";
             rev = "1d3c7ce710187634b52c86a2694cd6ae54a18bf6";
+            sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
           };
-          # postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "config.h" (builtins.readFile "${dwmConfigFile}")} config.def.h";
         });
       })
 
+      # (self: super: {
+      #   dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
+      #     postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "blocks.h" (builtins.readFile "${dwmblocksConfigFile}")} blocks.def.h";
+      #   });
+      # })
+
       (self: super: {
-        dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
-          postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "blocks.h" (builtins.readFile "${dwmblocksConfigFile}")} blocks.def.h";
+        dwmblocks = super.dwm.overrideAttrs (oldAttrs: {
+          src = fetchFromGitHub {
+            owner = "tbreslein";
+            repo = "dwmblocks";
+            rev = "37bb6fc7c20c8c2746a0c708d96c8a805cb73637";
+            sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
+          };
         });
       })
     ];

@@ -57,5 +57,12 @@
       vimAlias = true;
       vimdiffAlias = true;
     };
+
+    zoxide = {
+      enable = true;
+      enableBashIntegration = "${shell}" == "bash";
+      enableFishIntegration = "${shell}" == "fish";
+      enableZshIntegration = "${shell}" == "zsh";
+    };
   };
 }

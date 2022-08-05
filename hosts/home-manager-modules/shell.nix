@@ -31,6 +31,7 @@
       shellInit = ''
         fish_add_path $HOME/.local/bin
         set -U fish_greeting
+        fish_vi_key_bindings insert
       '';
       plugins = [
         {
@@ -40,6 +41,16 @@
               owner = "franciscolourenco";
               repo = "done";
               rev = "d6abb267bb3fb7e987a9352bc43dcdb67bac9f06";
+              sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
+            };
+        }
+        {
+          name = "fzf.fish";
+          src = pkgs.fetchFromGitHub
+            {
+              owner = "PatrickF1";
+              repo = "fzf.fish";
+              rev = "c8c7d9903e0327b0d76e51ba4378ec8d5ef6477e";
               sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
             };
         }

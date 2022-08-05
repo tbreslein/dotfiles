@@ -27,6 +27,18 @@ in
     homeDirectory = homeDir;
     stateVersion = "22.05";
 
+    activation = {
+      link_nvimconfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD ln -sf $VERBOSE_ARG \
+          ${builtins.toPath ../config/nvim} $HOME/config/nvim
+      '';
+
+      # because for some reason home manager HAS to add an init.vim
+      remove_initvim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        $DRY_RUN_CMD rm -f $VERBOSE_ARG ${builtins.toPath ../config/nvim/init.vim}
+      '';
+    };
+
     pointerCursor = {
       x11 = {
         enable = true;
