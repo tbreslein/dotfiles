@@ -25,27 +25,19 @@ in
     overlays = [
       (self: super: {
         dwm = super.dwm.overrideAttrs (oldAttrs: {
+          # src = fetchFromGitHub {
           src = fetchGit {
             url = "https://github.com/tbreslein/dwm.git";
             ref = "build";
-            rev = "c17785ad17a8ea94c6ff695b144d883167b8a749";
+            rev = "1d3c7ce710187634b52c86a2694cd6ae54a18bf6";
           };
+          # postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "config.h" (builtins.readFile "${dwmConfigFile}")} config.def.h";
         });
       })
 
-      # (self: super: {
-      #   dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
-      #     postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "blocks.h" (builtins.readFile "${dwmblocksConfigFile}")} blocks.def.h";
-      #   });
-      # })
-
       (self: super: {
-        dwmblocks = super.dwm.overrideAttrs (oldAttrs: {
-          src = fetchGit {
-            url = "https://github.com/tbreslein/dwmblocks.git";
-            ref = "build";
-            rev = "37bb6fc7c20c8c2746a0c708d96c8a805cb73637";
-          };
+        dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
+          postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "blocks.h" (builtins.readFile "${dwmblocksConfigFile}")} blocks.def.h";
         });
       })
     ];
