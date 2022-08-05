@@ -1,4 +1,4 @@
-{ config, pkgs, user, homeDir, ... }:
+{ config, pkgs, user, homeDir, dwm, ... }:
 
 {
   imports = [
@@ -12,6 +12,9 @@
     ./configuration-modules/virtualisation.nix
     ./configuration-modules/wm.nix
   ];
+
+
+  environment.systemPackages = with pkgs; [ dwm.defaultPackage.${pkgs.system} ];
 
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"

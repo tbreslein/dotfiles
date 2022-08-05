@@ -23,15 +23,15 @@ in
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
-      # (self: super: {
-      #   dwm = super.dwm.overrideAttrs (oldAttrs: {
-      #     src = fetchGit {
-      #       url = "https://github.com/tbreslein/dwm.git";
-      #       ref = "build";
-      #       rev = "c17785ad17a8ea94c6ff695b144d883167b8a749";
-      #     };
-      #   });
-      # })
+      (self: super: {
+        dwm = super.dwm.overrideAttrs (oldAttrs: {
+          src = fetchGit {
+            url = "https://github.com/tbreslein/dwm.git";
+            ref = "build";
+            rev = "c17785ad17a8ea94c6ff695b144d883167b8a749";
+          };
+        });
+      })
 
       # (self: super: {
       #   dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {

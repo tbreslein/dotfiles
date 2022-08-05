@@ -6,6 +6,7 @@ let
     inherit system;
     specialArgs = { inherit inputs user homeDir; };
     modules = [
+      # { _module.args = inputs; }
       { nixpkgs.overlays = overlays; }
       "./${hostname}"
       ./configuration.nix
