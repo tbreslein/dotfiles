@@ -16,26 +16,27 @@
       shellcheck
       sumneko-lua-language-server
     ];
-  };
 
-  file.".editorconfig" = {
-    target = ".editconfig";
-    text = ''
-      root = true
+    file.".editorconfig" = {
+      target = ".editconfig";
+      text = ''
+        root = true
 
-      [*]
-      end_of_line = lf
-      insert_final_newline = true
-      charset = utf-8
-      indent_style = space
-      indent_size = 4
+        [*]
+        end_of_line = lf
+        insert_final_newline = true
+        charset = utf-8
+        indent_style = space
+        indent_size = 4
 
-      [Makefile]
-      indent_style = tab
+        [Makefile]
+        indent_style = tab
 
-      [*.{svelte,astro,mjs,cjs,ts,tsx,js,jsx,html,css,json,yml,yaml}]
-      indent_size = 2
-    '';
+        [*.{svelte,astro,mjs,cjs,ts,tsx,js,jsx,html,css,json,yml,yaml}]
+        indent_size = 2
+      '';
+    };
+
   };
 
   programs = {
