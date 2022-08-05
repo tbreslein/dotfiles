@@ -8,13 +8,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay = {
+    neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dwm = {
+      url = "github:tbreslein/dwm/build";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # dwmblocks = {
+    #   url = "github:tbreslein/dwmblocks/build";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, neovim-nightly-overlay, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, neovim-nightly, dwm, ... }:
     let
       system = "x86_64-linux";
       user = "tommy";
@@ -26,7 +36,10 @@
       };
 
       lib = nixpkgs.lib;
-      overlays = [ neovim-nightly-overlay.overlay ];
+      overlays = [
+        neovim-nightly.overlay
+        dwm.overlay
+      ];
 
       colors = {
         # # gruvbox_hard_dark

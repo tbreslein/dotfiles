@@ -6,8 +6,8 @@ let
     inherit system;
     specialArgs = { inherit inputs user homeDir; };
     modules = [
-      "./${hostname}"
       { nixpkgs.overlays = overlays; }
+      "./${hostname}"
       ./configuration.nix
       home-manager.nixosModules.home-manager
       {

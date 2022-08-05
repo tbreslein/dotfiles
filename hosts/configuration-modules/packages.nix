@@ -23,17 +23,15 @@ in
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
-      (self: super: {
-        dwm = super.dwm.overrideAttrs (oldAttrs: {
-          src = super.fetchFromGitHub {
-            owner = "tbreslein";
-            repo = "dwm";
-            ref = "build";
-            rev = "c17785ad17a8ea94c6ff695b144d883167b8a749";
-            sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
-          };
-        });
-      })
+      # (self: super: {
+      #   dwm = super.dwm.overrideAttrs (oldAttrs: {
+      #     src = fetchGit {
+      #       url = "https://github.com/tbreslein/dwm.git";
+      #       ref = "build";
+      #       rev = "c17785ad17a8ea94c6ff695b144d883167b8a749";
+      #     };
+      #   });
+      # })
 
       # (self: super: {
       #   dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
@@ -43,12 +41,10 @@ in
 
       (self: super: {
         dwmblocks = super.dwm.overrideAttrs (oldAttrs: {
-          src = super.fetchFromGitHub {
-            owner = "tbreslein";
-            repo = "dwmblocks";
+          src = fetchGit {
+            url = "https://github.com/tbreslein/dwmblocks.git";
             ref = "build";
             rev = "37bb6fc7c20c8c2746a0c708d96c8a805cb73637";
-            sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
           };
         });
       })
