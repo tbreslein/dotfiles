@@ -1,26 +1,5 @@
 {
   "nodes": {
-    "dwm": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1659723546,
-        "narHash": "sha256-umprnHTsgoKQWEOgYtyzfkgD2NitpnNEm/Au2SKkQx8=",
-        "owner": "tbreslein",
-        "repo": "dwm",
-        "rev": "c17785ad17a8ea94c6ff695b144d883167b8a749",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tbreslein",
-        "ref": "build",
-        "repo": "dwm",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -137,7 +116,6 @@
     },
     "root": {
       "inputs": {
-        "dwm": "dwm",
         "home-manager": "home-manager",
         "neovim-nightly": "neovim-nightly",
         "nixpkgs": "nixpkgs"

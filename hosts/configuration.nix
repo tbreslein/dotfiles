@@ -13,9 +13,6 @@
     ./configuration-modules/wm.nix
   ];
 
-
-  environment.systemPackages = with pkgs; [ dwm.defaultPackage.${pkgs.system} ];
-
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
     "de_DE.UTF-8/UTF-8"
