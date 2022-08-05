@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, homeDir, ... }:
+{ config, lib, pkgs, user, homeDir, colors, ... }:
 
 let
   browser = "brave";
@@ -14,11 +14,11 @@ in
 {
   imports = [
     (import ./home-manager-modules/coding.nix { inherit pkgs shell; })
-    (import ./home-manager-modules/desktop.nix { inherit pkgs font; })
+    (import ./home-manager-modules/desktop.nix { inherit pkgs font colors; })
     ./home-manager-modules/fonts.nix
-    (import ./home-manager-modules/gui.nix { inherit pkgs browserPkg mailPkg; })
+    (import ./home-manager-modules/gui.nix { inherit pkgs colors; })
     (import ./home-manager-modules/shell.nix { inherit pkgs editor shell; })
-    (import ./home-manager-modules/terminal.nix { inherit font; })
+    (import ./home-manager-modules/terminal.nix { inherit font colors; })
     (import ./home-manager-modules/terminaltools.nix { inherit pkgs editor nvimPkg shell; })
   ];
 

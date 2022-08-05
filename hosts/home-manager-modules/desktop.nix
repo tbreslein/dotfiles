@@ -1,4 +1,4 @@
-{ pkgs, font, ... }:
+{ pkgs, font, colors, ... }:
 
 {
   home = {
@@ -28,7 +28,7 @@
           separator_height = 2;
           padding = 8;
           frame_width = 1;
-          frame_color = "#ebdbb2";
+          frame_color = colors.primary.foreground;
           ide_treshold = 120;
           font = "${font} 11";
 
@@ -37,19 +37,19 @@
           max_icon_size = 32;
         };
         urgency_low = {
-          background = "#1d2021";
-          foreground = "#ebdbb2";
+          background = colors.primary.background;
+          foreground = colors.primary.foreground;
           timeout = 10;
         };
         urgency_normal = {
-          background = "#1d2021";
-          foreground = "#ebdbb2";
+          background = colors.primary.background;
+          foreground = colors.primary.foreground;
           timeout = 10;
         };
         urgency_critical = {
-          background = "#1d1f28";
-          foreground = "#dcd7ba";
-          frame_color = "#fb4934";
+          background = colors.primary.background;
+          foreground = colors.primary.foreground;
+          frame_color = colors.primary.alert;
           timeout = 0;
         };
       };

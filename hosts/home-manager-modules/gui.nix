@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, colors, ... }:
 
 {
   home = {
@@ -30,7 +30,7 @@
   services = {
     flameshot = {
       enable = true;
-      settings.General.uiColor = "#fe8019";
+      settings.General.uiColor = colors.primary.accent;
     };
     network-manager-applet.enable = true;
     pasystray.enable = true;

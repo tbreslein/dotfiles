@@ -1,10 +1,10 @@
-{ lib, inputs, system, home-manager, user, homeDir, overlays, ... }:
+{ lib, inputs, system, home-manager, user, homeDir, overlays, colors, ... }:
 
 let
   # mkHost = hostname: inputs: system: home-manager: user: overlays: {
   mkHost = hostname: {
     inherit system;
-    specialArgs = { inherit user homeDir inputs; };
+    specialArgs = { inherit inputs user homeDir; };
     modules = [
       "./${hostname}"
       { nixpkgs.overlays = overlays; }
@@ -13,7 +13,7 @@ let
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit user homeDir inputs; };
+        home-manager.extraSpecialArgs = { inherit user homeDir inputs colors; };
         home-manager.users.${user} = {
           imports = [ (import ./home.nix) ] ++ [ (import "./${hostname}/home.nix") ];
         };
@@ -32,7 +32,7 @@ in
 
   moebius = lib.nixosSystem {
     inherit system;
-    specialArgs = { inherit user inputs homeDir; };
+    specialArgs = { inherit inputs user homeDir; };
     modules = [
       ./moebius
       ./configuration.nix
@@ -41,7 +41,7 @@ in
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit user homeDir inputs; };
+        home-manager.extraSpecialArgs = { inherit user homeDir inputs colors; };
         home-manager.users.${user} = {
           imports = [ (import ./home.nix) ] ++ [ (import ./moebius/home.nix) ];
         };
