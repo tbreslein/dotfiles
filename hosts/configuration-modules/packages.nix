@@ -25,10 +25,11 @@ in
     overlays = [
       (self: super: {
         dwm = super.dwm.overrideAttrs (oldAttrs: {
-          src = fetchFromGitHub {
+          src = super.fetchFromGitHub {
             owner = "tbreslein";
             repo = "dwm";
-            rev = "1d3c7ce710187634b52c86a2694cd6ae54a18bf6";
+            ref = "build";
+            rev = "c17785ad17a8ea94c6ff695b144d883167b8a749";
             sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
           };
         });
@@ -42,9 +43,10 @@ in
 
       (self: super: {
         dwmblocks = super.dwm.overrideAttrs (oldAttrs: {
-          src = fetchFromGitHub {
+          src = super.fetchFromGitHub {
             owner = "tbreslein";
             repo = "dwmblocks";
+            ref = "build";
             rev = "37bb6fc7c20c8c2746a0c708d96c8a805cb73637";
             sha256 = "6oeyN9ngXWvps1c5QAUjlyPDQwRWAoxBiVTNmZ4sG8E=";
           };
