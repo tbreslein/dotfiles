@@ -1,23 +1,14 @@
+vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use { 'wbthomason/packer.nvim', opt = true }
 
-    use { 'editorconfig/editorconfig-vim' }
+    -- Themes, colors, visual
     use { 'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end }
     use { 'sainnhe/gruvbox-material' }
     use { 'folke/tokyonight.nvim' }
 
-    use { 'kyazdani42/nvim-web-devicons' }
-    use { 'airblade/vim-rooter' }
-    use { 'luukvbaal/nnn.nvim', config = function() require('nnn').setup({ }) end }
-    use { 'kdheepak/lazygit.nvim' }
-    use { 'nvim-telescope/telescope.nvim',
-        requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
-    }
-    use { 'ThePrimeagen/git-worktree.nvim',
-        config = function() require('git-worktree').setup() end
-    }
-    use { 'ldelossa/gh.nvim'}
+    -- UI
     use { 'romgrk/barbar.nvim' }
     use { 'nvim-lualine/lualine.nvim',
         requires = {{ 'kyazdani42/nvim-web-devicons' }},
@@ -50,10 +41,41 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- background functionality
+    use { 'airblade/vim-rooter' }
+
+    -- functionality
+    use { 'luukvbaal/nnn.nvim', config = function() require('nnn').setup({ }) end }
+    use { 'kdheepak/lazygit.nvim' }
+    use { 'ldelossa/gh.nvim'}
+    use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
+    use { 'ThePrimeagen/git-worktree.nvim', config = function() require('git-worktree').setup() end }
+    use { 'ggandor/lightspeed.nvim',
+        config = function()
+            require('lightspeed').setup {
+                ignore_case = true,
+            }
+        end
+    }
+    use { 'windwp/nvim-spectre',
+        requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' } },
+        config = function() require('spectre').setup() end
+    }
+    use { 'folke/trouble.nvim',
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function() require("trouble").setup { } end
+    } 
+
+    -- Languages
     use { 'adelarsq/neofsharp.vim'}
     use { 'rust-lang/rust.vim' }
     use { 'cespare/vim-toml' }
+    
+    -- Formatting
+    use { 'editorconfig/editorconfig-vim' }
+    use { 'sbdchd/neoformat' }
 
+    -- Editing
     use { 'JoosepAlviste/nvim-ts-context-commentstring' }
     use {
         'numToStr/Comment.nvim',
@@ -82,22 +104,11 @@ return require('packer').startup(function(use)
             end,
         }) end
     }
-    use {
-        'windwp/nvim-autopairs',
-        config = function()
-            require('nvim-autopairs').setup({})
-        end
-    }
+    use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup({}) end }
     use { 'windwp/nvim-ts-autotag' }
     use { 'tpope/vim-surround' }
-    use { 'ggandor/lightspeed.nvim',
-        config = function()
-            require('lightspeed').setup {
-                ignore_case = true,
-            }
-        end
-    }
 
+    -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function()
@@ -114,6 +125,7 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- cmp, snips, lsp
     use { 'hrsh7th/nvim-cmp',
         requires = {
             { "hrsh7th/cmp-nvim-lsp" },
@@ -122,26 +134,9 @@ return require('packer').startup(function(use)
             { "hrsh7th/cmp-cmdline" },
         },
     }
-
     use { 'neovim/nvim-lspconfig' }
-
-    use {
-        'ray-x/lsp_signature.nvim',
-        config = function()
-            require('lsp_signature').setup({})
-        end
-    }
+    use { 'ray-x/lsp_signature.nvim', config = function() require('lsp_signature').setup({}) end }
     use { 'L3MON4D3/LuaSnip' }
     use { 'saadparwaiz1/cmp_luasnip' }
-    use { 'windwp/nvim-spectre',
-        requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' } },
-        config = function() require('spectre').setup() end
-    }
-    use { 'sbdchd/neoformat' }
-    use {
-        'folke/trouble.nvim',
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function() require("trouble").setup { } end
-    } 
 end)
 

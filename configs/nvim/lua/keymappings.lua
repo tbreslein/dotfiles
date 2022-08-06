@@ -1,3 +1,6 @@
+-- Map leader to space
+vim.g.mapleader = " "
+
 local utils = require('utils')
 require('telescope').load_extension('git_worktree')
 
