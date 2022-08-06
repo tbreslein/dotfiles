@@ -1,7 +1,7 @@
 - get working: {
     hedis + lorri
+    hydrie + lorri
     hydromonad + lorri
     playgrounds + lorri
-    android-studio / android emulators
   }
 
