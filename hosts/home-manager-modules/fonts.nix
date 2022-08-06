@@ -5,7 +5,8 @@
     dejavu_fonts
     inconsolata
     inconsolata-nerdfont
-    (nerdfonts.override { fonts = [ "AnonymousPro" "Hack" ]; })
+    hack-font
+    (nerdfonts.override { fonts = [ "Hack" ]; })
     liberation_ttf
     noto-fonts
     noto-fonts-cjk-sans

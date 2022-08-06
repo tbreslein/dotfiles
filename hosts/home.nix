@@ -9,7 +9,7 @@ let
   nvimPkg = pkgs.neovim-nightly;
   visual = "nvim";
   shell = "fish";
-  font = "AnonymousPro";
+  font = "Hack";
 in
 {
   imports = [

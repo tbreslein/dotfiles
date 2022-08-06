@@ -6,7 +6,6 @@ let
   # dwmblocksConfigFile = ./dwmblocks-config.h;
 
   configDir = "${homeDir}/.dotfiles/configs";
-  dwmConfigFile = "${configDir}/dwm-config.h";
   dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";
 in
 {
@@ -25,13 +24,11 @@ in
     overlays = [
       (self: super: {
         dwm = super.dwm.overrideAttrs (oldAttrs: {
-          # src = fetchFromGitHub {
           src = fetchGit {
             url = "https://github.com/tbreslein/dwm.git";
             ref = "build";
-            rev = "c17785ad17a8ea94c6ff695b144d883167b8a749";
+            rev = "d41748b534029ddb240cac8733dc062a9a8aeab8";
           };
-          # postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "config.h" (builtins.readFile "${dwmConfigFile}")} config.def.h";
         });
       })
 
