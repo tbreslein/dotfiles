@@ -5,7 +5,7 @@ let
   # dwmConfigFile = ./config/dwm-config.h;
   # dwmblocksConfigFile = ./dwmblocks-config.h;
 
-  configDir = "${homeDir}/.dotfiles/config";
+  configDir = "${homeDir}/.dotfiles/configs";
   dwmConfigFile = "${configDir}/dwm-config.h";
   dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";
 in

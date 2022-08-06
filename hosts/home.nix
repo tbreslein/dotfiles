@@ -17,9 +17,10 @@ in
     (import ./home-manager-modules/desktop.nix { inherit pkgs font colors; })
     ./home-manager-modules/fonts.nix
     (import ./home-manager-modules/gui.nix { inherit pkgs colors; })
+    (import ./home-manager-modules/neovim.nix { inherit pkgs nvimPkg; })
     (import ./home-manager-modules/shell.nix { inherit pkgs editor shell; })
     (import ./home-manager-modules/terminal.nix { inherit font colors; })
-    (import ./home-manager-modules/terminaltools.nix { inherit pkgs editor nvimPkg shell; })
+    (import ./home-manager-modules/terminaltools.nix { inherit pkgs editor shell; })
   ];
 
   home = {

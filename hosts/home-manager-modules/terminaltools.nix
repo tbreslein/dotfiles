@@ -1,4 +1,4 @@
-{ pkgs, editor, nvimPkg, shell, ... }:
+{ pkgs, editor, shell, ... }:
 
 {
   home = {
@@ -11,6 +11,7 @@
       openfortivpn
       playerctl
       pamixer
+      python3Minimal
     ];
   };
 
@@ -45,17 +46,6 @@
         pull.rebase = true;
         core.editor = "${editor}";
       };
-    };
-
-    neovim = {
-      enable = false;
-      package = nvimPkg;
-      withNodeJs = true;
-      withPython3 = true;
-      withRuby = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
     };
 
     zoxide = {

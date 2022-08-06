@@ -35,9 +35,9 @@ in
     inherit system;
     specialArgs = { inherit inputs user homeDir; };
     modules = [
+      { nixpkgs.overlays = overlays; }
       ./moebius
       ./configuration.nix
-      { nixpkgs.overlays = overlays; }
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
