@@ -1,12 +1,13 @@
--- local fn = vim.fn
--- local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
--- if fn.empty(fn.glob(install_path)) > 0 then
---     packer_boostrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
--- end
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd [[packadd packer.nvim]]
+end
 
 return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
-    use { 'wbthomason/packer.nvim', opt = true }
+    -- use { 'wbthomason/packer.nvim', opt = true }
 
     use { 'editorconfig/editorconfig-vim' }
     use { 'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end }
@@ -149,6 +150,10 @@ return require('packer').startup(function(use)
         'folke/trouble.nvim',
         requires = "kyazdani42/nvim-web-devicons",
         config = function() require("trouble").setup { } end
-    }
+    } 
+
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 end)
 

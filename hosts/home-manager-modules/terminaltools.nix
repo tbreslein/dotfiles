@@ -48,7 +48,7 @@
     };
 
     neovim = {
-      enable = true;
+      enable = false;
       package = nvimPkg;
       withNodeJs = true;
       withPython3 = true;
