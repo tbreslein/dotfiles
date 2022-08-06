@@ -11,5 +11,8 @@ in
 
       [[ "^pinentry-program " =~ $(cat "${gpgagentconf}") ]] && echo "pinentry-program /run/current-system/sw/bin/pinentry-curses" >> "${gpgagentconf}"
     '';
+    removeInitVim = ''
+      rm -fr ${homeDir}/.config/nvim/init.vim
+    '';
   };
 }
