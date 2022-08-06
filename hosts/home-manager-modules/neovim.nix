@@ -2,7 +2,7 @@
 
 {
   programs.neovim = {
-    enable = false;
+    enable = true;
     package = nvimPkg;
     withNodeJs = true;
     withPython3 = true;
@@ -10,8 +10,6 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-
-    extraPython3Packages = (ps: with ps; [ python-language-server ]);
 
     #   plugins = with pkgs.vimPlugins; [
     #     # themes, colors, UI

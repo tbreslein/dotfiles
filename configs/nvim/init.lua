@@ -10,7 +10,7 @@ vim.g.mapleader = " "
 --if fn.empty(fn.glob(install_path)) > 0 then
 --    --execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
 --end
---vim.cmd [[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim]]
 
 -- Auto compile when there are changes in plugins.lua
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'

@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly = {
+    neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -24,7 +24,7 @@
     # };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, neovim-nightly, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       user = "tommy";
@@ -38,7 +38,7 @@
       lib = nixpkgs.lib;
 
       overlays = [
-        neovim-nightly.overlay
+        inputs.neovim-nightly-overlay.overlay
       ];
 
       # flakes = {

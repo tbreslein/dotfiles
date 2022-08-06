@@ -6,7 +6,7 @@ let
   mail = "thunderbird";
   mailPkg = pkgs.thunderbird;
   editor = "nvim";
-  nvimPkg = pkgs.neovim-unwrapped;
+  nvimPkg = pkgs.neovim-nightly;
   visual = "nvim";
   shell = "fish";
   font = "Inconsolata";
