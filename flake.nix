@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,16 +13,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # dwm = {
-    #   url = "github:tbreslein/dwm/build";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # dwmblocks = {
-    #   url = "github:tbreslein/dwmblocks/build";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
