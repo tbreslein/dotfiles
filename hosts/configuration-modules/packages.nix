@@ -64,19 +64,16 @@ in
       gnupg
       pinentry-curses
       (writeShellScriptBin "update-nixos" ''
-        rm -f "${homeDir}/.config/nvim/init.vim" && \
-            pushd ${homeDir}/.dotfiles && {
-                git pull && \
-                    sudo nix flake update
-                    git diff --exit-code flake.lock 2&> /dev/null
-                    if [ $? -ne 0 ]; then
-                        git add flake.lock && git commit -m 'update flake.lock'
-                    fi
-                    sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$(cat /etc/hostname)"
-                    rm -f "${homeDir}/.config/nvim/init.vim" && \
-                    nvim -c 'PackerSync' -c 'TSUpdateSync'
-            }
-            popd || exit
+        pushd ${homeDir}/.dotfiles && {
+            git pull && \
+                sudo nix flake update
+                git diff --exit-code flake.lock 2&> /dev/null
+                if [ $? -ne 0 ]; then
+                    git add flake.lock && git commit -m 'update flake.lock'
+                fi
+                sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$(cat /etc/hostname)"
+        }
+        popd || exit
       '')
     ];
   };
