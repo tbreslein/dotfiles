@@ -26,7 +26,7 @@
     bat = {
       enable = true;
       config = {
-        theme = "gruvbox-dark";
+        theme = "base16-256";
       };
     };
 
