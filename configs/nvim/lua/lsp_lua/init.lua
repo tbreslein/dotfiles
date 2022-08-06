@@ -196,7 +196,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 -- LSPs
 local servers = {
     "bashls",
-    -- "clangd",
+    "clangd",
     "ccls",
     "cmake",
     "cssls",
