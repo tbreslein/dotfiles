@@ -13,11 +13,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
@@ -36,10 +31,6 @@
       overlays = [
         inputs.neovim-nightly-overlay.overlay
       ];
-
-      # flakes = {
-      #   dwm = dwm;
-      # };
 
       colors = {
         # # gruvbox_hard_dark

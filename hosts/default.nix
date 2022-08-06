@@ -10,7 +10,6 @@ let
       ./${hostname}
       ./configuration.nix
       inputs.home-manager.nixosModules.home-manager
-      inputs.hyprland.nixosModules.default
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;

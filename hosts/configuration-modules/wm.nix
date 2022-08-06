@@ -6,11 +6,10 @@
     layout = "us";
     displayManager = {
       defaultSession = "none+dwm";
-      lightdm.enable = true;
+      sddm.enable = true;
       autoLogin.enable = true;
       autoLogin.user = "tommy";
     };
     windowManager.dwm.enable = true;
   };
-  programs.hyprland.enable = true;
 }
