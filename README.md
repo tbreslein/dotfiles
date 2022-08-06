@@ -2,7 +2,7 @@
 
 ## format with encryption
 
-After booting into the medium, and partitioning the disk, setup looks and mount everything
+After booting into the medium, and partitioning the disk, setup luks and mount everything
 
 ```bash
 cryptsetup --type luks1 luksFormat /path/to/root/device
@@ -42,14 +42,17 @@ whatever is needed for the GPU, so that the GPU modules are loaded as soon as po
 
 ## install new system with old config
 
-I don't think this works as long as my build is impure because the paths will be fucky
+Just install the base system, log in, and clone the dotfiles.
+You need to activate flake commands in the current `/etc/nixos/configuration.nix`:
 
-```bash
-# but into the ISO
-# partitioning, luks, formatting...
-sudo -i
-nix-env iA nixos.git
-git clone https://www.gitlab.com/tbreslein/dotfiles /mnt/home/tommy/.dotfiles
-nixos-install --flake .#<host>
+```nix
+nix = {
+    packages = pkgs.nixFlakes;
+    extraOptions = ''
+        experimental-features = nix-command flakes
+    '';
+};
 ```
+
+Afterwards, build the flake in the dotfiles.
 
