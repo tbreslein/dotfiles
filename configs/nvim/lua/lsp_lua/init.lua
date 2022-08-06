@@ -215,6 +215,7 @@ local servers = {
     "marksman",
     "tailwindcss",
     "rnix",
+    "julials",
 }
 
 for _, lsp in ipairs(servers) do
