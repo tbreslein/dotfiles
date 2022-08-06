@@ -1,6 +1,5 @@
 - get working: {
     hedis + lorri
-    capturedlambda + lorri
     hydromonad + lorri
     playgrounds + lorri
     android-studio / android emulators
