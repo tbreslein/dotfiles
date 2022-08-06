@@ -1,6 +1,0 @@
-- get working: {
-    hedis + lorri
-    hydromonad + lorri
-    playgrounds + lorri
-  }
-
