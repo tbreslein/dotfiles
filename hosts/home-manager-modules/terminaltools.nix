@@ -7,7 +7,7 @@
       ripgrep
       fd
       imv
-      pfetch
+      freshfetch
       openfortivpn
       playerctl
       pamixer
