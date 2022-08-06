@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, homeDir, ... }:
 
 let
-  home-eth-interface = "";
+  home-eth-interface = "enp0s13f0u1";
   work-eth-interface = "enp0s13f0u1u4";
   wifi-interface = "wlp170s0";
 in

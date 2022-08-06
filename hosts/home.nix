@@ -63,7 +63,7 @@ in
 
         riverctl map normal Super Return spawn alacritty
         riverctl map normal Super+Shift Return spawn dmenu_run -i -fn ${font}:size=13 \
-            -nb ${colors.primary.backround} -nf ${colors.primary.foreground} \
+            -nb ${colors.primary.background} -nf ${colors.primary.foreground} \
             -sb ${colors.bright.black} -sf ${colors.primary.accent}
 
         # Super+Q to close the focused view

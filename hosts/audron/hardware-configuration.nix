@@ -5,32 +5,23 @@
 
 {
   imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/34b968e1-9b62-4cbc-b603-f51f5bf983a8";
+    { device = "/dev/disk/by-uuid/f14a20d7-75a4-4da3-9ca8-1587b0766314";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices = {
-    "cryptroot" = {
-      device = "/dev/disk/by-uuid/7a1d4ed0-e2dc-43a0-8f90-f9995e056b04";
-      allowDiscards = true;
-      preLVM = true;
-    };
-  };
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/04264215-f5b0-4b44-974b-b87b815b3d3a";
 
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/31B8-66CD";
+    { device = "/dev/disk/by-uuid/5549-AE58";
       fsType = "vfat";
     };
 
@@ -41,9 +32,11 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp0s13f0u1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp170s0.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 }
