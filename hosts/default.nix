@@ -1,4 +1,4 @@
-{ lib, inputs, system, home-manager, user, homeDir, overlays, colors, ... }:
+{ lib, inputs, system, user, homeDir, overlays, colors, ... }:
 
 let
   mkHost = hostname: {
