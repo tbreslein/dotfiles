@@ -12,4 +12,5 @@
     };
     windowManager.dwm.enable = true;
   };
+  programs.hyprland.enable = true;
 }

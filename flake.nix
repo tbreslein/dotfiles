@@ -13,9 +13,14 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, ... }:
     let
       system = "x86_64-linux";
       user = "tommy";
@@ -140,7 +145,7 @@
           import ./hosts
             {
               inherit (nixpkgs) lib;
-              inherit inputs user homeDir system home-manager overlays colors;
+              inherit inputs user homeDir system overlays colors;
             }
         );
     };

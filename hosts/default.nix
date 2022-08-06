@@ -9,7 +9,8 @@ let
       { nixpkgs.overlays = overlays; }
       ./${hostname}
       ./configuration.nix
-      home-manager.nixosModules.home-manager
+      inputs.home-manager.nixosModules.home-manager
+      inputs.hyprland.nixosModules.default
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
