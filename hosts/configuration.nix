@@ -1,16 +1,16 @@
-{ config, pkgs, user, homeDir, dwm, ... }:
+{ config, pkgs, user, homeDir, dwm, useWayland, ... }:
 
 {
   imports = [
     (import ./configuration-modules/users.nix { inherit config pkgs user; })
     (import ./configuration-modules/activationScripts.nix { inherit config homeDir; })
-    (import ./configuration-modules/packages.nix { inherit config pkgs homeDir; })
+    (import ./configuration-modules/packages.nix { inherit config pkgs homeDir useWayland; })
+    (import ./configuration-modules/wm.nix { inherit config pkgs homeDir useWayland; })
   ] ++ [
     ./configuration-modules/boot.nix
     ./configuration-modules/printing-scanning.nix
     ./configuration-modules/sound.nix
     ./configuration-modules/virtualisation.nix
-    ./configuration-modules/wm.nix
   ];
 
   i18n.supportedLocales = [

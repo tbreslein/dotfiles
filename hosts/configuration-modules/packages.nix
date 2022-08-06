@@ -1,13 +1,5 @@
-{ config, pkgs, homeDir, ... }:
+{ config, pkgs, homeDir, useWayland, ... }:
 
-let
-  # can't I make this pure by using a relative path?
-  # dwmConfigFile = ./config/dwm-config.h;
-  # dwmblocksConfigFile = ./dwmblocks-config.h;
-
-  configDir = "${homeDir}/.dotfiles/configs";
-  dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";
-in
 {
   nix = {
     package = pkgs.nixFlakes;
@@ -19,26 +11,7 @@ in
     };
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [
-      (self: super: {
-        dwm = super.dwm.overrideAttrs (oldAttrs: {
-          src = fetchGit {
-            url = "https://github.com/tbreslein/dwm.git";
-            ref = "build";
-            rev = "d41748b534029ddb240cac8733dc062a9a8aeab8";
-          };
-        });
-      })
-
-      (self: super: {
-        dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
-          postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "blocks.h" (builtins.readFile "${dwmblocksConfigFile}")} blocks.def.h";
-        });
-      })
-    ];
-  };
+  nixpkgs.config.allowUnfree = true;
 
   environment = {
     systemPackages = with pkgs; [
@@ -55,7 +28,6 @@ in
       git
       htop
       dmenu
-      dwmblocks
       rnix-lsp
       nixpkgs-fmt
       gnupg
@@ -85,6 +57,6 @@ in
         init-author=tbreslein
       '';
     };
-    slock.enable = true;
+    slock.enable = !useWayland;
   };
 }

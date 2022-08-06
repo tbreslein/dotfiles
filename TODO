@@ -1,0 +1,7 @@
+- figure out {
+        - swayidle + waylock
+        - waybar
+        - swaybg
+        - autostars for: nm-applet, birdray, pasystray, megasync, dropbox
+    }
+

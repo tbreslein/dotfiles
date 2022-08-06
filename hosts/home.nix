@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, homeDir, colors, ... }:
+{ config, lib, pkgs, user, homeDir, colors, useWayland, ... }:
 
 let
   browser = "brave";
@@ -14,9 +14,9 @@ in
 {
   imports = [
     (import ./home-manager-modules/coding.nix { inherit pkgs shell; })
-    (import ./home-manager-modules/desktop.nix { inherit pkgs font colors; })
+    (import ./home-manager-modules/desktop.nix { inherit pkgs font colors useWayland; })
     ./home-manager-modules/fonts.nix
-    (import ./home-manager-modules/gui.nix { inherit pkgs colors; })
+    (import ./home-manager-modules/gui.nix { inherit pkgs colors useWayland; })
     (import ./home-manager-modules/neovim.nix { inherit pkgs nvimPkg; })
     (import ./home-manager-modules/shell.nix { inherit pkgs editor shell; })
     (import ./home-manager-modules/terminal.nix { inherit font colors; })
@@ -153,6 +153,9 @@ in
         # Super+F to toggle fullscreen
         riverctl map normal Super F toggle-fullscreen
 
+        # Super+L to lock the scree
+        riverctl map normal Super L spawn waylock
+
         # Super+{Up,Right,Down,Left} to change layout orientation
         riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
         riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
@@ -174,7 +177,7 @@ in
         for mode in normal locked
         do
             # Eject the optical drive (well if you still have one that is)
-            riverctl map $mode None XF86Eject spawn 'eject -T'
+            #riverctl map $mode None XF86Eject spawn 'eject -T'
 
             # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
             riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer -i 5'
@@ -188,14 +191,14 @@ in
             riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
 
             # Control screen backlight brightness with light (https://github.com/haikarainen/light)
-            riverctl map $mode None XF86MonBrightnessUp   spawn 'light -A 5'
-            riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
+            #riverctl map $mode None XF86MonBrightnessUp   spawn 'light -A 5'
+            #riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
         done
 
         # Set background and border color
-        riverctl background-color 0x002b36
-        riverctl border-color-focused 0x93a1a1
-        riverctl border-color-unfocused 0x586e75
+        riverctl background-color 0x1a1b26
+        riverctl border-color-focused 0xbb9af7
+        riverctl border-color-unfocused 0x414868
 
         # Set keyboard repeat rate
         riverctl set-repeat 50 300
@@ -216,5 +219,5 @@ in
   };
 
   programs.home-manager.enable = true;
-  xsession.enable = true;
+  xsession.enable = !useWayland;
 }

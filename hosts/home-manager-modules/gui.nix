@@ -1,4 +1,4 @@
-{ pkgs, colors, ... }:
+{ pkgs, colors, useWayland, ... }:
 
 {
   home = {
@@ -9,6 +9,7 @@
       discord
       firefox
       brave
+      vivaldi
       thunderbird
       zoom-us
       birdtray
@@ -29,7 +30,7 @@
 
   services = {
     flameshot = {
-      enable = true;
+      enable = !useWayland;
       settings.General.uiColor = colors.primary.accent;
     };
     network-manager-applet.enable = true;
