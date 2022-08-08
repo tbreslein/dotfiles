@@ -9,7 +9,6 @@
       discord
       firefox
       brave
-      vivaldi
       thunderbird
       zoom-us
       megasync
