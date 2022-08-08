@@ -47,13 +47,21 @@
 
   services.blueman-applet.enable = true;
 
+  home.file."workscreenlayout" = {
+    target = ".local/bin/workscreenlayout";
+    executable = true;
+    text = ''
+      #!/bin/sh
+      xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
+      feh --bg-fill $HOME/MEGA/Wallpaper/helloworld.jpeg $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png
+    '';
+  };
+
   xsession = {
     initExtra = ''
       megasync &
       dwmblocks &
       xset s 180 120
-      /home/tommy/.screenlayout/worklayout.sh
-      feh --bg-fill $HOME/MEGA/Wallpaper/helloworld.jpeg $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png
     '';
   };
 }
