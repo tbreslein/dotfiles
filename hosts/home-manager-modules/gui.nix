@@ -12,7 +12,6 @@
       vivaldi
       thunderbird
       zoom-us
-      birdtray
       megasync
       obs-studio
     ];

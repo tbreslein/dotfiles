@@ -51,8 +51,9 @@
     initExtra = ''
       megasync &
       dwmblocks &
-      birdtray &
       xset s 180 120
+      /home/tommy/.screenlayout/worklayout.sh
+      feh --bg-fill $HOME/MEGA/Wallpaper/helloworld.jpeg $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png
     '';
   };
 }
