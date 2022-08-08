@@ -18,7 +18,7 @@
       nj = "ninja";
       btm = "btm -l";
       emacs = "echo 'No.'";
-      ssh = "TERM=xterm-256color ssh";
+      s = "TERM=xterm-256color ssh";
       hedisclang = "make clean full-clang build test";
       hedisgcc = "make clean full-gcc build test";
       rldocker = "DOCKER_HOST=unix:///run/user/1000/docker.sock docker";
