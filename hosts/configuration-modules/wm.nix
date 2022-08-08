@@ -26,7 +26,28 @@
   };
 
   environment = {
-    systemPackages = if useWayland then [ ] else with pkgs; [ dwmblocks ];
+    systemPackages =
+      if useWayland
+      then with pkgs; [
+        (river.overrideAttrs (prevAttrs: rec {
+          postInstall =
+            let
+              riverSession = ''
+                [Desktop Entry]
+                Name=River
+                Comment=Dynamic Wayland compositor
+                Exec=river
+                Type=Application
+              '';
+            in
+            ''
+              mkdir -p $out/share/wayland-sessions
+              echo "${riverSession}" > $out/share/wayland-sessions/river.desktop
+            '';
+          passthru.providedSessions = [ "river" ];
+        }))
+      ]
+      else with pkgs; [ dwmblocks ];
   };
 
   services.xserver = {
@@ -35,8 +56,32 @@
     displayManager = {
       defaultSession = if useWayland then "none+river" else "none+dwm";
       sddm.enable = true;
-      autoLogin.enable = true;
-      autoLogin.user = "tommy";
+      # autoLogin.enable = true;
+      # autoLogin.user = "tommy";
+      sessionPackages =
+        if useWayland
+        then [
+          (pkgs.river.overrideAttrs
+            (prevAttrs: rec {
+              postInstall =
+                let
+                  riverSession = ''
+                    [Desktop Entry]
+                    Name=River
+                    Comment=Dynamic Wayland compositor
+                    Exec=river
+                    Type=Application
+                  '';
+                in
+                ''
+                  mkdir -p $out/share/wayland-sessions
+                  echo "${riverSession}" > $out/share/wayland-sessions/river.desktop
+                '';
+              passthru.providedSessions = [ "river" ];
+            })
+          )
+        ]
+        else [ ];
     };
     windowManager.dwm.enable = !useWayland;
   };
