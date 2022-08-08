@@ -1,29 +1,25 @@
 { config, pkgs, homeDir, useWayland, ... }:
 
-let
-  # can't I make this pure by using a relative path?
-  # dwmConfigFile = ./config/dwm-config.h;
-  # dwmblocksConfigFile = ./dwmblocks-config.h;
-
-  configDir = "${homeDir}/.dotfiles/configs";
-  dwmblocksConfigFile = "${configDir}/dwmblocks-config.h";
-in
 {
   nixpkgs = {
     overlays = [
       (self: super: {
-        dwm = super.dwm.overrideAttrs (oldAttrs: {
+        dwm = super.dwm.overrideAttrs (oldattrs: {
           src = fetchGit {
             url = "https://github.com/tbreslein/dwm.git";
             ref = "build";
-            rev = "d41748b534029ddb240cac8733dc062a9a8aeab8";
+            rev = "ba4a8896090bde236fc679a3e041179ac520e99d";
           };
         });
       })
 
       (self: super: {
-        dwmblocks = super.dwmblocks.overrideAttrs (oldAttrs: {
-          postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${super.writeText "blocks.h" (builtins.readFile "${dwmblocksConfigFile}")} blocks.def.h";
+        dwmblocks = super.dwmblocks.overrideAttrs (oldattrs: {
+          src = fetchGit {
+            url = "https://github.com/tbreslein/dwmblocks.git";
+            ref = "build";
+            rev = "37bb6fc7c20c8c2746a0c708d96c8a805cb73637";
+          };
         });
       })
     ];
