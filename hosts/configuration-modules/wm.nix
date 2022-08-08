@@ -54,10 +54,10 @@
     enable = true;
     layout = "us";
     displayManager = {
-      # defaultSession = if useWayland then "none+River" else "none+dwm";
+      defaultSession = if useWayland then "river" else "none+dwm";
       sddm.enable = true;
-      # autoLogin.enable = true;
-      # autoLogin.user = "tommy";
+      autoLogin.enable = true;
+      autoLogin.user = "tommy";
       sessionPackages =
         if useWayland
         then [

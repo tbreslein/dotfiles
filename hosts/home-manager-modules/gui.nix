@@ -11,9 +11,8 @@
       brave
       thunderbird
       zoom-us
-      megasync
       obs-studio
-    ];
+    ] ++ (if useWayland then [ ] else [ pkgs.megasync ]);
   };
 
   programs = {
@@ -31,7 +30,7 @@
       enable = !useWayland;
       settings.General.uiColor = colors.primary.accent;
     };
-    network-manager-applet.enable = true;
-    pasystray.enable = true;
+    network-manager-applet.enable = !useWayland;
+    pasystray.enable = !useWayland;
   };
 }

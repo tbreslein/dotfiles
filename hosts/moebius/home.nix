@@ -48,40 +48,32 @@
   services.kanshi = {
     enable = useWayland;
     profiles = {
-      undocked = {
+      standard = {
         # exec = [ "some command" ];
         outputs = [
           {
-            criteria = "eDP-1";
-          }
-        ];
-      };
-      home = {
-        # exec = [ "some command" ];
-        outputs = [
-          {
-            criteria = "eDP-1";
-            mode = "2256x1504@60Hz";
+            criteria = "DP-1 Unknown Mi Monitor";
+            mode = "3440x1440@144Hz";
             # position = "x,y";
           }
           {
-            criteria = "DP-2";
-            mode = "1920x1080";
+            criteria = "DP-3 Goldstar Company";
+            mode = "1920x1080@60Hz";
             # position = "x,y";
           }
         ];
       };
-      work = {
+      tv = {
         # exec = [ "some command" ];
         outputs = [
           {
-            criteria = "eDP-1";
-            mode = "2256x1504@60Hz";
+            criteria = "DP-1 Unknown Mi Monitor";
+            mode = "3440x1440@144Hz";
             # position = "x,y";
           }
           {
-            criteria = "DP-2";
-            mode = "1920x1080";
+            criteria = "DP-3 Goldstar Company";
+            mode = "1920x1080@60Hz";
             # position = "x,y";
           }
         ];

@@ -1,7 +1,5 @@
 - figure out {
     - kanshi + some arandr alternative
     - swayidle + waylock
-    - waybar
     - swaybg
-    - autostars for: nm-applet, pasystray, megasync, dropbox
 }

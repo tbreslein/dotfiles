@@ -27,7 +27,6 @@
       unzip
       git
       htop
-      dmenu
       rnix-lsp
       nixpkgs-fmt
       gnupg
