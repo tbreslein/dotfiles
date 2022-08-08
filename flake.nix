@@ -21,7 +21,7 @@
       user = "tommy";
       homeDir = "/home/${user}";
 
-      useWayland = false;
+      useWayland = true;
 
       pkgs = import nixpkgs {
         inherit system;

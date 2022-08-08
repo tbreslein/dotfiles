@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, useWayland, ... }:
 
 {
   programs = {
@@ -44,6 +44,51 @@
     #   };
     # };
   };
+
+  services.kanshi = {
+    enable = useWayland;
+    profiles = {
+      undocked = {
+        # exec = [ "some command" ];
+        outputs = [
+          {
+            criteria = "eDP-1";
+          }
+        ];
+      };
+      home = {
+        # exec = [ "some command" ];
+        outputs = [
+          {
+            criteria = "eDP-1";
+            mode = "2256x1504@60Hz";
+            # position = "x,y";
+          }
+          {
+            criteria = "DP-2";
+            mode = "1920x1080";
+            # position = "x,y";
+          }
+        ];
+      };
+      work = {
+        # exec = [ "some command" ];
+        outputs = [
+          {
+            criteria = "eDP-1";
+            mode = "2256x1504@60Hz";
+            # position = "x,y";
+          }
+          {
+            criteria = "DP-2";
+            mode = "1920x1080";
+            # position = "x,y";
+          }
+        ];
+      };
+    };
+  };
+
   xsession = {
     initExtra = ''
       megasync &

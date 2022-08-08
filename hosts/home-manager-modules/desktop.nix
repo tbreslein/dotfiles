@@ -9,7 +9,7 @@
       slurp
       wl-clipboard
       swayidle
-      waylock
+      swaylock-fancy
     ]
     else with pkgs; [
       arandr
@@ -135,7 +135,7 @@
 
             to {
                 color: ${colors.primary.foreground};
-                background-color: ${colors.normal.alert};
+                background-color: ${colors.primary.alert};
             }
         }
 
@@ -357,49 +357,5 @@
     };
 
     picom.enable = !useWayland;
-
-    kanshi = {
-      enable = useWayland;
-      profiles = {
-        undocked = {
-          # exec = [ "some command" ];
-          outputs = [
-            {
-              critera = "eDP-1";
-            }
-          ];
-        };
-        home = {
-          # exec = [ "some command" ];
-          outputs = [
-            {
-              critera = "eDP-1";
-              mode = "2256x1504@60Hz";
-              # position = "x,y";
-            }
-            {
-              critera = "DP-2";
-              mode = "1920x1080";
-              # position = "x,y";
-            }
-          ];
-        };
-        work = {
-          # exec = [ "some command" ];
-          outputs = [
-            {
-              critera = "eDP-1";
-              mode = "2256x1504@60Hz";
-              # position = "x,y";
-            }
-            {
-              critera = "DP-2";
-              mode = "1920x1080";
-              # position = "x,y";
-            }
-          ];
-        };
-      };
-    };
   };
 }
