@@ -1,8 +1,7 @@
 - figure out {
-        - kanshi + some arandr alternative
-        - swayidle + waylock
-        - waybar
-        - swaybg
-        - autostars for: nm-applet, birdray, pasystray, megasync, dropbox
-    }
-
+    - kanshi + some arandr alternative
+    - swayidle + waylock
+    - waybar
+    - swaybg
+    - autostars for: nm-applet, pasystray, megasync, dropbox
+}
