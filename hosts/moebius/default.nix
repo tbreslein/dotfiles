@@ -11,6 +11,7 @@
       size = 16 * 1024;
     }
   ];
+  nix.settings.cores = 12;
 
   boot = {
     initrd.kernelModules = [ "amdgpu" ];

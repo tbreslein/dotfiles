@@ -16,6 +16,7 @@ in
       size = 16 * 1024;
     }
   ];
+  nix.settings.cores = 4;
 
   #sources: https://github.com/NixOS/nixos-hardware/blob/master/framework/default.nix
 
