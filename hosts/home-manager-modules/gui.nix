@@ -12,7 +12,9 @@
       thunderbird
       zoom-us
       obs-studio
-    ] ++ (if useWayland then [ ] else [ pkgs.megasync ]);
+      megacmd
+      megasync
+    ]; #++ (if useWayland then [ pkgs.megacmd ] else [ pkgs.megasync ]);
   };
 
   programs = {

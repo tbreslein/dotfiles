@@ -4,7 +4,7 @@
   home = {
     packages = with pkgs; [
       libnotify
-    ] (if useWayland
+    ] ++ (if useWayland
     then with pkgs; [
       swaybg
       wlr-randr
@@ -198,8 +198,11 @@
 
         waybar &
         pasystray &
+        mako &
+        sleep 10 && megasync &
 
         bash -c "[[ $(cat /etc/hostname) == 'audron' ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &"
+        #bash -c "[[ $(cat /etc/hostname) == 'moebius' ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &"
 
         # Set the default layout generator to be rivertile and start it.
         # River will send the process group of the init executable SIGTERM on exit.
@@ -239,7 +242,7 @@
           };
           "river/window" = {
             format = "{}";
-            max-length = 120;
+            max-length = 60;
           };
           "pulseaudio" = {
             format = "{icon} {volume}%";
@@ -473,6 +476,10 @@
 
         #window {
             font-weight: bold;
+        }
+
+        #window.focused {
+            color: ${colors.primary.accent}
         }
 
         #tags button {
