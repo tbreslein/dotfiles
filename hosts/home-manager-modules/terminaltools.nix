@@ -12,11 +12,11 @@
       playerctl
       pamixer
       python3Minimal
+      zenith
     ];
   };
 
   programs = {
-    bottom.enable = true;
     exa.enable = true;
     feh.enable = true;
     lazygit.enable = true;

@@ -46,7 +46,7 @@
   };
 
   services.kanshi = {
-    enable = useWayland;
+    enable = false;
     profiles = {
       standard = {
         # exec = [ "some command" ];

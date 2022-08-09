@@ -50,39 +50,39 @@
       else with pkgs; [ dwmblocks ];
   };
 
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    displayManager = {
-      defaultSession = if useWayland then "river" else "none+dwm";
-      sddm.enable = true;
-      autoLogin.enable = true;
-      autoLogin.user = "tommy";
-      sessionPackages =
-        if useWayland
-        then [
-          (pkgs.river.overrideAttrs
-            (prevAttrs: rec {
-              postInstall =
-                let
-                  riverSession = ''
-                    [Desktop Entry]
-                    Name=River
-                    Comment=Dynamic Wayland compositor
-                    Exec=river
-                    Type=Application
+  services = {
+    xserver = {
+      enable = true;
+      layout = "us";
+      displayManager = {
+        defaultSession = if useWayland then "river" else "none+dwm";
+        sddm.enable = true;
+        sessionPackages =
+          if useWayland
+          then [
+            (pkgs.river.overrideAttrs
+              (prevAttrs: rec {
+                postInstall =
+                  let
+                    riverSession = ''
+                      [Desktop Entry]
+                      Name=River
+                      Comment=Dynamic Wayland compositor
+                      Exec=river
+                      Type=Application
+                    '';
+                  in
+                  ''
+                    mkdir -p $out/share/wayland-sessions
+                    echo "${riverSession}" > $out/share/wayland-sessions/river.desktop
                   '';
-                in
-                ''
-                  mkdir -p $out/share/wayland-sessions
-                  echo "${riverSession}" > $out/share/wayland-sessions/river.desktop
-                '';
-              passthru.providedSessions = [ "river" ];
-            })
-          )
-        ]
-        else [ ];
+                passthru.providedSessions = [ "river" ];
+              })
+            )
+          ]
+          else [ ];
+      };
+      windowManager.dwm.enable = !useWayland;
     };
-    windowManager.dwm.enable = !useWayland;
   };
 }

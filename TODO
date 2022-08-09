@@ -1,5 +1,5 @@
-- figure out {
-    - kanshi + some arandr alternative
-    - swayidle + waylock
-    - swaybg
+- {
+    - set wallpapers for moebius
+    - write a long bash command that sets the correct screenlayout on river startup
 }
+

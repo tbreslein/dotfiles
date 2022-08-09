@@ -1,16 +1,17 @@
-{ pkgs, font, colors, useWayland, ... }:
+{ pkgs, font, colors, useWayland, homeDir, ... }:
 
 {
   home = {
     packages = (if useWayland
     then with pkgs; [
+      swaybg
       wlr-randr
+      wdisplays
       grim
       slurp
       wl-clipboard
       swayidle
-      swaylock-fancy
-      dmenu-wayland
+      bemenu
       pasystray
       pavucontrol
       libappindicator
@@ -42,7 +43,7 @@
         # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
         riverctl map normal Super Return spawn alacritty
-        riverctl map normal Super+Shift Return spawn 'dmenu-wl_run -i -fn ${font}:size=13 -nb "${colors.primary.background}" -nf "${colors.primary.foreground}" -sb "${colors.bright.black}" -sf "${colors.primary.accent}"'
+        riverctl map normal Super+Shift Return spawn 'bemenu-run -i --fn "Hack 17" --tb "${colors.primary.background}" --fb "${colors.primary.background}" --nb "${colors.primary.background}" --ff "${colors.normal.cyan}"'
 
         # Super+Q to close the focused view
         riverctl map normal Super Q close
@@ -132,7 +133,7 @@
         riverctl map normal Super F toggle-fullscreen
 
         # Super+L to lock the scree
-        riverctl map normal Super+Control L spawn waylock
+        riverctl map normal Super+Control L spawn swaylock -c 000000
 
         # Super+{Up,Right,Down,Left} to change layout orientation
         riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
@@ -175,7 +176,7 @@
 
         # Set background and border color
         riverctl background-color 0x1a1b26
-        riverctl border-color-focused 0xbb9af7
+        riverctl border-color-focused 0x7dcfff
         riverctl border-color-unfocused 0x414868
 
         # Set keyboard repeat rate
@@ -191,16 +192,25 @@
         waybar &
         pasystray &
 
+        bash -c "[[ $(cat /etc/hostname) == 'audron' ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &"
+
         # Set the default layout generator to be rivertile and start it.
         # River will send the process group of the init executable SIGTERM on exit.
         riverctl default-layout rivertile
-        rivertile -view-padding 6 -outer-padding 6
+        rivertile -view-padding 0 -outer-padding 0
       '';
     };
   };
 
   programs = {
     autorandr.enable = !useWayland;
+
+    mako = {
+      enable = useWayland;
+      backgroundColor = colors.primary.background;
+      borderColor = colors.primary.accent;
+      font = "${font} 13";
+    };
 
     waybar = {
       enable = useWayland;
@@ -336,7 +346,7 @@
             background: ${colors.primary.background};
             color: ${colors.primary.foreground};
             font-family: Hack, Cantarell, Noto Sans, sans-serif;
-            font-size: 10px;
+            font-size: 15px;
         }
 
         /* Each module */
@@ -465,22 +475,22 @@
             padding-left: 10px;
             padding-right: 10px;
             color: ${colors.bright.black};
+            background-color: ${colors.primary.background};
         }
 
         #tags button.focused {
-            border-color: ${colors.bright.magenta};
+            border-color: ${colors.primary.accent};
             color: ${colors.primary.foreground};
-            background-color: ${colors.bright.black};
         }
 
         #tags button.occupied {
             color: ${colors.primary.foreground};
-            background-color: ${colors.bright.black};
         }
 
         #tags button.urgent {
             border-color: ${colors.primary.alert};
             color: ${colors.primary.alert};
+            background-color: ${colors.bright.black};
         }
       '';
     };
@@ -488,7 +498,7 @@
 
   services = {
     dunst = {
-      enable = true;
+      enable = !useWayland;
       settings = {
         global = {
           monitor = 0;
@@ -526,8 +536,18 @@
     };
 
     gammastep = {
-      enable = true;
+      enable = !useWayland;
       provider = "geoclue2";
+      temperature = {
+        day = 5700;
+        night = 3500;
+      };
+    };
+
+    wlsunset = {
+      enable = useWayland;
+      latitude = "54.3";
+      longitude = "10.1";
       temperature = {
         day = 5700;
         night = 3500;

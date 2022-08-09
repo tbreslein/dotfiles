@@ -1,8 +1,8 @@
-{ config, pkgs, useWayland, ... }:
+{ config, pkgs, useWayland, homeDir, ... }:
 
 {
   programs = {
-    alacritty.settings.font.size = 9;
+    alacritty.settings.font.size = 13;
     # autorandr.profiles = {
     #   "regular" = {
     #     fingerprint = {
@@ -49,43 +49,41 @@
     blueman-applet.enable = true;
 
     kanshi = {
-      enable = useWayland;
+      enable = false;
       profiles = {
         undocked = {
-          # exec = [ "some command" ];
           outputs = [
             {
               criteria = "eDP-1";
             }
           ];
         };
-        home = {
-          # exec = [ "some command" ];
-          outputs = [
-            {
-              criteria = "eDP-1";
-              mode = "2256x1504@60Hz";
-              # position = "x,y";
-            }
-            {
-              criteria = "DP-2";
-              mode = "1920x1080";
-              # position = "x,y";
-            }
-          ];
-        };
+        # home = {
+        #   # exec = [ "some command" ];
+        #   outputs = [
+        #     {
+        #       criteria = "eDP-1";
+        #       mode = "2256x1504";
+        #       # position = "x,y";
+        #     }
+        #     {
+        #       criteria = "*DELL U2711*";
+        #       mode = "1920x1080";
+        #       # position = "x,y";
+        #     }
+        #   ];
+        # };
         work = {
-          # exec = [ "some command" ];
           outputs = [
             {
               criteria = "eDP-1";
-              mode = "2256x1504@60Hz";
-              # position = "x,y";
+              mode = "2256x1504";
+              position = "0,1080";
             }
             {
-              criteria = "DP-2";
-              mode = "1920x1080";
-              # position = "x,y";
+              criteria = "*DELL U2711*";
+              mode = "1920x1080@60Hz";
+              position = "170,0";
             }
           ];
         };
@@ -96,11 +94,17 @@
   home.file."workscreenlayout" = {
     target = ".local/bin/workscreenlayout";
     executable = true;
-    text = ''
-      #!/bin/sh
-      xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
-      feh --bg-fill $HOME/MEGA/Wallpaper/helloworld.jpeg $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png
-    '';
+    text =
+      if useWayland
+      then ''
+        #!/usr/bin/env sh
+        wlr-randr --output "eDP-1" --mode "2256x1504" --pos "0,1080" --output "DP-2" --mode "1920x1080@60Hz" --pos "170,0"
+      ''
+      else ''
+        #!/bin/sh
+        xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
+        feh --bg-fill $HOME/MEGA/Wallpaper/helloworld.jpeg $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png
+      '';
   };
 
   xsession = {

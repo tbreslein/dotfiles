@@ -3,7 +3,7 @@
 let
   mkHost = hostname: {
     inherit system;
-    specialArgs = { inherit inputs user homeDir useWayland; };
+    specialArgs = { inherit lib inputs user homeDir useWayland; };
     modules = [
       { _module.args = inputs; }
       { nixpkgs.overlays = overlays; }

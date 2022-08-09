@@ -1,4 +1,4 @@
-{ config, pkgs, user, homeDir, dwm, useWayland, ... }:
+{ config, lib, pkgs, user, homeDir, dwm, useWayland, ... }:
 
 {
   imports = [
@@ -38,6 +38,11 @@
       xkbOptions = "";
     };
   };
+
+  security.pam.services.swaylock = lib.mkIf (useWayland) {
+    text = "auth include login";
+  };
+  programs.sway.enable = useWayland; # this is just here to get swaylock working
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
