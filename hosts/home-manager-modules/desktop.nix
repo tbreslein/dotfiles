@@ -255,7 +255,7 @@
           };
           "cpu" = {
             interval = 5;
-            format = " {usage}% ({load})";
+            format = " {usage}%";
             states = {
               warning = 70;
               critical = 90;
@@ -275,7 +275,7 @@
               warning = 30;
               critical = 15;
             };
-            format = " {icon} {capacity}%";
+            format = "{icon} {capacity}%";
             format-discharging = "{icon} {capacity}%";
             format-icons = [
               ""
@@ -293,7 +293,7 @@
           };
           "clock#time" = {
             interval = 1;
-            format = "{:%H:%M:%S}";
+            format = "{:%H:%M}";
             tooltip = false;
           };
           "tray" = {
@@ -374,7 +374,6 @@
             padding-right: 10px;
         }
 
-
         /* -----------------------------------------------------------------------------
          * Module styles
          * -------------------------------------------------------------------------- */
@@ -408,7 +407,6 @@
         }
 
         #cpu {
-          /* No styles */
         }
 
         #cpu.warning {
@@ -451,7 +449,7 @@
         }
 
         #pulseaudio {
-            /* No styles */
+            border-left: 2px solid ${colors.primary.foreground};
         }
 
         #pulseaudio.muted {
@@ -480,6 +478,10 @@
 
         #window.focused {
             color: ${colors.primary.accent}
+        }
+
+        #tags {
+            border-right: 2px solid ${colors.primary.foreground};
         }
 
         #tags button {
