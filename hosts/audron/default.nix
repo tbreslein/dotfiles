@@ -98,7 +98,7 @@ in
     hostName = "audron";
     firewall = {
       enable = true;
-      interfaces.work-eth-interface.allowedTCPPorts = [ 22 ];
+      interfaces."${work-eth-interface}".allowedTCPPorts = [ 22 ];
     };
     extraHosts = ''
       134.245.12.33 smtp.mail.uni-kiel.de
