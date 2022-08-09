@@ -106,7 +106,7 @@ return require('packer').startup(function(use)
     }
     use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup({}) end }
     use { 'windwp/nvim-ts-autotag' }
-    use { 'tpope/vim-surround' }
+    use { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup {} end }
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter',
