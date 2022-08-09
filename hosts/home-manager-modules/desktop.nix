@@ -2,7 +2,9 @@
 
 {
   home = {
-    packages = (if useWayland
+    packages = with pkgs; [
+      libnotify
+    ] (if useWayland
     then with pkgs; [
       swaybg
       wlr-randr
@@ -18,7 +20,6 @@
     ]
     else with pkgs; [
       arandr
-      libnotify
       scrot
       xclip
       xsel
@@ -132,8 +133,14 @@
         # Super+F to toggle fullscreen
         riverctl map normal Super F toggle-fullscreen
 
-        # Super+L to lock the scree
+        # Super+L to lock the screen
         riverctl map normal Super+Control L spawn swaylock -c 000000
+
+        # screenshot all screens
+        riverctl map normal None Print spawn 'grim - | wl-copy'
+
+        # screenshot region
+        riverctl map normal Super Print spawn 'grim -g "$(slurp)" - | wl-copy'
 
         # Super+{Up,Right,Down,Left} to change layout orientation
         riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
