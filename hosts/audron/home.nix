@@ -48,47 +48,47 @@
   services = {
     blueman-applet.enable = true;
 
-    kanshi = {
-      enable = false;
-      profiles = {
-        undocked = {
-          outputs = [
-            {
-              criteria = "eDP-1";
-            }
-          ];
-        };
-        # home = {
-        #   # exec = [ "some command" ];
-        #   outputs = [
-        #     {
-        #       criteria = "eDP-1";
-        #       mode = "2256x1504";
-        #       # position = "x,y";
-        #     }
-        #     {
-        #       criteria = "*DELL U2711*";
-        #       mode = "1920x1080";
-        #       # position = "x,y";
-        #     }
-        #   ];
-        # };
-        work = {
-          outputs = [
-            {
-              criteria = "eDP-1";
-              mode = "2256x1504";
-              position = "0,1080";
-            }
-            {
-              criteria = "*DELL U2711*";
-              mode = "1920x1080@60Hz";
-              position = "170,0";
-            }
-          ];
-        };
-      };
-    };
+    # kanshi = {
+    #   enable = false;
+    #   profiles = {
+    #     undocked = {
+    #       outputs = [
+    #         {
+    #           criteria = "eDP-1";
+    #         }
+    #       ];
+    #     };
+    #     # home = {
+    #     #   # exec = [ "some command" ];
+    #     #   outputs = [
+    #     #     {
+    #     #       criteria = "eDP-1";
+    #     #       mode = "2256x1504";
+    #     #       # position = "x,y";
+    #     #     }
+    #     #     {
+    #     #       criteria = "*DELL U2711*";
+    #     #       mode = "1920x1080";
+    #     #       # position = "x,y";
+    #     #     }
+    #     #   ];
+    #     # };
+    #     work = {
+    #       outputs = [
+    #         {
+    #           criteria = "eDP-1";
+    #           mode = "2256x1504";
+    #           position = "0,1080";
+    #         }
+    #         {
+    #           criteria = "*DELL U2711*";
+    #           mode = "1920x1080@60Hz";
+    #           position = "170,0";
+    #         }
+    #       ];
+    #     };
+    #   };
+    # };
   };
 
   home.file."workscreenlayout" = {

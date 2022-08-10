@@ -45,39 +45,74 @@
     # };
   };
 
-  services.kanshi = {
-    enable = false;
-    profiles = {
-      standard = {
-        # exec = [ "some command" ];
-        outputs = [
-          {
-            criteria = "DP-1 Unknown Mi Monitor";
-            mode = "3440x1440@144Hz";
-            # position = "x,y";
-          }
-          {
-            criteria = "DP-3 Goldstar Company";
-            mode = "1920x1080@60Hz";
-            # position = "x,y";
-          }
-        ];
-      };
-      tv = {
-        # exec = [ "some command" ];
-        outputs = [
-          {
-            criteria = "DP-1 Unknown Mi Monitor";
-            mode = "3440x1440@144Hz";
-            # position = "x,y";
-          }
-          {
-            criteria = "DP-3 Goldstar Company";
-            mode = "1920x1080@60Hz";
-            # position = "x,y";
-          }
-        ];
-      };
+  # services.kanshi = {
+  #   enable = false;
+  #   profiles = {
+  #     standard = {
+  #       # exec = [ "some command" ];
+  #       outputs = [
+  #         {
+  #           criteria = "DP-1 Unknown Mi Monitor";
+  #           mode = "3440x1440@144Hz";
+  #           # position = "x,y";
+  #         }
+  #         {
+  #           criteria = "DP-3 Goldstar Company";
+  #           mode = "1920x1080@60Hz";
+  #           # position = "x,y";
+  #         }
+  #       ];
+  #     };
+  #     tv = {
+  #       # exec = [ "some command" ];
+  #       outputs = [
+  #         {
+  #           criteria = "DP-1 Unknown Mi Monitor";
+  #           mode = "3440x1440@144Hz";
+  #           # position = "x,y";
+  #         }
+  #         {
+  #           criteria = "DP-3 Goldstar Company";
+  #           mode = "1920x1080@60Hz";
+  #           # position = "x,y";
+  #         }
+  #       ];
+  #     };
+  #   };
+  # };
+
+  home.file = {
+    "homescreenlayout" = {
+      target = ".local/bin/homescreenlayout";
+      executable = true;
+      text =
+        if useWayland
+        then ''
+          #!/usr/bin/env sh
+          wlr-randr --output 'DP-1' --mode '3440x1440@144Hz' --output 'DP-3' --mode '1920x1080@60Hz' --pos '3440,170'
+          swaybg -o 'DP-1' -m fill -i $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png -o 'DP-3' -m fill -i $HOME/MEGA/Wallpaper/eatsleepcoderepeat.jpeg &
+        ''
+        else ''
+          #!/bin/sh
+          #xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
+          feh --bg-center $HOME/MEGA/Wallpaper/ok_21-9.jpg $HOME/MEGA/Wallpaper/bonfire.jpg
+        '';
+    };
+    "tvlayout" = {
+      target = ".local/bin/tvlayout";
+      executable = true;
+      text =
+        if useWayland
+        then ''
+          #!/usr/bin/env sh
+          wlr-randr --output 'DP-1' --mode '3440x1440@144Hz' --output 'DP-3' --mode '1920x1080@60Hz' --pos '3440,170'
+          swaybg -o 'DP-1' -m fill -i $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png -o 'DP-3' -m fill -i $HOME/MEGA/Wallpaper/eatsleepcoderepeat.jpeg &
+        ''
+        else ''
+          #!/bin/sh
+          #xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
+          feh --bg-center $HOME/MEGA/Wallpaper/ok_21-9.jpg $HOME/MEGA/Wallpaper/bonfire.jpg
+        '';
     };
   };
 

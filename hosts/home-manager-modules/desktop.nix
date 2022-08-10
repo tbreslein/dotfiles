@@ -210,6 +210,15 @@
             [[ $(wlr-randr) =~ 'DELL U2711 ' ]] && workscreenlayout
         }
 
+        # moebius' screen layouts
+        [[ $(cat /etc/hostname) == 'moebius' ]] && sleep 1 && {
+            # regular screens
+            [[ $(wlr-randr | grep 'Enabled: yes' | wc -l) -eq 2 ]] && homescreenlayout
+
+            # tv screen
+            [[ $(wlr-randr) =~ 'DELL U2711 ' ]] && tvlayout
+        }
+
         # Set the default layout generator to be rivertile and start it.
         # River will send the process group of the init executable SIGTERM on exit.
         riverctl default-layout rivertile
