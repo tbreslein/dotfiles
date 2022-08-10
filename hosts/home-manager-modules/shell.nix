@@ -67,13 +67,13 @@
           error_symbol = "[✗](bold red)";
           vicmd_symbol = "[V](bold green)";
         };
+        directory = {
+          truncation_length = 7;
+          truncate_to_repo = true;
+        };
         hostname = {
           ssh_only = false;
           format = "[$hostname](bold bright-blue): ";
-        };
-        directory = {
-          truncation_length = 7;
-          truncate_to_repo = false;
         };
       };
     };
