@@ -206,6 +206,7 @@ local servers = {
     "pyright",
     "sumneko_lua",
     "tsserver",
+    "eslint",
     "yamlls",
     "csharp_ls",
     "fsautocomplete",
