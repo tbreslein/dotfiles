@@ -40,6 +40,7 @@
                     git add flake.lock && git commit -m 'update flake.lock'
                 fi
                 sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$(cat /etc/hostname)"
+                nvim -c 'PackerSync'
                 booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
                 built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
                 if [[ ! "$booted" == "$built" ]]; then
