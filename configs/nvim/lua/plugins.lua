@@ -43,7 +43,7 @@ return require('packer').startup(function(use)
 
     -- background functionality
     use { 'airblade/vim-rooter' }
-    use { 'nathon/filetype.nvim' }
+    use { 'nathom/filetype.nvim' }
 
     -- functionality
     use { 'luukvbaal/nnn.nvim', config = function() require('nnn').setup({ }) end }
