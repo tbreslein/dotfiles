@@ -218,6 +218,17 @@ local servers = {
     "julials",
 }
 
+nvim_lsp["eslint"].setup {
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte" };
+    capabilities = capabilities;
+    on_attach = on_attach;
+    init_options = {
+        onlyAnalyzeProjectsWithOpenFiles = true,
+        suggestFromUnimportedLibraries = false,
+        closingLabels = true,
+    };
+}
+
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities;
