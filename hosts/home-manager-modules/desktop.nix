@@ -201,8 +201,14 @@
         mako &
         sleep 60 && megasync &
 
-        bash -c "[[ $(cat /etc/hostname) == 'audron' ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &"
-        #bash -c "[[ $(cat /etc/hostname) == 'moebius' ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &"
+        # audron's screen layouts
+        [[ $(cat /etc/hostname) == 'audron' ]] && sleep 1 && {
+            # regular screen only
+            [[ $(wlr-randr | grep 'Enabled: yes' | wc -l) -eq 1 ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg
+
+            # work screen layout
+            [[ $(wlr-randr) =~ 'DELL U2711 ' ]] && workscreenlayout
+        }
 
         # Set the default layout generator to be rivertile and start it.
         # River will send the process group of the init executable SIGTERM on exit.

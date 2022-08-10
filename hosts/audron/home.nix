@@ -99,6 +99,7 @@
       then ''
         #!/usr/bin/env sh
         wlr-randr --output "eDP-1" --mode "2256x1504" --pos "0,1080" --output "DP-2" --mode "1920x1080@60Hz" --pos "170,0"
+        swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &
       ''
       else ''
         #!/bin/sh
