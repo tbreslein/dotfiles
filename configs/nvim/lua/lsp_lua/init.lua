@@ -213,7 +213,7 @@ local servers = {
     "svelte",
     "ansiblels",
     "jsonls",
-    "tailwindcss",
+    -- "tailwindcss",
     "rnix",
     "julials",
 }
