@@ -199,7 +199,7 @@
         waybar &
         pasystray &
         mako &
-        sleep 10 && megasync &
+        sleep 60 && megasync &
 
         bash -c "[[ $(cat /etc/hostname) == 'audron' ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &"
         #bash -c "[[ $(cat /etc/hostname) == 'moebius' ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &"
@@ -219,7 +219,8 @@
       enable = useWayland;
       backgroundColor = colors.primary.background;
       borderColor = colors.primary.accent;
-      font = "${font} 13";
+      font = "${font} 10";
+      height = 200;
     };
 
     waybar = {
