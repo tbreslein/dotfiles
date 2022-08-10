@@ -43,6 +43,7 @@ in
       EDITOR = editor;
       VISUAL = visual;
       _JAVA_AWT_WM_NONREPARENTING = 1;
+      # GTK_USE_PORTAL = (if useWayland then 0 else "");
     };
 
   };

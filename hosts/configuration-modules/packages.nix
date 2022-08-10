@@ -65,8 +65,8 @@
     slock.enable = !useWayland;
   };
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  # };
 }
