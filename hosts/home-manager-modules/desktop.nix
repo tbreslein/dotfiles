@@ -251,7 +251,7 @@
           modules-center = [ "river/window" ];
           modules-right = [ "pulseaudio" "cpu" "memory" "battery" "clock#date" "clock#time" "tray" ];
           "river/tags" = {
-            tag-labels = [ "1.sh" "2.www" "3.mail" "4" "5" "6" "7" "8" "9" ];
+            tag-labels = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
           };
           "river/window" = {
             format = "{}";
