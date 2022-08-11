@@ -204,7 +204,7 @@
         # audron's screen layouts
         [[ $(cat /etc/hostname) == 'audron' ]] && sleep 1 && {
             # regular screen only
-            [[ $(wlr-randr | grep 'Enabled: yes' | wc -l) -eq 1 ]] && swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/helloworld.jpeg
+            [[ $(wlr-randr | grep 'Enabled: yes' | wc -l) -eq 1 ]] && singlescreenlayout
 
             # work screen layout
             [[ $(wlr-randr) =~ 'DELL U2711 ' ]] && workscreenlayout

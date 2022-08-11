@@ -100,7 +100,7 @@
         then ''
           #!/usr/bin/env sh
           wlr-randr --output "eDP-1" --mode "2256x1504"
-          swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &
+          swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &
         ''
         else ''
           #!/bin/sh
