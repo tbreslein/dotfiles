@@ -92,6 +92,10 @@ in
         Option "OffTime" "0"
       '';
     };
+
+    printing.clientConf = ''
+      ServerName 172.19.66.2
+    '';
   };
 
   networking = {
