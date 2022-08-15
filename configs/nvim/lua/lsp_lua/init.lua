@@ -216,6 +216,7 @@ local servers = {
     -- "tailwindcss",
     "rnix",
     "julials",
+    "zls",
 }
 
 nvim_lsp["eslint"].setup {
