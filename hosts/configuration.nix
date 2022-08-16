@@ -20,6 +20,11 @@
   time.timeZone = "Europe/Berlin";
   networking.networkmanager.enable = true;
 
+  nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
+
   services = {
     fstrim.enable = true;
     geoclue2.enable = true;
