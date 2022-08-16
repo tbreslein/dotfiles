@@ -45,10 +45,7 @@
       enableBashIntegration = shell == "bash";
       # enableFishIntegration = shell == "fish"; # gets loaded automatically anyways
       enableZshIntegration = shell == "zsh";
-      nix-direnv = {
-        enable = true;
-        enableFlakes = true;
-      };
+      nix-direnv.enable = true;
     };
   };
 }
