@@ -48,7 +48,7 @@ return require('packer').startup(function(use)
     -- functionality
     use { 'luukvbaal/nnn.nvim', config = function() require('nnn').setup({ }) end }
     use { 'kdheepak/lazygit.nvim' }
-    -- use { 'ldelossa/gh.nvim'}
+    use { 'ldelossa/gh.nvim' }
     use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
     use { 'ThePrimeagen/git-worktree.nvim', config = function() require('git-worktree').setup() end }
     use { 'ggandor/lightspeed.nvim',
