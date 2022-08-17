@@ -20,7 +20,6 @@
     exa.enable = true;
     feh.enable = true;
     lazygit.enable = true;
-    nnn.enable = true;
     pandoc.enable = true;
 
     bat = {
