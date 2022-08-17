@@ -40,6 +40,11 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use { 'b0o/incline.nvim',
+        config = function()
+            require('incline').setup { }
+        end
+    }
 
     -- background functionality
     use { 'airblade/vim-rooter' }
@@ -62,7 +67,9 @@ return require('packer').startup(function(use)
     use { 'folke/trouble.nvim',
         requires = "kyazdani42/nvim-web-devicons",
         config = function() require("trouble").setup { } end
-    } 
+    }
+    use { 'folke/which-key.nvim' }
+    use { 'mrjones2014/legendary.nvim' }
 
     -- Languages
     use { 'adelarsq/neofsharp.vim'}

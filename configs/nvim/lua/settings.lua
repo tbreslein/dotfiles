@@ -48,7 +48,6 @@ utils.opt('o', 'signcolumn', 'yes')
 utils.opt('o', 'laststatus', 2)
 utils.opt('o', 'pumheight', 10)
 utils.opt('o', 'showtabline', 2)
-utils.opt('o', 'winbar', '%f')
 vim.o.completeopt = "menuone,noselect"
 vim.opt.listchars:append("eol:↴")
 
