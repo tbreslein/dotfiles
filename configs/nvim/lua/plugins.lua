@@ -51,12 +51,9 @@ return require('packer').startup(function(use)
     use { 'ldelossa/gh.nvim' }
     use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
     use { 'ThePrimeagen/git-worktree.nvim', config = function() require('git-worktree').setup() end }
-    use { 'ggandor/lightspeed.nvim',
-        config = function()
-            require('lightspeed').setup {
-                ignore_case = true,
-            }
-        end
+    use { 'ggandor/leap.nvim',
+        requires = { 'tpope/vim-repeat' },
+        config = function() require('leap').set_default_keymaps() end
     }
     use { 'windwp/nvim-spectre',
         requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' } },
