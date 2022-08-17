@@ -48,33 +48,13 @@ utils.opt('o', 'signcolumn', 'yes')
 utils.opt('o', 'laststatus', 2)
 utils.opt('o', 'pumheight', 10)
 utils.opt('o', 'showtabline', 2)
+utils.opt('o', 'timeoutlen', 300)
 vim.o.completeopt = "menuone,noselect"
 vim.opt.listchars:append("eol:↴")
-
--- Highlight on yank
-vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
-
--- override c/c++ commentstring
-vim.cmd([[autocmd FileType cpp set commentstring=//%s]])
-vim.cmd([[autocmd FileType c set commentstring=//%s]])
-
--- fix open floats on hover
-vim.cmd([[autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })]])
+vim.notify = require('notify')
 
 -- neoformat
 vim.cmd[[ let g:neoformat_try_node_exe = 1 ]]
-
--- fix undo history when using neoformat on save
-vim.cmd[[
-augroup fmt
-    autocmd!
-    autocmd BufWritePre * undojoin | silent! Neoformat
-augroup END
-]]
-vim.cmd 'autocmd BufWritePre *.{ts,tsx,js,jsx} Neoformat prettier'
-vim.cmd 'autocmd BufWritePre *.{cpp,hpp} Neoformat clangformat'
-vim.cmd 'autocmd BufNewFile,BufRead *.{fs,fsx,fsi} set filetype=fsharp'
-vim.cmd 'autocmd BufNewFile,BufRead *.astro set filetype=astro'
 
 -- rustfmt is handled by rust.vim
 vim.cmd 'let g:rustfmt_autosave = 1'
@@ -87,21 +67,25 @@ vim.cmd[[ let bufferline.animation = v:false ]]
 vim.cmd[[ let g:EditorConfig_exclude_patterns = ['fugitive://.*'] ]]
 
 -- telescope
+require('telescope').load_extension('git_worktree')
+require('telescope').load_extension('file_browser')
+require('telescope').load_extension('notify')
+
 local actions = require('telescope.actions')
 require('telescope').setup {
     defaults = {
         mappings = {
             n = {
-                ['<c-x>'] = false,
-                ['<c-s>'] = actions.select_horizontal,
-                ['<c-q>'] = actions.send_to_qflist + actions.open_qflist,
-                ['<c-c>'] = actions.close,
+                ['<C-x>'] = actions.select_horizontal,
+                ['<C-v>'] = actions.select_vertical,
+                ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
+                ['<C-c>'] = actions.close,
             },
             i = {
-                ['<c-x>'] = false,
-                ['<c-s>'] = actions.select_horizontal,
-                ['<c-q>'] = actions.send_to_qflist + actions.open_qflist,
-                ['<c-c>'] = actions.close,
+                ['<C-x>'] = actions.select_horizontal,
+                ['<C-v>'] = actions.select_vertical,
+                ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
+                ['<C-c>'] = actions.close,
             },
         },
         vimgrep_arguments = {
@@ -147,7 +131,7 @@ ls.snippets = {
             "/**\n * @brief $4\n *\n */\nstatic auto $1($2) -> $3\n{\n    $0\n}\n"
         ),
     },
-    
+
     typescriptreact = {
         ls.parser.parse_snippet(
             "fc",

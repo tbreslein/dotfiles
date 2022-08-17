@@ -2,7 +2,9 @@
 vim.g.mapleader = " "
 
 local utils = require('utils')
-require('telescope').load_extension('git_worktree')
+local keymap = vim.api.nvim_set_keymap
+local default_opts = { noremap = true, silent = true }
+local expr_opts = { noremap = true, expr = true, silent = true }
 
 function FixBufHover()
     vim.diagnostic.hide()
@@ -10,95 +12,197 @@ function FixBufHover()
     vim.diagnostic.show()
 end
 
-utils.map('n', '<C-h>', '<C-w>h')
-utils.map('n', '<C-j>', '<C-w>j')
-utils.map('n', '<C-k>', '<C-w>k')
-utils.map('n', '<C-l>', '<C-w>l')
-utils.map('n', '<Leader>j', '<cmd>resize -2<CR>')
-utils.map('n', '<Leader>k', '<cmd>resize +2<CR>')
-utils.map('n', '<Leader>h', '<cmd>vertical resize -2<CR>')
-utils.map('n', '<Leader>l', '<cmd>vertical resize +2<CR>')
-utils.map('n', '<Tab>', '<cmd>tabnext<CR>')
-utils.map('n', '<S-Tab>', '<cmd>tabprevious<CR>')
-utils.map('n', '<C-s>', '<cmd>w<CR>')
-utils.map('n', '<Leader>m', '<cmd>nohlsearch<CR>')
-utils.map('v', '<', '<gv')
-utils.map('v', '>', '>gv')
-utils.map('n', 'Y', 'y$', { noremap = true })
--- utils.map('n', '<leader>pv', [[:Ex<CR>]], { noremap = true, silent = true })
-utils.map('n', '<leader>pv', [[:NnnPicker<CR>]], { noremap = true, silent = true })
-utils.map('n', '<leader>pp', [[:NnnExplorer<CR>]], { noremap = true, silent = true })
+require('legendary').setup{
+    keymaps = {
+        { '<c-h>', '<c-w>h', mode = { 'n' }, description = 'move focus left', opts = default_opts },
+        { '<c-j>', '<c-w>j', mode = { 'n' }, description = 'move focus down', opts = default_opts },
+        { '<c-k>', '<c-w>k', mode = { 'n' }, description = 'move focus up', opts = default_opts },
+        { '<c-l>', '<c-w>l', mode = { 'n' }, description = 'move focus right', opts = default_opts },
 
--- moving lines
-utils.map('v', 'J', [[:m '>+1<CR>gv=gv]], { noremap = true })
-utils.map('v', 'K', [[:m '>-2<CR>gv=gv]], { noremap = true })
-utils.map('n', '<leader>j', [[:m .+1<CR>==]], { noremap = true })
-utils.map('n', '<leader>k', [[:m .-2<CR>==]], { noremap = true })
+        { '<', '<gv', mode = { 'v' }, description = 'unindent', opts = default_opts },
+        { '>', '>gv', mode = { 'v' }, description = 'indent', opts = default_opts },
 
--- plugins
-utils.map('n', '<Leader>gg', '<cmd>LazyGit<CR>', { noremap = false })
+        { 'Y', 'y$',  mode = { 'n' }, description = 'yank to end of line', opts = default_opts },
+        { 'p', '_dP', mode = { 'v' }, description = 'paste over selected text', opts = default_opts },
 
--- barbar
--- move to previous/next
-utils.map('n', '<A-h>', '<cmd>:BufferPrevious<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-l>', '<cmd>:BufferNext<CR>', { noremap = true, silent = true })
+        { 'n',     'nzz',                        mode = { 'n' }, description = 'next result (center)', opts = default_opts },
+        { 'N',     'Nzz',                        mode = { 'n' }, description = 'previous result (center)', opts = default_opts },
+        { '<ESC>', ':nohlsearch<bar>:echo<cr>',  mode = { 'n' }, description = 'cancel search highlight', opts = default_opts },
 
--- re-order to previous/next
-utils.map('n', '<A-H>', '<cmd>:BufferMovePrevious<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-L>', '<cmd>:BufferMoveNext<CR>', { noremap = true, silent = true })
+        { 'J', [[:m '>+1<cr>gv-gc]], mode = { 'v' }, description = 'move lines downward', opts = default_opts },
+        { 'K', [[:m '<-2<cr>gv-gc]], mode = { 'v' }, description = 'move lines upward', opts = default_opts },
 
--- goto buffer in position...
-utils.map('n', '<A-1>', '<cmd>:BufferGoto 1<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-2>', '<cmd>:BufferGoto 2<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-3>', '<cmd>:BufferGoto 3<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-4>', '<cmd>:BufferGoto 4<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-5>', '<cmd>:BufferGoto 5<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-6>', '<cmd>:BufferGoto 6<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-7>', '<cmd>:BufferGoto 7<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-8>', '<cmd>:BufferGoto 8<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-9>', '<cmd>:BufferGoto 9<CR>', { noremap = true, silent = true })
+        { 'j', "v:count == 0 ? 'gj' : 'j'",  mode = { 'n' }, description = 'move down accross visual lines', opts = expr_opts },
+        { 'k', "v:count == 0 ? 'gk' : 'k'",  mode = { 'n' }, description = 'move down accross visual lines', opts = expr_opts },
 
--- close buffer
-utils.map('n', '<A-q>', '<cmd>:BufferClose<CR>', { noremap = true, silent = true })
-utils.map('n', '<A-o>', '<cmd>:BufferCloseAllButCurrent<CR>', { noremap = true, silent = true })
+        { 'jk', '<esc>',        mode = { 'i' }, description = 'leave insert mode', opts = default_opts },
+        { 'jk', '<c-\\><c-n>',  mode = { 't' }, description = 'leave insert mode (in terminal)', opts = default_opts },
 
--- pick buffer
-utils.map('n', '<A-s>', '<cmd>:BufferPick<CR>', { noremap = true, silent = true })
+        { '<s-h>', ':bprevious<cr>', mode = { 'v' }, description = 'unindent', opts = default_opts },
+        { '<s-l>', ':bnext<cr>',     mode = { 'v' }, description = 'indent', opts = default_opts },
+    },
+    augroups = {
+        {
+            name = 'fmt',
+            clear = true,
+            {
+                'BufWritePre',
+                'undojoin | silent! Neoformat',
+                description = 'silent Neoformat on an undo',
+            },
+        }
+    },
+    autocmds = {
+        {
+            'FileType',
+            'set commentstring=//%s',
+            opts = { pattern = { '*.c, *.cpp' } },
+            description = 'set commentstrings for C and C++ to // instead of block comments',
+        },
+        {
+            'TextYankPost',
+            'lua vim.highlight.on_yank {on_visual = false}',
+            description = 'highlight yanked text',
+        },
+        {
+            'CursorHold',
+            'lua vim.diagnostic.open_float(nil, { focusable = false })',
+            description = 'open diagnostics on holding the cursor',
+        },
+        {
+            'BufWritePre',
+            'Neoformat prettier',
+            opts = { pattern = { '*.{ts,tsx,js,jsx}' } },
+            description = 'run Neoformat prettier upon saving a *.{ts,tsx,js,jsx} file',
+        },
+        {
+            'BufWritePre',
+            'Neoformat clangformat',
+            opts = { pattern = { '*.{c,cpp,hpp}' } },
+            description = 'run Neoformat clangformat upon saving a *.{c,cpp,hpp} file',
+        },
+        {
+            { 'BufNewFile', 'BufRead' },
+            'set filetype=fsharp',
+            opts = { pattern = { '*.fs', '*.fs{x,i}' } },
+            description = 'set filetype to fsharp for *.{fs,fsx,fsi} files',
+        },
+        {
+            { 'BufNewFile', 'BufRead' },
+            'set filetype=astro',
+            opts = { pattern = { '*.astro' } },
+            description = 'set filetype to astro for *.astro files',
+        },
 
--- Telescope
-utils.map('n', '<Leader>ff', '<cmd>:Telescope find_files hidden=true<CR>',
-    { noremap = true, silent = true })
-utils.map('n', '<Leader>fg', '<cmd>:Telescope live_grep<CR>', { noremap = true, silent = true })
-utils.map('n', '<Leader>fb', '<cmd>:Telescope current_buffer_fuzzy_find<CR>',
-    { noremap = true, silent = true })
-utils.map('n', '<Leader>fn', '<cmd>:Telescope file_browser<CR>', { noremap = true, silent = true })
-utils.map('n', '<Leader>ft', [[ :lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]])
+    },
+}
 
--- Spectre
-utils.map('n', '<Leader>S', [[ :lua require('spectre').open()<CR> ]])
-utils.map('n', '<Leader>sv', [[ :lua require('spectre').open_visual()<CR> ]])
-utils.map('n', '<Leader>sf', [[ :lua require('spectre').open_file_search()<CR> ]])
+-- fix undo history when using neoformat on save
+-- vim.cmd[[
+-- augroup fmt
+--     autocmd!
+--     autocmd BufWritePre * undojoin | silent! Neoformat
+-- augroup END
+-- ]]
 
--- trouble
-utils.map('n', '<Leader>tt', "<cmd>TroubleToggle<CR>", { silent = true, noremap = true })
-utils.map('n', '<Leader>tw', "<cmd>TroubleToggle workspace_diagnostics<CR>", { silent = true, noremap = true })
-utils.map('n', '<Leader>td', "<cmd>TroubleToggle document_diagnostics<CR>", { silent = true, noremap = true })
-utils.map('n', '<Leader>tl', "<cmd>TroubleToggle loclist<CR>", { silent = true, noremap = true })
-utils.map('n', '<Leader>tq', "<cmd>TroubleToggle quickfix<CR>", { silent = true, noremap = true })
-utils.map('n', '<Leader>tr', "<cmd>TroubleToggle lsp_references<CR>", { silent = true, noremap = true })
+require('which-key').register(
+    {
+        ['w'] = { '<cmd>update!<cr>', 'force save' },
+        ['q'] = { '<cmd>q!<CR>', 'force quit' },
 
--- LSP
-local opts = { noremap=true, silent=true }
-utils.map('n', '<Leader>[',  [[ <cmd>lua vim.lsp.buf.definition()<CR> ]], opts)
-utils.map('n', '<Leader>]',  [[ <cmd>lua vim.lsp.buf.declaration()<CR> ]], opts)
-utils.map('n', '<Leader>{',  [[ <cmd>lua FixBufHover()<CR> ]], opts)
-utils.map('n', '<Leader>}',  [[ <cmd>lua vim.lsp.buf.implementation()<CR> ]], opts)
-utils.map('n', '<Leader>lrr',  [[ <cmd>lua vim.lsp.buf.references()<CR> ]], opts)
-utils.map('n', '<Leader>lrn',  [[ <cmd>lua vim.lsp.buf.rename()<CR> ]], opts)
-utils.map('n', '<Leader>lca', [[ <cmd>lua vim.lsp.buf.code_action()<CR> ]], opts)
-utils.map('n', '<Leader>lsh', [[ <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR> ]], opts)
-utils.map('n', '<Leader>ln',  [[ <cmd>lua vim.diagnostic.goto_next()<CR> ]], opts)
+        ['J'] = { '<cmd>resize -2<cr>', 'resize down' },
+        ['K'] = { '<cmd>resize +2<cr>', 'resize up' },
+        ['H'] = { '<cmd>vertical resize -2<cr>', 'resize left' },
+        ['L'] = { '<cmd>vertical resize +2<cr>', 'resize right' },
 
--- luasnip
-utils.map('n', '<Leader><Leader>s', [[ <cmd>source ~/.config/nvim/lua/config/luasnip.lua<CR> ]])
+        -- buffer control
+        b = {
+            name = 'Buffer',
+            c = { '<cmd>bd!<cr>', 'Close current buffer' },
+            q = { '<cmd>%bd|e#|bd#<cr>', 'Delete all buffers, but current' },
+            Q = { '<cmd>%bd|e#|bd#<cr>', 'Delete all buffers' },
+            s = { '<cmd>JABSOpen<cr>', 'Open JABS' },
+            x = 'JABS: horizontal split',
+            v = 'JABS: vertical split',
+            ['<c-d>'] = 'JABS: close buffer',
+            ['<s-p>'] = 'JABS: open buffer preview',
+        },
+
+        -- git
+        g = {
+            name = 'Git',
+            g = { '<cmd>LazyGit<cr>', 'open lazygit' },
+        },
+
+        -- telescope
+        f = {
+            name = 'Telescope',
+            f = { '<cmd>Telescope find_files hidden=true<cr>', 'file finder' },
+            g = { '<cmd>Telescope live_grep<cr>', 'live grep' },
+            b = { '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'buffer fuzzy find' },
+            n = { '<cmd>Telescope file_browser<cr>', 'file browser' },
+            h = { '<cmd>Telescope notify<cr>', 'notify history browser' },
+            t = { [[:lua require('telescope').extensions.git_worktree.git_worktrees()<cr>]], 'git worktrees' },
+        },
+
+        -- file explorer
+        p = {
+            name = 'File explorer',
+            v = { '<cmd>Telescope file_browser<cr>', 'file browser' },
+        },
+
+        -- Spectre
+        ['S'] = { [[:lua require('spectre').open()<cr>]], 'open spectre' },
+        s = {
+            name = 'Spectre',
+            v = { [[:lua require('spectre').open_visual()<cr>]], 'open spectre on visual selection' },
+            f = { [[:lua require('spectre').open_file_search()<cr>]], 'open spectre file search' },
+        },
+
+        -- Trouble
+        t = {
+            name = 'Trouble',
+            t = { '<cmd>TroubleToggle<cr>',  'toggle trouble'},
+            w = { '<cmd>TroubleToggle workspace_diagnostics<cr>',  'toggle trouble workspace_diagnostics'},
+            d = { '<cmd>TroubleToggle document_diagnostics<cr>',  'toggle trouble document_diagnostics'},
+            l = { '<cmd>TroubleToggle loclist<cr>',  'toggle trouble loclist'},
+            q = { '<cmd>TroubleToggle quickfix<cr>',  'toggle trouble quickfix'},
+            r = { '<cmd>TroubleToggle lsp_references<cr>',  'toggle trouble lsp_references'},
+        },
+
+        -- Packer
+        z = {
+            name = 'Packer',
+            c = { '<cmd>PackerCompile<cr>', 'compile' },
+            i = { '<cmd>PackerInstall<cr>', 'install' },
+            s = { '<cmd>PackerSync<cr>', 'sync' },
+            S = { '<cmd>PackerStatus<cr>', 'status' },
+            u = { '<cmd>PackerUpdate<cr>', 'update' },
+        },
+
+        -- LSP
+        l = {
+            name = 'Lsp',
+            ['['] =  { '<cmd>lua vim.lso.buf.definition()<cr>',                   'definition' },
+            [']'] =  { '<cmd>lua vim.lso.buf.declaration()<cr>',                  'declaration' },
+            ['{'] =  { '<cmd>lua FixBufHover()<cr>',                              'buffer hover' },
+            ['}'] =  { '<cmd>lua vim.lsp.buf.implementation()<cr>',               'implementation' },
+            ['rr'] = { '<cmd>lua vim.lsp.buf.references()<cr>',                   'references' },
+            ['rn'] = { '<cmd>lua vim.lsp.buf.rename()<cr>',                       'rename' },
+            ['ca'] = { '<cmd>lua vim.lsp.buf.code_action()<cr>',                  'code action' },
+            ['sh'] = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', 'show line diagnostics' },
+            n =      { '<cmd>lua vim.diagnostic.goto_next()<cr>',                 'go to next warning/error' },
+            N =      { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                 'go to prev warning/error' },
+            s =      { '<cmd>source ~/.config/nvim/lua/settings.lua<cr>',         'source nvim/settings.lua' },
+        }
+    },
+    {
+        mode = 'n',
+        prefix = '<leader>',
+        buffer = nil,
+        silent = true,
+        noremap = true,
+        nowait = false
+    }
+)
 

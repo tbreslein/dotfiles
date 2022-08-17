@@ -4,12 +4,11 @@ return require('packer').startup(function(use)
     use { 'wbthomason/packer.nvim', opt = true }
 
     -- Themes, colors, visual
-    use { 'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end }
+    use { 'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup{} end }
     use { 'sainnhe/gruvbox-material' }
     use { 'folke/tokyonight.nvim' }
 
     -- UI
-    use { 'romgrk/barbar.nvim' }
     use { 'nvim-lualine/lualine.nvim',
         requires = {{ 'kyazdani42/nvim-web-devicons' }},
         config = function()
@@ -40,9 +39,23 @@ return require('packer').startup(function(use)
             }
         end
     }
-    use { 'b0o/incline.nvim',
+    use { 'b0o/incline.nvim', config = function() require('incline').setup{} end }
+    use { 'matbme/JABS.nvim',
         config = function()
-            require('incline').setup { }
+            require('jabs').setup{
+                keymap = {
+                    close = '<c-d>',
+                    h_split = 'x',
+                }
+            }
+        end
+    }
+    use { 'stevearc/dressing.nvim' }
+    use { 'rcarriga/nvim-notify',
+        config = function()
+            require('notify').setup {
+                background_colour = '#000000',
+            }
         end
     }
 
@@ -51,24 +64,24 @@ return require('packer').startup(function(use)
     use { 'nathom/filetype.nvim' }
 
     -- functionality
-    use { 'luukvbaal/nnn.nvim', config = function() require('nnn').setup({ }) end }
+    use { 'nvim-telescope/telescope-file-browser.nvim' }
     use { 'kdheepak/lazygit.nvim' }
     use { 'ldelossa/gh.nvim' }
     use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
-    use { 'ThePrimeagen/git-worktree.nvim', config = function() require('git-worktree').setup() end }
+    use { 'ThePrimeagen/git-worktree.nvim', config = function() require('git-worktree').setup{} end }
     use { 'ggandor/leap.nvim',
         requires = { 'tpope/vim-repeat' },
         config = function() require('leap').set_default_keymaps() end
     }
     use { 'windwp/nvim-spectre',
         requires = { { 'nvim-lua/plenary.nvim' }, { 'nvim-lua/popup.nvim' } },
-        config = function() require('spectre').setup() end
+        config = function() require('spectre').setup{} end
     }
     use { 'folke/trouble.nvim',
         requires = "kyazdani42/nvim-web-devicons",
-        config = function() require("trouble").setup { } end
+        config = function() require("trouble").setup{} end
     }
-    use { 'folke/which-key.nvim' }
+    use { 'folke/which-key.nvim', config = function() require('which-key').setup { window = { border = 'single' } } end }
     use { 'mrjones2014/legendary.nvim' }
 
     -- Languages
@@ -109,9 +122,9 @@ return require('packer').startup(function(use)
             end,
         }) end
     }
-    use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup({}) end }
+    use { 'windwp/nvim-autopairs', config = function() require('nvim-autopairs').setup{} end }
     use { 'windwp/nvim-ts-autotag' }
-    use { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup {} end }
+    use { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup{} end }
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter',
@@ -140,7 +153,7 @@ return require('packer').startup(function(use)
         },
     }
     use { 'neovim/nvim-lspconfig' }
-    use { 'ray-x/lsp_signature.nvim', config = function() require('lsp_signature').setup({}) end }
+    use { 'ray-x/lsp_signature.nvim', config = function() require('lsp_signature').setup{} end }
     use { 'L3MON4D3/LuaSnip' }
     use { 'saadparwaiz1/cmp_luasnip' }
 end)
