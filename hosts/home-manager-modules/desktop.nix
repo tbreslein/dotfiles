@@ -134,7 +134,7 @@
         riverctl map normal Super F toggle-fullscreen
 
         # Super+L to lock the screen
-        riverctl map normal Super+Control L spawn swaylock -c 000000
+        riverctl map normal Super+Control L spawn 'swaylock -c 000000'
 
         # screenshot all screens
         riverctl map normal None Print spawn 'grim - | wl-copy'
