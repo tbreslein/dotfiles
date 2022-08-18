@@ -9,12 +9,13 @@
       discord
       firefox
       brave
+      microsoft-edge
       thunderbird
       zoom-us
       obs-studio
       megacmd
       megasync
-    ]; #++ (if useWayland then [ pkgs.megacmd ] else [ pkgs.megasync ]);
+    ];
   };
 
   programs = {
