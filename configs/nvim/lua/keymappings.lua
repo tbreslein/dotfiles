@@ -23,7 +23,7 @@ require('legendary').setup{
         { '>', '>gv', mode = { 'v' }, description = 'indent', opts = default_opts },
 
         { 'Y', 'y$',  mode = { 'n' }, description = 'yank to end of line', opts = default_opts },
-        { 'p', '_dP', mode = { 'v' }, description = 'paste over selected text', opts = default_opts },
+        { 'p', '"_dP', mode = { 'v' }, description = 'paste over selected text', opts = default_opts },
 
         { 'n',     'nzz',                        mode = { 'n' }, description = 'next result (center)', opts = default_opts },
         { 'N',     'Nzz',                        mode = { 'n' }, description = 'previous result (center)', opts = default_opts },
