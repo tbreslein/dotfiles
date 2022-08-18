@@ -36,6 +36,11 @@
       enableZshIntegration = "${shell}" == "zsh";
     };
 
+    gh = {
+      enable = true;
+      editor = editor;
+    };
+
     git = {
       enable = true;
       userEmail = "tommy.breslein@protonmail.com";
