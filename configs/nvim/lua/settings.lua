@@ -5,17 +5,19 @@ local indent = 4
 utils.opt('o', 'termguicolors', true)
 vim.o.background = 'dark'
 
--- vim.g.gruvbox_material_background = 'medium'
--- vim.g.gruvbox_material_palette = 'original'
--- vim.g.gruvbox_material_enable_italic = 1
--- vim.g.gruvbox_material_enable_bold = 1
--- vim.g.gruvbox_material_transparent_background = 1
--- vim.g.gruvbox_material_sign_column_background = 'none'
--- cmd([[colorscheme gruvbox-material]])
+vim.g.gruvbox_material_background = 'medium'
+vim.g.gruvbox_material_palette = 'original'
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_enable_bold = 1
+vim.g.gruvbox_material_transparent_background = 1
+vim.g.gruvbox_material_sign_column_background = 'none'
 
 vim.g.tokyonight_style = 'night'
 vim.g.tokyonight_transparent = true
+
+-- vim.cmd([[colorscheme gruvbox-material]])
 vim.cmd([[colorscheme tokyonight]])
+-- vim.cmd [[colorscheme poimandres]]
 
 
 vim.cmd 'syntax enable'

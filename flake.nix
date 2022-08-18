@@ -34,6 +34,39 @@
         inputs.neovim-nightly-overlay.overlay
       ];
 
+      deus = {
+        primary= {
+          background= "2c323b";
+          foreground= "eaeaea";
+          accent = "edbf69";
+          alert = "ec3e45";
+        };
+        normal = {
+          black = "242a32";
+          red = "d54e53";
+          green = "98c379";
+          yellow = "e5c07b";
+          blue = "83a598";
+          magenta = "c678dd";
+          cyan = "70c0ba";
+          white = "eaeaea";
+        };
+        bright = {
+          black = "666666";
+          red = "ec3e45";
+          green = "90c966";
+          yellow = "edbf69";
+          blue = "73ba9f";
+          magenta = "c858e9";
+          cyan = "2bcec2";
+          white = "ffffff";
+        };
+        selection = {
+          background = "2c323b";
+          foreground = "eaeaea";
+        };
+      };
+
       gruvbox_hard_dark = {
         primary = {
           background = "1d2021";
@@ -133,7 +166,7 @@
         };
       };
 
-      colors = gruvbox_hard_dark;
+      colors = tokyonight_storm;
     in
     {
       nixosConfigurations =
