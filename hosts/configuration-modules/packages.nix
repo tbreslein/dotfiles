@@ -35,10 +35,6 @@
         pushd ${homeDir}/.dotfiles && {
             git pull && \
                 sudo nix flake update
-                git diff --exit-code flake.lock 2&> /dev/null
-                if [ $? -ne 0 ]; then
-                    git add flake.lock && git commit -m 'update flake.lock'
-                fi
                 sudo nixos-rebuild --upgrade-all switch --impure --flake .#"$(cat /etc/hostname)"
                 nvim -c 'PackerSync'
                 booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
