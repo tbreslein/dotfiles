@@ -38,7 +38,7 @@
 
     gh = {
       enable = true;
-      editor = editor;
+      settings.editor = editor;
     };
 
     git = {
