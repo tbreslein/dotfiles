@@ -38,8 +38,8 @@ require('legendary').setup{
         { 'jk', '<esc>',        mode = { 'i' }, description = 'leave insert mode', opts = default_opts },
         { 'jk', '<c-\\><c-n>',  mode = { 't' }, description = 'leave insert mode (in terminal)', opts = default_opts },
 
-        { '<s-h>', ':bprevious<cr>', mode = { 'v' }, description = 'unindent', opts = default_opts },
-        { '<s-l>', ':bnext<cr>',     mode = { 'v' }, description = 'indent', opts = default_opts },
+        { '<s-h>', ':bprevious<cr>', mode = { 'n' }, description = 'next buffer', opts = default_opts },
+        { '<s-l>', ':bnext<cr>',     mode = { 'n' }, description = 'prev buffer', opts = default_opts },
     },
     augroups = {
         {
