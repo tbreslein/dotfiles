@@ -44,7 +44,7 @@
         # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
         riverctl map normal Super Return spawn alacritty
-        riverctl map normal Super+Shift Return spawn 'bemenu-run -i --fn "Hack 17" --tb "${colors.primary.background}" --fb "${colors.primary.background}" --nb "${colors.primary.background}" --ff "${colors.normal.cyan}"'
+        riverctl map normal Super+Shift Return spawn 'bemenu-run -i --fn "Hack 17" --tb "#${colors.primary.background}" --fb "#${colors.primary.background}" --nb "#${colors.primary.background}" --ff "#${colors.normal.cyan}"'
 
         # Super+Q to close the focused view
         riverctl map normal Super Q close
@@ -182,9 +182,9 @@
         done
 
         # Set background and border color
-        riverctl background-color 0x1a1b26
-        riverctl border-color-focused 0x7dcfff
-        riverctl border-color-unfocused 0x414868
+        riverctl background-color 0x${colors.primary.background}
+        riverctl border-color-focused 0x${colors.primary.accent}
+        riverctl border-color-unfocused 0x${colors.bright.black}
 
         # Set keyboard repeat rate
         riverctl set-repeat 50 300
@@ -232,8 +232,8 @@
 
     mako = {
       enable = useWayland;
-      backgroundColor = colors.primary.background;
-      borderColor = colors.primary.accent;
+      backgroundColor = "#${colors.primary.background}";
+      borderColor = "#${colors.primary.accent}";
       font = "${font} 10";
       height = 200;
     };
@@ -330,23 +330,23 @@
 
         @keyframes blink-warning {
             70% {
-                color: ${colors.primary.foreground};
+                color: #${colors.primary.foreground};
             }
 
             to {
-                color: ${colors.primary.foreground};
-                background-color: ${colors.bright.yellow};
+                color: #${colors.primary.foreground};
+                background-color: #${colors.bright.yellow};
             }
         }
 
         @keyframes blink-critical {
             70% {
-                color: ${colors.primary.foreground};
+                color: #${colors.primary.foreground};
             }
 
             to {
-                color: ${colors.primary.foreground};
-                background-color: ${colors.primary.alert};
+                color: #${colors.primary.foreground};
+                background-color: #${colors.primary.alert};
             }
         }
 
@@ -366,8 +366,8 @@
 
         /* The whole bar */
         #waybar {
-            background: ${colors.primary.background};
-            color: ${colors.primary.foreground};
+            background: #${colors.primary.background};
+            color: #${colors.primary.foreground};
             font-family: Hack, Cantarell, Noto Sans, sans-serif;
             font-size: 15px;
         }
@@ -398,11 +398,11 @@
         }
 
         #battery.warning {
-            color: ${colors.bright.yellow};
+            color: #${colors.bright.yellow};
         }
 
         #battery.critical {
-            color: ${colors.primary.alert};
+            color: #${colors.primary.alert};
         }
 
         #battery.warning.discharging {
@@ -423,11 +423,11 @@
         }
 
         #cpu.warning {
-            color: ${colors.bright.yellow};
+            color: #${colors.bright.yellow};
         }
 
         #cpu.critical {
-            color: ${colors.primary.alert};
+            color: #${colors.primary.alert};
         }
 
         #memory {
@@ -437,18 +437,18 @@
         }
 
         #memory.warning {
-            color: ${colors.bright.yellow};
+            color: #${colors.bright.yellow};
         }
 
         #memory.critical {
-            color: ${colors.primary.alert};
+            color: #${colors.primary.alert};
             animation-name: blink-critical;
             animation-duration: 2s;
         }
 
         #mode {
-            background: ${colors.bright.black};
-            border-top: 2px solid ${colors.primary.foreground};
+            background: #${colors.bright.black};
+            border-top: 2px solid #${colors.primary.foreground};
             /* To compensate for the top border and still have vertical centering */
             padding-bottom: 2px;
         }
@@ -458,11 +458,11 @@
         }
 
         #network.disconnected {
-            color: ${colors.bright.yellow};
+            color: #${colors.bright.yellow};
         }
 
         #pulseaudio {
-            border-left: 2px solid ${colors.primary.foreground};
+            border-left: 2px solid #${colors.primary.foreground};
         }
 
         #pulseaudio.muted {
@@ -478,7 +478,7 @@
         }
 
         #temperature.critical {
-            color: ${colors.primary.alert};
+            color: #${colors.primary.alert};
         }
 
         #tray {
@@ -490,11 +490,11 @@
         }
 
         #window.focused {
-            color: ${colors.primary.accent}
+            color: #${colors.primary.accent}
         }
 
         #tags {
-            border-right: 2px solid ${colors.primary.foreground};
+            border-right: 2px solid #${colors.primary.foreground};
         }
 
         #tags button {
@@ -503,23 +503,23 @@
             padding-bottom: 2px;
             padding-left: 10px;
             padding-right: 10px;
-            color: ${colors.bright.black};
-            background-color: ${colors.primary.background};
+            color: #${colors.bright.black};
+            background-color: #${colors.primary.background};
         }
 
         #tags button.focused {
-            border-color: ${colors.primary.accent};
-            color: ${colors.primary.foreground};
+            border-color: #${colors.primary.accent};
+            color: #${colors.primary.foreground};
         }
 
         #tags button.occupied {
-            color: ${colors.primary.foreground};
+            color: #${colors.primary.foreground};
         }
 
         #tags button.urgent {
-            border-color: ${colors.primary.alert};
-            color: ${colors.primary.alert};
-            background-color: ${colors.bright.black};
+            border-color: #${colors.primary.alert};
+            color: #${colors.primary.alert};
+            background-color: #${colors.bright.black};
         }
       '';
     };
@@ -537,7 +537,7 @@
           separator_height = 2;
           padding = 8;
           frame_width = 1;
-          frame_color = colors.primary.foreground;
+          frame_color = "#${colors.primary.foreground}";
           ide_treshold = 120;
           font = "${font} 11";
 
@@ -546,19 +546,19 @@
           max_icon_size = 32;
         };
         urgency_low = {
-          background = colors.primary.background;
-          foreground = colors.primary.foreground;
+          background = "#${colors.primary.background}";
+          foreground = "#${colors.primary.foreground}";
           timeout = 10;
         };
         urgency_normal = {
-          background = colors.primary.background;
-          foreground = colors.primary.foreground;
+          background = "#${colors.primary.background}";
+          foreground = "#${colors.primary.foreground}";
           timeout = 10;
         };
         urgency_critical = {
-          background = colors.primary.background;
-          foreground = colors.primary.foreground;
-          frame_color = colors.primary.alert;
+          background = "#${colors.primary.background}";
+          foreground = "#${colors.primary.foreground}";
+          frame_color = "#${colors.primary.alert}";
           timeout = 0;
         };
       };

@@ -31,7 +31,7 @@
   services = {
     flameshot = {
       enable = !useWayland;
-      settings.General.uiColor = colors.primary.accent;
+      settings.General.uiColor = "#${colors.primary.accent}";
     };
     network-manager-applet.enable = !useWayland;
     pasystray.enable = !useWayland;
