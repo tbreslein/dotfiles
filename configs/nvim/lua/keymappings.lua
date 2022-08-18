@@ -72,13 +72,37 @@ require('legendary').setup{
         {
             'BufWritePre',
             'Neoformat prettier',
-            opts = { pattern = { '*.{ts,tsx,js,jsx}' } },
+            opts = { pattern = { '*.{ts,tsx,js,jsx,md,json,html}' } },
             description = 'run Neoformat prettier upon saving a *.{ts,tsx,js,jsx} file',
         },
         {
             'BufWritePre',
             'Neoformat clangformat',
             opts = { pattern = { '*.{c,cpp,hpp}' } },
+            description = 'run Neoformat clangformat upon saving a *.{c,cpp,hpp} file',
+        },
+        {
+            'BufWritePre',
+            'Neoformat nixpkgs-fmt',
+            opts = { pattern = { '*.nix' } },
+            description = 'run Neoformat clangformat upon saving a *.{c,cpp,hpp} file',
+        },
+        {
+            'BufWritePre',
+            'Neoformat stylish-haskell',
+            opts = { pattern = { '*.hs' } },
+            description = 'run Neoformat clangformat upon saving a *.{c,cpp,hpp} file',
+        },
+        {
+            'BufWritePre',
+            'Neoformat cmake-format',
+            opts = { pattern = { 'CMakeLists.txt' } },
+            description = 'run Neoformat clangformat upon saving a *.{c,cpp,hpp} file',
+        },
+        {
+            'BufWritePre',
+            'Neoformat rustfmt',
+            opts = { pattern = { '*.rs' } },
             description = 'run Neoformat clangformat upon saving a *.{c,cpp,hpp} file',
         },
         {
@@ -96,14 +120,6 @@ require('legendary').setup{
 
     },
 }
-
--- fix undo history when using neoformat on save
--- vim.cmd[[
--- augroup fmt
---     autocmd!
---     autocmd BufWritePre * undojoin | silent! Neoformat
--- augroup END
--- ]]
 
 require('which-key').register(
     {
