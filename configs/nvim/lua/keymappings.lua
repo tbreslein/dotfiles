@@ -109,6 +109,7 @@ require('which-key').register(
     {
         ['w'] = { '<cmd>update!<cr>', 'force save' },
         ['q'] = { '<cmd>q!<CR>', 'force quit' },
+        ['e'] = { '<cmd>wq<CR>', 'save and quit' },
 
         ['J'] = { '<cmd>resize -2<cr>', 'resize down' },
         ['K'] = { '<cmd>resize +2<cr>', 'resize up' },
@@ -152,9 +153,9 @@ require('which-key').register(
         },
 
         -- Spectre
-        ['S'] = { [[:lua require('spectre').open()<cr>]], 'open spectre' },
         s = {
             name = 'Spectre',
+            s = { [[:lua require('spectre').open()<cr>]], 'open spectre' },
             v = { [[:lua require('spectre').open_visual()<cr>]], 'open spectre on visual selection' },
             f = { [[:lua require('spectre').open_file_search()<cr>]], 'open spectre file search' },
         },
