@@ -1,19 +1,21 @@
-local on_attach = function(client, _)
-    -- local opts = { noremap=true, silent=true }
-    -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-    --
-    -- -- Set some keybinds conditional on server capabilities
-    -- -- if client.resolved_capabilities.document_formatting then
-    -- --     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    -- -- elseif client.resolved_capabilities.document_range_formatting then
-    -- --     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    -- -- end
-    -- if client.server_capabilities.document_formatting then
-    --     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    -- elseif client.server_capabilities.document_range_formatting then
-    --     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    -- end
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format({
+                    bufnr = bufnr,
+                    filter = function(this_client)
+                        return this_client.name == "null-ls"
+                    end
+                })
+            end
+        })
+    end
 
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.document_highlight then
@@ -29,7 +31,9 @@ local on_attach = function(client, _)
 end
 
 local nvim_lsp = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
+                                                                     .protocol
+                                                                     .make_client_capabilities())
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 local types = require('luasnip.util.types')
@@ -46,20 +50,12 @@ luasnip.config.set_config {
     enable_autosnippets = true,
 
     ext_opts = {
-        [types.choiceNode] = {
-            active = {
-                virt_text = { { "←", "Error" } }
-            }
-        }
+        [types.choiceNode] = {active = {virt_text = {{"←", "Error"}}}}
     }
 }
 
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
+    snippet = {expand = function(args) luasnip.lsp_expand(args.body) end},
     mapping = {
         ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item()),
         ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item()),
@@ -85,52 +81,36 @@ cmp.setup({
         --     end
         -- end, { "i", "s" }),
 
-        ["<C-k>"] = cmp.mapping(function(fallback)
+        ["<C-k>"] = cmp.mapping(function(_)
             if luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             end
-        end, { "i", "s" }),
-        ["<C-j>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            end
-        end, { "i", "s" }),
-        ["<C-l>"] = cmp.mapping(function(fallback)
-            if luasnip.choice_active() then
-                luasnip.change_choice(1)
-            end
+        end, {"i", "s"}),
+        ["<C-j>"] = cmp.mapping(function(_)
+            if luasnip.jumpable(-1) then luasnip.jump(-1) end
+        end, {"i", "s"}),
+        ["<C-l>"] = cmp.mapping(function(_)
+            if luasnip.choice_active() then luasnip.change_choice(1) end
         end),
 
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c'}),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
+        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
-        ['<C-i>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-i>'] = cmp.mapping.confirm({select = true})
         -- ["<Tab>"] = cmp.mapping(function(fallback)
         --     if cmp.visible() then
         --         cmp.select_next_item())
     },
     sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "git" },
-    }, {
-        { name = 'buffer' },
-    }),
+        {name = "nvim_lsp"}, {name = "luasnip"}, {name = "git"}
+    }, {{name = 'buffer'}})
 })
 
-cmp.setup.cmdline('/', {
-    sources = {
-        { name = 'buffer' }
-    }
-})
+cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
 
 cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline' }
-    })
+    sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
 })
 
 require('cmp_git').setup()
@@ -162,63 +142,41 @@ capabilities.textDocument = {
         completionItem = {
             snippetSupport = true,
             preselectSupport = true,
-            tagSupport = { valueSet = { 1 } },
+            tagSupport = {valueSet = {1}},
             deprecatedSupport = true,
             insertReplaceSupport = true,
             labelDetailsSupport = true,
             commitCharactersSupport = true,
             resolveSupport = {
-                properties = { "documentation", "detail", "additionalTextEdits" },
+                properties = {"documentation", "detail", "additionalTextEdits"}
             },
-            documentationFormat = { "markdown" },
-        },
+            documentationFormat = {"markdown"}
+        }
     },
     codeAction = {
         dynamicRegistration = false,
         codeActionLiteralSupport = {
             codeActionKind = {
                 valueSet = {
-                    "",
-                    "quickfix",
-                    "refactor",
-                    "refactor.extract",
-                    "refactor.inline",
-                    "refactor.rewrite",
-                    "source",
-                    "source.organizeImports",
-                },
-            },
-        },
-    },
+                    "", "quickfix", "refactor", "refactor.extract",
+                    "refactor.inline", "refactor.rewrite", "source",
+                    "source.organizeImports"
+                }
+            }
+        }
+    }
 }
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-})
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+                 {virtual_text = false})
 
 -- LSPs
 local servers = {
-    "ansiblels",
-    "bashls",
-    "clangd",
-    "ccls",
-    "csharp_ls",
-    "cmake",
-    "cssls",
-    "fsautocomplete",
-    "gopls",
-    "hls",
-    "html",
-    "jsonls",
-    "julials",
-    "pyright",
-    "rnix",
-    "sumneko_lua",
-    "svelte",
-    "tsserver",
-    "yamlls",
-    -- "tailwindcss",
-    "zls",
+    "ansiblels", "bashls", "clangd", "ccls", "csharp_ls", "cmake", "cssls",
+    "fsautocomplete", "gopls", "hls", "html", "jsonls", "julials", "pyright",
+    "rnix", "sumneko_lua", "svelte", "tsserver", "yamlls", -- "tailwindcss",
+    "zls"
 }
 
 -- nvim_lsp["eslint"].setup {
@@ -234,13 +192,13 @@ local servers = {
 
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
-        capabilities = capabilities;
-        on_attach = on_attach;
+        capabilities = capabilities,
+        on_attach = on_attach,
         init_options = {
             onlyAnalyzeProjectsWithOpenFiles = true,
             suggestFromUnimportedLibraries = false,
-            closingLabels = true,
-        };
+            closingLabels = true
+        }
     }
 end
 
@@ -253,7 +211,8 @@ require('null-ls').setup {
         require('null-ls').builtins.diagnostics.ansiblelint,
         require('null-ls').builtins.diagnostics.chktex,
         require('null-ls').builtins.diagnostics.cppcheck,
-        require('null-ls').builtins.diagnostics.cspell,
+        require('null-ls').builtins.diagnostics.cspell
+            .with({filetypes = {"markdown"}}),
         require('null-ls').builtins.diagnostics.eslint,
         require('null-ls').builtins.diagnostics.revive, -- go linter
         require('null-ls').builtins.diagnostics.selene,
@@ -274,7 +233,7 @@ require('null-ls').setup {
         require('null-ls').builtins.formatting.rustfmt,
         require('null-ls').builtins.formatting.shellharden,
         require('null-ls').builtins.formatting.stylish_haskell,
-        require('null-ls').builtins.formatting.zigfmt,
-    }
+        require('null-ls').builtins.formatting.zigfmt
+    },
+    on_attach = on_attach
 }
-

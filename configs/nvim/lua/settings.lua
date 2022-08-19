@@ -19,7 +19,6 @@ vim.g.tokyonight_transparent = true
 vim.cmd([[colorscheme tokyonight]])
 -- vim.cmd [[colorscheme poimandres]]
 
-
 vim.cmd 'syntax enable'
 vim.cmd 'filetype plugin indent on'
 utils.opt('b', 'expandtab', true)
@@ -56,17 +55,17 @@ vim.opt.listchars:append("eol:↴")
 vim.notify = require('notify')
 
 -- neoformat
-vim.cmd[[ let g:neoformat_try_node_exe = 1 ]]
+vim.cmd [[ let g:neoformat_try_node_exe = 1 ]]
 
 -- rustfmt is handled by rust.vim
 vim.cmd 'let g:rustfmt_autosave = 1'
 
 -- barbar
-vim.cmd[[ let bufferline = get(g:, 'bufferline', {}) ]]
-vim.cmd[[ let bufferline.animation = v:false ]]
+vim.cmd [[ let bufferline = get(g:, 'bufferline', {}) ]]
+vim.cmd [[ let bufferline.animation = v:false ]]
 
 -- editorconfig
-vim.cmd[[ let g:EditorConfig_exclude_patterns = ['fugitive://.*'] ]]
+vim.cmd [[ let g:EditorConfig_exclude_patterns = ['fugitive://.*'] ]]
 
 -- telescope
 require('telescope').load_extension('git_worktree')
@@ -82,63 +81,44 @@ require('telescope').setup {
                 ['<C-x>'] = actions.select_horizontal,
                 ['<C-v>'] = actions.select_vertical,
                 ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
-                ['<C-c>'] = actions.close,
+                ['<C-c>'] = actions.close
             },
             i = {
                 ['<C-x>'] = actions.select_horizontal,
                 ['<C-v>'] = actions.select_vertical,
                 ['<C-q>'] = actions.send_to_qflist + actions.open_qflist,
-                ['<C-c>'] = actions.close,
-            },
+                ['<C-c>'] = actions.close
+            }
         },
         vimgrep_arguments = {
-            'rg',
-            '--color=never',
-            '--with-filename',
-            '--line-number',
-            '--column',
-            '--smart-case',
-            '--hidden'
+            'rg', '--color=never', '--with-filename', '--line-number',
+            '--column', '--smart-case', '--hidden'
         },
-        file_ignore_patterns = { 'node_modules/.*', '.git/.*', '_site/.*' },
+        file_ignore_patterns = {'node_modules/.*', '.git/.*', '_site/.*'},
         sorting_strategy = 'ascending',
-        set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+        set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
         file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
         grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
         qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-        layout_config = {
-            vertical = {
-                mirror = true,
-            },
-        },
-    },
+        layout_config = {vertical = {mirror = true}}
+    }
 }
 
 -- luasnip
 local ls = require('luasnip')
 ls.snippets = {
-    all = {
-    },
+    all = {},
 
     cpp = {
-        ls.parser.parse_snippet(
-            "fd",
-            "/**\n * @brief $0\n *\n */\nauto $1($2) -> $3;\n"
-        ),
-        ls.parser.parse_snippet(
-            "fi",
-            "auto $1($2) -> $3\n{\n    $0\n}\n"
-        ),
-        ls.parser.parse_snippet(
-            "fs",
-            "/**\n * @brief $4\n *\n */\nstatic auto $1($2) -> $3\n{\n    $0\n}\n"
-        ),
+        ls.parser.parse_snippet("fd",
+                                "/**\n * @brief $0\n *\n */\nauto $1($2) -> $3;\n"),
+        ls.parser.parse_snippet("fi", "auto $1($2) -> $3\n{\n    $0\n}\n"),
+        ls.parser.parse_snippet("fs",
+                                "/**\n * @brief $4\n *\n */\nstatic auto $1($2) -> $3\n{\n    $0\n}\n")
     },
 
     typescriptreact = {
-        ls.parser.parse_snippet(
-            "fc",
-            "interface $1Props {}\n\nconst $1: React.FC<$1Props> = (props) {\n  return <></>;\n}\n\nexport default $1"
-        )
+        ls.parser.parse_snippet("fc",
+                                "interface $1Props {}\n\nconst $1: React.FC<$1Props> = (props) {\n  return <></>;\n}\n\nexport default $1")
     }
 }
