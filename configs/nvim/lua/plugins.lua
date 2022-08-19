@@ -119,7 +119,11 @@ return require('packer').startup(function(use)
     -- Languages
     use {'adelarsq/neofsharp.vim'}
     use {'rust-lang/rust.vim'}
+    use {'simrat39/rust-tools.nvim'}
     use {'cespare/vim-toml'}
+    use {'b0o/schemastore.nvim'}
+    use {'jose-elias-alvarez/typescript.nvim'}
+    use {'ray-x/go.nvim', requires = 'ray-x/guihua.lua'}
 
     -- Formatting
     use {'editorconfig/editorconfig-vim'}
@@ -208,4 +212,8 @@ return require('packer').startup(function(use)
     use {'L3MON4D3/LuaSnip'}
     use {'saadparwaiz1/cmp_luasnip'}
     use {'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim'}
+    use {
+        'j-hui/fidget.nvim',
+        config = function() require('fidget').setup {} end
+    }
 end)

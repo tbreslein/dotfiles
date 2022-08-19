@@ -174,21 +174,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 -- LSPs
 local servers = {
     "ansiblels", "bashls", "clangd", "ccls", "csharp_ls", "cmake", "cssls",
-    "fsautocomplete", "gopls", "hls", "html", "jsonls", "julials", "pyright",
-    "rnix", "sumneko_lua", "svelte", "tsserver", "yamlls", -- "tailwindcss",
-    "zls"
+    "fsautocomplete", "gopls", "hls", "html", "julials", "pyright", "rnix",
+    "sumneko_lua", "svelte", "yamlls", "zls"
 }
-
--- nvim_lsp["eslint"].setup {
---     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte" };
---     capabilities = capabilities;
---     on_attach = on_attach;
---     init_options = {
---         onlyAnalyzeProjectsWithOpenFiles = true,
---         suggestFromUnimportedLibraries = false,
---         closingLabels = true,
---     };
--- }
 
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
@@ -201,6 +189,18 @@ for _, lsp in ipairs(servers) do
         }
     }
 end
+
+require('lspconfig').jsonls.setup {
+    settings = {
+        json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = {enable = true}
+        }
+    }
+}
+
+require('typescript').setup {}
+require('rust-tools').setup {}
 
 require('null-ls').setup {
     sources = {
@@ -229,7 +229,8 @@ require('null-ls').setup {
         require('null-ls').builtins.formatting.latexindent,
         require('null-ls').builtins.formatting.lua_format,
         require('null-ls').builtins.formatting.nixpkgs_fmt,
-        require('null-ls').builtins.formatting.prettier,
+        require('null-ls').builtins.formatting.prettier
+            .with({filetypes = {"svelte"}}),
         require('null-ls').builtins.formatting.rustfmt,
         require('null-ls').builtins.formatting.shellharden,
         require('null-ls').builtins.formatting.stylish_haskell,
