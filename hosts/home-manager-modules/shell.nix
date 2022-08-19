@@ -130,7 +130,7 @@
         set -g window-status-format ' #I: #W #[default]'
         set -g status-interval 60
         set -g status-left-length 30
-        # set -g status-left '#[fg=magenta](#S) #(whoami)@#(hostname) :: #[default]'
+        # set -g status-left '#[fg=cyan](#S) #(whoami)@#(hostname) :: #[default]'
         set -g status-left 'Session: #S'
         # set -g status-right '#[fg=yellow]%H:%M#[default]'
         set -g status-right ' '
