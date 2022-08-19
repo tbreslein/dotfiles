@@ -6,7 +6,7 @@ utils.opt('o', 'termguicolors', true)
 vim.o.background = 'dark'
 
 vim.g.gruvbox_material_background = 'medium'
-vim.g.gruvbox_material_palette = 'original'
+vim.g.gruvbox_material_palette = 'material'
 vim.g.gruvbox_material_enable_italic = 1
 vim.g.gruvbox_material_enable_bold = 1
 vim.g.gruvbox_material_transparent_background = 1
@@ -18,8 +18,8 @@ vim.g.tokyonight_transparent_sidebar = true
 vim.g.tokyonight_dark_sidebar = false
 vim.g.tokyonight_dark_float = false
 
--- vim.cmd([[colorscheme gruvbox-material]])
-vim.cmd([[colorscheme tokyonight]])
+vim.cmd([[colorscheme gruvbox-material]])
+-- vim.cmd([[colorscheme tokyonight]])
 -- vim.cmd [[colorscheme poimandres]]
 
 vim.cmd 'syntax enable'

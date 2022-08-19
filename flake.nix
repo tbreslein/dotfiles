@@ -34,36 +34,102 @@
         inputs.neovim-nightly-overlay.overlay
       ];
 
-      deus = {
-        primary= {
-          background= "2c323b";
-          foreground= "eaeaea";
-          accent = "edbf69";
-          alert = "ec3e45";
+      gruvbox_material_hard_dark = {
+        primary = {
+          background = "1d2021";
+          foreground = "d4be98";
+          accent = "fe8019";
+          alert = "fb4934";
         };
         normal = {
-          black = "242a32";
-          red = "d54e53";
-          green = "98c379";
-          yellow = "e5c07b";
-          blue = "83a598";
-          magenta = "c678dd";
-          cyan = "70c0ba";
-          white = "eaeaea";
+          black = "32302f";
+          red = "ea6962";
+          green = "a9b665";
+          yellow = "d8a657";
+          blue = "7daea3";
+          magenta = "d3869b";
+          cyan = "89b482";
+          white = "d4be98";
         };
         bright = {
-          black = "666666";
-          red = "ec3e45";
-          green = "90c966";
-          yellow = "edbf69";
-          blue = "73ba9f";
-          magenta = "c858e9";
-          cyan = "2bcec2";
-          white = "ffffff";
+          black = "32302f";
+          red = "ea6962";
+          green = "a9b665";
+          yellow = "d8a657";
+          blue = "7daea3";
+          magenta = "d3869b";
+          cyan = "89b482";
+          white = "d4be98";
         };
         selection = {
-          background = "2c323b";
-          foreground = "eaeaea";
+          background = "1d2021";
+          foreground = "d4be98";
+        };
+      };
+
+      gruvbox_material_medium_dark = {
+        primary = {
+          background = "282828";
+          foreground = "d4be98";
+          accent = "fe8019";
+          alert = "fb4934";
+        };
+        normal = {
+          black = "3c3836";
+          red = "ea6962";
+          green = "a9b665";
+          yellow = "d8a657";
+          blue = "7daea3";
+          magenta = "d3869b";
+          cyan = "89b482";
+          white = "d4be98";
+        };
+        bright = {
+          black = "3c3836";
+          red = "ea6962";
+          green = "a9b665";
+          yellow = "d8a657";
+          blue = "7daea3";
+          magenta = "d3869b";
+          cyan = "89b482";
+          white = "d4be98";
+        };
+        selection = {
+          background = "282828";
+          foreground = "d4be98";
+        };
+      };
+
+      gruvbox_material_soft_dark = {
+        primary = {
+          background = "32302f";
+          foreground = "d4be98";
+          accent = "fe8019";
+          alert = "fb4934";
+        };
+        normal = {
+          black = "45403d";
+          red = "ea6962";
+          green = "a9b665";
+          yellow = "d8a657";
+          blue = "7daea3";
+          magenta = "d3869b";
+          cyan = "89b482";
+          white = "d4be98";
+        };
+        bright = {
+          black = "45403d";
+          red = "ea6962";
+          green = "a9b665";
+          yellow = "d8a657";
+          blue = "7daea3";
+          magenta = "d3869b";
+          cyan = "89b482";
+          white = "d4be98";
+        };
+        selection = {
+          background = "32302f";
+          foreground = "d4be98";
         };
       };
 
@@ -166,16 +232,12 @@
         };
       };
 
-      colors = tokyonight_storm;
+      colors = gruvbox_material_medium_dark;
     in
     {
-      nixosConfigurations =
-        (
-          import ./hosts
-            {
-              inherit (nixpkgs) lib;
-              inherit inputs user homeDir system overlays colors useWayland;
-            }
-        );
+      nixosConfigurations = import ./hosts {
+        inherit (nixpkgs) lib;
+        inherit inputs user homeDir system overlays colors useWayland;
+      };
     };
 }
