@@ -44,7 +44,7 @@
         # Note: the "Super" modifier is also known as Logo, GUI, Windows, Mod4, etc.
 
         riverctl map normal Super Return spawn alacritty
-        riverctl map normal Super+Shift Return spawn 'bemenu-run -i --fn "Hack 17" --tb "#${colors.primary.background}" --fb "#${colors.primary.background}" --nb "#${colors.primary.background}" --ff "#${colors.normal.cyan}"'
+        riverctl map normal Super+Shift Return spawn 'bemenu-run -i --fn "Hack 18" --tb "#${colors.primary.background}" --fb "#${colors.primary.background}" --nb "#${colors.primary.background}" --ab "#${colors.normal.black}" --hb "#${colors.primary.background}" --tf "#${colors.normal.blue}" --ff "#${colors.primary.accent}" --nf "#${colors.primary.foreground}" --af "#${colors.primary.foreground}" --hf "#${colors.normal.blue}" --fbf "#${colors.primary.foreground}"'
 
         # Super+Q to close the focused view
         riverctl map normal Super Q close
@@ -184,7 +184,7 @@
         # Set background and border color
         riverctl background-color 0x${colors.primary.background}
         riverctl border-color-focused 0x${colors.primary.accent}
-        riverctl border-color-unfocused 0x${colors.bright.black}
+        riverctl border-color-unfocused 0x${colors.primary.background}
 
         # Set keyboard repeat rate
         riverctl set-repeat 50 300
