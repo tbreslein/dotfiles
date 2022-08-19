@@ -1,6 +1,17 @@
 - tvlayout for moebius
 - homescreenlayout for audron
-- figure out why nixpkgs-fmt does not run on save
-- setup proper lua env for editinv nvim config
+
+nvim:
+awesome neovim: https://github.com/rockerBOO/awesome-neovim#file-explorer
+- add chadtree (https://github.com/ms-jpq/chadtree)
+- add neogit
+    - if I can do everything I need, completely replace lazygit including in the terminal
+      just run neovim with neogit in that situation
+- add nvim-dap
+- add folding (https://github.com/kevinhwang91/nvim-ufo, https://alpha2phi.medium.com/neovim-for-beginners-code-folding-7574925412ea)
 - add a tabline to nvim
+- add cht.sh stuff (https://alpha2phi.medium.com/neovim-for-beginners-cheatsheet-and-coding-assistant-137d5a15c934)
+- add c# stuff (https://alpha2phi.medium.com/neovim-for-beginners-c-8d824679bb4a)
+- note taking stuff (https://alpha2phi.medium.com/neovim-for-beginners-note-taking-writing-diagramming-and-presentation-72d301aae28)
+- magma-nvim (https://github.com/dccsillag/magma-nvim)
 
