@@ -32,7 +32,7 @@
         [Makefile]
         indent_style = tab
 
-        [*.{svelte,astro,mjs,cjs,ts,tsx,js,jsx,html,css,json,yml,yaml}]
+        [*.{svelte,astro,mjs,cjs,ts,tsx,js,jsx,html,css,json,yml,yaml,nix}]
         indent_size = 2
       '';
     };
