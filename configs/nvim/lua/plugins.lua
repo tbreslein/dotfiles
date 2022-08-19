@@ -177,5 +177,6 @@ return require('packer').startup(function(use)
     use { 'ray-x/lsp_signature.nvim', config = function() require('lsp_signature').setup{} end }
     use { 'L3MON4D3/LuaSnip' }
     use { 'saadparwaiz1/cmp_luasnip' }
+    use { 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' }
 end)
 

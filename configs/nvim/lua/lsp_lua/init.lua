@@ -1,29 +1,29 @@
-local on_attach = function(client, bufnr)
-    local opts = { noremap=true, silent=true }
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-    -- Set some keybinds conditional on server capabilities
-    -- if client.resolved_capabilities.document_formatting then
+local on_attach = function(client, _)
+    -- local opts = { noremap=true, silent=true }
+    -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    --
+    -- -- Set some keybinds conditional on server capabilities
+    -- -- if client.resolved_capabilities.document_formatting then
+    -- --     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    -- -- elseif client.resolved_capabilities.document_range_formatting then
+    -- --     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    -- -- end
+    -- if client.server_capabilities.document_formatting then
     --     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    -- elseif client.resolved_capabilities.document_range_formatting then
+    -- elseif client.server_capabilities.document_range_formatting then
     --     buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     -- end
-    if client.server_capabilities.document_formatting then
-        buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    elseif client.server_capabilities.document_range_formatting then
-        buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    end
 
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.document_highlight then
         vim.api.nvim_exec([[
-        hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-        hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-        hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-        augroup lsp_document_highlight
-        autocmd! * <buffer>
-        augroup END
+            hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
+            hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
+            hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+            augroup lsp_document_highlight
+            autocmd! * <buffer>
+            augroup END
         ]], false)
     end
 end
@@ -198,40 +198,39 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 -- LSPs
 local servers = {
+    "ansiblels",
     "bashls",
     "clangd",
     "ccls",
+    "csharp_ls",
     "cmake",
     "cssls",
+    "fsautocomplete",
     "gopls",
     "hls",
     "html",
-    "pyright",
-    "sumneko_lua",
-    "tsserver",
-    "eslint",
-    "yamlls",
-    "csharp_ls",
-    "fsautocomplete",
-    "svelte",
-    "ansiblels",
     "jsonls",
-    -- "tailwindcss",
-    "rnix",
     "julials",
+    "pyright",
+    "rnix",
+    "sumneko_lua",
+    "svelte",
+    "tsserver",
+    "yamlls",
+    -- "tailwindcss",
     "zls",
 }
 
-nvim_lsp["eslint"].setup {
-    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte" };
-    capabilities = capabilities;
-    on_attach = on_attach;
-    init_options = {
-        onlyAnalyzeProjectsWithOpenFiles = true,
-        suggestFromUnimportedLibraries = false,
-        closingLabels = true,
-    };
-}
+-- nvim_lsp["eslint"].setup {
+--     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte" };
+--     capabilities = capabilities;
+--     on_attach = on_attach;
+--     init_options = {
+--         onlyAnalyzeProjectsWithOpenFiles = true,
+--         suggestFromUnimportedLibraries = false,
+--         closingLabels = true,
+--     };
+-- }
 
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
@@ -244,4 +243,38 @@ for _, lsp in ipairs(servers) do
         };
     }
 end
+
+require('null-ls').setup {
+    sources = {
+        require('null-ls').builtins.code_actions.eslint,
+        require('null-ls').builtins.code_actions.shellcheck,
+        require('null-ls').builtins.code_actions.statix,
+
+        require('null-ls').builtins.diagnostics.ansiblelint,
+        require('null-ls').builtins.diagnostics.chktex,
+        require('null-ls').builtins.diagnostics.cppcheck,
+        require('null-ls').builtins.diagnostics.cspell,
+        require('null-ls').builtins.diagnostics.eslint,
+        require('null-ls').builtins.diagnostics.revive, -- go linter
+        require('null-ls').builtins.diagnostics.selene,
+        require('null-ls').builtins.diagnostics.shellcheck,
+        require('null-ls').builtins.diagnostics.statix,
+        require('null-ls').builtins.diagnostics.tsc,
+        require('null-ls').builtins.diagnostics.yamllint,
+
+        require('null-ls').builtins.formatting.black,
+        require('null-ls').builtins.formatting.cbfmt,
+        require('null-ls').builtins.formatting.clang_format,
+        require('null-ls').builtins.formatting.cmake_format,
+        require('null-ls').builtins.formatting.gofmt,
+        require('null-ls').builtins.formatting.latexindent,
+        require('null-ls').builtins.formatting.lua_format,
+        require('null-ls').builtins.formatting.nixpkgs_fmt,
+        require('null-ls').builtins.formatting.prettier,
+        require('null-ls').builtins.formatting.rustfmt,
+        require('null-ls').builtins.formatting.shellharden,
+        require('null-ls').builtins.formatting.stylish_haskell,
+        require('null-ls').builtins.formatting.zigfmt,
+    }
+}
 
