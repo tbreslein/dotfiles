@@ -13,6 +13,7 @@
       pamixer
       python3Minimal
       zenith
+      trash-cli
     ];
   };
 
