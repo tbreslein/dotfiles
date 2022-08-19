@@ -1,3 +1,6 @@
 - tvlayout for moebius
 - homescreenlayout for audron
+- figure out why nixpkgs-fmt does not run on save
+- setup proper lua env for editinv nvim config
+- add a tabline to nvim
 
