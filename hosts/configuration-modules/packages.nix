@@ -29,6 +29,7 @@
       htop
       rnix-lsp
       nixpkgs-fmt
+      statix
       gnupg
       pinentry-curses
       (writeShellScriptBin "update-nixos" ''

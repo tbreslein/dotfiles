@@ -10,11 +10,17 @@
       hyperfine
 
       # formatting, linters, lsp
+      cbfmt # code block formatting in markdown files
       editorconfig-core-c
+      luaformatter
       nodePackages.bash-language-server
+      nodePackages.cspell
       nodePackages.yaml-language-server
+      selene # lua linter
       shellcheck
+      shellharden
       sumneko-lua-language-server
+      yamllint
     ];
 
     file.".editorconfig" = {
