@@ -100,12 +100,12 @@
         then ''
           #!/usr/bin/env sh
           wlr-randr --output "eDP-1" --mode "2256x1504"
-          swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &
+          swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/dp-2_3.png &
         ''
         else ''
           #!/bin/sh
           xrandr --output eDP-1 --primary --mode 2256x1504
-          feh --bg-fill $HOME/MEGA/Wallpaper/helloworld.jpeg $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png
+          feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png
         '';
     };
     "workscreenlayout" = {
@@ -116,12 +116,12 @@
         then ''
           #!/usr/bin/env sh
           wlr-randr --output "eDP-1" --mode "2256x1504" --pos "0,1080" --output "DP-2" --mode "1920x1080@60Hz" --pos "170,0"
-          swaybg -o 'eDP-1' -m fill -i ${homeDir}/MEGA/Wallpaper/eatsleepcoderepeat.jpeg -o 'DP-2' -m fill -i ${homeDir}/MEGA/Wallpaper/cup-o-cats-blueish.png &
+          swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/dp-2_3.png -o 'DP-2' -m fill -i $HOME/MEGA/Wallpaper/cyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg &
         ''
         else ''
           #!/bin/sh
           xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
-          feh --bg-fill $HOME/MEGA/Wallpaper/helloworld.jpeg $HOME/MEGA/Wallpaper/cup-o-cats-blueish.png
+          feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png $HOME/MEGA/Wallpapercyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg
         '';
     };
   };
