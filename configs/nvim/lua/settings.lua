@@ -14,6 +14,9 @@ vim.g.gruvbox_material_sign_column_background = 'none'
 
 vim.g.tokyonight_style = 'night'
 vim.g.tokyonight_transparent = true
+vim.g.tokyonight_transparent_sidebar = true
+vim.g.tokyonight_dark_sidebar = false
+vim.g.tokyonight_dark_float = false
 
 -- vim.cmd([[colorscheme gruvbox-material]])
 vim.cmd([[colorscheme tokyonight]])
@@ -57,9 +60,6 @@ vim.notify = require('notify')
 -- neoformat
 vim.cmd [[ let g:neoformat_try_node_exe = 1 ]]
 
--- rustfmt is handled by rust.vim
-vim.cmd 'let g:rustfmt_autosave = 1'
-
 -- barbar
 vim.cmd [[ let bufferline = get(g:, 'bufferline', {}) ]]
 vim.cmd [[ let bufferline.animation = v:false ]]
@@ -72,6 +72,7 @@ require('telescope').load_extension('git_worktree')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('notify')
 require('telescope').load_extension('refactoring')
+require('telescope').load_extension('projects')
 
 local actions = require('telescope.actions')
 require('telescope').setup {

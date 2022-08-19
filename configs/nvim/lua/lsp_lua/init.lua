@@ -175,7 +175,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 local servers = {
     "ansiblels", "bashls", "clangd", "ccls", "csharp_ls", "cmake", "cssls",
     "fsautocomplete", "gopls", "hls", "html", "julials", "pyright", "rnix",
-    "sumneko_lua", "svelte", "yamlls", "zls"
+    "svelte", "yamlls", "zls"
 }
 
 for _, lsp in ipairs(servers) do
@@ -198,6 +198,10 @@ require('lspconfig').jsonls.setup {
         }
     }
 }
+
+require('lspconfig').sumneko_lua.setup(require('lua-dev').setup({
+    lspconfig = {settings = {Lua = {diagnostics = {globals = {'vim'}}}}}
+}))
 
 require('typescript').setup {}
 require('rust-tools').setup {}

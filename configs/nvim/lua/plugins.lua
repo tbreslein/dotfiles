@@ -10,12 +10,6 @@ return require('packer').startup(function(use)
     }
     use {'sainnhe/gruvbox-material'}
     use {'folke/tokyonight.nvim'}
-    use {
-        'olivercederborg/poimandres.nvim',
-        config = function()
-            require('poimandres').setup {disable_background = true}
-        end
-    }
 
     -- UI
     use {
@@ -60,12 +54,24 @@ return require('packer').startup(function(use)
             require('jabs').setup {keymap = {close = '<c-d>', h_split = 'x'}}
         end
     }
-    use {'stevearc/dressing.nvim'}
+    use {
+        'stevearc/dressing.nvim',
+        config = function()
+            require('dressing').setup {
+                input = {winblend = 10},
+                builtin = {winblend = 10}
+            }
+        end
+    }
     use {
         'rcarriga/nvim-notify',
         config = function()
             require('notify').setup {background_colour = '#000000'}
         end
+    }
+    use {
+        'ahmedkhalf/project.nvim',
+        config = function() require('project_nvim').setup {} end
     }
 
     -- background functionality
@@ -116,6 +122,31 @@ return require('packer').startup(function(use)
     }
     use {'mrjones2014/legendary.nvim'}
 
+    -- neotest
+    use {'nvim-neotest/neotest-go'}
+    use {'haydenmeade/neotest-jest'}
+    use {'nvim-neotest/neotest-python'}
+    use {'rouge8/neotest-rust'}
+    use {'nvim-neotest/neotest-vim-test'}
+    use {
+        'nvim-neotest/neotest',
+        requires = {
+            'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter',
+            'antoinemadec/FixCursorHold.nvim'
+        },
+        config = function()
+            require('neotest').setup {
+                adapters = {
+                    require('neotest-go'), require('neotest-jest'),
+                    require('neotest-python'), require('neotest-rust'),
+                    require('neotest-vim-test') {
+                        ignore_file_types = {"python", "vim", "lua"}
+                    }
+                }
+            }
+        end
+    }
+
     -- Languages
     use {'adelarsq/neofsharp.vim'}
     use {'rust-lang/rust.vim'}
@@ -124,6 +155,7 @@ return require('packer').startup(function(use)
     use {'b0o/schemastore.nvim'}
     use {'jose-elias-alvarez/typescript.nvim'}
     use {'ray-x/go.nvim', requires = 'ray-x/guihua.lua'}
+    use {'folke/lua-dev.nvim'}
 
     -- Formatting
     use {'editorconfig/editorconfig-vim'}

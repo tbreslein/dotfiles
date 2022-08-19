@@ -187,13 +187,14 @@ require('which-key').register({
     -- telescope
     f = {
         name = 'Telescope',
-        f = {'<cmd>Telescope find_files hidden=true<cr>', 'file finder'},
-        g = {'<cmd>Telescope live_grep<cr>', 'live grep'},
         b = {
             '<cmd>Telescope current_buffer_fuzzy_find<cr>', 'buffer fuzzy find'
         },
-        n = {'<cmd>Telescope file_browser<cr>', 'file browser'},
+        f = {'<cmd>Telescope find_files hidden=true<cr>', 'file finder'},
+        g = {'<cmd>Telescope live_grep<cr>', 'live grep'},
         h = {'<cmd>Telescope notify<cr>', 'notify history browser'},
+        n = {'<cmd>Telescope file_browser<cr>', 'file browser'},
+        p = {'<cmd>Telescope projects<cr>', 'projects browser'},
         t = {
             [[:lua require('telescope').extensions.git_worktree.git_worktrees()<cr>]],
             'git worktrees'
@@ -225,6 +226,25 @@ require('which-key').register({
         s = {
             '<cmd>source ~/.config/nvim/lua/settings.lua<cr>',
             'source nvim/settings.lua'
+        },
+        -- Trouble
+        t = {
+            name = 'Trouble',
+            t = {'<cmd>TroubleToggle<cr>', 'toggle trouble'},
+            w = {
+                '<cmd>TroubleToggle workspace_diagnostics<cr>',
+                'toggle trouble workspace_diagnostics'
+            },
+            d = {
+                '<cmd>TroubleToggle document_diagnostics<cr>',
+                'toggle trouble document_diagnostics'
+            },
+            l = {'<cmd>TroubleToggle loclist<cr>', 'toggle trouble loclist'},
+            q = {'<cmd>TroubleToggle quickfix<cr>', 'toggle trouble quickfix'},
+            r = {
+                '<cmd>TroubleToggle lsp_references<cr>',
+                'toggle trouble lsp_references'
+            }
         }
     },
 
@@ -296,24 +316,33 @@ require('which-key').register({
         }
     },
 
-    -- Trouble
     t = {
-        name = 'Trouble',
-        t = {'<cmd>TroubleToggle<cr>', 'toggle trouble'},
-        w = {
-            '<cmd>TroubleToggle workspace_diagnostics<cr>',
-            'toggle trouble workspace_diagnostics'
+        name = "neotest",
+        a = {"<cmd>lua require('neotest').run.attach()<cr>", "Attach"},
+        f = {
+            "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
+            "Run File"
         },
-        d = {
-            '<cmd>TroubleToggle document_diagnostics<cr>',
-            'toggle trouble document_diagnostics'
+        F = {
+            "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
+            "Debug File"
         },
-        l = {'<cmd>TroubleToggle loclist<cr>', 'toggle trouble loclist'},
-        q = {'<cmd>TroubleToggle quickfix<cr>', 'toggle trouble quickfix'},
-        r = {
-            '<cmd>TroubleToggle lsp_references<cr>',
-            'toggle trouble lsp_references'
-        }
+        l = {"<cmd>lua require('neotest').run.run_last()<cr>", "Run Last"},
+        L = {
+            "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>",
+            "Debug Last"
+        },
+        n = {"<cmd>lua require('neotest').run.run()<cr>", "Run Nearest"},
+        N = {
+            "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+            "Debug Nearest"
+        },
+        o = {
+            "<cmd>lua require('neotest').output.open({ enter = true })<cr>",
+            "Output"
+        },
+        q = {"<cmd>lua require('neotest').run.stop()<cr>", "Stop"},
+        s = {"<cmd>lua require('neotest').summary.toggle()<cr>", "Summary"}
     },
 
     -- Packer
