@@ -232,7 +232,7 @@
         };
       };
 
-      colors = gruvbox_material_medium_dark;
+      colors = gruvbox_material_hard_dark;
     in
     {
       nixosConfigurations = import ./hosts {
