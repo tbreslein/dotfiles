@@ -70,11 +70,20 @@ return require('packer').startup(function(use)
     use { 'airblade/vim-rooter' }
     use { 'nathom/filetype.nvim' }
 
+    -- git
+    use { 'kdheepak/lazygit.nvim' }
+    use { 'pwntester/octo.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim',
+            'kyazdani42/nvim-web-devicons',
+        },
+        config = function() require('octo').setup() end,
+    }
+
     -- functionality
     use { 'nvim-telescope/telescope-file-browser.nvim' }
-    use { 'kdheepak/lazygit.nvim' }
-    use { 'ldelossa/gh.nvim' }
-    use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
+    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' } }
     use { 'ThePrimeagen/git-worktree.nvim', config = function() require('git-worktree').setup{} end }
     use { 'ggandor/leap.nvim',
         requires = { 'tpope/vim-repeat' },
@@ -101,6 +110,10 @@ return require('packer').startup(function(use)
     use { 'sbdchd/neoformat' }
 
     -- Editing
+    use { 'ThePrimeagen/refactoring.nvim',
+        requires = { {'nvim-lua/plenary.nvim'}, { 'nvim-treesitter/nvim-treesitter' } },
+        config = function() require('refactoring').setup{} end
+    }
     use { 'JoosepAlviste/nvim-ts-context-commentstring' }
     use {
         'numToStr/Comment.nvim',
@@ -157,6 +170,7 @@ return require('packer').startup(function(use)
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
             { "hrsh7th/cmp-cmdline" },
+            { "petertriho/cmp-git" },
         },
     }
     use { 'neovim/nvim-lspconfig' }

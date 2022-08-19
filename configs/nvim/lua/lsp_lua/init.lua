@@ -113,6 +113,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
+        { name = "git" },
     }, {
         { name = 'buffer' },
     }),
@@ -131,6 +132,8 @@ cmp.setup.cmdline(':', {
         { name = 'cmdline' }
     })
 })
+
+require('cmp_git').setup()
 
 -- Code actions
 -- capabilities.textDocument.codeAction = {

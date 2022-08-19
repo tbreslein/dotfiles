@@ -124,8 +124,8 @@ require('legendary').setup{
 require('which-key').register(
     {
         ['w'] = { '<cmd>update!<cr>', 'force save' },
-        ['q'] = { '<cmd>q!<CR>', 'force quit' },
-        ['e'] = { '<cmd>wq<CR>', 'save and quit' },
+        ['q'] = { '<cmd>q!<cr>', 'force quit' },
+        ['e'] = { '<cmd>wq<cr>', 'save and quit' },
 
         ['J'] = { '<cmd>resize -2<cr>', 'resize down' },
         ['K'] = { '<cmd>resize +2<cr>', 'resize up' },
@@ -162,10 +162,78 @@ require('which-key').register(
             t = { [[:lua require('telescope').extensions.git_worktree.git_worktrees()<cr>]], 'git worktrees' },
         },
 
+        -- LSP
+        l = {
+            name = 'Lsp',
+            ['['] =  { '<cmd>lua vim.lso.buf.definition()<cr>',                   'definition' },
+            [']'] =  { '<cmd>lua vim.lso.buf.declaration()<cr>',                  'declaration' },
+            ['{'] =  { '<cmd>lua FixBufHover()<cr>',                              'buffer hover' },
+            ['}'] =  { '<cmd>lua vim.lsp.buf.implementation()<cr>',               'implementation' },
+            ['rr'] = { '<cmd>lua vim.lsp.buf.references()<cr>',                   'references' },
+            ['rn'] = { '<cmd>lua vim.lsp.buf.rename()<cr>',                       'rename' },
+            ['ca'] = { '<cmd>lua vim.lsp.buf.code_action()<cr>',                  'code action' },
+            ['sh'] = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', 'show line diagnostics' },
+            n =      { '<cmd>lua vim.diagnostic.goto_next()<cr>',                 'go to next warning/error' },
+            N =      { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                 'go to prev warning/error' },
+            s =      { '<cmd>source ~/.config/nvim/lua/settings.lua<cr>',         'source nvim/settings.lua' },
+        },
+
+        -- neogen
+        n = { "<cmd>lua require('neogen').generate()<cr>", 'generate doc' },
+        -- n = {
+        --     f = { "<cmd>lua require('neogen').generate()<cr>", 'save and quit' },
+        --     c = { "<cmd>lua require('neogen').generate()<cr>", 'save and quit' },
+        -- },
+
         -- file explorer
         p = {
             name = 'File explorer',
             v = { '<cmd>Telescope file_browser<cr>', 'file browser' },
+        },
+
+        -- refactoring
+        r = {
+            name = "refactoring.nvim",
+            r = {
+                "<esc><cmd>lua require('telescope').extensions.refactoring.refactors()<cr>",
+                'open in telescope',
+            },
+            e = {
+                "<esc><cmd>lua require('refactoring').refactor('Extract Function')<cr>",
+                'extract function',
+            },
+            f = {
+                "<esc><cmd>lua require('refactoring').refactor('Extract Function to file')<cr>",
+                'extract function to file',
+            },
+            v = {
+                "<esc><cmd>lua require('refactoring').refactor('Extract Variable')<cr>",
+                'extract variable',
+            },
+            i = {
+                "<esc><cmd>lua require('refactoring').refactor('Inline Variable')<cr>",
+                'inline variable',
+            },
+            b = {
+                "<cmd>lua require('refactoring').refactor('Extract Block')<cr>",
+                'extract block',
+            },
+            n = {
+                "<cmd>lua require('refactoring').refactor('Extract Block To File')<cr>",
+                'extract block to file',
+            },
+            p = {
+                "<cmd>lua require('refactoring').debug.printf({below = false})<cr>",
+                'add print statement',
+            },
+            d = {
+                "<cmd>lua require('refactoring').debug.print_var({})<cr>",
+                'add print statement for selected var',
+            },
+            c = {
+                "<cmd>lua require('refactoring').debug.cleanup({})<cr>",
+                'clean up debug statements',
+            },
         },
 
         -- Spectre
@@ -196,22 +264,6 @@ require('which-key').register(
             S = { '<cmd>PackerStatus<cr>', 'status' },
             u = { '<cmd>PackerUpdate<cr>', 'update' },
         },
-
-        -- LSP
-        l = {
-            name = 'Lsp',
-            ['['] =  { '<cmd>lua vim.lso.buf.definition()<cr>',                   'definition' },
-            [']'] =  { '<cmd>lua vim.lso.buf.declaration()<cr>',                  'declaration' },
-            ['{'] =  { '<cmd>lua FixBufHover()<cr>',                              'buffer hover' },
-            ['}'] =  { '<cmd>lua vim.lsp.buf.implementation()<cr>',               'implementation' },
-            ['rr'] = { '<cmd>lua vim.lsp.buf.references()<cr>',                   'references' },
-            ['rn'] = { '<cmd>lua vim.lsp.buf.rename()<cr>',                       'rename' },
-            ['ca'] = { '<cmd>lua vim.lsp.buf.code_action()<cr>',                  'code action' },
-            ['sh'] = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', 'show line diagnostics' },
-            n =      { '<cmd>lua vim.diagnostic.goto_next()<cr>',                 'go to next warning/error' },
-            N =      { '<cmd>lua vim.diagnostic.goto_prev()<cr>',                 'go to prev warning/error' },
-            s =      { '<cmd>source ~/.config/nvim/lua/settings.lua<cr>',         'source nvim/settings.lua' },
-        }
     },
     {
         mode = 'n',

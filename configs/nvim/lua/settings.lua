@@ -72,6 +72,7 @@ vim.cmd[[ let g:EditorConfig_exclude_patterns = ['fugitive://.*'] ]]
 require('telescope').load_extension('git_worktree')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('notify')
+require('telescope').load_extension('refactoring')
 
 local actions = require('telescope.actions')
 require('telescope').setup {
