@@ -254,7 +254,13 @@ require('which-key').register({
     -- file explorer
     p = {
         name = 'File explorer',
-        v = {'<cmd>Telescope file_browser<cr>', 'file browser'}
+        v = {
+            '<cmd>Neotree filesystem reveal float<cr>', 'file browser as float'
+        },
+        p = {
+            '<cmd>Neotree filesystem reveal left<cr>',
+            'file browser on the left'
+        }
     },
 
     -- refactoring

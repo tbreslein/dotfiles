@@ -13,6 +13,21 @@ return require('packer').startup(function(use)
 
     -- UI
     use {
+        'nvim-neo-tree/neo-tree.nvim',
+        branch = "v2.x",
+        requires = {
+            'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons',
+            'MunifTanjim/nui.nvim'
+        },
+        config = function()
+            require('neo-tree').setup {
+                window = {
+                    mappings = {['x'] = "open_split", ['v'] = "open_vsplit"}
+                }
+            }
+        end
+    }
+    use {
         'nvim-lualine/lualine.nvim',
         requires = {{'kyazdani42/nvim-web-devicons'}},
         config = function()
