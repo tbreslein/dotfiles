@@ -202,7 +202,7 @@
         sleep 60 && megasync &
 
         # audron's screen layouts
-        [[ $(cat /etc/hostname) == 'audron' ]] && sleep 1 && {
+        [[ $(cat /etc/hostname) == 'audron' ]] && sleep 0.1 && {
             # regular screen only
             [[ $(wlr-randr | grep 'Enabled: yes' | wc -l) -eq 1 ]] && singlescreenlayout
 
@@ -211,7 +211,7 @@
         }
 
         # moebius' screen layouts
-        [[ $(cat /etc/hostname) == 'moebius' ]] && sleep 1 && {
+        [[ $(cat /etc/hostname) == 'moebius' ]] && sleep 0.1 && {
             # regular screens
             [[ $(wlr-randr | grep 'Enabled: yes' | wc -l) -eq 2 ]] && homescreenlayout
 
