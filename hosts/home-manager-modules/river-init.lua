@@ -16,11 +16,37 @@ local function concat(...)
     end
 end
 
+local function getShellOutput(cmd)
+    local fileHandle = assert(io.popen(cmd, 'r'))
+    local commandOutput = assert(fileHandle:read('*a'))
+    -- local returnTable = {fileHandle:close()}
+    -- return commandOutput, returnTable[3]
+    return string.gsub(commandOutput, "\n", "")
+end
+
 -- All the setting tables ──────────────────────────────────────────────────────
 
-local wl_script_dir = os.getenv('HOME') .. '/.local/libexec/wayland'
-local drun_menu = 'rofi -show drun'
-local run_menu = 'rofi -show run'
+local launcherCmd =
+    [[ 'bemenu-run -i --fn "Hack 18" --tb "#${colors.primary.background}" --fb "#${colors.primary.background}" --nb "#${colors.primary.background}" --ab "#${colors.normal.black}" --hb "#${colors.primary.background}" --tf "#${colors.normal.blue}" --ff "#${colors.primary.accent}" --nf "#${colors.primary.foreground}" --af "#${colors.primary.foreground}" --hf "#${colors.normal.blue}" --fbf "#${colors.primary.foreground}"' ]]
+local terminalCmd = [[ 'alacritty' ]]
+
+-- figure out screens
+local host = getShellOutput("cat /etc/hostname")
+local screencount = getShellOutput("wlr-randr | grep 'Enabled: yes' | wc -l")
+local layoutCmd = ""
+if host == 'moebius' then
+    if screencount == '2' then
+        layoutCmd = "homescreenlayout"
+    elseif screencount == '3' then
+        layoutCmd = "tvscreenlayout"
+    end
+elseif host == 'audron' then
+    if screencount == '1' then
+        layoutCmd = "singlescreenlayout"
+    elseif screencount == '2' then
+        layoutCmd = 'workscreenlayout'
+    end
+end
 
 local startup_commands = {
     -- Inform dbus about the environment variables

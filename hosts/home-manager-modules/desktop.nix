@@ -29,11 +29,6 @@
     ]);
 
     file = {
-      "river-init-lua" = {
-        executable = true;
-        source = ./river-init.lua;
-        target = ".config/river/initlua";
-      };
       "river-init-sh" = {
         target = ".config/river/init";
         executable = true;
@@ -192,13 +187,15 @@
           riverctl background-color 0x${colors.primary.background}
           riverctl border-color-focused 0x${colors.primary.accent}
           riverctl border-color-unfocused 0x${colors.primary.background}
+          riverctl border-width 1
+          riverctl focus-follows-cursor normal
 
           # Set keyboard repeat rate
           riverctl set-repeat 50 300
 
           # Make certain views start floating
           riverctl float-filter-add app-id float
-          riverctl float-filter-add title "popup title with spaces"
+          riverctl float-filter-add title "Picture in picture"
 
           # Set app-ids and titles of views which should use client side decorations
           riverctl csd-filter-add app-id "gedit"
@@ -229,7 +226,7 @@
           # Set the default layout generator to be rivertile and start it.
           # River will send the process group of the init executable SIGTERM on exit.
           riverctl default-layout rivertile
-          rivertile -view-padding 0 -outer-padding 0
+          rivertile -view-padding 3 -outer-padding 3 -main-ratio 0.65
         '';
       };
     };
