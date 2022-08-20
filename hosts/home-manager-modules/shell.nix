@@ -4,7 +4,7 @@
   home = {
     shellAliases = {
       g = "git";
-      lg = "lazygit";
+      gg = "nvim -c 'Neogit'";
       cp = "cp -i";
       rm = "rm -i";
       mv = "mv -i";

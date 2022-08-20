@@ -3,9 +3,6 @@
 
 nvim:
 awesome neovim: https://github.com/rockerBOO/awesome-neovim#file-explorer
-- add neogit
-    - if I can do everything I need, completely replace lazygit including in the terminal
-      just run neovim with neogit in that situation
 - add nvim-dap
 - add folding (https://github.com/kevinhwang91/nvim-ufo, https://alpha2phi.medium.com/neovim-for-beginners-code-folding-7574925412ea)
 - add a tabline to nvim
