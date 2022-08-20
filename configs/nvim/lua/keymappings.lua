@@ -159,9 +159,18 @@ require('legendary').setup {
 }
 
 require('which-key').register({
-    w = {'<cmd>update!<cr>', 'force save'},
-    q = {'<cmd>q!<cr>', 'force quit'},
-    e = {'<cmd>wq<cr>', 'save and quit'},
+    w = {
+        name = "save",
+        w = {'<cmd>update!<cr>', 'force update'},
+        q = {'<cmd>wq<cr>', 'save and quit'},
+        a = {'<cmd>wqa<cr>', 'save and quit all'}
+    },
+    q = {
+        name = "quit",
+        q = {'<cmd>q<cr>', 'quit'},
+        f = {'<cmd>q!<cr>', 'force quit'},
+        a = {'<cmd>q!<cr>', 'force quit all'}
+    },
 
     J = {'<cmd>resize -2<cr>', 'resize down'},
     K = {'<cmd>resize +2<cr>', 'resize up'},
@@ -182,7 +191,6 @@ require('which-key').register({
     },
 
     -- git
-    -- g = {name = 'Git', g = {'<cmd>LazyGit<cr>', 'open lazygit'}},
     g = {name = 'Git', g = {'<cmd>Neogit<cr>', 'open neogit'}},
 
     -- telescope
