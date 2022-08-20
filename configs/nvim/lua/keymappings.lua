@@ -169,7 +169,7 @@ require('which-key').register({
         name = "quit",
         q = {'<cmd>q<cr>', 'quit'},
         f = {'<cmd>q!<cr>', 'force quit'},
-        a = {'<cmd>q!<cr>', 'force quit all'}
+        a = {'<cmd>qa!<cr>', 'force quit all'}
     },
 
     J = {'<cmd>resize -2<cr>', 'resize down'},
