@@ -3,6 +3,7 @@
 
 nvim:
 awesome neovim: https://github.com/rockerBOO/awesome-neovim#file-explorer
+- figure out neovim tabs
 - add nvim-dap
 - add folding (https://github.com/kevinhwang91/nvim-ufo, https://alpha2phi.medium.com/neovim-for-beginners-code-folding-7574925412ea)
 - add a tabline to nvim
