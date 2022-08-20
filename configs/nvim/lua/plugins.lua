@@ -109,6 +109,10 @@ return require('packer').startup(function(use)
     }
 
     -- functionality
+    use {
+        'akinsho/toggleterm.nvim',
+        config = function() require('toggleterm').setup {} end
+    }
     use {'nvim-telescope/telescope-file-browser.nvim'}
     use {
         'nvim-telescope/telescope.nvim',

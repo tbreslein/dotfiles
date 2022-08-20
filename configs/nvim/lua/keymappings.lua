@@ -38,6 +38,12 @@ require('legendary').setup {
             description = 'move focus right',
             opts = default_opts
         }, {
+            '<c-t>',
+            '<cmd>ToggleTerm size=30<cr>',
+            mode = {'n'},
+            description = 'toggle terminal',
+            opts = default_opts
+        }, {
             '<',
             '<gv',
             mode = {'v'},
@@ -103,12 +109,12 @@ require('legendary').setup {
             mode = {'n'},
             description = 'move down accross visual lines',
             opts = expr_opts
-        }, {
-            'jk',
-            '<esc>',
-            mode = {'i'},
-            description = 'leave insert mode',
-            opts = default_opts
+            -- }, {
+            --     'jk',
+            --     '<esc>',
+            --     mode = {'i'},
+            --     description = 'leave insert mode',
+            --     opts = default_opts
         }, {
             'jk',
             '<c-\\><c-n>',
@@ -272,9 +278,9 @@ require('which-key').register({
         }
     },
 
-    -- refactoring
+    -- refactoring ++ spectre
     r = {
-        name = "refactoring.nvim",
+        name = "refactoring ++ spectre",
         r = {
             "<esc><cmd>lua require('telescope').extensions.refactoring.refactors()<cr>",
             'open in telescope'
