@@ -159,14 +159,14 @@ require('legendary').setup {
 }
 
 require('which-key').register({
-    ['w'] = {'<cmd>update!<cr>', 'force save'},
-    ['q'] = {'<cmd>q!<cr>', 'force quit'},
-    ['e'] = {'<cmd>wq<cr>', 'save and quit'},
+    w = {'<cmd>update!<cr>', 'force save'},
+    q = {'<cmd>q!<cr>', 'force quit'},
+    e = {'<cmd>wq<cr>', 'save and quit'},
 
-    ['J'] = {'<cmd>resize -2<cr>', 'resize down'},
-    ['K'] = {'<cmd>resize +2<cr>', 'resize up'},
-    ['H'] = {'<cmd>vertical resize -2<cr>', 'resize left'},
-    ['L'] = {'<cmd>vertical resize +2<cr>', 'resize right'},
+    J = {'<cmd>resize -2<cr>', 'resize down'},
+    K = {'<cmd>resize +2<cr>', 'resize up'},
+    H = {'<cmd>vertical resize -2<cr>', 'resize left'},
+    L = {'<cmd>vertical resize +2<cr>', 'resize right'},
 
     -- buffer control
     b = {
@@ -182,7 +182,8 @@ require('which-key').register({
     },
 
     -- git
-    g = {name = 'Git', g = {'<cmd>LazyGit<cr>', 'open lazygit'}},
+    -- g = {name = 'Git', g = {'<cmd>LazyGit<cr>', 'open lazygit'}},
+    g = {name = 'Git', g = {'<cmd>Neogit<cr>', 'open neogit'}},
 
     -- telescope
     f = {

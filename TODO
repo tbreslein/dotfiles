@@ -3,7 +3,6 @@
 
 nvim:
 awesome neovim: https://github.com/rockerBOO/awesome-neovim#file-explorer
-- add chadtree (https://github.com/ms-jpq/chadtree)
 - add neogit
     - if I can do everything I need, completely replace lazygit including in the terminal
       just run neovim with neogit in that situation

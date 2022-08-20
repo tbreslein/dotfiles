@@ -94,7 +94,11 @@ return require('packer').startup(function(use)
     use {'nathom/filetype.nvim'}
 
     -- git
-    use {'kdheepak/lazygit.nvim'}
+    use {
+        'TimUntersberger/neogit',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function() require('neogit').setup {} end
+    }
     use {
         'pwntester/octo.nvim',
         requires = {
