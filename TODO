@@ -1,6 +1,5 @@
 - tvlayout for moebius
 - homescreenlayout for audron
-- setup init.lua for river (https://github.com/riverwm/river/wiki)
 
 nvim:
 awesome neovim: https://github.com/rockerBOO/awesome-neovim#file-explorer
