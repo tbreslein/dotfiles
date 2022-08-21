@@ -223,8 +223,9 @@ require('null-ls').setup {
         require('null-ls').builtins.diagnostics.selene,
         require('null-ls').builtins.diagnostics.shellcheck,
         require('null-ls').builtins.diagnostics.statix,
-        require('null-ls').builtins.diagnostics.tsc,
-        require('null-ls').builtins.diagnostics.yamllint,
+        require('null-ls').builtins.diagnostics.tsc.with({
+            prefer_local = "node_modules/.bin"
+        }), require('null-ls').builtins.diagnostics.yamllint,
 
         require('null-ls').builtins.formatting.black,
         require('null-ls').builtins.formatting.cbfmt,
@@ -234,9 +235,9 @@ require('null-ls').setup {
         require('null-ls').builtins.formatting.latexindent,
         require('null-ls').builtins.formatting.lua_format,
         require('null-ls').builtins.formatting.nixpkgs_fmt,
-        require('null-ls').builtins.formatting.prettier
-            .with({filetypes = {"svelte"}}),
-        require('null-ls').builtins.formatting.rustfmt,
+        require('null-ls').builtins.formatting.prettier.with({
+            extra_filetypes = {"svelte"}
+        }), require('null-ls').builtins.formatting.rustfmt,
         require('null-ls').builtins.formatting.shellharden,
         require('null-ls').builtins.formatting.stylish_haskell,
         require('null-ls').builtins.formatting.zigfmt
