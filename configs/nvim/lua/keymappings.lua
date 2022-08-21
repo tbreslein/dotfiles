@@ -1,7 +1,6 @@
 -- Map leader to space
 vim.g.mapleader = " "
 
-local keymap = vim.api.nvim_set_keymap
 local default_opts = {noremap = true, silent = true}
 local expr_opts = {noremap = true, expr = true, silent = true}
 
@@ -39,7 +38,7 @@ require('legendary').setup {
             opts = default_opts
         }, {
             '<c-t>',
-            '<cmd>ToggleTerm size=30<cr>',
+            '<cmd>ToggleTerm size=20<cr>',
             mode = {'n'},
             description = 'toggle terminal',
             opts = default_opts
@@ -154,6 +153,11 @@ require('legendary').setup {
             'set filetype=fsharp',
             opts = {pattern = {'*.fs', '*.fs{x,i}'}},
             description = 'set filetype to fsharp for *.{fs,fsx,fsi} files'
+        }, {
+            {'BufNewFile', 'BufRead'},
+            'set filetype=markdown',
+            opts = {pattern = {'*.mdx'}},
+            description = 'set filetype to markdown for *.mdx files'
         }, {
             {'BufNewFile', 'BufRead'},
             'set filetype=astro',
