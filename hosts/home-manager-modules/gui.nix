@@ -15,7 +15,6 @@
       obs-studio
       megacmd
       megasync
-      zathura
     ];
   };
 
