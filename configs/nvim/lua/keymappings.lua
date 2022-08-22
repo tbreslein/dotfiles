@@ -132,6 +132,18 @@ require('legendary').setup {
             mode = {'n'},
             description = 'prev buffer',
             opts = default_opts
+        }, {
+            'zR',
+            require('ufo').openAllFolds,
+            mode = {'n'},
+            description = 'open all folds',
+            opts = default_opts
+        }, {
+            'zM',
+            require('ufo').closeAllFolds,
+            mode = {'n'},
+            description = 'close all folds',
+            opts = default_opts
         }
     },
     autocmds = {
@@ -267,8 +279,39 @@ require('which-key').register({
         }
     },
 
-    -- neogen
-    n = {"<cmd>lua require('neogen').generate()<cr>", 'generate doc'},
+    -- neogen ++ neotest
+    n = {
+        name = "neogen ++ neotest",
+        d = {"<cmd>lua require('neogen').generate()<cr>", 'generate doc'},
+        t = {
+            name = "neotest",
+            a = {"<cmd>lua require('neotest').run.attach()<cr>", "Attach"},
+            f = {
+                "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
+                "Run File"
+            },
+            F = {
+                "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
+                "Debug File"
+            },
+            l = {"<cmd>lua require('neotest').run.run_last()<cr>", "Run Last"},
+            L = {
+                "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>",
+                "Debug Last"
+            },
+            n = {"<cmd>lua require('neotest').run.run()<cr>", "Run Nearest"},
+            N = {
+                "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+                "Debug Nearest"
+            },
+            o = {
+                "<cmd>lua require('neotest').output.open({ enter = true })<cr>",
+                "Output"
+            },
+            q = {"<cmd>lua require('neotest').run.stop()<cr>", "Stop"},
+            s = {"<cmd>lua require('neotest').summary.toggle()<cr>", "Summary"}
+        }
+    },
 
     -- file explorer
     p = {
@@ -282,7 +325,7 @@ require('which-key').register({
         }
     },
 
-    -- refactoring ++ spectre
+    -- refactoring
     r = {
         name = "refactoring ++ spectre",
         r = {
@@ -341,33 +384,19 @@ require('which-key').register({
         }
     },
 
+    -- tab control
     t = {
-        name = "neotest",
-        a = {"<cmd>lua require('neotest').run.attach()<cr>", "Attach"},
-        f = {
-            "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
-            "Run File"
-        },
-        F = {
-            "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
-            "Debug File"
-        },
-        l = {"<cmd>lua require('neotest').run.run_last()<cr>", "Run Last"},
-        L = {
-            "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>",
-            "Debug Last"
-        },
-        n = {"<cmd>lua require('neotest').run.run()<cr>", "Run Nearest"},
-        N = {
-            "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
-            "Debug Nearest"
-        },
-        o = {
-            "<cmd>lua require('neotest').output.open({ enter = true })<cr>",
-            "Output"
-        },
-        q = {"<cmd>lua require('neotest').run.stop()<cr>", "Stop"},
-        s = {"<cmd>lua require('neotest').summary.toggle()<cr>", "Summary"}
+        name = 'Tabs',
+        a = {'<cmd>tabedit<cr>', 'new tab'},
+        c = {'<cmd>tabclose<cr>', 'close tab'},
+        o = {'<cmd>tabonly<cr>', 'only tab'},
+        n = {'<cmd>tabn<cr>', 'next tab'},
+        p = {'<cmd>tabp<cr>', 'prev tab'},
+        m = {
+            name = 'move',
+            n = {'<cmd>-tabmove<cr>', 'move tab down'},
+            p = {'<cmd>+tabmove<cr>', 'move tab up'}
+        }
     },
 
     -- Packer

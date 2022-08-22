@@ -55,13 +55,9 @@ return require('packer').startup(function(use)
             require('indent_blankline').setup {
                 show_end_of_line = true,
                 show_current_context = true,
-                show_current_context_start = true
+                show_current_context_start = false
             }
         end
-    }
-    use {
-        'b0o/incline.nvim',
-        config = function() require('incline').setup {} end
     }
     use {
         'matbme/JABS.nvim',
@@ -87,6 +83,10 @@ return require('packer').startup(function(use)
     use {
         'ahmedkhalf/project.nvim',
         config = function() require('project_nvim').setup {} end
+    }
+    use {
+        'nanozuki/tabby.nvim',
+        config = function() require('tabby').setup {} end
     }
 
     -- background functionality
@@ -144,6 +144,17 @@ return require('packer').startup(function(use)
         end
     }
     use {'mrjones2014/legendary.nvim'}
+    use {
+        'kevinhwang91/nvim-ufo',
+        requires = 'kevinhwang91/promise-async',
+        config = function()
+            require('ufo').setup {
+                provider_selector = function(bufnr, filetype, buftype)
+                    return {'treesitter', 'indent'}
+                end
+            }
+        end
+    }
 
     -- neotest
     use {'nvim-neotest/neotest-go'}
@@ -181,8 +192,7 @@ return require('packer').startup(function(use)
     use {'folke/lua-dev.nvim'}
 
     -- Formatting
-    use {'editorconfig/editorconfig-vim'}
-    use {'sbdchd/neoformat'}
+    use {'gpanders/editorconfig.nvim'}
 
     -- Editing
     use {

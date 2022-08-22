@@ -57,8 +57,11 @@ vim.o.completeopt = "menuone,noselect"
 vim.opt.listchars:append("eol:↴")
 vim.notify = require('notify')
 
--- neoformat
-vim.cmd [[ let g:neoformat_try_node_exe = 1 ]]
+-- folding
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 -- barbar
 vim.cmd [[ let bufferline = get(g:, 'bufferline', {}) ]]
