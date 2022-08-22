@@ -1,4 +1,3 @@
 **/packer_compiled.lua
-
-
 .luarc.json
+configs/nvim-fnl/lua/

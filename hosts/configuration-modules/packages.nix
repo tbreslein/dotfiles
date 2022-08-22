@@ -18,6 +18,7 @@
       vim
       st
       gcc
+      gnumake
       fennel
       fnlfmt
       wget
