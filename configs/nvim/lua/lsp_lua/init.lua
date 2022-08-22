@@ -231,6 +231,7 @@ require('null-ls').setup {
         require('null-ls').builtins.formatting.cbfmt,
         require('null-ls').builtins.formatting.clang_format,
         require('null-ls').builtins.formatting.cmake_format,
+        require('null-ls').builtins.formatting.fnlfmt,
         require('null-ls').builtins.formatting.gofmt,
         require('null-ls').builtins.formatting.latexindent,
         require('null-ls').builtins.formatting.lua_format,
