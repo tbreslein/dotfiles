@@ -18,6 +18,8 @@
       vim
       st
       gcc
+      fennel
+      fnlfmt
       wget
       curl
       gnutar
