@@ -1,3 +1,14 @@
+-- bootstrap paq
+local paq_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+if vim.fn.empty(vim.fn.glob(paq_path)) > 0 then
+    vim.fn.system {
+        'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git',
+        paq_path
+    }
+end
+vim.cmd [[packadd paq-nvim]]
+
+-- bootstrap hotpot
 local hotpot_path = vim.fn.stdpath('data') ..
                         '/site/pack/paqs/start/hotpot.nvim'
 

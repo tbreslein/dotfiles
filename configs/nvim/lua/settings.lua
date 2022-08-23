@@ -53,7 +53,6 @@ vim.o.showtabline = 2
 vim.o.timeoutlen = 300
 vim.o.completeopt = "menuone,noselect"
 vim.opt.listchars:append("eol:↴")
-vim.notify = require('notify')
 
 -- folding
 vim.o.foldcolumn = '1'
@@ -61,6 +60,8 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
+-- notify
+vim.notify = require('notify')
 -- telescope
 require('telescope').load_extension('git_worktree')
 require('telescope').load_extension('file_browser')
