@@ -19,7 +19,6 @@
       selene # lua linter
       shellcheck
       shellharden
-      sumneko-lua-language-server
       yamllint
     ];
 

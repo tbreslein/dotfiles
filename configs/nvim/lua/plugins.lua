@@ -9,7 +9,6 @@ return require('packer').startup(function(use)
         config = function() require('colorizer').setup {} end
     }
     use {'sainnhe/gruvbox-material'}
-    use {'folke/tokyonight.nvim'}
 
     -- UI
     use {
@@ -189,7 +188,6 @@ return require('packer').startup(function(use)
     use {'b0o/schemastore.nvim'}
     use {'jose-elias-alvarez/typescript.nvim'}
     use {'ray-x/go.nvim', requires = 'ray-x/guihua.lua'}
-    use {'folke/lua-dev.nvim'}
 
     -- Formatting
     use {'gpanders/editorconfig.nvim'}

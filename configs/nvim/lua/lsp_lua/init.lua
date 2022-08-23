@@ -116,28 +116,6 @@ cmp.setup.cmdline(':', {
 
 require('cmp_git').setup()
 
--- Code actions
--- capabilities.textDocument.codeAction = {
---     dynamicRegistration = false;
---     codeActionLiteralSupport = {
---         codeActionKind = {
---             valueSet = {
---                 "",
---                 "quickfix",
---                 "refactor",
---                 "refactor.extract",
---                 "refactor.inline",
---                 "refactor.rewrite",
---                 "source",
---                 "source.organizeImports",
---             };
---         };
---     };
--- }
-
--- Snippets
--- capabilities.textDocument.completion.completionItem.snippetSupport = true;
-
 capabilities.textDocument = {
     completion = {
         completionItem = {
@@ -199,10 +177,6 @@ require('lspconfig').jsonls.setup {
         }
     }
 }
-
-require('lspconfig').sumneko_lua.setup(require('lua-dev').setup({
-    lspconfig = {settings = {Lua = {diagnostics = {globals = {'vim'}}}}}
-}))
 
 require('typescript').setup {}
 require('rust-tools').setup {}

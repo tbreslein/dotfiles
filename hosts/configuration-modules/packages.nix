@@ -19,6 +19,8 @@
       st
       gcc
       gnumake
+      fennel
+      fnlfmt
       wget
       curl
       gnutar

@@ -1,4 +1,3 @@
-require('impatient')
 -- load stuff in lua/
 require('plugins')
 require('settings')

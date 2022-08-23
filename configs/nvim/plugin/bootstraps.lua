@@ -15,5 +15,4 @@ local function bootstrap(url)
     end
 end
 
-bootstrap "https://github.com/lewis6991/impatient.nvim"
 bootstrap "https://github.com/wbthomason/packer.nvim"
