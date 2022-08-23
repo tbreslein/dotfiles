@@ -1,4 +1,4 @@
-local pack = "paq"
+local pack = "packer"
 
 local function bootstrap(url)
     local name = url:gsub(".*/", "")
@@ -15,10 +15,5 @@ local function bootstrap(url)
     end
 end
 
-bootstrap "https://github.com/savq/paq-nvim"
 bootstrap "https://github.com/lewis6991/impatient.nvim"
-bootstrap "https://github.com/udayvir-singh/tangerine.nvim"
-bootstrap "https://github.com/udayvir-singh/hibiscus.nvim"
-
-require('impatient')
-require('tangerine').setup {compiler = {hooks = {'oninit'}}}
+bootstrap "https://github.com/wbthomason/packer.nvim"
