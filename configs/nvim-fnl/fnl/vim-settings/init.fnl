@@ -1,2 +1,0 @@
-(require (.. ... :.colorscheme))
-(require (.. ... :.editor))

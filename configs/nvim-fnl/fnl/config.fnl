@@ -1,5 +1,5 @@
 (require :vim-settings)
 (require :plugins)
-(require :snips)
+(require :colorscheme)
 (require :keymaps)
 (require :lsp-config)
