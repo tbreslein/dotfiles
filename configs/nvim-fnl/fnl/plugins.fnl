@@ -49,7 +49,6 @@
         :rust-lang/rust.vim
         :simrat39/rust-tools.nvim
         :cespare/vim-toml
-        :b0o/schemastore.nvim
         :jose-elias-alvarez/typescript.nvim
         :ray-x/go.nvim
         ;; LSP + Treesitter + snips
@@ -82,7 +81,7 @@
         :stevearc/dressing.nvim]))
 
 (set vim.notify (require :notify))
-(plugin-setup :notify {:background_colour :#000000})
+(plugin-setup :notify {:background_colour "#000000"})
 
 (plugin-setup :neo-tree {:window {:mappings {:x :open_split :v :open_vsplit}}})
 (plugin-setup :lualine

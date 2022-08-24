@@ -27,9 +27,9 @@ augroup END"
 ;;     (and (not= col 0) (= (((((. (vim.api.nvim_buf_get_lines [0 (- line 1) line true]) 1) :sub) [col col]) :match) "\"%s\"") nil ))
 ;;     ))
 
-(let [capabilities ((. (require :cmp_nvim_lsp) :update_capabilities) (vim.lsp.protocol.make_client_capabilities []))
-      nvim_lsp (require :lspconfig)
-      cmp (require :cmp)
+(let [nvim_lsp (require :lspconfig)
+      capabilities ((. (require :cmp_nvim_lsp) :update_capabilities) (vim.lsp.protocol.make_client_capabilities []))
+      ;; cmp (require :cmp)
       luasnip (require :luasnip)
       types (require :luasnip.util.types)]
   (set capabilities.offsetEncoding [:uft-16])
@@ -57,16 +57,18 @@ augroup END"
   (luasnip.config.set_config {:history true
                               :updateevents "TextChanged,TextChangedI"
                               :enable_autosnippets true})
-  ((. (require :cmp_git) :setup) {})
-  (cmp.setup {:snippet {:expand #(luasnip.lsp_expand $1.body)}})
-  ;;             :mapping {:<c-n> (cmp.mapping [#(if (cmp.visible [])
-  ;;                                                 (cmp.select_next_item [])
-  ;;                                                 ;; else if
-  ;;                                                 (luasnip.expand_or_jumpable [])
-  ;;                                                 (luasnip.expand_or_jump [])
-  ;;                                                 ;; else
-  ;;                                                 ($1 []))
-  ;;                                            [:i :s]])
+  ;; ((. (require :cmp_git) :setup) {})
+  ;; (cmp.setup {:snippet {:expand #(luasnip.lsp_expand $1.body)}
+  ;;             :mapping {:<c-n> (cmp.mapping (cmp.mapping.select_next_item []))
+  ;;                       :<c-p> (cmp.mapping (cmp.mapping.select_prev_item []))}})
+  ;; :mapping {:<c-n> (cmp.mapping [#(if (cmp.visible [])
+  ;;                                     (cmp.select_next_item [])
+  ;;                                     ;; else if
+  ;;                                     (luasnip.expand_or_jumpable [])
+  ;;                                     (luasnip.expand_or_jump [])
+  ;;                                     ;; else
+  ;;                                     ($1 []))
+  ;;                                [:i :s]])}})
   ;;                       :<c-p> (cmp.mapping [#(if (cmp.visible [])
   ;;                                                 (cmp.select_prev_item [])
   ;;                                                 ;; else if
@@ -94,10 +96,10 @@ augroup END"
   ;;                                           {:name :luasnip}
   ;;                                           {:name :git}
   ;;                                           {:name :buffer}])})
-  (cmp.setup.cmdline ["/" {:sources [{:name :buffer}]}])
-  (cmp.setup.cmdline [":"
-                      {:sources (cmp.config.sources [{:name :path}
-                                                     {:name :cmdline}])}])
+  ;; (cmp.setup.cmdline ["/" {:sources [{:name :buffer}]}])
+  ;; (cmp.setup.cmdline [":"
+  ;;                     {:sources (cmp.config.sources [{:name :path}
+  ;;                                                    {:name :cmdline}])}])
   ;; (set (. vim.lsp.handlers :textDocument/publishDiagnostics)
   ;;      (vim.lsp.with [vim.lsp.diagnostic.on_publish_diagnostics
   ;;                     {:virtual_text false}]))
@@ -124,9 +126,6 @@ augroup END"
                                        :init_options {:onlyAnalyzeProjectsWithOpenFiles true
                                                       :suggestFromUnimportedLibraries false
                                                       :closingLabels true}})))
-  ;; ((. (require :lspconfig) :jsonls.setup) {:settings {:json {:validate {:enable true}
-  ;;                                                            :schemas ((. (require :schemastore)
-  ;;                                                                         :json.schemas) [])}}})
   ((. (require :typescript) :setup) {})
   ((. (require :rust-tools) :setup) {})
   (let [nls (require :null-ls)
