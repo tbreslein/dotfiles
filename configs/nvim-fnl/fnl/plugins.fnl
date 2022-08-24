@@ -74,8 +74,8 @@
         :ahmedkhalf/project.nvim
         :ThePrimeagen/git-worktree.nvim
         ;; UI
-        :nanozuki/tabby.nvim
         :nvim-lualine/lualine.nvim
+        :romgrk/barbar.nvim
         ;; visuals
         :norcalli/nvim-colorizer.lua
         :rcarriga/nvim-notify
@@ -106,7 +106,6 @@
 (plugin-setup :which-key {:window {:border :single}})
 (plugin-setup :reach {:notifications true})
 (plugin-setup :project_nvim {})
-(plugin-setup :tabby {})
 (plugin-setup :neogit {})
 (plugin-setup :octo {})
 (plugin-setup :toggleterm {})
@@ -119,3 +118,4 @@
 (plugin-setup :nvim-surround {})
 (plugin-setup :lsp_signature {})
 (plugin-setup :fidget {})
+(plugin-setup :bufferline {:animation false :closable false :clickable false})
