@@ -1,4 +1,4 @@
-(import-macros {: plugin-setup} :util-macros)
+(import-macros {: plugin-setup : telescope-load-extension} :util-macros)
 
 (let [paq (require :paq)]
   (paq [;; paq itself
@@ -81,6 +81,9 @@
         :rcarriga/nvim-notify
         :stevearc/dressing.nvim]))
 
+(set vim.notify (require :notify))
+(plugin-setup :notify {:background_colour :#000000})
+
 (plugin-setup :neo-tree {:window {:mappings {:x :open_split :v :open_vsplit}}})
 (plugin-setup :lualine
               {:options {:globalstatus true
@@ -102,20 +105,50 @@
                :ensure_installed :all
                :highlight {:enable true}})
 
+(telescope-load-extension :git_worktree)
+(telescope-load-extension :notify)
+(telescope-load-extension :projects)
+(telescope-load-extension :refactoring)
+
+(let [actions (require :telescope.actions)
+      bindings {:<c-x> actions.select_horizontal
+                :<c-v> actions.select_vertical}
+      previewers (require :telescope.previewers)]
+  (plugin-setup :telescope
+                {:defaults {:mappings {:n bindings :i bindings}
+                            :vimgrep_arguments [:rg
+                                                :--color=never
+                                                :--with-filename
+                                                :--line-number
+                                                :--column
+                                                :--smart-case
+                                                :--hidden]
+                            :file_ignore_patterns [:node_modules/.*
+                                                   :.git/.*
+                                                   :_site/.*]
+                            :sorting_strategy :ascending
+                            :set_env {:COLORTERM :truecolor}
+                            :file_previewer previewers.vim_buffer_cat.new
+                            :grep_previewer previewers.vim_buffer_vimgrep.new
+                            :layout_config {:vertical {:mirror true}}}}))
+
 (plugin-setup :dressing {:input {:winblend 50} :builtin {:winblend 50}})
 (plugin-setup :which-key {:window {:border :single}})
 (plugin-setup :reach {:notifications true})
-(plugin-setup :project_nvim {})
-(plugin-setup :neogit {})
-(plugin-setup :octo {})
-(plugin-setup :toggleterm {})
-(plugin-setup :git-worktree {})
-(plugin-setup :leap {})
-(plugin-setup :spectre {})
-(plugin-setup :trouble {})
-(plugin-setup :refactoring {})
-(plugin-setup :nvim-autopairs {})
-(plugin-setup :nvim-surround {})
-(plugin-setup :lsp_signature {})
-(plugin-setup :fidget {})
 (plugin-setup :bufferline {:animation false :closable false :clickable false})
+
+;; process the plugins that just need their setup function to be called
+(each [_ plugin (ipairs [:project_nvim
+                         :neogit
+                         :octo
+                         :toggleterm
+                         :git-worktree
+                         :leap
+                         :spectre
+                         :trouble
+                         :refactoring
+                         :nvim-autopairs
+                         :nvim-surround
+                         :lsp_signature
+                         :fidget])]
+  (plugin-setup plugin {}))
