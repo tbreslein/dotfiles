@@ -3,17 +3,18 @@
 {
   home = {
     packages = with pkgs; [
-      pass
-      ripgrep
       fd
-      imv
       freshfetch
+      imv
       openfortivpn
+      pass
       playerctl
       pamixer
       python3Minimal
-      zenith
+      ripgrep
+      sqlite
       trash-cli
+      zenith
     ];
   };
 

@@ -51,6 +51,7 @@
         :cespare/vim-toml
         :jose-elias-alvarez/typescript.nvim
         :ray-x/go.nvim
+        :b0o/schemastore.nvim
         ;; LSP + Treesitter + snips
         :folke/trouble.nvim
         :nvim-treesitter/nvim-treesitter
