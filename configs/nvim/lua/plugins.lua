@@ -128,6 +128,13 @@ return packer.startup(function(use)
             require('fidget').setup()
         end
     }
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path', 'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-nvim-lsp',
+            'L3MON4D3/LuaSnip', 'rafamadriz/friendly-snippets'
+        },
+    }
 
     -- Telescope
     use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim'}
