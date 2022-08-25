@@ -21,7 +21,7 @@
   programs = {
     mpv.enable = true;
     zathura = {
-      enable = false;
+      enable = true;
       options = {
         selection-clipboard = "clipboard";
       };

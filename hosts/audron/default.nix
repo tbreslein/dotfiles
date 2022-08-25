@@ -483,6 +483,9 @@ in
 
       # stuber notebook
       134.245.66.40 thinkpad_e15.astrophysik.uni-kiel.de thinkpad_e15
+
+      # charon
+      134.245.66.11 charon.astrophysik.uni-kiel.de charon
     '';
   };
 }

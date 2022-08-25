@@ -14,9 +14,10 @@
       editorconfig-core-c
       luaformatter
       nodePackages.bash-language-server
-      nodePackages.cspell
+      # nodePackages.cspell
       nodePackages.yaml-language-server
       selene # lua linter
+      luaformatter
       shellcheck
       shellharden
       yamllint
@@ -37,7 +38,7 @@
         [Makefile]
         indent_style = tab
 
-        [*.{svelte,astro,mjs,cjs,ts,tsx,js,jsx,html,css,json,yml,yaml,nix}]
+        [*.{svelte,astro,mjs,cjs,ts,tsx,js,jsx,html,css,json,yml,yaml,nix,lua}]
         indent_size = 2
       '';
     };
