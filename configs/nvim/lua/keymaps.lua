@@ -384,7 +384,8 @@ require('which-key').register({
         i = {'<cmd>PackerInstall<cr>', 'install'},
         s = {'<cmd>PackerSync<cr>', 'sync'},
         S = {'<cmd>PackerStatus<cr>', 'status'},
-        u = {'<cmd>PackerUpdate<cr>', 'update'}
+        u = {'<cmd>PackerUpdate<cr>', 'update'},
+        t = {'<cmd>TSUpdateSync<cr>', 'treesitter update sync'}
     }
 }, {
     mode = 'n',

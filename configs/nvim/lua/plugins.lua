@@ -6,7 +6,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 local packer = require('packer')
-return packer.startup(function(use)
+return packer.startup({function(use)
     use 'wbthomason/packer.nvim'
 
     -- theme
@@ -198,5 +198,11 @@ return packer.startup(function(use)
     if packer_bootstrap then
         packer.sync()
     end
-end)
+end, config = {
+    display = {
+        open_fn = function()
+            return require('packer.util').float({ border = 'single' })
+        end
+    }
+}})
 
