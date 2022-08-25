@@ -146,14 +146,15 @@ require('typescript').setup({
     }
 })
 
+local luadev = require('lua-dev').setup ({ })
+nvim_lsp.sumneko_lua.setup(luadev)
+
 local nls = require('null-ls')
 nls.setup({
     sources = {
         nls.builtins.code_actions.eslint,
         nls.builtins.code_actions.shellcheck,
         nls.builtins.code_actions.statix,
-
-        --nls.builtins.completion.luasnip,
 
         nls.builtins.diagnostics.ansiblelint,
         nls.builtins.diagnostics.chktex,
@@ -167,6 +168,7 @@ nls.setup({
         nls.builtins.diagnostics.statix,
         nls.builtins.diagnostics.tsc.with({prefer_local = 'node_modules/.bin'}),
         nls.builtins.diagnostics.yamllint,
+
         nls.builtins.formatting.black,
         nls.builtins.formatting.cbfmt,
         nls.builtins.formatting.clang_format,

@@ -15,6 +15,7 @@
       luaformatter
       nodePackages.bash-language-server
       # nodePackages.cspell
+      sumneko-lua-language-server
       nodePackages.yaml-language-server
       selene # lua linter
       luaformatter

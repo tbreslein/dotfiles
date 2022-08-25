@@ -212,7 +212,8 @@ require('which-key').register({
         t = {
             [[:lua require('telescope').extensions.git_worktree.git_worktrees()<cr>]],
             'git worktrees'
-        }
+        },
+        T = {'<cmd>TodoTelescope<cr>', 'todo list'}
     },
 
     -- LSP

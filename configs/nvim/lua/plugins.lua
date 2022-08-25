@@ -21,14 +21,14 @@ return packer.startup({function(use)
         'akinsho/toggleterm.nvim',
         tag = 'v2.*',
         config = function()
-            require('toggleterm').setup() 
+            require('toggleterm').setup()
         end
     }
     use {
         'nvim-neo-tree/neo-tree.nvim',
-        branch = 'v2.x', 
+        branch = 'v2.x',
         requires = {'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons', 'MunifTanjim/nui.nvim'},
-        config = function() 
+        config = function()
             require('neo-tree').setup({
                 window = {
                     mappings = {
@@ -49,7 +49,7 @@ return packer.startup({function(use)
         end
     }
     use {
-        'nvim-treesitter/nvim-treesitter', 
+        'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function()
             require('nvim-treesitter.configs').setup ({
@@ -60,9 +60,15 @@ return packer.startup({function(use)
                 highlight = {
 		            enable = true,
 		        },
+                rainbow = {
+                    enable = true,
+                    external_mode = true,
+                    max_file_lines = nil
+                }
             })
         end
     }
+    use 'Olical/conjure'
 
     -- editing
     use {'nvim-pack/nvim-spectre', requires = 'nvim-lua/plenary.nvim'}
@@ -70,19 +76,19 @@ return packer.startup({function(use)
     use {
         'numToStr/Comment.nvim',
         config = function()
-            require('Comment').setup() 
+            require('Comment').setup()
         end
     }
     use {
         'windwp/nvim-autopairs',
         config = function()
-            require('nvim-autopairs').setup() 
+            require('nvim-autopairs').setup()
         end
     }
     use {
         'windwp/nvim-ts-autotag',
-        config = function() 
-            require('nvim-autopairs').setup() 
+        config = function()
+            require('nvim-autopairs').setup()
         end
     }
     use {
@@ -92,7 +98,7 @@ return packer.startup({function(use)
         end
     }
     use 'gpanders/editorconfig.nvim'
-    
+
     -- git
     use {
         'TimUntersberger/neogit',
@@ -132,16 +138,17 @@ return packer.startup({function(use)
         'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-calc', 
+            'hrsh7th/cmp-calc',
             'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-path', 
+            'hrsh7th/cmp-path',
             'hrsh7th/cmp-nvim-lsp',
-            'saadparwaiz1/cmp_luasnip', 
-            'L3MON4D3/LuaSnip', 
+            'saadparwaiz1/cmp_luasnip',
+            'L3MON4D3/LuaSnip',
             'rafamadriz/friendly-snippets',
-            'davidsierradz/cmp-conventionalcommits', 
+            'davidsierradz/cmp-conventionalcommits',
         },
     }
+    use 'folke/lua-dev.nvim'
 
     -- Telescope
     use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim'}
@@ -189,7 +196,7 @@ return packer.startup({function(use)
     use {
         'norcalli/nvim-colorizer.lua',
         config = function()
-            require('colorizer').setup() 
+            require('colorizer').setup()
         end
     }
     use {
@@ -199,6 +206,14 @@ return packer.startup({function(use)
             require('notify').setup ({
                 background_colour = "#000000"
             })
+        end
+    }
+    use 'p00f/nvim-ts-rainbow'
+    use {
+        'folke/todo-comments.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+        config = function()
+            require('todo-comments').setup()
         end
     }
 
