@@ -70,10 +70,12 @@ cmp.setup({
         end
     },
     sources = {
+        {name = 'buffer'},
+        {name = 'calc'},
+        {name = 'conventionalcommits'},
+        {name = 'luasnip'},
+        {name = 'nvim_lsp'},
         {name = 'path'},
-        {name = 'nvim_lsp', keyword_length = 3},
-        {name = 'buffer', keyword_length = 3},
-        {name = 'luasnip', keyword_length = 3},
     },
     window = {
         documentation = cmp.config.window.bordered()
@@ -113,6 +115,16 @@ cmp.setup({
             end
         end, {'i', 's'}),
     },
+})
+cmp.setup.cmdline(':', {
+    sources = {
+        {name = 'cmdline'}
+    }
+})
+cmp.setup.cmdline('/', {
+    sources = {
+        {name = 'buffer'}
+    }
 })
 
 -- needed for nvim-ts-autotag
@@ -181,7 +193,7 @@ local servers = {
 
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
-        -- capabilities = capabilities,
+        capabilities = lsp_defaults.capabilities,
         on_attach = on_attach,
         init_options = {
             onlyAnalyzeProjectsWithOpenFiles = true,
