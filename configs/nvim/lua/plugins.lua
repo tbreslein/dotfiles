@@ -17,6 +17,30 @@ return packer.startup({
         -- theme
         use 'sainnhe/gruvbox-material'
 
+        -- neorg
+        use {
+            'nvim-neorg/neorg',
+            requires = 'nvim-lua/plenary',
+            config = function()
+                require('neorg').setup {
+                    load = {
+                        ['core.defaults'] = {},
+                        ['core.norg.dirman'] = {
+                            config = {
+                                workspaces = {
+                                    work = '~/notes/work',
+                                    home = '~/notes/home',
+                                    hedis = '~/notes/hedis',
+                                    blog = '~/notes/blog',
+                                    myosotis = '~/notes/myosotis'
+                                }
+                            }
+                        }
+                    }
+                }
+            end
+        }
+
         -- configuration
         use 'folke/which-key.nvim'
         use {
