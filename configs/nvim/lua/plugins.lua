@@ -20,7 +20,7 @@ return packer.startup({
         -- neorg
         use {
             'nvim-neorg/neorg',
-            requires = 'nvim-lua/plenary',
+            requires = 'nvim-lua/plenary.nvim',
             config = function()
                 require('neorg').setup {
                     load = {
