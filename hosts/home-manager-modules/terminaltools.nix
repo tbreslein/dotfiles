@@ -12,7 +12,6 @@
       pamixer
       python3Minimal
       ripgrep
-      sqlite
       trash-cli
       zenith
     ];

@@ -47,8 +47,6 @@
 
           riverctl map normal Super Return spawn alacritty
           riverctl map normal Super+Shift Return spawn 'bemenu-run -i --fn "Hack 18"'
-          riverctl map normal Super+Shift Space spawn 'bemenu-run'
-          riverctl map normal Super O spawn 'bemenu-run -i --fn "Hack 18" --tb "#${colors.primary.background}" --fb "#${colors.primary.background}" --nb "#${colors.primary.background}" --ab "#${colors.normal.black}" --hb "#${colors.primary.background}" --tf "#${colors.normal.blue}" --ff "#${colors.primary.accent}" --nf "#${colors.primary.foreground}" --af "#${colors.primary.foreground}" --hf "#${colors.normal.blue}" --fbf "#${colors.primary.foreground}"'
 
           # Super+Q to close the focused view
           riverctl map normal Super Q close

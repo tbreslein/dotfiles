@@ -18,7 +18,6 @@
       sumneko-lua-language-server
       nodePackages.yaml-language-server
       selene # lua linter
-      luaformatter
       shellcheck
       shellharden
       yamllint

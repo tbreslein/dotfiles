@@ -28,7 +28,7 @@
         config.allowUnfree = true;
       };
 
-      lib = nixpkgs.lib;
+      inherit (nixpkgs.lib) lib;
 
       overlays = [
         inputs.neovim-nightly-overlay.overlay

@@ -1,7 +1,7 @@
 -------
 -- MISC
 -------
---vim.cmd 'syntax enable'
+-- vim.cmd 'syntax enable'
 vim.cmd 'filetype plugin indent on'
 vim.opt.encoding = 'utf-8'
 
@@ -38,7 +38,6 @@ vim.opt.hlsearch = true
 vim.opt.shiftround = true
 vim.opt.laststatus = 2
 vim.opt.pumheight = 10
---vim.opt.completeopt = "menuone,noselect"
 
 -----
 -- UI
@@ -55,7 +54,6 @@ vim.opt.smartcase = true
 vim.opt.hidden = true
 vim.opt.signcolumn = 'yes'
 vim.opt.listchars:append("eol:↴")
---vim.opt.showtabline = 2
 
 ----------
 -- FOLDING
@@ -65,4 +63,3 @@ vim.opt.foldcolumn = '1'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
-

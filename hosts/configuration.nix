@@ -44,7 +44,7 @@
     };
   };
 
-  security.pam.services.swaylock = lib.mkIf (useWayland) {
+  security.pam.services.swaylock = lib.mkIf useWayland {
     text = "auth include login";
   };
   programs.sway.enable = useWayland; # this is just here to get swaylock working
