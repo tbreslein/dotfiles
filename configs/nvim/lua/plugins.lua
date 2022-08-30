@@ -66,16 +66,19 @@ return packer.startup({
             config = function()
                 require('neo-tree').setup({
                     window = {
-                        mappings = { ['x'] = "open_split", ['v'] = "open_vsplit" }
+                        mappings = {['x'] = "open_split", ['v'] = "open_vsplit"}
                     }
                 })
             end
         }
-        use 'ggandor/leap.nvim'
+        use {
+            'ggandor/leap.nvim',
+            config = function() require('leap').set_default_keymaps() end
+        }
         use {
             'toppair/reach.nvim',
             config = function()
-                require('reach').setup({ notifications = true })
+                require('reach').setup({notifications = true})
             end
         }
         use {
@@ -83,9 +86,9 @@ return packer.startup({
             run = ':TSUpdate',
             config = function()
                 require('nvim-treesitter.configs').setup({
-                    autotag = { enable = true },
+                    autotag = {enable = true},
                     ensure_installed = 'all',
-                    highlight = { enable = true },
+                    highlight = {enable = true},
                     rainbow = {
                         enable = true,
                         external_mode = true,
@@ -95,9 +98,14 @@ return packer.startup({
             end
         }
         use 'Olical/conjure'
+        use {
+            'danymat/neogen',
+            requires = 'nvim-treesitter/nvim-treesitter',
+            config = function() require('neogen').setup {} end
+        }
 
         -- editing
-        use { 'nvim-pack/nvim-spectre', requires = 'nvim-lua/plenary.nvim' }
+        use {'nvim-pack/nvim-spectre', requires = 'nvim-lua/plenary.nvim'}
         use {
             'ThePrimeagen/refactoring.nvim',
             requires = {
@@ -138,7 +146,7 @@ return packer.startup({
         use 'nathom/filetype.nvim'
         use 'adelarsq/neofsharp.vim'
         use 'rust-lang/rust.vim'
-        use { 'simrat39/rust-tools.nvim', requires = 'neovim/nvim-lspconfig' }
+        use {'simrat39/rust-tools.nvim', requires = 'neovim/nvim-lspconfig'}
         use 'cespare/vim-toml'
         use 'jose-elias-alvarez/typescript.nvim'
 
@@ -203,17 +211,17 @@ return packer.startup({
                         theme = 'gruvbox'
                     },
                     sections = {
-                        lualine_a = { 'mode' },
-                        lualine_b = { 'branch', 'diagnostics' },
-                        lualine_c = { 'filename' },
+                        lualine_a = {'mode'},
+                        lualine_b = {'branch', 'diagnostics'},
+                        lualine_c = {'filename'},
                         lualine_x = {},
-                        lualine_y = { 'progress' },
-                        lualine_z = { 'location' }
+                        lualine_y = {'progress'},
+                        lualine_z = {'location'}
                     }
                 })
             end
         }
-        use { 'romgrk/barbar.nvim', requires = 'kyazdani41/nvim-web-devicons' }
+        use {'romgrk/barbar.nvim', requires = 'kyazdani41/nvim-web-devicons'}
         use {
             'norcalli/nvim-colorizer.lua',
             config = function() require('colorizer').setup() end
@@ -222,7 +230,7 @@ return packer.startup({
             'rcarriga/nvim-notify',
             config = function()
                 vim.notify = require('notify')
-                require('notify').setup({ background_colour = "#000000" })
+                require('notify').setup({background_colour = "#000000"})
             end
         }
         use 'p00f/nvim-ts-rainbow'
@@ -237,7 +245,7 @@ return packer.startup({
     config = {
         display = {
             open_fn = function()
-                return require('packer.util').float({ border = 'single' })
+                return require('packer.util').float({border = 'single'})
             end
         }
     }
