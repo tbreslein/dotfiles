@@ -72,8 +72,10 @@ return packer.startup({
             end
         }
         use {
-            'ggandor/leap.nvim',
-            config = function() require('leap').set_default_keymaps() end
+            'phaazon/hop.nvim',
+            config = function()
+                require('hop').setup({multi_windows = true})
+            end
         }
         use {
             'toppair/reach.nvim',

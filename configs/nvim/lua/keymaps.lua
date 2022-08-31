@@ -34,6 +34,18 @@ require('legendary').setup {
             description = 'toggle terminal',
             opts = default_opts
         }, {
+            's',
+            '<cmd>HopWord<cr>',
+            mode = {'n'},
+            description = 'hop word forward',
+            opts = default_opts
+        }, {
+            'S',
+            '<cmd>HopWordBC<cr>',
+            mode = {'n'},
+            description = 'hop word backward',
+            opts = default_opts
+        }, {
             '<',
             '<gv',
             mode = {'v'},
