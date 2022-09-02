@@ -21,6 +21,7 @@
       gnumake
       fennel
       fnlfmt
+      nodejs
       wget
       curl
       gnutar
