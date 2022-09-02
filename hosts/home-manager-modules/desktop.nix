@@ -218,7 +218,7 @@
               [[ $(wlr-randr | grep 'Enabled: yes' | wc -l) -eq 2 ]] && homescreenlayout
 
               # tv screen
-              [[ $(wlr-randr) =~ 'DELL U2711 ' ]] && tvlayout
+              [[ $(wlr-randr) =~ 'Ltd 37LG7000 ' ]] && tvlayout
           }
 
           # Set the default layout generator to be rivertile and start it.
