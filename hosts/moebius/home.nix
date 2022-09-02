@@ -27,7 +27,7 @@
         if useWayland
         then ''
           #!/usr/bin/env sh
-          wlr-randr --output 'DP-1' --mode '3440x1440@144Hz' --pos '1920,0' --output 'DP-3' --mode '1920x1080@60Hz' --pos '5360,170' --output 'HDMI-A-1' --mode '1920x1080' --pos '0,170'
+          wlr-randr --output 'DP-1' --mode '3440x1440@144Hz' --pos '1920,0' --output 'DP-3' --mode '1920x1080@60Hz' --pos '5360,170' --output 'HDMI-A-1' --mode '1920x1080@60Hz' --pos '0,170'
           swaybg -o 'DP-1' -m fill -i $HOME/MEGA/Wallpaper/dp-2_3.png -o 'DP-3' -m fill -i $HOME/MEGA/Wallpaper/cyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg -o 'HDMI-A-1' -m fill -i $HOME/MEGA/Wallpaper/TheLastNight_06.jpg &
         ''
         else ''
