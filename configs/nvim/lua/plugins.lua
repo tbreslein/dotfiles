@@ -145,7 +145,17 @@ return packer.startup({
         }
 
         -- languages
-        use 'nathom/filetype.nvim'
+        use {
+            'nathom/filetype.nvim',
+            config = function()
+                require('filetype').setup {
+                    overrides = {
+                        extensions = {bb = "clojure"},
+                        shebang = {bb = "clojure"}
+                    }
+                }
+            end
+        }
         use 'adelarsq/neofsharp.vim'
         use 'rust-lang/rust.vim'
         use {'simrat39/rust-tools.nvim', requires = 'neovim/nvim-lspconfig'}

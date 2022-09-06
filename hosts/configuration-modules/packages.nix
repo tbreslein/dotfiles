@@ -23,6 +23,9 @@
       fnlfmt
       nodejs
       babashka
+      clojure-lsp
+      clj-kondo
+      zprint
       wget
       curl
       gnutar
