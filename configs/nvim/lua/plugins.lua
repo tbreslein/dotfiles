@@ -16,6 +16,17 @@ return packer.startup({
 
         -- theme
         use 'sainnhe/gruvbox-material'
+        use {
+            'olivercederborg/poimandres.nvim',
+            config = function()
+                require('poimandres').setup {
+                    bold_vert_split = true,
+                    dim_nc_background = true,
+                    disable_background = true,
+                    disable_float_background = true
+                }
+            end
+        }
 
         -- neorg
         use {
@@ -220,7 +231,8 @@ return packer.startup({
                         globalstatus = true,
                         component_separators = '',
                         section_separators = '',
-                        theme = 'gruvbox'
+                        -- theme = 'gruvbox'
+                        theme = 'poimandres'
                     },
                     sections = {
                         lualine_a = {'mode'},
