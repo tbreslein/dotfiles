@@ -22,6 +22,7 @@
       fennel
       fnlfmt
       nodejs
+      babashka
       wget
       curl
       gnutar
