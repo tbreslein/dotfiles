@@ -13,7 +13,7 @@
         then ''
           #!/usr/bin/env sh
           wlr-randr --output "eDP-1" --mode "2256x1504"
-          swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/dp-2_3.png &
+          swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/ok_16-9.jpg &
         ''
         else ''
           #!/bin/sh
@@ -29,7 +29,7 @@
         then ''
           #!/usr/bin/env sh
           wlr-randr --output "eDP-1" --mode "2256x1504" --pos "0,1080" --output "DP-2" --mode "1920x1080@60Hz" --pos "170,0"
-          swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/dp-2_3.png -o 'DP-2' -m fill -i $HOME/MEGA/Wallpaper/cyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg &
+          swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/ok_16-9.jpg -o 'DP-2' -m fill -i $HOME/MEGA/Wallpaper/bonfire.jpg &
         ''
         else ''
           #!/bin/sh
