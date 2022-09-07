@@ -65,6 +65,10 @@
           background = "1d2021";
           foreground = "d4be98";
         };
+        borders = {
+          focused = "fe8019";
+          unfocused = "1d2021";
+        };
       };
 
       gruvbox_material_medium_dark = {
@@ -97,6 +101,10 @@
         selection = {
           background = "282828";
           foreground = "d4be98";
+        };
+        borders = {
+          focused = "fe8019";
+          unfocused = "282828";
         };
       };
 
@@ -131,6 +139,10 @@
           background = "32302f";
           foreground = "d4be98";
         };
+        borders = {
+          focused = "fe8019";
+          unfocused = "32302f";
+        };
       };
 
       gruvbox_hard_dark = {
@@ -163,6 +175,47 @@
         selection = {
           background = "1d2021";
           foreground = "ebdbb2";
+        };
+        borders = {
+          focused = "fe8019";
+          unfocused = "1d2021";
+        };
+      };
+
+      poimandres = {
+        primary = {
+          background = "1b1e28";
+          foreground = "a6accd";
+          accent = "5de4c7";
+          alert = "db4b4b";
+        };
+        normal = {
+          black = "1b1e28";
+          red = "d0679d";
+          green = "5de4c7";
+          yellow = "fffac2";
+          blue = "89ddff";
+          magenta = "fcc5e9";
+          cyan = "add7ff";
+          white = "ffffff";
+        };
+        bright = {
+          black = "a6accd";
+          red = "d0679d";
+          green = "5de4c7";
+          yellow = "fffac2";
+          blue = "89ddff";
+          magenta = "fcc5e9";
+          cyan = "add7ff";
+          white = "ffffff";
+        };
+        selection = {
+          background = "303340";
+          foreground = "ffffff";
+        };
+        borders = {
+          focused = "5de4c7";
+          unfocused = "1b1e28";
         };
       };
 
@@ -197,6 +250,10 @@
           background = "24283b";
           foreground = "c0caf5";
         };
+        borders = {
+          focused = "ff9e64";
+          unfocused = "1d202f";
+        };
       };
 
       tokyonight_night = {
@@ -229,6 +286,10 @@
         selection = {
           background = "24283b";
           foreground = "c0caf5";
+        };
+        borders = {
+          focused = "ff9e64";
+          unfocused = "1d202f";
         };
       };
 

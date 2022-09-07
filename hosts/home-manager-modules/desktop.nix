@@ -183,8 +183,8 @@
 
           # Set background and border color
           riverctl background-color 0x${colors.primary.background}
-          riverctl border-color-focused 0x${colors.primary.accent}
-          riverctl border-color-unfocused 0x${colors.primary.background}
+          riverctl border-color-focused 0x${colors.borders.focused}
+          riverctl border-color-unfocused 0x${colors.borders.unfocused}
           riverctl border-width 1
           riverctl focus-follows-cursor normal
 
@@ -236,7 +236,7 @@
     mako = {
       enable = useWayland;
       backgroundColor = "#${colors.primary.background}";
-      borderColor = "#${colors.primary.accent}";
+      borderColor = "#${colors.borders.focused}";
       font = "${font} 10";
       height = 200;
     };

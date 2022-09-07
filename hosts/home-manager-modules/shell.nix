@@ -16,7 +16,6 @@
       v = "${editor}";
       m = "make";
       nj = "ninja";
-      emacs = "echo 'No.'";
       s = "TERM=xterm-256color ssh";
       hedisclang = "make clean full-clang build test";
       hedisgcc = "make clean full-gcc build test";
