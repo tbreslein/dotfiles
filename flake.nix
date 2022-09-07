@@ -200,7 +200,7 @@
           white = "ffffff";
         };
         bright = {
-          black = "a6accd";
+          black = "303340";
           red = "d0679d";
           green = "5de4c7";
           yellow = "fffac2";
@@ -293,7 +293,7 @@
         };
       };
 
-      colors = gruvbox_material_hard_dark;
+      colors = poimandres;
     in
     {
       nixosConfigurations = import ./hosts {
