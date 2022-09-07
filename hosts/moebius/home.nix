@@ -12,7 +12,7 @@
         then ''
           #!/usr/bin/env sh
           wlr-randr --output 'DP-1' --mode '3440x1440@144Hz' --output 'DP-3' --mode '1920x1080@60Hz' --pos '3440,170'
-          swaybg -o 'DP-1' -m fill -i $HOME/MEGA/Wallpaper/ok_21-9.png -o 'DP-3' -m fill -i $HOME/MEGA/Wallpaper/bonfire.jpg &
+          swaybg -o 'DP-1' -m fill -i $HOME/MEGA/Wallpaper/ok_21-9.jpg -o 'DP-3' -m fill -i $HOME/MEGA/Wallpaper/bonfire.jpg &
         ''
         else ''
           #!/bin/sh
