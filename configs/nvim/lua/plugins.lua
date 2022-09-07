@@ -110,7 +110,7 @@ return packer.startup({
                 })
             end
         }
-        use 'Olical/conjure'
+        -- use 'Olical/conjure'
         use {
             'danymat/neogen',
             requires = 'nvim-treesitter/nvim-treesitter',
