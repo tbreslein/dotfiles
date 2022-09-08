@@ -22,7 +22,7 @@ require('poimandres').setup {
     bold_vert_split = true,
     dim_nc_background = true,
     disable_background = true,
-    disable_float_background = true
+    disable_float_background = false
 }
 
 -- vim.cmd 'colorscheme gruvbox-material'
