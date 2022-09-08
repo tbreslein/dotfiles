@@ -1,4 +1,4 @@
-(require-macros :hibiscus.vim))
+(require-macros :hibiscus.vim)
 (import-macros {: plugin-setup} :util-macros)
 
 ;; ----
@@ -49,24 +49,24 @@
 ;; --
 ;; UI
 ;; --
-(set vim.wo.colorcolumn '120')
+(set vim.wo.colorcolumn :120)
 (set vim.opt.cursorline true)
 (set vim.wo.number true)
 (set vim.wo.relativenumber true)
-(set vim.opt.guicursor 'a:block')
+(set vim.opt.guicursor "a:block")
 (set vim.opt.showmatch true)
 (set vim.opt.showmode false)
 (set vim.opt.ignorecase true)
 (set vim.opt.smartcase true)
 (set vim.opt.hidden true)
-(set vim.opt.signcolumn 'yes')
+(set vim.opt.signcolumn :yes)
 (set+ listchars "eol:↴")
 
 ;; -------
 ;; FOLDING
 ;; -------
 (set vim.opt.conceallevel 0)
-(set vim.opt.foldcolumn "1")
+(set vim.opt.foldcolumn :1)
 (set vim.opt.foldlevel 99)
 (set vim.opt.foldlevelstart 99)
 (set vim.opt.foldenable true)

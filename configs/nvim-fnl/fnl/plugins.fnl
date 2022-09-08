@@ -3,62 +3,6 @@
 
 (packer-setup)
 
-(fn hop-config []
-  (plugin-setup :hop {:multi_windows true}))
-
-(fn reach-config []
-  (plugin-setup :reach {:notifications true}))
-
-(fn nvim-treesitter-config []
-  (plugin-setup :nvim-treesitter.configs
-                {:autotag {:enable true}
-                 :ensure_installed :all
-                 :highlight {:enable true}
-                 :rainbow {:enable true
-                           :external_mode true
-                           :max_file_lines :nil}}))
-
-(fn neogen-config []
-  (plugin-setup :neogen {}))
-
-(fn comment-config []
-  (plugin-setup :Comment {}))
-
-(fn nvim-autopairs-config []
-  (plugin-setup :nvim-autopairs {}))
-
-(fn nvim-surround-config []
-  (plugin-setup :nvim-surround {}))
-
-(fn neogit-config []
-  (plugin-setup :neogit {}))
-
-(fn octo-config []
-  (plugin-setup :octo {}))
-
-(fn filetype-config []
-  (plugin-setup :filetype
-                {:overrides {:extensions {:bb :clojure}
-                             :shebang {:bb :clojure}}}))
-
-(fn trouble-config []
-  (plugin-setup :trouble {}))
-
-(fn fidget-config []
-  (plugin-setup :fidget {}))
-
-(fn project-nvim-config []
-  (telescope-load-extension :projects)
-  (plugin-setup :project_nvim {}))
-
-(fn git-worktree-config []
-  (telescope-load-extension :git_worktree)
-  (plugin-setup :git-worktree {}))
-
-(fn git-worktree-config []
-  (telescope-load-extension :git_worktree)
-  (plugin-setup :git-worktree {}))
-
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------
@@ -95,7 +39,7 @@
   (use! :nvim-neo-tree/neo-tree.nvim
         :branch "v2.*"
         :requires [:nvim-lua/plenary.nvim :kyazdani42/nvim-web-devicons :MunifTanjim/nui.nvim])
-        :config #(plugin-setup :neo-tree {:window {:mappings {:x :open_split :v :open_vsplit}}}))
+        :config #(plugin-setup :neo-tree {:window {:mappings {:x :open_split :v :open_vsplit}}})
 
   (use! :phaazon/hop.nvim:
         :config #(plugin-setup :hop {:multi_windows true}))
@@ -200,5 +144,4 @@
   (use! :folke/todo-comments.nvim
         :requires :nvim-lua/plenary.nvim
         :config #(plugin-setup :todo-comments {}))
-        
   )
