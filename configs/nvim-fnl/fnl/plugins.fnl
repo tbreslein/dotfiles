@@ -10,6 +10,8 @@
 ;; fnlfmt: skip
 (packer
   (use! :wbthomason/packer.nvim)
+  (use! :udayvir-singh/tangerine.nvim)
+  (use! :udayvir-singh/hibiscus.nvim)
 
   ;; themes
   (use! :sainnhe/gruvbox-material)
@@ -28,7 +30,7 @@
 
   ;; configuration
   (use! :folke/which-key.nvim)
-  (use! :mrjones2014/legendary.nvim:
+  (use! :mrjones2014/legendary.nvim
         :requires [:nvim-telescope/telescope.nvim :stevearc/dressing.nvim])
 
   ;; functionality
@@ -37,17 +39,17 @@
         :config #(plugin-setup :toggleterm {}))
 
   (use! :nvim-neo-tree/neo-tree.nvim
-        :branch "v2.*"
+        :branch "v2.x"
         :requires [:nvim-lua/plenary.nvim :kyazdani42/nvim-web-devicons :MunifTanjim/nui.nvim])
         :config #(plugin-setup :neo-tree {:window {:mappings {:x :open_split :v :open_vsplit}}})
 
-  (use! :phaazon/hop.nvim:
+  (use! :phaazon/hop.nvim
         :config #(plugin-setup :hop {:multi_windows true}))
   (use! :toppair/reach.nvim
         :config #(plugin-setup :reach {:notifications true}))
   (use! :nvim-treesitter/nvim-treesitter
         :run ":TSUpdate"
-        :config #(plugin-setup :nvim-treesitter-configs {:autotag {:enable true} 
+        :config #(plugin-setup :nvim-treesitter.configs {:autotag {:enable true} 
                                                          :ensure_installed :all 
                                                          :highlight {:enable true} 
                                                          :rainbow {:enable true 
@@ -80,6 +82,8 @@
         :config #(plugin-setup :octo {}))
 
   ;; languages
+  (use! :nathom/filetype.nvim
+        :config #(plugin-setup :filetype {:overrides {:extensions {:bb :clojure} :shebang {:bb :clojure}}}))
   (use! :adelarsq/neofsharp.vim)
   (use! :rust-lang/rust.vim)
   (use! :simrat39/rust-tools.nvim

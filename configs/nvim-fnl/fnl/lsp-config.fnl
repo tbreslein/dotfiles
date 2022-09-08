@@ -1,53 +1,61 @@
 (import-macros {: plugin-setup} :util-macros)
 
-(fn on_attach [client bufnr]
-  (let [augroup (vim.api.nvim_create_augroup :LspFormatting {})]
-    (vim.api.nvim_exec_autocmds :User {:pattern :LspAttached})
-    (when (client.supports_method :textDocument/formatting)
-      (vim.api.nvim_clear_autocmds {:group augroup :buffer bufnr})
-      (vim.api.nvim_create_autocmd :BufWritePre
-                                   {:group augroup
-                                    :buffer bufnr
-                                    :callback #(vim.lsp.buf.format {: bufnr})}))
-    ((. (require :lsp_signature) :on_attach) {} bufnr)
-    (let [reg (. (require :which-key) :register)]
-      (reg {:l {:name :Lsp
-                :D [vim.lsp.buf.declaration :declaration]
-                :d [vim.lsp.buf.definitions :definitions]
-                :i [vim.lsp.buf.implementation :implementation]
-                :r [vim.lsp.buf.references :references]
-                :n [vim.lsp.buf.rename :rename]
-                :T [vim.lsp.buf.type_definition "type definition"]
-                :c [vim.lsp.buf.code_action "code action"]
-                :F [vim.lsp.buf.formatting :formatting]
-                :K [vim.lsp.buf.hover :hover]
-                :f [vim.diagnostic.open_float "float diagnostic"]
-                :l [vim.diagnostic.setloclist :setloclist]
-                :q [vim.diagnostic.goto_prev "prev diag"]
-                :e [vim.diagnostic.goto_next "next diag"]
-                :w {:name :workspace
-                    :a [vim.lsp.buf.add_workspace_folder
-                        "add workspace folder"]
-                    :r [vim.lsp.buf.remove_workspace_folder
-                        "remove workspace folder"]
-                    :l [vim.lsp.buf.list_workspace_folders
-                        "list workspace folders"]}
-                :t {:name :Trouble
-                    :t [:<cmd>TroubleToggle<cr> "toggle trouble"]
-                    :w ["<cmd>TroubleToggle workspace_diagnostics<cr>"
-                        "toggle workspace diagnostics"]
-                    :d ["<cmd>TroubleToggle document_diagnostics<cr>"
-                        "toggle document diagnostics"]
-                    :l ["<cmd>TroubleToggle loclist<cr>" "toggle loclist"]
-                    :q ["<cmd>TroubleToggle quickfix<cr>" "toggle quickfix"]
-                    :r ["<cmd>TroubleToggle lsp_references<cr>"
-                        "toggle lsp references"]}}}
-           {:mode :n
-            :prefix :<leader>
-            :buffer bufnr
-            :silent true
-            :noremap true
-            :nowait false}))))
+(local on_attach (fn [client bufnr]
+                   (let [augroup (vim.api.nvim_create_augroup :LspFormatting {})]
+                     (vim.api.nvim_exec_autocmds :User {:pattern :LspAttached})
+                     (when (client.supports_method :textDocument/formatting)
+                       (vim.api.nvim_clear_autocmds {:group augroup
+                                                     :buffer bufnr})
+                       (vim.api.nvim_create_autocmd :BufWritePre
+                                                    {:group augroup
+                                                     :buffer bufnr
+                                                     :callback #(vim.lsp.buf.format {: bufnr})}))
+                     ((. (require :lsp_signature) :on_attach) {} bufnr)
+                     (let [reg (. (require :which-key) :register)]
+                       (reg {:l {:name :Lsp
+                                 :D [vim.lsp.buf.declaration :declaration]
+                                 :d [vim.lsp.buf.definitions :definitions]
+                                 :i [vim.lsp.buf.implementation
+                                     :implementation]
+                                 :r [vim.lsp.buf.references :references]
+                                 :n [vim.lsp.buf.rename :rename]
+                                 :T [vim.lsp.buf.type_definition
+                                     "type definition"]
+                                 :c [vim.lsp.buf.code_action "code action"]
+                                 :F [vim.lsp.buf.formatting :formatting]
+                                 :K [vim.lsp.buf.hover :hover]
+                                 :f [vim.diagnostic.open_float
+                                     "float diagnostic"]
+                                 :l [vim.diagnostic.setloclist :setloclist]
+                                 :q [vim.diagnostic.goto_prev "prev diag"]
+                                 :e [vim.diagnostic.goto_next "next diag"]
+                                 :w {:name :workspace
+                                     :a [vim.lsp.buf.add_workspace_folder
+                                         "add workspace folder"]
+                                     :r [vim.lsp.buf.remove_workspace_folder
+                                         "remove workspace folder"]
+                                     :l [vim.lsp.buf.list_workspace_folders
+                                         "list workspace folders"]}
+                                 :t {:name :Trouble
+                                     :t [:<cmd>TroubleToggle<cr>
+                                         "toggle trouble"]
+                                     :w ["<cmd>TroubleToggle workspace_diagnostics<cr>"
+                                         "toggle workspace diagnostics"]
+                                     :d ["<cmd>TroubleToggle document_diagnostics<cr>"
+                                         "toggle document diagnostics"]
+                                     :l ["<cmd>TroubleToggle loclist<cr>"
+                                         "toggle loclist"]
+                                     :q ["<cmd>TroubleToggle quickfix<cr>"
+                                         "toggle quickfix"]
+                                     :r ["<cmd>TroubleToggle lsp_references<cr>"
+                                         "toggle lsp references"]}}}
+                            {:mode :n
+                             :prefix :<leader>
+                             :buffer bufnr
+                             :silent true
+                             :noremap true
+                             :nowait false}))
+                     nil)))
 
 (local lsp-defaults {:flags {:debounce_text_changes 150}
                      :capabilities ((. (require :cmp_nvim_lsp)
@@ -55,9 +63,8 @@
                      : on_attach})
 
 (local nvim_lsp (require :lspconfig))
-(nvim_lsp.util.default_config (vim.tbl_deep_extend :force
-                                                   nvim_lsp.util.default_config
-                                                   lsp-defaults))
+(set nvim_lsp.util.default_config
+     (vim.tbl_deep_extend :force nvim_lsp.util.default_config lsp-defaults))
 
 ;; -------------
 ;; cmp + luasnip
@@ -103,12 +110,11 @@
                      :update_in_insert true}))
 
 ;; Language Servers
+;;(local luadev
+;;       (plugin-setup :lua-dev
+;;                     {:lspconfig {:settings {:Lua {:diagnostics {:globals [:vim]}}}}}))
+;;(nvim_lsp.sumneko_lua.setup luadev)
 (plugin-setup :typescript {:server {: on_attach}})
-(local luadev
-       (plugin-setup :lua-dev
-                     {:lspconfig {:settings {:Lua {:diagnostics {:globals :vim}}}}}))
-
-(nvim_lsp.sumneko_lua.setup luadev)
 
 (let [nls (require :null-ls)
       nc nls.builtins.code_actions
@@ -163,8 +169,8 @@
                :yamlls
                :zls]]
   (each [_ lsp (ipairs servers)]
-    (((. nvim_lsp lsp) :setup) {:capabilities lsp-defaults.capabilities
-                                : on_attach
-                                :init_options {:onlyAnalyzeProjectsWithOpenFiles true
-                                               :suggestFromUnimportedLibraries false
-                                               :closingLabels true}})))
+    ((. (. nvim_lsp lsp) :setup) {:capabilities lsp-defaults.capabilities
+                                  : on_attach
+                                  :init_options {:onlyAnalyzeProjectsWithOpenFiles true
+                                                 :suggestFromUnimportedLibraries false
+                                                 :closingLabels true}})))
