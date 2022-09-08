@@ -104,16 +104,16 @@
 
 ;; needed for nvim-ts-autotag
 (tset vim.lsp.handlers :textDocument/publishDiagnostics
-      (vim.lsp.with vim.lsp.diagnostic.on_publish_diagnostic
+      (vim.lsp.with vim.lsp.diagnostic.on_publish_diagnostics
                     {:underline true
                      :virtual_text {:spacing 5 :severity_limit :Warning}
                      :update_in_insert true}))
 
 ;; Language Servers
-;;(local luadev
-;;       (plugin-setup :lua-dev
-;;                     {:lspconfig {:settings {:Lua {:diagnostics {:globals [:vim]}}}}}))
-;;(nvim_lsp.sumneko_lua.setup luadev)
+(local luadev
+       (plugin-setup :lua-dev
+                     {:lspconfig {:settings {:Lua {:diagnostics {:globals [:vim]}}}}}))
+(nvim_lsp.sumneko_lua.setup luadev)
 (plugin-setup :typescript {:server {: on_attach}})
 
 (let [nls (require :null-ls)
@@ -143,7 +143,7 @@
                         nf.latexindent
                         nf.lua_format
                         nf.nixpkgs_fmt
-                        (nf.prettier.with {:extra_filetypes [:svelte]})
+                        nf.prettier
                         nf.rustfmt
                         nf.shellharden
                         nf.stylish_haskell
@@ -174,3 +174,4 @@
                                   :init_options {:onlyAnalyzeProjectsWithOpenFiles true
                                                  :suggestFromUnimportedLibraries false
                                                  :closingLabels true}})))
+nil
