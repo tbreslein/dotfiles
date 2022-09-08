@@ -9,7 +9,8 @@
 
 ;; fnlfmt: skip
 (packer
-  (use! :wbthomason/packer.nvim)
+  ;; handled by the packer-setup macro
+  ;; (use! :wbthomason/packer.nvim)
   (use! :udayvir-singh/tangerine.nvim)
   (use! :udayvir-singh/hibiscus.nvim)
 
