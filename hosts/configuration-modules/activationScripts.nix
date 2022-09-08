@@ -15,7 +15,7 @@ in
       rm -fr ${homeDir}/.config/nvim-fnl/init.vim
     '';
     linkNeovimConfig = ''
-      ln -sf ${homeDir}/.dotfiles/configs/nvim ${homeDir}/.config/
+      ln -sf ${homeDir}/.dotfiles/configs/nvim-fnl ${homeDir}/.config/
     '';
   };
 }
