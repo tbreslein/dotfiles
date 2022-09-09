@@ -94,7 +94,7 @@
                 :description "move up accross visual lines"
                 :opts expr_opts}
                {1 :jk
-                2 "<c-\\\\><c-n>"
+                2 "<c-\\><c-n>"
                 :mode [:t]
                 :description "leave insert mode (terminal)"
                 :opts default-opts}
