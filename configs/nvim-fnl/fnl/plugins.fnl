@@ -17,6 +17,8 @@
   ;; themes
   (use! :sainnhe/gruvbox-material)
   (use! :olivercederborg/poimandres.nvim)
+  (use! :catppuccin/nvim
+        :as :catppuccin)
 
   ;; neorg
   (use! :nvim-neorg/neorg
@@ -131,9 +133,9 @@
   (use! :nvim-lualine/lualine.nvim
         :requires :kyazdani42/nvim-web-devicons
         :config #(plugin-setup :lualine {:options {:globalstatus true
+                                                   :theme :catppuccin
                                                    :component_separators ""
-                                                   :section_separators ""
-                                                   :theme :poimandres}
+                                                   :section_separators ""}
                                          :sections {:lualine_a [:mode]
                                                     :lualine_b [:branch :diagnostics]
                                                     :lualine_c [:filename]

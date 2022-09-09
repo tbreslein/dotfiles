@@ -26,7 +26,12 @@
                :disable_background true
                :disable_float_background false})
 
+(set vim.g.catppuccin_flavour :mocha)
+(plugin-setup :catppuccin
+              {:transparent_background true})
+
 (color! :poimandres)
+(color! :catppuccin)
 
 ;; -------
 ;; EDITING
