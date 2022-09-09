@@ -19,15 +19,17 @@
   (use! :olivercederborg/poimandres.nvim)
 
   ;; neorg
-  (let [c {:load {:core.defaults {}
-                  :core.norg.dirman {:config {:workspaces {:work "~/notes/work/"
-                                                           :home "~/notes/home/"
-                                                           :hedis "~/notes/hedis/"
-                                                           :blog "~/notes/blog"
-                                                           :myosotis "~/notes/myosotis/"}}}}}]
-    (use! :nvim-neorg/neorg
+  (use! :nvim-neorg/neorg
         :requires :nvim-lua/plenary.nvim
-        :config #(plugin-setup :neorg c)))
+        :after :nvim-treesitter
+        :ft :norg
+        :requires [:nvim-lua/plenary.nvim]
+        :config #(plugin-setup :neorg {:load {:core.defaults {}
+                                              :core.norg.dirman {:config {:workspaces {:work "~/notes/work/"
+                                                                          :home "~/notes/home/"
+                                                                          :hedis "~/notes/hedis/"
+                                                                          :blog "~/notes/blog"
+                                                                          :myosotis "~/notes/myosotis/"}}}}}))
 
   ;; configuration
   (use! :folke/which-key.nvim)
