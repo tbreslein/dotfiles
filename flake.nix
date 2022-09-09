@@ -293,7 +293,44 @@
         };
       };
 
-      colors = poimandres;
+      catppuccin = {
+        primary = {
+          background = "1e1e2e";
+          foreground = "cdd6f4";
+          accent = "94e2d5";
+          alert = "f38ba8";
+        };
+        normal = {
+          black = "45465a";
+          red = "f38ba8";
+          green = "a6e3a1";
+          yellow = "f9e2af";
+          blue = "89b4fa";
+          magenta = "f5c2e7";
+          cyan = "94e2d5";
+          white = "bac2de";
+        };
+        bright = {
+          black = "585b70";
+          red = "f38ba8";
+          green = "a6e3a1";
+          yellow = "f9e2af";
+          blue = "89b4fa";
+          magenta = "f5c2e7";
+          cyan = "94e2d5";
+          white = "a6adc8";
+        };
+        selection = {
+          background = "f5e0dc";
+          foreground = "1e1e2e";
+        };
+        borders = {
+          focused = "94e2d5";
+          unfocused = "6c7086";
+        };
+      };
+
+      colors = catppuccin;
     in
     {
       nixosConfigurations = import ./hosts {
