@@ -188,7 +188,7 @@
           riverctl border-color-focused 0x${colors.borders.focused}
           riverctl border-color-unfocused 0x${colors.borders.unfocused}
           riverctl border-width 1
-          riverctl focus-follows-cursor normal
+          riverctl focus-follows-cursor disabled
 
           # Set keyboard repeat rate
           riverctl set-repeat 50 300
