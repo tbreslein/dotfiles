@@ -11,6 +11,7 @@
       wdisplays
       grim
       slurp
+      kooha
       wl-clipboard
       swayidle
       bemenu
@@ -137,10 +138,12 @@
           riverctl map normal Super+Control L spawn 'swaylock -c 000000'
 
           # screenshot all screens
-          riverctl map normal None Print spawn 'grim - | wl-copy'
+          # riverctl map normal None Print spawn 'grim - | wl-copy'
+          riverctl map normal None Print spawn 'slurp-screenshot fullscreen'
 
           # screenshot region
-          riverctl map normal Super Print spawn 'grim -g "$(slurp)" - | wl-copy'
+          # riverctl map normal Super Print spawn 'grim -g "$(slurp)" - | wl-copy'
+          riverctl map normal Super Print spawn 'slurp-screenshot region'
 
           # Super+{Up,Right,Down,Left} to change layout orientation
           riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
