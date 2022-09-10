@@ -28,7 +28,8 @@
 
 (set vim.g.catppuccin_flavour :mocha)
 (plugin-setup :catppuccin
-              {:transparent_background true})
+              {:transparent_background true
+               :integrations {:ts_rainbow true :barbar true}})
 
 (color! :poimandres)
 (color! :catppuccin)
