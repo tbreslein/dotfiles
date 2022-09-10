@@ -11,7 +11,6 @@
       wdisplays
       grim
       slurp
-      kooha
       wl-clipboard
       swayidle
       bemenu
