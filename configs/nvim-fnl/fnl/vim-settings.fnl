@@ -31,7 +31,7 @@
               {:transparent_background true
                :integrations {:ts_rainbow true :barbar true}})
 
-(color! :poimandres)
+;; (color! :poimandres)
 (color! :catppuccin)
 
 ;; -------
