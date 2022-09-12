@@ -70,7 +70,7 @@
             sudo nix flake update && \
             sudo nixos-rebuild --upgrade-all switch --flake .#"$(cat /etc/hostname)" && \
             nvim +PackerSync +TSUpdateSync
-            booted = "$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
+            booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
             built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
             if [[ ! "$booted" == "$built" ]]; then
                 printf "\033[1;31minitrd or kernel packages have been rebuilt; reboot required!\033[0m"
