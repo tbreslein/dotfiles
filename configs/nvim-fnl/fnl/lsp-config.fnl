@@ -113,6 +113,7 @@
 (local luadev
        (plugin-setup :lua-dev
                      {:lspconfig {:settings {:Lua {:diagnostics {:globals [:vim]}}}}}))
+
 (nvim_lsp.sumneko_lua.setup luadev)
 (plugin-setup :typescript {:server {: on_attach}})
 
@@ -129,6 +130,7 @@
                         nd.cppcheck
                         (nd.cspell.with {:filetypes [:markdown]})
                         nd.eslint
+                        nd.hadolint
                         nd.revive
                         nd.shellcheck
                         nd.statix
@@ -174,4 +176,5 @@
                                   :init_options {:onlyAnalyzeProjectsWithOpenFiles true
                                                  :suggestFromUnimportedLibraries false
                                                  :closingLabels true}})))
+
 nil
