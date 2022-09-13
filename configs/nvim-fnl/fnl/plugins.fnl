@@ -103,9 +103,6 @@
   (use! :folke/trouble.nvim
         :requires :kyazdani42/nvim-web-devicons
         :config #(plugin-setup :trouble {}))
-  (use! :j-hui/fidget.nvim
-        :requires :nvim-lua/plenary.nvim
-        :config #(plugin-setup :fidget {}))
   (use! :hrsh7th/nvim-cmp
         :requires [:hrsh7th/cmp-buffer
                    :hrsh7th/cmp-calc
@@ -131,7 +128,7 @@
 
   ;; UI
   (use! :nvim-lualine/lualine.nvim
-        :requires :kyazdani42/nvim-web-devicons
+        :requires [:kyazdani42/nvim-web-devicons :WhoIsSethDaniel/lualine-lsp-progress.nvim]
         :config #(plugin-setup :lualine {:options {:globalstatus true
                                                    :theme :catppuccin
                                                    :component_separators ""
@@ -139,7 +136,7 @@
                                          :sections {:lualine_a [:mode]
                                                     :lualine_b [:branch :diagnostics]
                                                     :lualine_c [:filename]
-                                                    :lualine_x []
+                                                    :lualine_x [:lsp_progress]
                                                     :lualine_y [:progress]
                                                     :lualine_z [:location]
                                                     }}))
