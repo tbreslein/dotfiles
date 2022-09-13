@@ -3,7 +3,6 @@
 {
   # virt-manager
   virtualisation.virtualbox.host.enable = true;
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
   users.users.tommy.extraGroups = [ "vboxusers" ];
 
   # docker
@@ -11,4 +10,5 @@
     rootless.enable = true;
     autoPrune.enable = true;
   };
+  environment.systemPackages = with pkgs; [ docker-compose ];
 }
