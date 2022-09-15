@@ -31,6 +31,10 @@ in
       (writeShellScriptBin "backup-to-styx" ''
         rsync -a --info=progress2 ${homeDir}/work root@styx:/archive/admin/audron/$(date +$F)/work
       '')
+
+      # needed for eduroam:
+      openssl
+      cacert
     ];
   };
 
@@ -103,6 +107,23 @@ in
     firewall = {
       enable = true;
       interfaces."${work-eth-interface}".allowedTCPPorts = [ 22 ];
+    };
+    wireless.networks = {
+      eduroam = {
+        auth = ''
+          proto=RSN
+          key_mgmt=WPA-EAP
+          eap=PEAP
+          identity="supas276-cau@uni-kiel.de"
+          #password=hash:hashed-password
+          domain_suffix_match="radius.rz.uni-kiel.de"
+          anonymous_identity="eduroam2022@uni-kiel.de"
+          phase1="peaplabel=0"
+          phase2="auth=MSCHAPV2"
+          #ca_cert="/etc/ssl/certs/ca-bundle.crt"
+          ca_cert="/etc/ssl/certs/ca-bundle.crt"
+        '';
+      };
     };
     extraHosts = ''
       134.245.12.33 smtp.mail.uni-kiel.de
