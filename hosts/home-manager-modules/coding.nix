@@ -3,24 +3,50 @@
 {
   home = {
     packages = with pkgs; [
+      # compilers, builders, etc.
+      gcc
+      fennel
+      gnumake
+      nodejs
+
       # editors
       android-studio
 
       # tools
       hyperfine
 
+
       # formatting, linters, lsp
-      cbfmt # code block formatting in markdown files
-      editorconfig-core-c
+      # clojure
+      clojure-lsp
+      clj-kondo
+      zprint
+
+      # fennel
+      fnlfmt
+
+      # lua
       luaformatter
-      nodePackages.bash-language-server
-      # nodePackages.cspell
       sumneko-lua-language-server
-      nodePackages.yaml-language-server
       selene # lua linter
+
+      # nix
+      rnix-lsp
+      nixpkgs-fmt
+      statix
+
+      # shell
+      nodePackages.bash-language-server
       shellcheck
       shellharden
+
+      # nodePackages.cspell
+      nodePackages.yaml-language-server
       yamllint
+
+      # misc
+      cbfmt # code block formatting in markdown files
+      editorconfig-core-c
     ];
 
     file.".editorconfig" = {

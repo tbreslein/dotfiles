@@ -14,6 +14,14 @@
       ripgrep
       trash-cli
       zenith
+      wget
+      curl
+      gnutar
+      p7zip
+      unrar
+      zip
+      unzip
+      git
     ];
   };
 

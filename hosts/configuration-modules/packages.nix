@@ -16,28 +16,8 @@
   environment = {
     systemPackages = with pkgs; [
       vim
-      st
-      gcc
-      gnumake
-      fennel
-      fnlfmt
-      nodejs
-      babashka
-      clojure-lsp
-      clj-kondo
-      zprint
-      wget
-      curl
-      gnutar
-      p7zip
-      unrar
-      zip
-      unzip
-      git
+      # terminal tools
       htop
-      rnix-lsp
-      nixpkgs-fmt
-      statix
       gnupg
       pinentry-curses
       (writeShellScriptBin "slurp-screenshot" ''
@@ -88,7 +68,7 @@
       enable = true;
       npmrc = ''
         prefix = ${homeDir}/.npm
-          init-license=BSD-3
+        init-license=BSD-3
         init-author=tbreslein
       '';
     };
