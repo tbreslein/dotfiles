@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  progams.steam = {
+  programs.steam = {
     enable = true;
   };
   environment = {
