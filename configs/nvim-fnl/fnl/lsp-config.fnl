@@ -167,6 +167,7 @@
                :html
                :julials
                :pyright
+               :rust_analyzer
                :rnix
                :yamlls
                :zls]]
