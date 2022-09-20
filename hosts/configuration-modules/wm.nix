@@ -46,11 +46,20 @@
             '';
           passthru.providedSessions = [ "river" ];
         }))
+        sway
+        wayland
+        glib
       ]
       else with pkgs; [ dwmblocks ];
   };
 
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
   services = {
+    dbus.enable = true;
     xserver = {
       enable = true;
       layout = "us";
