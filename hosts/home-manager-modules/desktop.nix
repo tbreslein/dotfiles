@@ -256,8 +256,10 @@ in
           layer = "top";
           position = "top";
           height = 30;
-          modules-left = [ "river/tags" ];
-          modules-center = [ "river/window" ];
+          # modules-left = [ "river/tags" ];
+          # modules-center = [ "river/window" ];
+          modules-left = [ "sway/workspaces" "sway/mode" ];
+          modules-center = [ "sway/window" ];
           modules-right = [ "pulseaudio" "cpu" "memory" "battery" "clock#date" "clock#time" "tray" ];
           "river/tags" = {
             tag-labels = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ];
@@ -321,6 +323,19 @@ in
           "tray" = {
             icon-size = 21;
             spacing = 10;
+          };
+          "sway/mode" = {
+            format = "<span style=\"italic\">  {}</span>";
+            tooltip = false;
+          };
+          "sway/window" = {
+            format = "{}";
+            max-length = 60;
+          };
+          "sway/workspaces" = {
+            all-outputs = false;
+            disable-scroll = true;
+            format = "{name}";
           };
         };
       };
@@ -530,6 +545,35 @@ in
             color: #${colors.primary.alert};
             background-color: #${colors.bright.black};
         }
+
+        #workspaces {
+            border-right: 2px solid #${colors.primary.foreground};
+        }
+
+        #workspaces button {
+            border-top: 2px solid transparent;
+            /* To compensate for the top border and still have vertical centering */
+            padding-bottom: 2px;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: #${colors.bright.black};
+            background-color: #${colors.primary.background};
+        }
+
+        #workspaces button.focused {
+            border-color: #${colors.primary.accent};
+            color: #${colors.primary.foreground};
+        }
+
+        #workspaces button.occupied {
+            color: #${colors.primary.foreground};
+        }
+
+        #workspaces button.urgent {
+            border-color: #${colors.primary.alert};
+            color: #${colors.primary.alert};
+            background-color: #${colors.bright.black};
+        }
       '';
     };
   };
@@ -665,7 +709,7 @@ in
         }
         { command = "${pkgs.pasystray}/bin/pasystray"; }
         { command = "${pkgs.mako}/bin/mako"; }
-        { command = "sleep 30 && ${pkgs.megasync}/bin/megasync"; }
+        { command = "${pkgs.megasync}/bin/megasync"; }
         { command = "dbus-sway-environment"; }
         { command = "configure-gtk"; }
       ];
