@@ -704,9 +704,9 @@ in
       gaps.smartBorders = "on";
       startup = [
         { command = "waybar"; }
-        {
-          command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000' timeout 150 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000'";
-        }
+        # {
+        #   command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000' timeout 150 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000'";
+        # }
         { command = "${pkgs.pasystray}/bin/pasystray"; }
         { command = "${pkgs.mako}/bin/mako"; }
         { command = "sleep 60 && ${pkgs.megasync}/bin/megasync"; }
