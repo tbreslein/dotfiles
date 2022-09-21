@@ -128,6 +128,7 @@ in
                 passthru.providedSessions = [ "river" ];
               })
             )
+            swayJoined
           ]
           else [ ];
       };
