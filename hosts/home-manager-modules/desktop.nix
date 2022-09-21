@@ -609,7 +609,7 @@
         unfocused = "#${colors.borders.unfocused}";
         urgent = "#${colors.primary.alert}";
       };
-      windows.border = 1;
+      window.border = 1;
       floating = {
         border = 1;
         criteria = [
