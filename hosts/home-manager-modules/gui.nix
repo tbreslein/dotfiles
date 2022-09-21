@@ -6,7 +6,7 @@
       thunderbird
       tdesktop
       libreoffice-fresh
-      # discord
+      discord
       firefox
       brave
       microsoft-edge
