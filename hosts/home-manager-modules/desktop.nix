@@ -686,8 +686,8 @@ in
         "${modifier}+w" = "layout tabbed";
         "${modifier}+e" = "layout toggle split";
         "${modifier}+f" = "fullscreen";
-        "${modifier}+Space" = "floating toggle";
-        "${modifier}+Shift+Space" = "focus mode toggle";
+        # "${modifier}+Space" = "floating toggle";
+        # "${modifier}+Shift+Space" = "focus mode toggle";
         "Print" = "exec slurp-screenshot fullscreen";
         "Shift+Print" = "exec slurp-screenshot region";
         "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-booster -i 5";
