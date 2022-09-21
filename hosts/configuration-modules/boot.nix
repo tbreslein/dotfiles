@@ -13,7 +13,7 @@
         devices = [ "nodev" ];
         efiSupport = true;
         useOSProber = true;
-        configurationLimit = 5;
+        configurationLimit = 10;
       };
     };
     kernelPackages = pkgs.linuxPackages_latest;
