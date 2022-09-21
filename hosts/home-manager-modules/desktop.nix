@@ -1,4 +1,4 @@
-{ pkgs, font, colors, useWayland, homeDir, ... }:
+{ pkgs, lib, font, colors, useWayland, homeDir, ... }:
 
 let
   myColors = colors;
@@ -605,7 +605,8 @@ in
       right = "l";
       terminal = "${pkgs.alacritty}/bin/alacritty";
       menu = "bemenu-run -i --fn 'Hack 18'";
-      bars = [{ command = "\${pkgs.waybar}/bin/waybar"; }];
+      # bars = [{ command = "\${pkgs.waybar}/bin/waybar"; }];
+      bars = [ ];
       colors = {
         background = "#${myColors.primary.background}";
         focused = {
@@ -658,6 +659,7 @@ in
       };
       gaps.smartBorders = "on";
       startup = [
+        { command = "waybar"; }
         {
           command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000' timeout 150 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000'";
         }
@@ -685,7 +687,7 @@ in
         "${modifier}+e" = "layout toggle split";
         "${modifier}+f" = "fullscreen";
         "${modifier}+Space" = "floating toggle";
-        "${modifier}+Shift+Space" = "floating toggle";
+        "${modifier}+Shift+Space" = "focus mode toggle";
         "Print" = "exec slurp-screenshot fullscreen";
         "Shift+Print" = "exec slurp-screenshot region";
         "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-booster -i 5";
