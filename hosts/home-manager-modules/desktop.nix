@@ -709,7 +709,7 @@ in
         }
         { command = "${pkgs.pasystray}/bin/pasystray"; }
         { command = "${pkgs.mako}/bin/mako"; }
-        { command = "${pkgs.megasync}/bin/megasync"; }
+        { command = "sleep 60 && ${pkgs.megasync}/bin/megasync"; }
         { command = "dbus-sway-environment"; }
         { command = "configure-gtk"; }
       ];
@@ -734,8 +734,8 @@ in
         # "${modifier}+Shift+Space" = "focus mode toggle";
         "Print" = "exec slurp-screenshot fullscreen";
         "Shift+Print" = "exec slurp-screenshot region";
-        "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-booster -i 5";
-        "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-booster -d 5";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-boost -i 5";
+        "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-boost -d 5";
         "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
         "XF86AudioMedia" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
         "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
