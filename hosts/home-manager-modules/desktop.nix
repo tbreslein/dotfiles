@@ -590,8 +590,8 @@
 
     picom.enable = !useWayland;
 
-    wayland.windowManager.sway = {
-      enable = true;
-    };
+  };
+  wayland.windowManager.sway = {
+    enable = true;
   };
 }
