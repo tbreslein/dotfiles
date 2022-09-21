@@ -648,7 +648,7 @@ in
       up = "k";
       right = "l";
       terminal = "${pkgs.alacritty}/bin/alacritty";
-      menu = "bemenu-run -i --fn 'Hack 18'";
+      menu = "bemenu-run -i --fn 'Hack 15' -n";
       # bars = [{ command = "\${pkgs.waybar}/bin/waybar"; }];
       bars = [ ];
       colors = {
