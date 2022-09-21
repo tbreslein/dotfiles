@@ -704,7 +704,7 @@ in
       };
     };
     # extraOptions = [ "--verbose" "--debug" "--unsupported-gpu" "--my-next-gpu-wont-be-nvidia" ];
-    extraOptions = [ "--verbose" ];
+    extraOptions = [ "--verbose" "--debug" ];
     wrapperFeatures = {
       base = true;
       gtk = true;

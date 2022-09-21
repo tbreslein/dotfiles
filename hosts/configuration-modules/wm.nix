@@ -105,32 +105,32 @@ in
       layout = "us";
       displayManager = {
         defaultSession = if useWayland then "sway" else "none+dwm";
-        sddm.enable = false;
-        sessionPackages =
-          if useWayland
-          then [
-            (pkgs.river.overrideAttrs
-              (prevAttrs: rec {
-                postInstall =
-                  let
-                    riverSession = ''
-                      [Desktop Entry]
-                      Name=River
-                      Comment=Dynamic Wayland compositor
-                      Exec=river
-                      Type=Application
-                    '';
-                  in
-                  ''
-                    mkdir -p $out/share/wayland-sessions
-                    echo "${riverSession}" > $out/share/wayland-sessions/river.desktop
-                  '';
-                passthru.providedSessions = [ "river" ];
-              })
-            )
-            swayJoined
-          ]
-          else [ ];
+        sddm.enable = true;
+        # sessionPackages =
+        #   if useWayland
+        #   then [
+        #     (pkgs.river.overrideAttrs
+        #       (prevAttrs: rec {
+        #         postInstall =
+        #           let
+        #             riverSession = ''
+        #               [Desktop Entry]
+        #               Name=River
+        #               Comment=Dynamic Wayland compositor
+        #               Exec=river
+        #               Type=Application
+        #             '';
+        #           in
+        #           ''
+        #             mkdir -p $out/share/wayland-sessions
+        #             echo "${riverSession}" > $out/share/wayland-sessions/river.desktop
+        #           '';
+        #         passthru.providedSessions = [ "river" ];
+        #       })
+        #     )
+        #   ]
+        #   else [ ];
+        # sessionPackages = [ swayJoined ];
       };
       windowManager.dwm.enable = !useWayland;
     };
