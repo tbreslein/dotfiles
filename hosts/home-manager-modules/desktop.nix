@@ -1,5 +1,8 @@
 { pkgs, lib, font, colors, useWayland, homeDir, ... }:
 
+let
+  myColors = colors;
+in
 {
   home = {
     packages = with pkgs; [
@@ -238,8 +241,8 @@
 
     mako = {
       enable = useWayland;
-      backgroundColor = "#${colors.primary.background}";
-      borderColor = "#${colors.borders.focused}";
+      backgroundColor = "#${myColors.primary.background}";
+      borderColor = "#${myColors.borders.focused}";
       font = "${font} 10";
       height = 200;
     };
@@ -604,10 +607,35 @@
       menu = "bemenu-run -i --fn 'Hack 18'";
       bars = [{ command = "\${pkgs.waybar}/bin/waybar"; }];
       colors = {
-        background = "#${colors.primary.background}";
-        focused = "#${colors.borders.focused}";
-        unfocused = "#${colors.borders.unfocused}";
-        urgent = "#${colors.primary.alert}";
+        background = "#${myColors.primary.background}";
+        focused = {
+          background = "#${myColors.primary.background}";
+          border = "#${myColors.borders.focused}";
+          childBorder = "#${myColors.borders.focused}";
+          text = "#${myColors.primary.foreground}";
+          indicator = "#${myColors.primary.foreground}";
+        };
+        unfocused = {
+          background = "#${myColors.primary.background}";
+          border = "#${myColors.borders.unfocused}";
+          childBorder = "#${myColors.borders.unfocused}";
+          text = "#${myColors.primary.foreground}";
+          indicator = "#${myColors.primary.foreground}";
+        };
+        focusedInactive = {
+          background = "#${myColors.primary.background}";
+          border = "#${myColors.borders.unfocused}";
+          childBorder = "#${myColors.borders.unfocused}";
+          text = "#${myColors.primary.foreground}";
+          indicator = "#${myColors.primary.foreground}";
+        };
+        urgent = {
+          background = "#${myColors.primary.background}";
+          border = "#${myColors.primary.alert}";
+          childBorder = "#${myColors.primary.alert}";
+          text = "#${myColors.primary.foreground}";
+          indicator = "#${myColors.primary.foreground}";
+        };
       };
       window.border = 1;
       floating = {
