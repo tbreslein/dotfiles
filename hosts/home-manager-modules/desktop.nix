@@ -595,119 +595,119 @@ in
     picom.enable = !useWayland;
   };
 
-  # wayland.windowManager.sway = {
-  #   enable = true;
-  #   config = rec {
-  #     modifier = "Mod4";
-  #     left = "h";
-  #     down = "j";
-  #     up = "k";
-  #     right = "l";
-  #     terminal = "${pkgs.alacritty}/bin/alacritty";
-  #     menu = "bemenu-run -i --fn 'Hack 18'";
-  #     bars = [{ command = "\${pkgs.waybar}/bin/waybar"; }];
-  #     colors = {
-  #       background = "#${myColors.primary.background}";
-  #       focused = {
-  #         background = "#${myColors.primary.background}";
-  #         border = "#${myColors.borders.focused}";
-  #         childBorder = "#${myColors.borders.focused}";
-  #         text = "#${myColors.primary.foreground}";
-  #         indicator = "#${myColors.primary.foreground}";
-  #       };
-  #       unfocused = {
-  #         background = "#${myColors.primary.background}";
-  #         border = "#${myColors.borders.unfocused}";
-  #         childBorder = "#${myColors.borders.unfocused}";
-  #         text = "#${myColors.primary.foreground}";
-  #         indicator = "#${myColors.primary.foreground}";
-  #       };
-  #       focusedInactive = {
-  #         background = "#${myColors.primary.background}";
-  #         border = "#${myColors.borders.unfocused}";
-  #         childBorder = "#${myColors.borders.unfocused}";
-  #         text = "#${myColors.primary.foreground}";
-  #         indicator = "#${myColors.primary.foreground}";
-  #       };
-  #       urgent = {
-  #         background = "#${myColors.primary.background}";
-  #         border = "#${myColors.primary.alert}";
-  #         childBorder = "#${myColors.primary.alert}";
-  #         text = "#${myColors.primary.foreground}";
-  #         indicator = "#${myColors.primary.foreground}";
-  #       };
-  #     };
-  #     window.border = 1;
-  #     floating = {
-  #       border = 1;
-  #       criteria = [
-  #         { title = "Steam - Update News"; }
-  #         { title = "Picture in picture"; }
-  #         { class = "Pavucontrol"; }
-  #       ];
-  #     };
-  #     focus = {
-  #       followMouse = false;
-  #       forceWrapping = false;
-  #       mouseWarping = false;
-  #     };
-  #     fonts = {
-  #       names = [ "Hack " ];
-  #       size = 9.0;
-  #       style = "Normal";
-  #     };
-  #     gaps.smartBorders = "on";
-  #     startup = [
-  #       {
-  #         command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000' timeout 150 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000'";
-  #       }
-  #       { command = "${pkgs.pasystray}/bin/pasystray"; }
-  #       { command = "${pkgs.mako}/bin/mako"; }
-  #       { command = "sleep 30 && ${pkgs.megasync}/bin/megasync"; }
-  #       { command = "dbus-sway-environment"; }
-  #       { command = "configure-gtk"; }
-  #     ];
-  #     input = {
-  #       "type:touchpad" = { drag = "enabled"; dwt = "enabled"; scroll_method = "two_finger"; tap = "enabled"; };
-  #     };
-  #     modes = { }; # Unset default "resize" mode
-  #     keybindings = lib.mkOptionDefault {
-  #       "${modifier}+Shift+q" = "nop Unset default kill";
-  #       "${modifier}+r" = "nop Unset default resize mode";
-  #       "${modifier}+q" = "kill";
-  #       "${modifier}+Control+r" = "reload";
-  #       "${modifier}+Control+l" = "exec ${pkgs.swaylock}/bin/swaylock -f -c 000000";
-  #       "${modifier}+Control+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
-  #       "${modifier}+x" = "splith";
-  #       "${modifier}+v" = "splitv";
-  #       "${modifier}+s" = "layout stacking";
-  #       "${modifier}+w" = "layout tabbed";
-  #       "${modifier}+e" = "layout toggle split";
-  #       "${modifier}+f" = "fullscreen";
-  #       "${modifier}+Space" = "floating toggle";
-  #       "${modifier}+Shift+Space" = "floating toggle";
-  #       "Print" = "exec slurp-screenshot fullscreen";
-  #       "Shift+Print" = "exec slurp-screenshot region";
-  #       "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-booster -i 5";
-  #       "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-booster -d 5";
-  #       "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
-  #       "XF86AudioMedia" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-  #       "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-  #       "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
-  #       "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-  #       "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-  #       "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-  #       "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-  #       "${modifier}+Alt+Left" = "move workspace to output left";
-  #       "${modifier}+Alt+Right" = "move workspace to output right";
-  #     };
-  #   };
-  #   # extraOptions = [ "--verbose" "--debug" "--unsupported-gpu" "--my-next-gpu-wont-be-nvidia" ];
-  #   extraOptions = [ "--verbose" "--debug" ];
-  #   wrapperFeatures = {
-  #     base = true;
-  #     gtk = true;
-  #   };
-  #   xwayland = true;
-  # };
+  wayland.windowManager.sway = {
+    enable = true;
+    config = rec {
+      modifier = "Mod4";
+      left = "h";
+      down = "j";
+      up = "k";
+      right = "l";
+      terminal = "${pkgs.alacritty}/bin/alacritty";
+      menu = "bemenu-run -i --fn 'Hack 18'";
+      bars = [{ command = "\${pkgs.waybar}/bin/waybar"; }];
+      colors = {
+        background = "#${myColors.primary.background}";
+        focused = {
+          background = "#${myColors.primary.background}";
+          border = "#${myColors.borders.focused}";
+          childBorder = "#${myColors.borders.focused}";
+          text = "#${myColors.primary.foreground}";
+          indicator = "#${myColors.primary.foreground}";
+        };
+        unfocused = {
+          background = "#${myColors.primary.background}";
+          border = "#${myColors.borders.unfocused}";
+          childBorder = "#${myColors.borders.unfocused}";
+          text = "#${myColors.primary.foreground}";
+          indicator = "#${myColors.primary.foreground}";
+        };
+        focusedInactive = {
+          background = "#${myColors.primary.background}";
+          border = "#${myColors.borders.unfocused}";
+          childBorder = "#${myColors.borders.unfocused}";
+          text = "#${myColors.primary.foreground}";
+          indicator = "#${myColors.primary.foreground}";
+        };
+        urgent = {
+          background = "#${myColors.primary.background}";
+          border = "#${myColors.primary.alert}";
+          childBorder = "#${myColors.primary.alert}";
+          text = "#${myColors.primary.foreground}";
+          indicator = "#${myColors.primary.foreground}";
+        };
+      };
+      window.border = 1;
+      floating = {
+        border = 1;
+        criteria = [
+          { title = "Steam - Update News"; }
+          { title = "Picture in picture"; }
+          { class = "Pavucontrol"; }
+        ];
+      };
+      focus = {
+        followMouse = false;
+        forceWrapping = false;
+        mouseWarping = false;
+      };
+      fonts = {
+        names = [ "Hack " ];
+        size = 9.0;
+        style = "Normal";
+      };
+      gaps.smartBorders = "on";
+      startup = [
+        {
+          command = "${pkgs.swayidle}/bin/swayidle -w timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000' timeout 150 '${pkgs.sway}/bin/swaymsg \"output * dpms off\"' resume '${pkgs.sway}/bin/swaymsg \"output * dpms on\"' before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000'";
+        }
+        { command = "${pkgs.pasystray}/bin/pasystray"; }
+        { command = "${pkgs.mako}/bin/mako"; }
+        { command = "sleep 30 && ${pkgs.megasync}/bin/megasync"; }
+        { command = "dbus-sway-environment"; }
+        { command = "configure-gtk"; }
+      ];
+      input = {
+        "type:touchpad" = { drag = "enabled"; dwt = "enabled"; scroll_method = "two_finger"; tap = "enabled"; };
+      };
+      modes = { }; # Unset default "resize" mode
+      keybindings = lib.mkOptionDefault {
+        "${modifier}+Shift+q" = "nop Unset default kill";
+        "${modifier}+r" = "nop Unset default resize mode";
+        "${modifier}+q" = "kill";
+        "${modifier}+Control+r" = "reload";
+        "${modifier}+Control+l" = "exec ${pkgs.swaylock}/bin/swaylock -f -c 000000";
+        "${modifier}+Control+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
+        "${modifier}+x" = "splith";
+        "${modifier}+v" = "splitv";
+        "${modifier}+s" = "layout stacking";
+        "${modifier}+w" = "layout tabbed";
+        "${modifier}+e" = "layout toggle split";
+        "${modifier}+f" = "fullscreen";
+        "${modifier}+Space" = "floating toggle";
+        "${modifier}+Shift+Space" = "floating toggle";
+        "Print" = "exec slurp-screenshot fullscreen";
+        "Shift+Print" = "exec slurp-screenshot region";
+        "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-booster -i 5";
+        "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer --allow-booster -d 5";
+        "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
+        "XF86AudioMedia" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+        "XF86AudioMicMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+        "${modifier}+Alt+Left" = "move workspace to output left";
+        "${modifier}+Alt+Right" = "move workspace to output right";
+      };
+    };
+    # extraOptions = [ "--verbose" "--debug" "--unsupported-gpu" "--my-next-gpu-wont-be-nvidia" ];
+    extraOptions = [ "--verbose" "--debug" ];
+    wrapperFeatures = {
+      base = true;
+      gtk = true;
+    };
+    xwayland = true;
+  };
 }
