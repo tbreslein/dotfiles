@@ -103,7 +103,7 @@ in
       enable = true;
       layout = "us";
       displayManager = {
-        defaultSession = if useWayland then "river" else "none+dwm";
+        defaultSession = if useWayland then "sway" else "none+dwm";
         sddm.enable = true;
         sessionPackages =
           if useWayland
