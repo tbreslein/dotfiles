@@ -714,12 +714,21 @@ in
         { command = "configure-gtk"; }
       ];
       input = {
-        "type:touchpad" = { drag = "enabled"; dwt = "enabled"; scroll_method = "two_finger"; tap = "enabled"; };
+        "type:touchpad" = {
+            drag = "enabled";
+            dwt = "enabled"; 
+            scroll_method = "two_finger";
+            tap = "enabled";
+        };
+        "type:keyboard" = {
+            repeat_delay = "300";
+            repeat_date = "30";
+        };
       };
-      modes = { }; # Unset default "resize" mode
+      # modes = { }; # Unset default "resize" mode
       keybindings = lib.mkOptionDefault {
         "${modifier}+Shift+q" = "nop Unset default kill";
-        "${modifier}+r" = "nop Unset default resize mode";
+        # "${modifier}+r" = "nop Unset default resize mode";
         "${modifier}+q" = "kill";
         "${modifier}+Control+r" = "reload";
         "${modifier}+Control+l" = "exec ${pkgs.swaylock}/bin/swaylock -f -c 000000";
