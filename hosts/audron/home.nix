@@ -12,7 +12,7 @@
         if useWayland
         then ''
           #!/usr/bin/env sh
-          wlr-randr --output "eDP-1" --mode "2256x1504"
+          wlr-randr --output "eDP-1" --mode "2256x1504" --scale "1.0"
           swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/ok_16-9.jpg &
         ''
         else ''
@@ -28,7 +28,7 @@
         if useWayland
         then ''
           #!/usr/bin/env sh
-          wlr-randr --output "eDP-1" --mode "2256x1504" --pos "0,1080" --output "DP-2" --mode "1920x1080@60Hz" --pos "170,0"
+          wlr-randr --output "eDP-1" --mode "2256x1504" --pos "0,1080" --scale "1.0" --output "DP-2" --mode "1920x1080@60Hz" --pos "170,0" --scale "1.0"
           swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/ok_16-9.jpg -o 'DP-2' -m fill -i $HOME/MEGA/Wallpaper/bonfire.jpg &
         ''
         else ''
