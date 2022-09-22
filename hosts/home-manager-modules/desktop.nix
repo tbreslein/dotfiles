@@ -715,14 +715,14 @@ in
       ];
       input = {
         "type:touchpad" = {
-            drag = "enabled";
-            dwt = "enabled"; 
-            scroll_method = "two_finger";
-            tap = "enabled";
+          drag = "enabled";
+          dwt = "enabled";
+          scroll_method = "two_finger";
+          tap = "enabled";
         };
         "type:keyboard" = {
-            repeat_delay = "300";
-            repeat_date = "30";
+          repeat_delay = "300";
+          repeat_rate = "30";
         };
       };
       # modes = { }; # Unset default "resize" mode
