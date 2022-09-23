@@ -105,6 +105,10 @@ in
       displayManager = {
         defaultSession = if useWayland then "sway" else "none+dwm";
         sddm.enable = true;
+        autlogin = {
+          enable = true;
+          user = "tommy";
+        };
         sessionPackages =
           if useWayland
           then [
