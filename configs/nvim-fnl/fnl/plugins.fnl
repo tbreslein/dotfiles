@@ -79,9 +79,9 @@
   (use! :kylechui/nvim-surround
         :config #(plugin-setup :nvim-surround {}))
   (use! :gpanders/editorconfig.nvim)
-  (use! :TimUntersberger/neogit
-        :requires :nvim-lua/plenary.nvim
-        :config #(plugin-setup :neogit {}))
+  ;; (use! :TimUntersberger/neogit
+  ;;       :requires :nvim-lua/plenary.nvim
+  ;;       :config #(plugin-setup :neogit {}))
   (use! :pwntester/octo.nvim
         :requires [:nvim-lua/plenary.nvim :nvim-telescope/telescope.nvim :kyazdani42/nvim-web-devicons]
         :config #(plugin-setup :octo {}))
