@@ -161,7 +161,7 @@
         :H ["<cmd>vertical resize -2<cr>" "resize left"]
         :L ["<cmd>vertical resize +2<cr>" "resize right"]
         ;; :g [:<cmd>Neogit<cr> :Neogit]
-        :g [:<cmd>Lazygit<cr> :Lazygit]
+        :g [:<cmd>LazyGit<cr> :LazyGit]
         :f {:name :Telescope
             :b ["<cmd>Telescope current_burrer_fuzzy_find<cr>" "buffer fzf"]
             :f ["<cmd>Telescope find_files hidden=true<cr>" "file finder"]
