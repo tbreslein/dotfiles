@@ -79,6 +79,7 @@
   (use! :kylechui/nvim-surround
         :config #(plugin-setup :nvim-surround {}))
   (use! :gpanders/editorconfig.nvim)
+  (use! :kdheepak/lazygit.nvim)
   ;; (use! :TimUntersberger/neogit
   ;;       :requires :nvim-lua/plenary.nvim
   ;;       :config #(plugin-setup :neogit {}))
