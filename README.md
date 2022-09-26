@@ -47,7 +47,7 @@ You need to activate flake commands in the current `/etc/nixos/configuration.nix
 
 ```nix
 nix = {
-    packages = pkgs.nixFlakes;
+    packages = pkgs.nixVersions.stable;
     extraOptions = ''
         experimental-features = nix-command flakes
     '';
