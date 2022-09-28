@@ -44,7 +44,7 @@ in
     bluetooth.enable = true;
     opengl = {
       extraPackages = with pkgs; [
-        mesa_drivers
+        mesa.drivers
         vaapiIntel
         vaapiVdpau
         libvdpau-va-gl
