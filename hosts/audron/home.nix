@@ -22,7 +22,7 @@
         '';
     };
     "homescreenlayout" = {
-      target = ".local/bin/singlescreenlayout";
+      target = ".local/bin/homescreenlayout";
       executable = true;
       text =
         if useWayland
