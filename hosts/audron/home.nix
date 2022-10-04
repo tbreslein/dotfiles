@@ -21,6 +21,22 @@
           feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png
         '';
     };
+    "homescreenlayout" = {
+      target = ".local/bin/singlescreenlayout";
+      executable = true;
+      text =
+        if useWayland
+        then ''
+          #!/usr/bin/env sh
+          wlr-randr --output "eDP-1" --mode "2256x1504@59.999Hz" --pos "592,1440" --scale "1.0" --output "DP-2" --mode "3440x1440@144Hz" --pos "0,0" --scale "1.0"
+          swaybg -o 'eDP-1' -m fill -i $HOME/MEGA/Wallpaper/ok_16-9.jpg -o 'DP-2' -m fill -i $HOME/MEGA/Wallpaper/ok_21-9.jpg &
+        ''
+        else ''
+          #!/bin/sh
+          xrandr --output eDP-1 --primary --mode 2256x1504
+          feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png
+        '';
+    };
     "workscreenlayout" = {
       target = ".local/bin/workscreenlayout";
       executable = true;
