@@ -29,7 +29,7 @@ in
   environment = {
     systemPackages = with pkgs; [
       (writeShellScriptBin "backup-to-styx" ''
-        rsync -a --info=progress2 ${homeDir}/work root@styx:/archive/admin/audron/$(date +$F)/work
+        rsync -a --info=progress2 ${homeDir}/work ganymedroot:/archive/admin/audron/$(date +$F)/
       '')
 
       # needed for eduroam:
