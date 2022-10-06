@@ -20,19 +20,12 @@
 (set vim.g.gruvbox_material_transparent_background 1)
 (set vim.g.gruvbox_material_sign_column_background :none)
 
-(plugin-setup :poimandres
-              {:bold_vert_slit true
-               :dim_nc_background true
-               :disable_background true
-               :disable_float_background false})
-
 (set vim.g.catppuccin_flavour :mocha)
 (plugin-setup :catppuccin
               {:transparent_background true
                :integrations {:ts_rainbow true :barbar true}})
 
-;; (color! :poimandres)
-(color! :catppuccin)
+(color! :gruvbox-material)
 
 ;; -------
 ;; EDITING
