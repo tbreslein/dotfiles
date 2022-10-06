@@ -8,7 +8,7 @@
           src = fetchGit {
             url = "https://github.com/tbreslein/dwm.git";
             ref = "build";
-            rev = "ba4a8896090bde236fc679a3e041179ac520e99d";
+            rev = "7472a24114cd7fca4e039a464a6266428f963898";
           };
         });
       })
