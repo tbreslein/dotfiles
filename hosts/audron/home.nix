@@ -1,7 +1,7 @@
 { config, pkgs, useWayland, homeDir, ... }:
 
 {
-  programs.alacritty.settings.font.size = 16;
+  programs.alacritty.settings.font.size = 9;
   services.blueman-applet.enable = true;
 
   home.file = {
