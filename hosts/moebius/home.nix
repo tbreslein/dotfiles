@@ -16,7 +16,7 @@
         ''
         else ''
           #!/bin/sh
-          #xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
+          xrandr --output DisplayPort-0 --primary --mode 3440x1440 --rate '120.00' --pos 0x0 --rotate normal --output DisplayPort-1 --off --output DisplayPort-2 --mode 1920x1080 --rate 60 --pos 3440x0 --rotate normal
           feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png $HOME/MEGA/Wallpapercyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg
         '';
     };
@@ -32,7 +32,7 @@
         ''
         else ''
           #!/bin/sh
-          #xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
+          xrandr --output DisplayPort-0 --primary --mode 3440x1440 --rate '120.00' --pos 0x1080 --rotate normal --output DisplayPort-1 --off --output DisplayPort-2 --mode 1920x1080 --rate 60 --pos 168x0 --rotate normal
           feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png $HOME/MEGA/Wallpapercyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg
         '';
     };
