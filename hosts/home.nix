@@ -44,8 +44,6 @@ in
       VISUAL = visual;
       _JAVA_AWT_WM_NONREPARENTING = 1;
       DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/docker.sock";
-      XDG_SESSION_TYPE = "wayland";
-      XDG_CURRENT_DESKTOP = "wayland";
       #GTK_USE_PORTAL = if useWayland then 0 else "";
     };
   };

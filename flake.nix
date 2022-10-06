@@ -21,7 +21,7 @@
       user = "tommy";
       homeDir = "/home/${user}";
 
-      useWayland = true;
+      useWayland = false;
 
       pkgs = import nixpkgs {
         inherit system;
@@ -182,43 +182,6 @@
         };
       };
 
-      poimandres = {
-        primary = {
-          background = "1b1e28";
-          foreground = "a6accd";
-          accent = "5de4c7";
-          alert = "db4b4b";
-        };
-        normal = {
-          black = "1b1e28";
-          red = "d0679d";
-          green = "5de4c7";
-          yellow = "fffac2";
-          blue = "89ddff";
-          magenta = "fcc5e9";
-          cyan = "add7ff";
-          white = "ffffff";
-        };
-        bright = {
-          black = "303340";
-          red = "d0679d";
-          green = "5de4c7";
-          yellow = "fffac2";
-          blue = "89ddff";
-          magenta = "fcc5e9";
-          cyan = "add7ff";
-          white = "ffffff";
-        };
-        selection = {
-          background = "303340";
-          foreground = "ffffff";
-        };
-        borders = {
-          focused = "5de4c7";
-          unfocused = "1b1e28";
-        };
-      };
-
       tokyonight_storm = {
         primary = {
           background = "24283b";
@@ -330,7 +293,7 @@
         };
       };
 
-      colors = catppuccin;
+      colors = gruvbox_hard_dark;
     in
     {
       nixosConfigurations = import ./hosts {
