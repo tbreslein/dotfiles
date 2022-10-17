@@ -131,7 +131,7 @@
   (use! :nvim-lualine/lualine.nvim
         :requires [:kyazdani42/nvim-web-devicons :WhoIsSethDaniel/lualine-lsp-progress.nvim]
         :config #(plugin-setup :lualine {:options {:globalstatus true
-                                                   :theme :gruvbox_material
+                                                   :theme :gruvbox-material
                                                    :component_separators ""
                                                    :section_separators ""}
                                          :sections {:lualine_a [:mode]
