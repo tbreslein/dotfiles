@@ -1,11 +1,11 @@
-{ config, lib, pkgs, user, homeDir, dwm, useWayland, ... }:
+{ config, lib, pkgs, user, homeDir, dwm, ... }:
 
 {
   imports = [
     (import ./configuration-modules/users.nix { inherit config pkgs user; })
     (import ./configuration-modules/activationScripts.nix { inherit config homeDir; })
-    (import ./configuration-modules/packages.nix { inherit config pkgs homeDir useWayland; })
-    (import ./configuration-modules/wm.nix { inherit config pkgs homeDir useWayland; })
+    (import ./configuration-modules/packages.nix { inherit config pkgs homeDir; })
+    (import ./configuration-modules/wm.nix { inherit config pkgs homeDir; })
   ] ++ [
     ./configuration-modules/boot.nix
     ./configuration-modules/printing-scanning.nix
@@ -42,10 +42,6 @@
       xkbModel = "pc105";
       xkbOptions = "";
     };
-  };
-
-  security.pam.services.swaylock = lib.mkIf useWayland {
-    text = "auth include login";
   };
 
   # Copy the NixOS configuration file and link it from the resulting system

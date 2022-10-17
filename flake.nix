@@ -21,8 +21,6 @@
       user = "tommy";
       homeDir = "/home/${user}";
 
-      useWayland = false;
-
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -298,7 +296,7 @@
     {
       nixosConfigurations = import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs user homeDir system overlays colors useWayland;
+        inherit inputs user homeDir system overlays colors;
       };
     };
 }

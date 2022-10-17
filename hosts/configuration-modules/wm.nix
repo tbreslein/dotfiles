@@ -1,4 +1,4 @@
-{ config, pkgs, homeDir, useWayland, ... }:
+{ config, pkgs, homeDir, ... }:
 
 {
   nixpkgs = {
@@ -25,36 +25,9 @@
     ];
   };
 
-  environment = {
-    systemPackages =
-      if useWayland
-      then with pkgs; [
-        (river.overrideAttrs (prevAttrs: rec {
-          postInstall =
-            let
-              riverSession = ''
-                [Desktop Entry]
-                Name=River
-                Comment=Dynamic Wayland compositor
-                Exec=river
-                Type=Application
-              '';
-            in
-            ''
-              mkdir -p $out/share/wayland-sessions
-              echo "${riverSession}" > $out/share/wayland-sessions/river.desktop
-            '';
-          passthru.providedSessions = [ "river" ];
-        }))
-        glib
-      ]
-      else with pkgs; [ dwmblocks ];
-  };
+  environment.systemPackages = with pkgs; [ dwmblocks ];
 
-  programs = {
-    light.enable = true;
-    sway.enable = true;
-  };
+  programs.light.enable = true;
 
   services = {
     dbus.enable = true;
@@ -62,39 +35,14 @@
       enable = true;
       layout = "us";
       displayManager = {
-        defaultSession = if useWayland then "sway" else "none+dwm";
-        sddm.enable = useWayland;
-        lightdm.enable = !useWayland;
+        defaultSession = "none+dwm";
+        lightdm.enable = true;
         autoLogin = {
-          enable = !useWayland;
+          enable = true;
           user = "tommy";
         };
-        sessionPackages =
-          if useWayland
-          then [
-            (pkgs.river.overrideAttrs
-              (prevAttrs: rec {
-                postInstall =
-                  let
-                    riverSession = ''
-                      [Desktop Entry]
-                      Name=River
-                      Comment=Dynamic Wayland compositor
-                      Exec=river
-                      Type=Application
-                    '';
-                  in
-                  ''
-                    mkdir -p $out/share/wayland-sessions
-                    echo "${riverSession}" > $out/share/wayland-sessions/river.desktop
-                  '';
-                passthru.providedSessions = [ "river" ];
-              })
-            )
-          ]
-          else [ ];
       };
-      windowManager.dwm.enable = !useWayland;
+      windowManager.dwm.enable = true;
     };
   };
 }

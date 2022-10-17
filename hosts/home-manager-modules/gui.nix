@@ -1,4 +1,4 @@
-{ pkgs, colors, useWayland, ... }:
+{ pkgs, colors, ... }:
 
 {
   home = {
@@ -30,10 +30,10 @@
 
   services = {
     flameshot = {
-      enable = !useWayland;
+      enable = true;
       settings.General.uiColor = "#${colors.primary.accent}";
     };
-    network-manager-applet.enable = !useWayland;
-    pasystray.enable = !useWayland;
+    network-manager-applet.enable = true;
+    pasystray.enable = true;
   };
 }

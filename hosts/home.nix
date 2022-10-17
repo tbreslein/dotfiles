@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, homeDir, colors, useWayland, ... }:
+{ config, lib, pkgs, user, homeDir, colors, ... }:
 
 let
   browser = "brave";
@@ -14,9 +14,9 @@ in
 {
   imports = [
     (import ./home-manager-modules/coding.nix { inherit pkgs shell; })
-    (import ./home-manager-modules/desktop.nix { inherit pkgs lib font colors useWayland homeDir; })
+    (import ./home-manager-modules/desktop.nix { inherit pkgs lib font colors homeDir; })
     ./home-manager-modules/fonts.nix
-    (import ./home-manager-modules/gui.nix { inherit pkgs colors useWayland; })
+    (import ./home-manager-modules/gui.nix { inherit pkgs colors; })
     (import ./home-manager-modules/neovim.nix { inherit pkgs nvimPkg; })
     (import ./home-manager-modules/shell.nix { inherit pkgs editor shell; })
     (import ./home-manager-modules/terminal.nix { inherit font colors; })
@@ -44,7 +44,6 @@ in
       VISUAL = visual;
       _JAVA_AWT_WM_NONREPARENTING = 1;
       DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/docker.sock";
-      #GTK_USE_PORTAL = if useWayland then 0 else "";
     };
   };
 
@@ -53,5 +52,5 @@ in
   };
 
   programs.home-manager.enable = true;
-  xsession.enable = !useWayland;
+  xsession.enable = true;
 }

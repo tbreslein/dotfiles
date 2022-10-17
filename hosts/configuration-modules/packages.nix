@@ -1,4 +1,4 @@
-{ config, pkgs, homeDir, useWayland, ... }:
+{ config, pkgs, homeDir, ... }:
 
 {
   nix = {
@@ -72,11 +72,6 @@
         init-author=tbreslein
       '';
     };
-    slock.enable = !useWayland;
-  };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = useWayland;
+    slock.enable = true;
   };
 }
