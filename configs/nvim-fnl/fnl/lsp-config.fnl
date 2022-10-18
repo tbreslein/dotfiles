@@ -158,7 +158,7 @@
 (let [servers [:ansiblels
                :bashls
                :clangd
-               :ccls
+               ;; :ccls
                :clojure_lsp
                :cmake
                :cssls
