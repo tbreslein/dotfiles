@@ -62,6 +62,8 @@
                                        :default_capabilities) (vim.lsp.protocol.make_client_capabilities))
                      : on_attach})
 
+(tset lsp-defaults :capabilities :offsetEncoding [:utf-16])
+
 (local nvim_lsp (require :lspconfig))
 (set nvim_lsp.util.default_config
      (vim.tbl_deep_extend :force nvim_lsp.util.default_config lsp-defaults))
