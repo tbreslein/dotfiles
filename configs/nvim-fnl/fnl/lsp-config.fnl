@@ -112,11 +112,12 @@
                      :update_in_insert true}))
 
 ;; Language Servers
-(local luadev
-       (plugin-setup :lua-dev
-                     {:lspconfig {:settings {:Lua {:diagnostics {:globals [:vim]}}}}}))
+;; (local neodev
+;;        (plugin-setup :neodev
+;;                      {:lspconfig {:settings {:Lua {:diagnostics {:globals [:vim]}}}}}))
+(local neodev ((. (require :neodev) :setup) {}))
 
-(nvim_lsp.sumneko_lua.setup luadev)
+(nvim_lsp.sumneko_lua.setup neodev)
 (plugin-setup :typescript {:server {: on_attach}})
 
 (let [nls (require :null-ls)
