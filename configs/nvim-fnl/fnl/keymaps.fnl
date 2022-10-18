@@ -125,7 +125,7 @@
                 :opts default-opts}]
       autocmds [{1 :FileType
                  2 "set commentstring=//%s"
-                 :opts {:pattern [:*.c :*.cpp]}
+                 :opts {:pattern [:*.c :*.h :*.cpp :*.hpp]}
                  :description "set commentstring for C and C++"}
                 {1 :TextYankPost
                  2 "lua vim.highlight.on_yank {on_visual = false}"
@@ -160,7 +160,6 @@
         :K ["<cmd>resize +2<cr>" "resize up"]
         :H ["<cmd>vertical resize -2<cr>" "resize left"]
         :L ["<cmd>vertical resize +2<cr>" "resize right"]
-        ;; :g [:<cmd>Neogit<cr> :Neogit]
         :g [:<cmd>LazyGit<cr> :LazyGit]
         :f {:name :Telescope
             :b ["<cmd>Telescope current_burrer_fuzzy_find<cr>" "buffer fzf"]

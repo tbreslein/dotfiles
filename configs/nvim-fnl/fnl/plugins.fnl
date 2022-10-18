@@ -85,8 +85,8 @@
         :config #(plugin-setup :octo {}))
 
   ;; languages
-  (use! :nathom/filetype.nvim
-        :config #(plugin-setup :filetype {:overrides {:extensions {:bb :clojure} :shebang {:bb :clojure}}}))
+  ;; (use! :nathom/filetype.nvim
+  ;;       :config #(plugin-setup :filetype {:overrides {:extensions {:bb :clojure} :shebang {:bb :clojure}}}))
   (use! :adelarsq/neofsharp.vim)
   (use! :rust-lang/rust.vim)
   (use! :simrat39/rust-tools.nvim
