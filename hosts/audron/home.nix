@@ -12,6 +12,7 @@
         config = {
           eDP-1 = {
             enable = true;
+            crtc = 0;
             primary = true;
             position = "0x0";
             mode = "2256x1504";
@@ -32,6 +33,7 @@
         config = {
           eDP-1 = {
             enable = true;
+            crtc = 0;
             primary = true;
             position = "0x1080";
             mode = "2256x1504";
@@ -43,6 +45,7 @@
           };
           DP-2 = {
             enable = true;
+            crtc = 1;
             primary = false;
             position = "168x0";
             mode = "1920x1080";
@@ -63,6 +66,7 @@
         config = {
           eDP1 = {
             enable = true;
+            crtc = 0;
             primary = true;
             position = "0x1440";
             mode = "2256x1504";
@@ -74,6 +78,7 @@
           };
           DP2 = {
             enable = true;
+            crtc = 1;
             primary = false;
             position = "592x0";
             mode = "3440x1440";
@@ -125,6 +130,7 @@
       megasync &
       dwmblocks &
       xset s 180 120
+      autorandr -c
     '';
   };
 }
