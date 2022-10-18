@@ -5,6 +5,12 @@
     doas = {
       enable = true;
       wheelNeedsPassword = true;
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          keepEnv = true;
+        }
+      ];
     };
     sudo = {
       enable = true;
