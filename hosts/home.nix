@@ -23,6 +23,9 @@ in
     (import ./home-manager-modules/terminaltools.nix { inherit pkgs editor shell; })
   ];
 
+  # TEMP: upstream bug workaround
+  manual.manpages.enable = false;
+
   home = {
     username = user;
     homeDirectory = homeDir;
