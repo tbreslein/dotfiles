@@ -28,6 +28,7 @@
       enable = "${shell}" == "fish";
       shellInit = ''
         fish_add_path $HOME/.local/bin
+        fish_add_path $HOME/.cargo/bin
         set -U fish_greeting
         fish_vi_key_bindings insert
       '';
