@@ -2,28 +2,27 @@
 
 {
   home = {
-    packages = [
-      repoteer.packages.x86_64-linux.default
-      pkgs.fd
-      pkgs.freshfetch
-      pkgs.imv
-      pkgs.openfortivpn
-      pkgs.pass
-      pkgs.playerctl
-      pkgs.pamixer
-      pkgs.python3Minimal
-      pkgs.ripgrep
-      pkgs.trash-cli
-      pkgs.zenith
-      pkgs.wget
-      pkgs.curl
-      pkgs.gnutar
-      pkgs.p7zip
-      pkgs.unrar
-      pkgs.zip
-      pkgs.unzip
-      pkgs.git
-    ];
+    packages = with pkgs; [
+      fd
+      freshfetch
+      imv
+      openfortivpn
+      pass
+      playerctl
+      pamixer
+      python3Minimal
+      ripgrep
+      trash-cli
+      zenith
+      wget
+      curl
+      gnutar
+      p7zip
+      unrar
+      zip
+      unzip
+      git
+    ] ++ [ repoteer.packages.x86_64-linux.default ];
   };
 
   programs = {
