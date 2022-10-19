@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, homeDir, colors, ... }:
+{ config, lib, pkgs, user, homeDir, colors, repoteer, ... }:
 
 let
   browser = "brave";
@@ -20,7 +20,7 @@ in
     (import ./home-manager-modules/neovim.nix { inherit pkgs nvimPkg; })
     (import ./home-manager-modules/shell.nix { inherit pkgs editor shell; })
     (import ./home-manager-modules/terminal.nix { inherit font colors; })
-    (import ./home-manager-modules/terminaltools.nix { inherit pkgs editor shell; })
+    (import ./home-manager-modules/terminaltools.nix { inherit pkgs editor shell repoteer; })
   ];
 
   # TEMP: upstream bug workaround

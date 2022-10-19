@@ -13,9 +13,14 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    repoteer = {
+      url = "github:tbreslein/repoteer";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }:
+  outputs = inputs@{ self, nixpkgs, repoteer, ... }:
     let
       system = "x86_64-linux";
       user = "tommy";
@@ -296,7 +301,7 @@
     {
       nixosConfigurations = import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs user homeDir system overlays colors;
+        inherit inputs user homeDir system overlays colors repoteer;
       };
     };
 }
