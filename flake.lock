@@ -86,11 +86,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1666080735,
-        "narHash": "sha256-4YWYJgzt9mGuAvXAuEziYms+bYlk/1spyt3iLizRL5I=",
+        "lastModified": 1666253070,
+        "narHash": "sha256-MtaNgghmfp+ywh5mv9FcspFT4ACaYINSN+D98PCkrP0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "42f81ac107c5a9a177888080107094dba57f134e",
+        "rev": "c485669ca529e01c1505429fa9017c9a93f15559",
         "type": "github"
       },
       "original": {
@@ -109,11 +109,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1666150346,
-        "narHash": "sha256-RnQhovyu3t6WuruYHhzcm9bgs7CPsCFSaa01N84gp+I=",
+        "lastModified": 1666199281,
+        "narHash": "sha256-0hPwjHBszpgiSJvsgquXkN5C8XWS7S8ziFEafXgvYeY=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "96cf385a7f4ab29f6987c10b5c3625d99b22f6fc",
+        "rev": "fad558b6affd54075654dd55922348f76a95e338",
         "type": "github"
       },
       "original": {
@@ -132,11 +132,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1666168201,
-        "narHash": "sha256-/qVyU8mp71ndElwLlfKn4u8kgyokO1E1FILM1wxvdRw=",
+        "lastModified": 1666254042,
+        "narHash": "sha256-hW78foWpAWm9vtG8nq+2d555E+ZGNoW/vGG4zOKt/+E=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "47ff99f9fefc018543109764669942f3e300ffa3",
+        "rev": "94e2111d084d8ac4ed99ccf1fff184cb9e3ab154",
         "type": "github"
       },
       "original": {
@@ -147,11 +147,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1666109165,
-        "narHash": "sha256-BMLyNVkr0oONuq3lKlFCRVuYqF75CO68Z8EoCh81Zdk=",
+        "lastModified": 1666198336,
+        "narHash": "sha256-VTrWD8Bb48h2pi57P1++LuvZIgum3gSLiRzZ/8q3rg0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "32096899af23d49010bd8cf6a91695888d9d9e73",
+        "rev": "db25c4da285c5989b39e4ce13dea651a88b7a9d4",
         "type": "github"
       },
       "original": {
@@ -188,11 +188,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1666190173,
-        "narHash": "sha256-Ir/T7N5aQGbDkqU4vtdTX5GewMIE1tudcDll/yju5J0=",
+        "lastModified": 1666249482,
+        "narHash": "sha256-Xkwhv760r+DafmaVbqIOhhCPEBfBcgUQD56awW4LxVE=",
         "owner": "tbreslein",
         "repo": "repoteer",
-        "rev": "bde4d5da927d64acb6330d2f4195940e27fd4780",
+        "rev": "f9c4d55d841d7f992de852c2e901f50d6212242f",
         "type": "github"
       },
       "original": {
