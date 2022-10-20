@@ -188,11 +188,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1666177727,
-        "narHash": "sha256-HGykNpNrxJ/W0RkS8oXkatCAlGFiTCyO7dAy/fkG9Ko=",
+        "lastModified": 1666190173,
+        "narHash": "sha256-Ir/T7N5aQGbDkqU4vtdTX5GewMIE1tudcDll/yju5J0=",
         "owner": "tbreslein",
         "repo": "repoteer",
-        "rev": "642ed38f5ed888766d07408d748a7924f8df7115",
+        "rev": "bde4d5da927d64acb6330d2f4195940e27fd4780",
         "type": "github"
       },
       "original": {
