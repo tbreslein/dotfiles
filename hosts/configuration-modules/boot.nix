@@ -16,6 +16,5 @@
         configurationLimit = 10;
       };
     };
-    kernelPackages = pkgs.linuxPackages_latest;
   };
 }
