@@ -70,7 +70,6 @@ in
     avahi.interfaces = [ home-eth-interface wifi-interface ];
     blueman.enable = true;
     fprintd.enable = true; #fingerprint support
-
     tlp = {
       enable = true;
       settings = {
@@ -101,6 +100,13 @@ in
     printing.clientConf = ''
       ServerName 172.19.66.2
     '';
+
+    cron = {
+      enable = true;
+      systemCronJobs = [
+        "@reboot sleep 3 && systemctl restart NetworkManager.service"
+      ];
+    };
   };
 
   networking = {
