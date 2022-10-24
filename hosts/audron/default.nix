@@ -24,7 +24,7 @@ in
     extraModprobeConfig = "options snd-hda-intel model=dell-headset=multi";
     kernelParams = [ "mem_sleep_default=deep" "nvme.noacpi=1" ]; # both for power consumption
     loader.timeout = 1;
-    kernelPackages = pkgs.linuxPackages_5_19;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   environment = {
