@@ -104,7 +104,7 @@ in
     cron = {
       enable = true;
       systemCronJobs = [
-        "@reboot sleep 3 && systemctl restart NetworkManager.service"
+        "@reboot sleep 10 && systemctl restart NetworkManager.service"
       ];
     };
   };
