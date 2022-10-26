@@ -2,7 +2,6 @@
 (import-macros {: plugin-setup : telescope-load-extension} :util-macros)
 
 (packer-setup)
-
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------
@@ -61,7 +60,6 @@
                                                                    :external_mode true 
                                                                    :max_file_lines nil}}))
 
-  (use! :Olical/conjure)
   (use! :danymat/neogen
         :requires :nvim-lua/plenary.nvim
         :config #(plugin-setup :neogen {}))
