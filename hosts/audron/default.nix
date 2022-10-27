@@ -100,13 +100,6 @@ in
     printing.clientConf = ''
       ServerName 172.19.66.2
     '';
-
-    cron = {
-      enable = true;
-      systemCronJobs = [
-        "@reboot sleep 10 && systemctl restart NetworkManager.service"
-      ];
-    };
   };
 
   networking = {
