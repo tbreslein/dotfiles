@@ -22,6 +22,9 @@
       zip
       unzip
       git
+      tldr
+      procs
+      broot
     ] ++ [ repoteer.packages.x86_64-linux.default ];
   };
 
