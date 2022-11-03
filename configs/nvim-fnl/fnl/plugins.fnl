@@ -15,9 +15,6 @@
 
   ;; themes
   (use! :sainnhe/gruvbox-material)
-  (use! :olivercederborg/poimandres.nvim)
-  (use! :catppuccin/nvim
-        :as :catppuccin)
 
   ;; neorg
   (use! :nvim-neorg/neorg
@@ -38,19 +35,11 @@
         :requires [:nvim-telescope/telescope.nvim :stevearc/dressing.nvim])
 
   ;; functionality
-  (use! :akinsho/toggleterm.nvim
-        :tag "v2.*"
-        :config #(plugin-setup :toggleterm {}))
-
   (use! :nvim-neo-tree/neo-tree.nvim
         :branch "v2.x"
         :requires [:nvim-lua/plenary.nvim :kyazdani42/nvim-web-devicons :MunifTanjim/nui.nvim])
         :config #(plugin-setup :neo-tree {:window {:mappings {:x :open_split :v :open_vsplit}}})
 
-  (use! :phaazon/hop.nvim
-        :config #(plugin-setup :hop {:multi_windows true}))
-  (use! :toppair/reach.nvim
-        :config #(plugin-setup :reach {:notifications true}))
   (use! :nvim-treesitter/nvim-treesitter
         :run ":TSUpdate"
         :config #(plugin-setup :nvim-treesitter.configs {:autotag {:enable true} 
@@ -59,10 +48,6 @@
                                                          :rainbow {:enable true 
                                                                    :external_mode true 
                                                                    :max_file_lines nil}}))
-
-  (use! :danymat/neogen
-        :requires :nvim-lua/plenary.nvim
-        :config #(plugin-setup :neogen {}))
 
   ;; editing
   (use! :nvim-pack/nvim-spectre
@@ -85,11 +70,9 @@
   ;; languages
   ;; (use! :nathom/filetype.nvim
   ;;       :config #(plugin-setup :filetype {:overrides {:extensions {:bb :clojure} :shebang {:bb :clojure}}}))
-  (use! :adelarsq/neofsharp.vim)
   (use! :rust-lang/rust.vim)
   (use! :simrat39/rust-tools.nvim
         :requires :neovim/nvim-lspconfig)
-  (use! :cespare/vim-toml)
   (use! :jose-elias-alvarez/typescript.nvim)
 
   ;; LSP
@@ -110,17 +93,10 @@
                    :rafamadriz/friendly-snippets
                    :davidsierradz/cmp-conventionalcommits]
         )
-  (use! :folke/neodev.nvim)
 
   ;; Telescope
   (use! :nvim-telescope/telescope.nvim
         :requires :nvim-lua/plenary.nvim)
-  (use! :ahmedkhalf/project.nvim
-        :requires :nvim-telescope/telescope.nvim
-        :config (fn [] (telescope-load-extension :projects) (plugin-setup :project_nvim {})))
-  (use! :ThePrimeagen/git-worktree.nvim
-        :requires :nvim-telescope/telescope.nvim
-        :config (fn [] (telescope-load-extension :git_worktree) (plugin-setup :git-worktree {})))
 
   ;; UI
   (use! :nvim-lualine/lualine.nvim

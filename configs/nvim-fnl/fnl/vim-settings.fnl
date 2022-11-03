@@ -1,15 +1,15 @@
 (require-macros :hibiscus.vim)
 (import-macros {: plugin-setup} :util-macros)
-
 ;; ----
 ;; MISC
 ;; ----
+
 (exec [[:filetype :plugin :indent :on]])
 (set vim.opt.encoding :utf-8)
-
 ;; ------
 ;; COLORS
 ;; ------
+
 (set vim.o.termguicolors true)
 (set vim.o.background :dark)
 
@@ -20,16 +20,11 @@
 (set vim.g.gruvbox_material_transparent_background 1)
 (set vim.g.gruvbox_material_sign_column_background :none)
 
-;; (set vim.g.catppuccin_flavour :mocha)
-;; (plugin-setup :catppuccin
-;;               {:transparent_background true
-;;                :integrations {:ts_rainbow true :barbar true}})
-
 (color! :gruvbox-material)
-
 ;; -------
 ;; EDITING
 ;; -------
+
 (set vim.opt.shiftwidth 4)
 (set vim.opt.tabstop 4)
 (set vim.g.mapleader " ")
@@ -44,10 +39,10 @@
 (set vim.opt.shiftround true)
 (set vim.opt.laststatus 2)
 (set vim.opt.pumheight 10)
-
 ;; --
 ;; UI
 ;; --
+
 (set vim.wo.colorcolumn :120)
 (set vim.opt.cursorline true)
 (set vim.wo.number true)
@@ -60,10 +55,10 @@
 (set vim.opt.hidden true)
 (set vim.opt.signcolumn :yes)
 (set+ listchars "eol:↴")
-
 ;; -------
 ;; FOLDING
 ;; -------
+
 (set vim.opt.conceallevel 0)
 (set vim.opt.foldcolumn :1)
 (set vim.opt.foldlevel 99)

@@ -23,21 +23,6 @@
                 :mode [:n]
                 :description "move focus right"
                 :opts default-opts}
-               {1 :<c-t>
-                2 "<cmd>ToggleTerm size=20<cr>"
-                :mode [:n]
-                :description "toggle terminal"
-                :opts default-opts}
-               {1 :s
-                2 :<cmd>HopWord<cr>
-                :mode [:n]
-                :description "hop word forward"
-                :opts default-opts}
-               {1 :S
-                2 :<cmd>HopWordBC<cr>
-                :mode [:n]
-                :description "hop word backward"
-                :opts default-opts}
                {1 "<"
                 2 :<gv
                 :mode [:v]
@@ -165,37 +150,13 @@
             :b ["<cmd>Telescope current_burrer_fuzzy_find<cr>" "buffer fzf"]
             :f ["<cmd>Telescope find_files hidden=true<cr>" "file finder"]
             :g ["<cmd>Telescope live_grep<cr>" "live grep"]
-            :h ["<cmd>Telescope notify<cr>" "notify history"]
-            :p ["<cmd>Telescope projects<cr>" :projects]
-            :t [":lua require('telescope').extensions.git_worktree.git_worktrees()<cr>"
-                "git worktrees"]}
-        :n {:name "neogen ++ neotest"
-            :d ["<cmd>lua require('neogen').generate()<cr>"
-                "generate docstring"]
-            :t {:name :neotest
-                :a ["<cmd>lua require('neotest').run.attach()<cr>" :Attach]
-                :f ["<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>"
-                    "Run File"]
-                :F ["<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>"
-                    "Debug File"]
-                :l ["<cmd>lua require('neotest').run.run_last()<cr>"
-                    "Run Last"]
-                :L ["<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>"
-                    "Debug Last"]
-                :n ["<cmd>lua require('neotest').run.run()<cr>" "Run Nearest"]
-                :N ["<cmd>lua require('neotest').run.run({ strategy = 'dap' })<cr>"
-                    "Debug Nearest"]
-                :o ["<cmd>lua require('neotest').output.open({enter = true})<cr>"
-                    :Output]
-                :q ["<cmd>lua require('neotest').run.stop()<cr>" :Stop]
-                :s ["<cmd>lua require('neotest').summary.toggle()<cr>"
-                    :Summary]}}
+            :h ["<cmd>Telescope notify<cr>" "notify history"]}
         :p {:name "File explorer"
             :v ["<cmd>Neotree filesystem reveal float<cr>"
                 "file browser as float"]
             :p ["<cmd>Neotree filesystem reveal left<cr>"
                 "file browser on the left"]}
-        :r {:name "refac ++ spectre"
+        :r {:name :refactor
             :r ["<esc><cmd>lua require('telescope').extensions.refactoring.refactors()<cr>"
                 "open refactoring in telescope"]
             :e ["<esc><cmd>lua require('refactoring').refactor('Extract Function')<cr>"

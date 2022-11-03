@@ -103,8 +103,8 @@
 
 (cmp.setup.cmdline ":" {:sources [{:name :cmdline}]})
 (cmp.setup.cmdline "/" {:sources [{:name :buffer}]})
-
 ;; needed for nvim-ts-autotag
+
 (tset vim.lsp.handlers :textDocument/publishDiagnostics
       (vim.lsp.with vim.lsp.diagnostic.on_publish_diagnostics
                     {:underline true
@@ -112,12 +112,7 @@
                      :update_in_insert true}))
 
 ;; Language Servers
-;; (local neodev
-;;        (plugin-setup :neodev
-;;                      {:lspconfig {:settings {:Lua {:diagnostics {:globals [:vim]}}}}}))
-(local neodev ((. (require :neodev) :setup) {}))
 
-(nvim_lsp.sumneko_lua.setup neodev)
 (plugin-setup :typescript {:server {: on_attach}})
 
 (let [nls (require :null-ls)
@@ -163,8 +158,6 @@
                :clojure_lsp
                :cmake
                :cssls
-               :csharp_ls
-               :fsautocomplete
                :gopls
                :hls
                :html
