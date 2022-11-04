@@ -80,9 +80,9 @@
             enable = true;
             crtc = 1;
             primary = false;
-            position = "592x0";
+            position = "0x0";
             mode = "3440x1440";
-            rate = "50.00";
+            rate = "60.00";
             scale = {
               x = 1.0;
               y = 1.0;
