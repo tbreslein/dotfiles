@@ -47,7 +47,7 @@
         pushd ${homeDir}/.dotfiles && {
             git pull && \
             nix flake update && \
-            sudo nixos-rebuild --upgrade-all switch --flake .#"$(cat /etc/hostname)" && \
+            sudo nixos-rebuild --upgrade-all switch --flake .#"$(cat /etc/hostname)"
             nvim +PackerSync +TSUpdateSync
             booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
             built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
