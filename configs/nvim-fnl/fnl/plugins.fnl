@@ -2,7 +2,6 @@
 (import-macros {: plugin-setup : telescope-load-extension} :util-macros)
 
 (packer-setup)
-
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------
@@ -73,7 +72,10 @@
   ;;       :config #(plugin-setup :filetype {:overrides {:extensions {:bb :clojure} :shebang {:bb :clojure}}}))
   (use! :rust-lang/rust.vim)
   (use! :simrat39/rust-tools.nvim
-        :requires :neovim/nvim-lspconfig)
+        :requires :neovim/nvim-lspconfig
+        :config #(plugin-setup :rust-tools {
+                               :server {:settings {:rust-analyzer {:checkOnSave {:command "clippy -- -A clippy::needless_return -A clippy::op_ref"}}}}
+                               }))
   (use! :jose-elias-alvarez/typescript.nvim)
   (use! :imsnif/kdl.vim)
 
