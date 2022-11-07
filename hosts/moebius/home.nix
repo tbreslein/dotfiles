@@ -88,22 +88,38 @@
   };
 
   home.file = {
-    "homescreenlayout" = {
-      target = ".local/bin/homescreenlayout";
-      executable = true;
+    "zellij_moebius_layout" = {
+      target = ".config/zellij/layouts/moebius.kdl";
+      executable = false;
       text = ''
-        #!/bin/sh
-        xrandr --output DisplayPort-0 --primary --mode 3440x1440 --rate '120.00' --pos 0x0 --rotate normal --output DisplayPort-1 --off --output DisplayPort-2 --mode 1920x1080 --rate '60.00' --pos 3440x180 --rotate normal
-        feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png $HOME/MEGA/Wallpaper/cyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg
-      '';
-    };
-    "tvlayout" = {
-      target = ".local/bin/tvlayout";
-      executable = true;
-      text = ''
-        #!/bin/sh
-        xrandr --output DisplayPort-0 --primary --mode 3440x1440 --rate '120.00' --pos 1920x0 --output DisplayPort-2 --mode 1920x1080 --rate '60.00' --pos 5360x180 --output HDMI-A-0 --mode 1920x1080 --rate '60.00' --pos 0x180
-        feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png $HOME/MEGA/Wallpaper/cyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg $HOME/MEGA/Wallpaper/ok_16-9.jpg
+        layout {
+          default_tab_template {
+            pane size=1 borderless=true {
+              plugin location="zellij:tab-bar"
+            }
+            children
+              pane size=2 borderless=true {
+                plugin location="zellij:status-bar"
+              }
+          }
+          tab name="dev1" cwd="/home/tommy/coding/" split_direction="vertical" {
+            pane name="nvim" size="70%" focus=true
+              pane name="shell" size="30%"
+          }
+          tab name="dev2" split_direction="vertical" cwd="/home/tommy/coding/" {
+            pane
+              pane
+          }
+          tab name="home" split_direction="vertical" cwd="/home/tommy/" {
+            pane
+              pane
+              pane
+          }
+          tab name="dots1" cwd="/home/tommy/.dotfiles/" {
+            pane name="nvim" size="70%"
+              pane size="30%"
+          }
+        }
       '';
     };
   };

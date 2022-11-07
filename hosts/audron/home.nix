@@ -96,31 +96,48 @@
   services.blueman-applet.enable = true;
 
   home.file = {
-    "singlescreenlayout" = {
-      target = ".local/bin/singlescreenlayout";
-      executable = true;
+    "zellij_audron_layout" = {
+      target = ".config/zellij/layouts/audron.kdl";
+      executable = false;
       text = ''
-        #!/bin/sh
-        xrandr --output eDP-1 --primary --mode 2256x1504
-        feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png
-      '';
-    };
-    "homescreenlayout" = {
-      target = ".local/bin/homescreenlayout";
-      executable = true;
-      text = ''
-        #!/bin/sh
-        xrandr --output eDP-1 --primary --mode 2256x1504
-        feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png
-      '';
-    };
-    "workscreenlayout" = {
-      target = ".local/bin/workscreenlayout";
-      executable = true;
-      text = ''
-        #!/bin/sh
-        xrandr --output eDP-1 --primary --mode 2256x1504 --pos 0x1080 --rotate normal --output DP-1 --off --output DP-2 --mode 1920x1080 --pos 168x0 --rotate normal --output DP-3 --off --output DP-4 --off
-        feh --bg-fill $HOME/MEGA/Wallpaper/dp-2_3.png $HOME/MEGA/Wallpaper/cyberpunk-the-last-nigh-video-games-pixel-art-wallpaper.jpg
+        layout {
+          default_tab_template {
+            pane size=1 borderless=true {
+              plugin location="zellij:tab-bar"
+            }
+            children
+              pane size=2 borderless=true {
+                plugin location="zellij:status-bar"
+              }
+          }
+          tab name="dev1" cwd="/home/tommy/coding/" {
+            pane name="nvim"
+          }
+          tab name="dev2" split_direction="vertical" cwd="/home/tommy/coding/" {
+            pane
+          }
+          tab name="work1" cwd="/home/tommy/work/" {
+            pane name="nvim"
+          }
+          tab name="work2" split_direction="vertical" cwd="/home/tommy/work/" {
+            pane
+              pane
+          }
+          tab name="home1" cwd="/home/tommy/" {
+            pane name="nvim"
+          }
+          tab name="home2" split_direction="vertical" cwd="/home/tommy/" {
+            pane
+              pane
+          }
+          tab name="dots1" cwd="/home/tommy/.dotfiles/" {
+            pane name="nvim"
+          }
+          tab name="dots2" split_direction="vertical" cwd="/home/tommy/.dotfiles/" {
+            pane
+              pane
+          }
+        }
       '';
     };
   };
