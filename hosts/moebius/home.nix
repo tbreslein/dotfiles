@@ -115,7 +115,7 @@
               pane
               pane
           }
-          tab name="dots1" cwd="/home/tommy/.dotfiles/" {
+          tab name="dots1" split_direction="vertical" cwd="/home/tommy/.dotfiles/" {
             pane name="nvim" size="70%"
               pane size="30%"
           }
