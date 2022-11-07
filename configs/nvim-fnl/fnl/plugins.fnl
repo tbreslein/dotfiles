@@ -2,6 +2,7 @@
 (import-macros {: plugin-setup : telescope-load-extension} :util-macros)
 
 (packer-setup)
+
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------
@@ -42,11 +43,11 @@
 
   (use! :nvim-treesitter/nvim-treesitter
         :run ":TSUpdate"
-        :config #(plugin-setup :nvim-treesitter.configs {:autotag {:enable true} 
-                                                         :ensure_installed :all 
-                                                         :highlight {:enable true} 
-                                                         :rainbow {:enable true 
-                                                                   :external_mode true 
+        :config #(plugin-setup :nvim-treesitter.configs {:autotag {:enable true}
+                                                         :ensure_installed :all
+                                                         :highlight {:enable true}
+                                                         :rainbow {:enable true
+                                                                   :external_mode true
                                                                    :max_file_lines nil}}))
 
   ;; editing
@@ -74,6 +75,7 @@
   (use! :simrat39/rust-tools.nvim
         :requires :neovim/nvim-lspconfig)
   (use! :jose-elias-alvarez/typescript.nvim)
+  (use! :imsnif/kdl.vim)
 
   ;; LSP
   (use! :neovim/nvim-lspconfig)

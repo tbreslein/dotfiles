@@ -125,8 +125,7 @@
     };
 
     zellij = {
-        enable = true;
-        settings = {};
+      enable = true;
     };
 
     zoxide = {
