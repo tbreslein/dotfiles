@@ -1,5 +1,5 @@
 (require-macros :hibiscus.packer)
-(import-macros {: plugin-setup : telescope-load-extension} :util-macros)
+(import-macros {: plugin-setup} :util-macros)
 
 (packer-setup)
 ;; -----------

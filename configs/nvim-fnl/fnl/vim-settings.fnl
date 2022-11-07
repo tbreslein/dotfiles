@@ -1,5 +1,8 @@
 (require-macros :hibiscus.vim)
-(import-macros {: plugin-setup} :util-macros)
+(import-macros {: plugin-setup : telescope-load-extension} :util-macros)
+
+(telescope-load-extension :notify)
+
 ;; ----
 ;; MISC
 ;; ----
