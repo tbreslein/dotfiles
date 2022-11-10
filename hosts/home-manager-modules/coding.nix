@@ -15,9 +15,16 @@
       };
       "Makefile" = {
         indent_style = "tab";
+        indent_size = 4;
       };
       "*.{rs,c,cpp,h,hpp}" = {
         indent_size = 4;
+      };
+      "{CMakeLists.txt,*.cmake}" = {
+        indent_size = 4;
+      };
+      ".f90" = {
+        max_line_width = 72;
       };
     };
   };
