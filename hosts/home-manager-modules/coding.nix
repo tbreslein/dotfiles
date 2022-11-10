@@ -11,13 +11,13 @@
         insert_final_newline = true;
         max_line_width = 120;
         indent_style = "space";
-        indent_size = 4;
+        indent_size = 2;
       };
       "Makefile" = {
         indent_style = "tab";
       };
-      "*.{mjs,cjs,js,jsx,ts,tsx,svelte,astro,html,css,json,yml,yaml,nix,lua}" = {
-        indent_size = 2;
+      "*.{rs,c,cpp,h,hpp}" = {
+        indent_size = 4;
       };
     };
   };
