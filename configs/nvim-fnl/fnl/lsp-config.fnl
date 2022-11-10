@@ -103,6 +103,7 @@
 
 (cmp.setup.cmdline ":" {:sources [{:name :cmdline}]})
 (cmp.setup.cmdline "/" {:sources [{:name :buffer}]})
+
 ;; needed for nvim-ts-autotag
 
 (tset vim.lsp.handlers :textDocument/publishDiagnostics
@@ -119,31 +120,46 @@
       nc nls.builtins.code_actions
       nd nls.builtins.diagnostics
       nf nls.builtins.formatting]
-  (nls.setup {:sources [nc.eslint
+  (nls.setup {:sources [;;nc.eslint
                         nc.shellcheck
                         nc.statix
                         nd.ansiblelint
                         nd.chktex
                         nd.clj_kondo
                         nd.cppcheck
-                        (nd.cspell.with {:filetypes [:markdown]})
-                        nd.eslint
+                        (nd.cspell.with {:filetypes [:markdown :markdown.mdx]})
+                        ;;nd.eslint
                         nd.hadolint
                         nd.revive
                         nd.shellcheck
                         nd.statix
-                        (nd.tsc.with {:prefer_local [:node_modules/.bin]})
+                        (nd.tsc.with {:prefer_local :node_modules/.bin})
                         nd.yamllint
                         nf.black
                         nf.cbfmt
                         nf.clang_format
-                        nf.cmake_format
                         nf.fnlfmt
                         nf.gofmt
                         nf.latexindent
                         nf.lua_format
                         nf.nixpkgs_fmt
-                        nf.prettier
+                        (nf.prettier.with {:filetypes [:html
+                                                       :json
+                                                       :jsonc
+                                                       :yaml
+                                                       :markdown
+                                                       :markdown.mdx
+                                                       :graphql
+                                                       :handlebars
+                                                       :css
+                                                       :scss
+                                                       :less]
+                                           :prefer_local :node_modules/.bin})
+                        (nf.rome.with {:filetypes [:javascript
+                                                   :javascriptreact
+                                                   :typescript
+                                                   :typescriptreact]
+                                       :prefer_local :node_modules/.bin})
                         nf.rustfmt
                         nf.shellharden
                         nf.stylish_haskell
@@ -156,7 +172,6 @@
                :clangd
                ;; :ccls
                :clojure_lsp
-               :cmake
                :cssls
                :gopls
                :hls
