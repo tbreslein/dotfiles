@@ -99,6 +99,10 @@
         bind -r j select-pane -D
         bind -r h select-pane -L
         bind -r l select-pane -R
+        bind -r C-K resize-pane -U
+        bind -r C-J resize-pane -D
+        bind -r C-H resize-pane -L
+        bind -r C-L resize-pane -R
         bind C-x split-window -v
         bind C-v split-window -h
         bind C-n choose-tree
