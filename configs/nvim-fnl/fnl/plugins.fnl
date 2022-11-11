@@ -2,7 +2,6 @@
 (import-macros {: plugin-setup} :util-macros)
 
 (packer-setup)
-
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------
@@ -104,7 +103,8 @@
         ;; :config #(plugin-setup :noice {:routes {:filter {:warning true :find ""} :opts {:skip true}}}))
         :config #(plugin-setup :noice {:routes {:filter {:warning true
                                                          :find "multiple different client offset_encodings"}
-                                                :opts {:skip true}}}))
+                                                :opts {:skip true}}
+                                       :presets {:bottom_search true}}))
   (use! :nvim-lualine/lualine.nvim
         :requires [:kyazdani42/nvim-web-devicons]
         :config #(plugin-setup :lualine {:options {:globalstatus true
