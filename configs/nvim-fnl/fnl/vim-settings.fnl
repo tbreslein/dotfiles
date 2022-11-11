@@ -2,7 +2,6 @@
 (import-macros {: plugin-setup : telescope-load-extension} :util-macros)
 
 (telescope-load-extension :notify)
-
 ;; ----
 ;; MISC
 ;; ----

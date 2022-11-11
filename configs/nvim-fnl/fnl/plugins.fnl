@@ -31,7 +31,8 @@
                                                                           :myosotis "~/notes/myosotis/"}}}}}))
 
   ;; configuration
-  (use! :folke/which-key.nvim)
+  (use! :folke/which-key.nvim
+        :config #(plugin-setup :which-key {:show_keys false :show_help false}))
   (use! :mrjones2014/legendary.nvim
         :requires [:nvim-telescope/telescope.nvim :stevearc/dressing.nvim])
 
@@ -69,18 +70,14 @@
         :config #(plugin-setup :octo {}))
 
   ;; languages
-  ;; (use! :nathom/filetype.nvim
-  ;;       :config #(plugin-setup :filetype {:overrides {:extensions {:bb :clojure} :shebang {:bb :clojure}}}))
   (use! :rust-lang/rust.vim)
   (use! :simrat39/rust-tools.nvim
         :requires :neovim/nvim-lspconfig
         :config #(plugin-setup :rust-tools { }))
   (use! :jose-elias-alvarez/typescript.nvim)
-  (use! :imsnif/kdl.vim)
 
   ;; LSP
   (use! :neovim/nvim-lspconfig)
-  (use! :ray-x/lsp_signature.nvim)
   (use! :jose-elias-alvarez/null-ls.nvim)
   (use! :folke/trouble.nvim
         :requires :kyazdani42/nvim-web-devicons
@@ -102,8 +99,14 @@
         :requires :nvim-lua/plenary.nvim)
 
   ;; UI
+  (use! :folke/noice.nvim
+        :requires [:MunifTanjim/nui.nvim :rcarriga/nvim-notify]
+        ;; :config #(plugin-setup :noice {:routes {:filter {:warning true :find ""} :opts {:skip true}}}))
+        :config #(plugin-setup :noice {:routes {:filter {:warning true
+                                                         :find "multiple different client offset_encodings"}
+                                                :opts {:skip true}}}))
   (use! :nvim-lualine/lualine.nvim
-        :requires [:kyazdani42/nvim-web-devicons :WhoIsSethDaniel/lualine-lsp-progress.nvim]
+        :requires [:kyazdani42/nvim-web-devicons]
         :config #(plugin-setup :lualine {:options {:globalstatus true
                                                    :theme :gruvbox-material
                                                    :component_separators ""
@@ -111,7 +114,7 @@
                                          :sections {:lualine_a [:mode]
                                                     :lualine_b [:branch :diagnostics]
                                                     :lualine_c [:filename]
-                                                    :lualine_x [:lsp_progress]
+                                                    :lualine_x []
                                                     :lualine_y [:progress]
                                                     :lualine_z [:location]
                                                     }}))

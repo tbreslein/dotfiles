@@ -10,7 +10,7 @@
                                                     {:group augroup
                                                      :buffer bufnr
                                                      :callback #(vim.lsp.buf.format {: bufnr})}))
-                     ((. (require :lsp_signature) :on_attach) {} bufnr)
+                     ;; ((. (require :lsp_signature) :on_attach) {} bufnr)
                      (let [reg (. (require :which-key) :register)]
                        (reg {:l {:name :Lsp
                                  :D [vim.lsp.buf.declaration :declaration]
@@ -62,7 +62,7 @@
                                        :default_capabilities) (vim.lsp.protocol.make_client_capabilities))
                      : on_attach})
 
-(tset lsp-defaults :capabilities :offsetEncoding :utf-8)
+(tset lsp-defaults :capabilities :offsetEncoding :utf-16)
 
 (local nvim_lsp (require :lspconfig))
 (set nvim_lsp.util.default_config
