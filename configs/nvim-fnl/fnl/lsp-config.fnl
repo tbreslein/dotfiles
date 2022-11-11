@@ -62,7 +62,7 @@
                                        :default_capabilities) (vim.lsp.protocol.make_client_capabilities))
                      : on_attach})
 
-(tset lsp-defaults :capabilities :offsetEncoding [:utf-16])
+(tset lsp-defaults :capabilities :offsetEncoding :utf-8)
 
 (local nvim_lsp (require :lspconfig))
 (set nvim_lsp.util.default_config
@@ -169,8 +169,8 @@
 
 (let [servers [:ansiblels
                :bashls
-               :clangd
-               ;; :ccls
+               ;; :clangd
+               :ccls
                :clojure_lsp
                :cssls
                :gopls
