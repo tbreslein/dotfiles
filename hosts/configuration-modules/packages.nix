@@ -19,6 +19,7 @@
       htop
       gnupg
       pinentry-curses
+      ntfs3g
       # (writeShellScriptBin "slurp-screenshot" ''
       #     # Credit: https://github.com/moverest/sway-interactive-screenshot/blob/master/sway-interactive-screenshot
       #
