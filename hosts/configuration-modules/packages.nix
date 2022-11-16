@@ -20,6 +20,9 @@
       gnupg
       pinentry-curses
       ntfs3g
+      cmake
+      gnumake
+      gcc
       (writeShellScriptBin "update-nixos" ''
         pushd ${homeDir}/.dotfiles && {
             git pull && \

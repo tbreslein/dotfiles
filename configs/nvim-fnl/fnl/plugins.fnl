@@ -2,6 +2,7 @@
 (import-macros {: plugin-setup} :util-macros)
 
 (packer-setup)
+
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------

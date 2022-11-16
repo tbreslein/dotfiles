@@ -147,10 +147,18 @@
         :L ["<cmd>vertical resize +2<cr>" "resize right"]
         :g [:<cmd>LazyGit<cr> :LazyGit]
         :f {:name :Telescope
-            :b ["<cmd>Telescope current_burrer_fuzzy_find<cr>" "buffer fzf"]
-            :f ["<cmd>Telescope find_files hidden=true<cr>" "file finder"]
+            :l ["<cmd>Telescope builtin<cr>" "list builtin pickers"]
+            :b ["<cmd>Telescope current_buffer_fuzzy_find<cr>" "buffer fzf"]
+            :f ["<cmd>Telescope git_files hidden=true<cr>" "git ls-files"]
+            :F ["<cmd>Telescope find_files hidden=true<cr>" "file finder"]
             :g ["<cmd>Telescope live_grep<cr>" "live grep"]
-            :h ["<cmd>Telescope notify<cr>" "notify history"]}
+            :h ["<cmd>Telescope notify<cr>" "notify history"]
+            :r ["<cmd>Telescope lsp_references<cr>" "LSP references"]
+            :D ["<cmd>Telescope diagnostics<cr>" "LSP diagnostics"]
+            :i ["<cmd>Telescope lsp_implementations<cr>" "LSP implementations"]
+            :d ["<cmd>Telescope lsp_definitions<cr>" "LSP definitions"]
+            :t ["<cmd>Telescope lsp_type_definitions<cr>"
+                "LSP type definitions"]}
         :p {:name "File explorer"
             :v ["<cmd>Neotree filesystem reveal float<cr>"
                 "file browser as float"]
