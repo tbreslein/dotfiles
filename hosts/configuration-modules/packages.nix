@@ -20,34 +20,10 @@
       gnupg
       pinentry-curses
       ntfs3g
-      # (writeShellScriptBin "slurp-screenshot" ''
-      #     # Credit: https://github.com/moverest/sway-interactive-screenshot/blob/master/sway-interactive-screenshot
-      #
-      #     CHOICE=$1
-      #     readonly SAVEDIR=${homeDir}/Pictures
-      #     mkdir -p -- "$SAVEDIR"
-      #     readonly FILENAME="$SAVEDIR/$(date +'%Y-%m-%d-%H%M%S_screenshot.png')"
-      #
-      #     case $CHOICE in
-      #         fullscreen)
-      #             grim "$FILENAME"
-      #             ;;
-      #         region)
-      #             grim -g "$(slurp)" "$FILENAME"
-      #             ;;
-      #         "")
-      #             notify-send "Screenshot" "Cancelled"
-      #             exit 0
-      #             ;;
-      #   esac
-      #
-      #   wl-copy < "$FILENAME"
-      #   notify-send "Screenshot" "File saved as <i>'$FILENAME'</i> and copied to the clipboard." -i $"FILENAME"
-      # '')
       (writeShellScriptBin "update-nixos" ''
         pushd ${homeDir}/.dotfiles && {
             git pull && \
-            nix flake update && \
+            sudo nix flake update && \
             sudo nixos-rebuild --upgrade-all switch --flake .#"$(cat /etc/hostname)"
             nvim +PackerSync +TSUpdateSync
             booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
