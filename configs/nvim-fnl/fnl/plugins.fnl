@@ -2,7 +2,6 @@
 (import-macros {: plugin-setup} :util-macros)
 
 (packer-setup)
-
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------
@@ -96,7 +95,8 @@
 
   ;; Telescope
   (use! :nvim-telescope/telescope.nvim
-        :requires :nvim-lua/plenary.nvim)
+        :requires :nvim-lua/plenary.nvim
+        :config #(plugin-setup :telescope {:defaults {:file_ignore_patterns ["^.git/"]}}))
 
   ;; UI
   (use! :folke/noice.nvim

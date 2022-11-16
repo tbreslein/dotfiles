@@ -149,8 +149,8 @@
         :f {:name :Telescope
             :l ["<cmd>Telescope builtin<cr>" "list builtin pickers"]
             :b ["<cmd>Telescope current_buffer_fuzzy_find<cr>" "buffer fzf"]
-            :f ["<cmd>Telescope git_files hidden=true<cr>" "git ls-files"]
-            :F ["<cmd>Telescope find_files hidden=true<cr>" "file finder"]
+            :F ["<cmd>Telescope git_files hidden=true<cr>" "git ls-files"]
+            :f ["<cmd>Telescope find_files hidden=true<cr>" "file finder"]
             :g ["<cmd>Telescope live_grep<cr>" "live grep"]
             :h ["<cmd>Telescope notify<cr>" "notify history"]
             :r ["<cmd>Telescope lsp_references<cr>" "LSP references"]
