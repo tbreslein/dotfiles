@@ -1,4 +1,4 @@
-{ pkgs, editor, shell, repoteer, ... }:
+{ pkgs, editor, shell, ... }:
 
 {
   home = {
@@ -25,7 +25,7 @@
       tldr
       procs
       broot
-    ] ++ [ repoteer.packages.x86_64-linux.default ];
+    ]; # ++ [ repoteer.packages.x86_64-linux.default ];
   };
 
   programs = {

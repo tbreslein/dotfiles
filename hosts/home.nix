@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, homeDir, colors, repoteer, ... }:
+{ config, lib, pkgs, user, homeDir, colors, ... }:
 
 let
   browser = "brave";

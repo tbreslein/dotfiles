@@ -1,4 +1,4 @@
-{ lib, inputs, system, user, homeDir, overlays, colors, repoteer, ... }:
+{ lib, inputs, system, user, homeDir, overlays, colors, ... }:
 
 let
   mkHost = hostname: {
@@ -13,7 +13,7 @@ let
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit user homeDir inputs colors repoteer; };
+        home-manager.extraSpecialArgs = { inherit user homeDir inputs colors; };
         home-manager.users.${user} = {
           imports = [ (import ./home.nix) ] ++ [ (import ./${hostname}/home.nix) ];
         };

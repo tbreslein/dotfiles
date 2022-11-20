@@ -14,13 +14,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    repoteer = {
-      url = "github:tbreslein/repoteer";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # repoteer = {
+    #   url = "github:tbreslein/repoteer";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
-  outputs = inputs@{ self, nixpkgs, repoteer, ... }:
+  outputs = inputs@{ self, nixpkgs, ... }:
     let
       system = "x86_64-linux";
       user = "tommy";
@@ -301,7 +301,7 @@
     {
       nixosConfigurations = import ./hosts {
         inherit (nixpkgs) lib;
-        inherit inputs user homeDir system overlays colors repoteer;
+        inherit inputs user homeDir system overlays colors;
       };
     };
 }
