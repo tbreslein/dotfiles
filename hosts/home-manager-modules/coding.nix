@@ -44,19 +44,8 @@
       hyperfine
 
 
-      # formatting, linters, lsp
-      # clojure
-      clojure-lsp
-      clj-kondo
-      zprint
-
       # fennel
       fnlfmt
-
-      # lua
-      luaformatter
-      sumneko-lua-language-server
-      selene # lua linter
 
       # nix
       rnix-lsp
@@ -68,7 +57,8 @@
       shellcheck
       shellharden
 
-      # nodePackages.cspell
+      nodePackages.cspell
+      nodePackages.prettier
       nodePackages.yaml-language-server
       yamllint
 
