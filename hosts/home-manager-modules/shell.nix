@@ -17,9 +17,7 @@
       m = "make";
       nj = "ninja";
       s = "TERM=xterm-256color ssh";
-      hedisclang = "make clean full-clang build test";
-      hedisgcc = "make clean full-gcc build test";
-      rldocker = "DOCKER_HOST=unix:///run/user/1000/docker.sock docker";
+      tcoding = "tmu a -t coding";
     };
   };
 
