@@ -2,7 +2,7 @@
 
 ## format with encryption
 
-After booting into the medium, and partitioning the disk, setup luks and mount everything
+After booting into the medium, and partitioning the disk, setup luks and mount everything.
 
 ```bash
 cryptsetup --type luks1 luksFormat /path/to/root/device
@@ -55,4 +55,3 @@ nix = {
 ```
 
 Afterwards, build the flake in the dotfiles.
-
