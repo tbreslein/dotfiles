@@ -2,6 +2,7 @@
 (import-macros {: plugin-setup} :util-macros)
 
 (packer-setup)
+
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------
@@ -49,6 +50,7 @@
                                                          :rainbow {:enable true
                                                                    :external_mode true
                                                                    :max_file_lines nil}}))
+  (use! :ggandor/leap.nvim)
 
   ;; editing
   (use! :nvim-pack/nvim-spectre
