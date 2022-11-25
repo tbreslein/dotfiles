@@ -17,7 +17,7 @@
       m = "make";
       nj = "ninja";
       s = "TERM=xterm-256color ssh";
-      tcoding = "tmu a -t coding";
+      tcoding = "tmux a -t coding";
     };
   };
 
