@@ -1,5 +1,6 @@
 (import-macros {: plugin-setup} :util-macros)
 (set vim.g.mapleader " ")
+((. (require :leap) :add_default_mappings) {})
 
 (let [default-opts {:noremap true :silent true}
       expr_opts {:noremap true :expr true :silent true}
