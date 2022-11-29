@@ -56,8 +56,8 @@
 
     nushell = {
       enable = true;
-      configFile.source = "configs/nushell/config.nu";
-      envFile.source = "configs/nushell/env.nu";
+      configFile.source = ../../configs/nushell/config.nu;
+      envFile.source = ../../configs/nushell/env.nu;
     };
 
     starship = {
@@ -76,13 +76,15 @@
         directory = {
           fish_style_pwd_dir_length = 1;
           truncate_to_repo = false;
+          style = "bold blue";
         };
-        format = ''$directory\[$git_branch$git_commit$git_state$git_metrics$git_status\]\n$time$nix_shell$character '';
-        git_branch.format = ''[$branch(:$remote_branch)]($style) '';
-        nix_shell.format = ''[$symbol]($style)'';
+        # format = "$directory\[$git_branch$git_commit$git_state$git_metrics$git_status\]$time$nix_shell$character ";
+        format = "$directory\\[ $git_branch$git_commit$git_state$git_metrics$git_status\\]$line_break$time$nix_shell$character";
+        git_branch.format = "[$branch(:$remote_branch)]($style) ";
+        nix_shell.format = "[$symbol]($style)";
         time = {
           disabled = false;
-          format = ''[$time]($style) '';
+          format = "[$time]($style) ";
         };
       };
     };
