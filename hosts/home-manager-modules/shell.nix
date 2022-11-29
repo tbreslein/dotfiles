@@ -54,24 +54,35 @@
       ];
     };
 
+    nushell = {
+      enable = true;
+      configFile.source = "configs/nushell/config.nu";
+      envFile.source = "configs/nushell/env.nu";
+    };
+
     starship = {
       enable = true;
       enableBashIntegration = "${shell}" == "bash";
       enableFishIntegration = "${shell}" == "fish";
       enableZshIntegration = "${shell}" == "zsh";
       settings = {
+        add_newline = true;
+        battery.display.threshold = 30;
         character = {
           success_symbol = "[λ](bold yellow)";
           error_symbol = "[✗](bold red)";
           vicmd_symbol = "[V](bold green)";
         };
         directory = {
-          truncation_length = 7;
-          truncate_to_repo = true;
+          fish_style_pwd_dir_length = 1;
+          truncate_to_repo = false;
         };
-        hostname = {
-          ssh_only = false;
-          format = "[$hostname](bold bright-blue): ";
+        format = ''$directory\[$git_branch$git_commit$git_state$git_metrics$git_status\]\n$time$nix_shell$character '';
+        git_branch.format = ''[$branch(:$remote_branch)]($style) '';
+        nix_shell.format = ''[$symbol]($style)'';
+        time = {
+          disabled = false;
+          format = ''[$time]($style) '';
         };
       };
     };
