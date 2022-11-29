@@ -64,6 +64,7 @@
       enable = true;
       enableBashIntegration = "${shell}" == "bash";
       enableFishIntegration = "${shell}" == "fish";
+      enableNushellIntegration = false; # TEMP
       enableZshIntegration = "${shell}" == "zsh";
       settings = {
         add_newline = true;
@@ -78,7 +79,7 @@
           truncate_to_repo = false;
           style = "bold blue";
         };
-        format = "$directory\\[ $git_branch$git_commit$git_state$git_metrics$git_status\\]$line_break$time$nix_shell$character: ";
+        format = "$directory\\[ $git_branch$git_commit$git_state$git_metrics$git_status\\]$line_break$time$nix_shell$character";
         git_branch.format = "[$branch(:$remote_branch)]($style) ";
         nix_shell.format = "[$symbol]($style)";
         time = {
