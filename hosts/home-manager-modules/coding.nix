@@ -71,9 +71,6 @@
   programs = {
     direnv = {
       enable = true;
-      enableBashIntegration = shell == "bash";
-      # enableFishIntegration = shell == "fish"; # gets loaded automatically anyways
-      enableZshIntegration = shell == "zsh";
       nix-direnv.enable = true;
     };
   };

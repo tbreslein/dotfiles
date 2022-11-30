@@ -87,43 +87,6 @@
     };
   };
 
-  home.file = {
-    "zellij_moebius_layout" = {
-      target = ".config/zellij/layouts/moebius.kdl";
-      executable = false;
-      text = ''
-        layout {
-          default_tab_template {
-            pane size=1 borderless=true {
-              plugin location="zellij:tab-bar"
-            }
-            children
-              pane size=2 borderless=true {
-                plugin location="zellij:status-bar"
-              }
-          }
-          tab name="dev1" cwd="/home/tommy/coding/" split_direction="vertical" {
-            pane name="nvim" size="70%" focus=true
-              pane name="shell" size="30%"
-          }
-          tab name="dev2" split_direction="vertical" cwd="/home/tommy/coding/" {
-            pane
-              pane
-          }
-          tab name="home" split_direction="vertical" cwd="/home/tommy/" {
-            pane
-              pane
-              pane
-          }
-          tab name="dots1" split_direction="vertical" cwd="/home/tommy/.dotfiles/" {
-            pane name="nvim" size="70%"
-              pane size="30%"
-          }
-        }
-      '';
-    };
-  };
-
   xsession = {
     initExtra = ''
       megasync &

@@ -23,7 +23,7 @@
 
   programs = {
     fish = {
-      enable = "${shell}" == "fish";
+      enable = true;
       shellInit = ''
         fish_add_path $HOME/.local/bin
         fish_add_path $HOME/.cargo/bin
@@ -62,10 +62,7 @@
 
     starship = {
       enable = true;
-      enableBashIntegration = "${shell}" == "bash";
-      enableFishIntegration = "${shell}" == "fish";
       enableNushellIntegration = false; # TEMP
-      enableZshIntegration = "${shell}" == "zsh";
       settings = {
         add_newline = true;
         battery.display.threshold = 30;

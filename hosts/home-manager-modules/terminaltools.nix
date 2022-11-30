@@ -29,7 +29,7 @@
   };
 
   programs = {
-    exa.enable = true;
+    exa.enable = "${shell}" != "fish";
     feh.enable = true;
     lazygit.enable = true;
     pandoc.enable = true;
@@ -43,9 +43,7 @@
 
     fzf = {
       enable = true;
-      enableBashIntegration = "${shell}" == "bash";
       enableFishIntegration = "${shell}" == "fish";
-      enableZshIntegration = "${shell}" == "zsh";
     };
 
     gh = {
@@ -130,15 +128,9 @@
       '';
     };
 
-    zellij = {
-      enable = true;
-    };
-
     zoxide = {
       enable = true;
-      enableBashIntegration = "${shell}" == "bash";
       enableFishIntegration = "${shell}" == "fish";
-      enableZshIntegration = "${shell}" == "zsh";
     };
   };
 }
