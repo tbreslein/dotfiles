@@ -87,6 +87,7 @@
         #set -ga terminal-overrides ",*:Tc"
         #set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
         #set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
+        set -g default-shell ${pkgs.nushell}/bin/nu
         set -g base-index 1
         setw -g pane-base-index 1
         set -sg escape-time 10; # make neovim not lag...
