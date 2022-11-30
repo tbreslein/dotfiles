@@ -62,8 +62,6 @@
                                        :default_capabilities) (vim.lsp.protocol.make_client_capabilities))
                      : on_attach})
 
-(tset lsp-defaults :capabilities :offsetEncoding :utf-16)
-
 (local nvim_lsp (require :lspconfig))
 (set nvim_lsp.util.default_config
      (vim.tbl_deep_extend :force nvim_lsp.util.default_config lsp-defaults))
@@ -103,7 +101,6 @@
 
 (cmp.setup.cmdline ":" {:sources [{:name :cmdline}]})
 (cmp.setup.cmdline "/" {:sources [{:name :buffer}]})
-
 ;; needed for nvim-ts-autotag
 
 (tset vim.lsp.handlers :textDocument/publishDiagnostics
@@ -178,7 +175,6 @@
                :html
                :julials
                :pyright
-               ;; :rust_analyzer
                :rnix
                :yamlls
                :zls]]
