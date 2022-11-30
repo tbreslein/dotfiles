@@ -23,6 +23,7 @@
       cmake
       gnumake
       gcc
+      nushell
       (writeShellScriptBin "update-nixos" ''
         pushd ${homeDir}/.dotfiles && {
             git pull && \
