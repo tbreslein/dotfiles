@@ -1,12 +1,27 @@
 # Nushell Config File
 
+alias ll = ls -l
+alias la = ls -a
+alias lla = ls -la
+alias v = $env.EDITOR
+alias m = make
+alias nj = ninja
+alias tc = tmux a -t coding
+alias td = tmux a -t dotfiles
+alias th = tmux a -t home
+alias g = git
+alias gg = lazygit
+alias cp = cp -i
+alias rm = rm -i
+alias mv = mv -i
+
 module completions {
   # Custom completions for external commands (those outside of Nushell)
   # Each completions has two parts: the form of the external command, including its flags and parameters
   # and a helper command that knows how to complete values for those flags and parameters
   #
   # This is a simplified version of completions for git branches and git remotes
-  def "nu-complete git branches" [] {
+  def "nu-complete git branches" # [] {
     ^git branch | lines | each { |line| $line | str replace '[\*\+] ' '' | str trim }
   }
 
