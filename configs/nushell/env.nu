@@ -63,5 +63,8 @@ let-env NU_PLUGIN_DIRS = [
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
+mkdir ~/.cache/zoxide
+zoxide init nushell | save ~/.cache/zoxide/init.nu
+
 mkdir ~/.cache/starship
 starship init nu | str replace --string "term size -c" "term size" | save ~/.cache/starship/init.nu
