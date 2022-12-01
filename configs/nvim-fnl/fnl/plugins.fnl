@@ -76,6 +76,9 @@
         :requires :neovim/nvim-lspconfig
         :config #(plugin-setup :rust-tools { }))
   (use! :jose-elias-alvarez/typescript.nvim)
+  (use! :LhKipp/nvim-nu
+        :run "TSInstall nu"
+        :config #(plugin-setup :nu {}))
 
   ;; LSP
   (use! :neovim/nvim-lspconfig)
