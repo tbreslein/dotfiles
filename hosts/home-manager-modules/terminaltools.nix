@@ -32,7 +32,7 @@
       enable = true;
       settings.modal = true;
     };
-    exa.enable = "${shell}" != "fish";
+    exa.enable = true;
     feh.enable = true;
     lazygit.enable = true;
     just.enable = true;
