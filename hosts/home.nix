@@ -8,7 +8,7 @@ let
   editor = "nvim";
   nvimPkg = pkgs.neovim-nightly;
   visual = "nvim";
-  shell = "nushell";
+  shell = "fish";
   font = "Hack";
 in
 {

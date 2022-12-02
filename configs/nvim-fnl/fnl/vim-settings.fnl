@@ -27,8 +27,9 @@
 ;; EDITING
 ;; -------
 
-(set vim.opt.shiftwidth 4)
-(set vim.opt.tabstop 4)
+;; (set vim.opt.shiftwidth 4)
+;; (set vim.opt.tabstop 4)
+
 (set vim.g.mapleader " ")
 (set vim.opt.autoindent true)
 (set vim.opt.expandtab true)
@@ -38,7 +39,7 @@
 (set vim.opt.splitbelow true)
 (set vim.opt.splitright true)
 (set vim.opt.hlsearch true)
-(set vim.opt.shiftround true)
+(set vim.opt.shiftround false)
 (set vim.opt.laststatus 2)
 (set vim.opt.pumheight 10)
 ;; --

@@ -24,14 +24,18 @@
       git
       tldr
       procs
-      broot
     ]; # ++ [ repoteer.packages.x86_64-linux.default ];
   };
 
   programs = {
+    broot = {
+      enable = true;
+      settings.modal = true;
+    };
     exa.enable = "${shell}" != "fish";
     feh.enable = true;
     lazygit.enable = true;
+    just.enable = true;
     pandoc.enable = true;
 
     bat = {
