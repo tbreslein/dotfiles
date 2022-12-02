@@ -3,7 +3,6 @@
 {
   home = {
     shellAliases = {
-      g = "git";
       gg = "lazygit";
       cp = "cp -i";
       rm = "rm -i";
@@ -13,9 +12,7 @@
       la = "ls -a";
       lla = "ll -a";
       lt = "ls --tree";
-      v = "${editor}";
-      m = "make";
-      nj = "ninja";
+      vim = "${editor}";
       s = "TERM=xterm-256color ssh";
       tcoding = "tmux a -t coding";
     };
