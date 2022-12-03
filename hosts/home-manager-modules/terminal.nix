@@ -5,10 +5,6 @@
     alacritty = {
       enable = true;
       settings = {
-        shell = {
-          program = "${pkgs.nushell}/bin/nu";
-          args = [ "-l" ];
-        };
         window = {
           opacity = 0.95;
           padding = {
