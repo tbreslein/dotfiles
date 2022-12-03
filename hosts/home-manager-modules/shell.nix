@@ -73,7 +73,8 @@
           truncate_to_repo = false;
           style = "bold blue";
         };
-        format = "$directory\\[ $git_branch$git_commit$git_state$git_metrics$git_status\\]$nix_shell$line_break$time$character";
+        format = "$directory\\[ $git_branch$git_commit$git_state$git_metrics$git_status\\]$nix_shell$line_break$character";
+        right_format = "$time";
         git_branch.format = "[$branch(:$remote_branch)]($style) ";
         nix_shell.format = "[$symbol]($style)";
         time = {
