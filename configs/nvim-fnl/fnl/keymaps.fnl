@@ -45,14 +45,24 @@
                 :description "paste over selected text"
                 :opts default-opts}
                {1 :n
-                2 :nzz
+                2 :nzzzv
                 :mode [:n]
                 :description "next result (center)"
                 :opts default-opts}
                {1 :N
-                2 :Nzz
+                2 :Nzzzv
                 :mode [:n]
                 :description "prev result (center)"
+                :opts default-opts}
+               {1 :<c-d>
+                2 :<c-d>zz
+                :mode [:n]
+                :description "move half page down and recenter"
+                :opts default-opts}
+               {1 :<c-u>
+                2 :<c-u>zz
+                :mode [:n]
+                :description "move half page up and recenter"
                 :opts default-opts}
                {1 :<esc>
                 2 ":nohlsearch<bar>:echo<cr>"
