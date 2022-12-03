@@ -73,7 +73,7 @@
   (use! :rust-lang/rust.vim)
   (use! :simrat39/rust-tools.nvim
         :requires :neovim/nvim-lspconfig
-        :config #(plugin-setup :rust-tools { }))
+        :config #(plugin-setup :rust-tools { :tools { :inlay_hints { :only_current_line true } } }))
   (use! :jose-elias-alvarez/typescript.nvim)
   (use! :LhKipp/nvim-nu
         :run "TSInstall nu"
