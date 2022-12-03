@@ -64,9 +64,9 @@
         add_newline = true;
         battery.display.threshold = 30;
         character = {
-          success_symbol = "[λ](bold yellow)";
-          error_symbol = "[✗](bold red)";
-          vicmd_symbol = "[V](bold green)";
+          success_symbol = "[λ](bold yellow) ";
+          error_symbol = "[✗](bold red) ";
+          vicmd_symbol = "[V](bold green) ";
         };
         directory = {
           fish_style_pwd_dir_length = 1;
