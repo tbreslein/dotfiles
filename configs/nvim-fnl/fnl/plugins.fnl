@@ -2,6 +2,7 @@
 (import-macros {: plugin-setup} :util-macros)
 
 (packer-setup)
+
 ;; -----------
 ;; PLUGIN LIST
 ;; -----------
@@ -58,8 +59,6 @@
         :requires [:nvim-lua/plenary.nvim :nvim-treesitter/nvim-treesitter])
   (use! :numToStr/Comment.nvim
         :config #(plugin-setup :Comment {}))
-  (use! :windwp/nvim-autopairs
-        :config #(plugin-setup :nvim-autopairs {}))
   (use! :windwp/nvim-ts-autotag)
   (use! :kylechui/nvim-surround
         :config #(plugin-setup :nvim-surround {}))
