@@ -1,72 +1,81 @@
-require('bootstrap')
-require('dep') {
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
   -- themes
-  'sainnhe/gruvbox-material',
+  use 'sainnhe/gruvbox-material'
 
   -- keymaps
-  {
+  use {
     'folke/which-key.nvim',
-    function() require('which-key').setup({ show_keys = false, show_help = false }) end,
-  },
-  {
+    config = function() require('which-key').setup({ show_keys = false, show_help = false }) end,
+  }
+  use {
     'mrjones2014/legendary.nvim',
     requires = { 'nvim-telescope/telescope.nvim', 'stevearc/dressing.nvim' },
-  },
-  'ggandor/leap.nvim',
+  }
+  use 'ggandor/leap.nvim'
 
   -- editing
-  {
+  use {
     'nvim-pack/nvim-spectre',
     requires = 'nvim-lua/plenary.nvim',
-  },
-  {
+  }
+  use {
     'ThePrimeagen/refactoring.nvim',
     requires = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
-  },
-  {
+  }
+  use {
     'numToStr/Comment.nvim',
-    function() require('which-key').setup({}) end,
-  },
-  {
+    config = function() require('which-key').setup({}) end,
+  }
+  use {
     'kylechui/nvim-surround',
-    function() require('nvim-surround').setup({}) end,
-  },
-  'windwp/nvim-ts-autotag',
-  'gpanders/editorconfig.nvim',
-  {
+    config = function() require('nvim-surround').setup({}) end,
+  }
+  use 'windwp/nvim-ts-autotag'
+  use 'gpanders/editorconfig.nvim'
+  use {
     'pwntester/octo.nvim',
-    function() require('octo').setup({}) end,
+    config = function() require('octo').setup({}) end,
     requires = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter', 'kyazdani42/nvim-web-devicons' },
-  },
+  }
 
   -- languages
-  'folke/neodev.nvim',
-  'rust-lang/rust.vim',
-  'jose-elias-alvarez/typescript.nvim',
-  'vmchale/just-vim',
-  {
-    'simrat39/rust-tools.nvim'',
-    function() require('rust-tools').setup({ tools = { inlay_hints = { only_current_line = true } } }) end,
-    requires = 'neovim/lspconfig',
-  },
-  {
-    'IndianBoy42/tree-sitter-just',
-    function() require('tree-sitter-just').setup() end,
-  },
+  use 'folke/neodev.nvim'
+  use 'rust-lang/rust.vim'
+  use 'jose-elias-alvarez/typescript.nvim'
+  use 'vmchale/just-vim'
+  use {
+    'simrat39/rust-tools.nvim',
+    config = function() require('rust-tools').setup({ tools = { inlay_hints = { only_current_line = true } } }) end,
+    requires = 'neovim/nvim-lspconfig',
+  }
 
   -- LSP and Treesitter
-  'neovim/nvim-lspconfig',
-  'jose-elias-alvarez/null-ls.nvim',
-  {
+  use 'neovim/nvim-lspconfig'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use {
     'nvim-treesitter/nvim-treesitter',
-    function () vim.cmd(':TSUpdate') end,
-  },
-  {
+    run = ':TSUpdate',
+  }
+  use {
     'folke/trouble.nvim',
-    function() require('trouble').setup({}) end,
+    config = function() require('trouble').setup({}) end,
     requires = 'kyazdani42/nvim-web-devicons',
-  },
-  {
+  }
+  use {
     'hrsh7th/nvim-cmp',
     requires = {
       'hrsh7th/cmp-buffer',
@@ -79,18 +88,26 @@ require('dep') {
       'rafamadriz/friendly-snippets',
       'davidsierradz/cmp-conventionalcommits',
     },
-  },
+  }
 
   -- UI
-  'elihunter173/dirbuf.nvim',
-  {
+  use 'elihunter173/dirbuf.nvim'
+  use {
     'nvim-telescope/telescope.nvim',
-    function() require('telescope').setup({ defaults = { file_ignore_patterns = { "^.git/ " } } }) end,
+    config = function() require('telescope').setup({ defaults = { file_ignore_patterns = { "^.git/" } } }) end,
     requires = 'nvim-lua/plenary.nvim',
-  },
-  {
+  }
+  use {
     'folke/noice.nvim',
-    function() require('noice').setup({
+    config = function() require('noice').setup({
+      lsp = {
+        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
       routes = {
         filter = {
           warning = true,
@@ -100,12 +117,19 @@ require('dep') {
           skip = true,
         },
       },
+      presets = {
+        bottom_search = true,
+        command_palette = true, -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = false, -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false, -- add a border to hover docs and signature help
+      },
     }) end,
     requires = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' },
-  },
-  {
+  }
+  use {
     'nvim-lualine/lualine.nvim',
-    function() require('lualine').setup({
+    config = function() require('lualine').setup({
       options = {
         globalstatus = true,
         theme = "gruvbox-material",
@@ -121,26 +145,31 @@ require('dep') {
         lualine_z = { "location" },
       },
     }) end,
-  },
-  {
+  }
+  use {
     'romgrk/barbar.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-  },
-  {
+  }
+  use {
     'norcalli/nvim-colorizer.lua',
-    function() require('colorizer').setup({}) end
-  },
-  {
+    config = function() require('colorizer').setup({}) end
+  }
+  use {
     'rcarriga/nvim-notify',
-    function()
+    config = function()
       vim.notify = require('notify')
       require('notify').setup({ background_colour = "#000000" })
     end,
-  },
-  {
+  }
+  use {
     'folke/todo-comments.nvim',
-    function() require('todo-comments').setup({}) end,
+    config = function() require('todo-comments').setup({}) end,
     requires = 'nvim-lua/plenary.nvim',
-  },
-}
+  }
 
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)

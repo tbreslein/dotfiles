@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-require("leap")).add_default_mappings({}
+require("leap").add_default_mappings({})
 local default_opts = {noremap = true, silent = true}
 local expr_opts = {noremap = true, expr = true, silent = true}
 local keymaps = {
@@ -244,11 +244,8 @@ require("which-key").register({
     }
   },
   z = {
-    name = "Dep",
-    s = {"<cmd>DepSync<cr>", "sync"},
-    r = {"<cmd>DepReload<cr>", "reload"},
-    l = {"<cmd>DepLog<cr>", "log"},
-    L = {"<cmd>DepList<cr>", "list"},
+    name = "Packer",
+    s = {"<cmd>PackerSync<cr>", "sync"},
     t = {"<cmd>TSUpdateSync<cr>", "treesitter update sync"}
   }
 }, {mode = "n", prefix = "<leader>", buffer = nil, silent = true, noremap = true, nowait = false})
