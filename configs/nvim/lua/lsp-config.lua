@@ -1,3 +1,90 @@
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+
+require('mason').setup()
+require('mason-null-ls').setup({
+  -- ensure_installed = {
+  --   'cpplint',
+  --   'clang_format',
+  --   'hadolint', --docker linter
+  --   'staticcheck', -- go linter
+  --   'eslint_d',
+  --   'prettierd',
+  --   'stylua', -- lua formatter
+  --   'markdownlint', -- md linter
+  --   'cbfmt', -- codeblock formatter
+  --   'black', -- python formatter
+  --   'flake8', -- python linter
+  --   'shellcheck',
+  --   'shellharden',
+  --   'shfmt',
+  --   'yamlfmt',
+  --   'yamllint',
+  --   'cspell'
+  -- }
+  automatic_setup = true,
+})
+require('mason-tool-installer').setup({
+  ensure_installed = {
+    'ansible-language-server',
+    'astro-language-server',
+    'bash-language-server',
+    'cbfmt',
+    'cpplint',
+    'cspell',
+    'eslint_d',
+    'black', -- python formatter
+    'flake8', -- python linter
+    'gopls',
+    'revive', -- go linter
+    'staticcheck',
+    'dockerfile-language-server',
+    'hadolint', -- docker lint
+    'haskell-language-server',
+    'lua-language-server',
+    'stylua',
+    'markdownlint',
+    'prettierd',
+    'rnix-lsp',
+    'rust-analyzer',
+    'rustfmt',
+    'shellcheck',
+    'shellharden',
+    'shfmt',
+    'typescript-language-server',
+    'yamlfmt',
+    'yamllint',
+  }
+})
+
+-- servers that need special care
+lsp.nvim_workspace() -- nvim lua stuff
+local rust_lsp = lsp.build_options('rust_analyzer', {})
+lsp.ensure_installen({
+  'sumneko_lua',
+})
+
+-- cmp config
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+lsp.setup_nvim_cmp({
+  mapping = lsp.defaults.cmp_mappings({
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  })
+})
+
+lsp.setup()
+
+require('rust-tools').setup({
+  server = rust_lsp,
+  tools = {
+    inlay_hints = {
+      only_current_line = true
+    }
+  }
+})
+
 -- require('neodev').setup({
 --   override = function(root_dir, library)
 --     if require('neodev.util').has_file(root_dir, '/etc/nixos') then
