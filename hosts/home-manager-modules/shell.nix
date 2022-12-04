@@ -51,15 +51,8 @@
       ];
     };
 
-    nushell = {
-      enable = true;
-      configFile.source = ../../configs/nushell/config.nu;
-      envFile.source = ../../configs/nushell/env.nu;
-    };
-
     starship = {
       enable = true;
-      enableNushellIntegration = false; # TEMP
       settings = {
         add_newline = true;
         battery.display.threshold = 30;
