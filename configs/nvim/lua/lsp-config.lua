@@ -1,3 +1,12 @@
+require('neodev').setup({
+  override = function(root_dir, library)
+    if require('neodev.util').has_file(root_dir, '/etc/nixos') then
+      library.enabled = true
+      library.plugins = true
+    end
+  end,
+})
+
 local function on_attach(client, bufnr)
   local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
   vim.api.nvim_exec_autocmds("User", {pattern = "LspAttached"})
@@ -136,7 +145,6 @@ nls.setup({
     nc.statix,
     nd.ansiblelint,
     nd.chktex,
-    nd.clj_kondo,
     nd.cppcheck,
     nd.cspell.with({filetypes = {"markdown", "markdown.mdx"}}),
     nd.hadolint,
@@ -148,7 +156,6 @@ nls.setup({
     nf.black,
     nf.cbfmt,
     nf.clang_format,
-    nf.fnlfmt,
     nf.gofmt,
     nf.latexindent,
     nf.lua_format,
@@ -166,8 +173,6 @@ nls.setup({
     nf.rustfmt,
     nf.shellharden,
     nf.stylish_haskell,
-    nf.zigfmt,
-    nf.zprint
   },
   on_attach = on_attach
 })
@@ -184,6 +189,7 @@ local servers = {
   "julials",
   "pyright",
   "rnix",
+  "sumneko_lua",
   "yamlls",
   "zls"
 }

@@ -40,7 +40,7 @@ require('dep') {
   },
 
   -- languages
-  'folke/neodev.nvim', -- TODO: remeber to configure this!
+  'folke/neodev.nvim',
   'rust-lang/rust.vim',
   'jose-elias-alvarez/typescript.nvim',
   'vmchale/just-vim',

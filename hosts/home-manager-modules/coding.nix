@@ -44,8 +44,8 @@
       hyperfine
 
 
-      # fennel
-      fnlfmt
+      # lua
+      sumneko-lua-language-server
 
       # nix
       rnix-lsp
@@ -65,6 +65,7 @@
       # misc
       cbfmt # code block formatting in markdown files
       editorconfig-core-c
+      hadolint
     ];
   };
 
