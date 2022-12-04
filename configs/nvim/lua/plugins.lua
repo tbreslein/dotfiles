@@ -53,9 +53,8 @@ return require('packer').startup(function(use)
   }
 
   -- languages
-  use 'folke/neodev.nvim'
   use 'rust-lang/rust.vim'
-  use 'jose-elias-alvarez/typescript.nvim'
+  -- use 'jose-elias-alvarez/typescript.nvim'
   use 'vmchale/just-vim'
   use {
     'simrat39/rust-tools.nvim',
@@ -68,7 +67,7 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { "c", "lua", "rust" },
+        ensure_installed = { "all" },
         highlight = { enable = true }
       })
     end
