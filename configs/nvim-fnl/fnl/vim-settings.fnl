@@ -2,12 +2,14 @@
 (import-macros {: plugin-setup : telescope-load-extension} :util-macros)
 
 (telescope-load-extension :notify)
+
 ;; ----
 ;; MISC
 ;; ----
 
 (exec [[:filetype :plugin :indent :on]])
 (set vim.opt.encoding :utf-8)
+
 ;; ------
 ;; COLORS
 ;; ------
@@ -23,13 +25,13 @@
 (set vim.g.gruvbox_material_sign_column_background :none)
 
 (color! :gruvbox-material)
+
 ;; -------
 ;; EDITING
 ;; -------
 
-;; (set vim.opt.shiftwidth 4)
-;; (set vim.opt.tabstop 4)
-
+(set vim.opt.shiftwidth 4)
+(set vim.opt.tabstop 4)
 (set vim.g.mapleader " ")
 (set vim.opt.autoindent true)
 (set vim.opt.expandtab true)
@@ -42,6 +44,7 @@
 (set vim.opt.shiftround false)
 (set vim.opt.laststatus 2)
 (set vim.opt.pumheight 10)
+
 ;; --
 ;; UI
 ;; --
@@ -58,6 +61,7 @@
 (set vim.opt.hidden true)
 (set vim.opt.signcolumn :yes)
 (set+ listchars "eol:↴")
+
 ;; -------
 ;; FOLDING
 ;; -------

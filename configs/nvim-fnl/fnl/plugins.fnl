@@ -74,9 +74,9 @@
         :requires :neovim/nvim-lspconfig
         :config #(plugin-setup :rust-tools { :tools { :inlay_hints { :only_current_line true } } }))
   (use! :jose-elias-alvarez/typescript.nvim)
-  (use! :LhKipp/nvim-nu
-        :run "TSInstall nu"
-        :config #(plugin-setup :nu {}))
+  (use! :vmchale/just-vim)
+  (use! :IndianBoy42/tree-sitter-just
+        :config #(plugin-setup :tree-sitter-just {}))
 
   ;; LSP
   (use! :neovim/nvim-lspconfig)
