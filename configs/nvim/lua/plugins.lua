@@ -69,6 +69,12 @@ return require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        ensure_installed = { "c", "lua", "rust" },
+        highlight = { enable = true }
+      })
+    end
   }
   use {
     'folke/trouble.nvim',
