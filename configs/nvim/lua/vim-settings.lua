@@ -43,7 +43,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hidden = true
 vim.opt.signcolumn = "yes"
-(vim.opt.listchars):append("eol:\226\134\180")
+vim.opt.listchars:append("eol:\226\134\180")
 
 -- Folding
 vim.opt.conceallevel = 0

@@ -1,8 +1,8 @@
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -38,7 +38,7 @@ return require('packer').startup(function(use)
   }
   use {
     'numToStr/Comment.nvim',
-    config = function() require('which-key').setup({}) end,
+    config = function() require('Comment').setup({}) end,
   }
   use {
     'kylechui/nvim-surround',
@@ -106,51 +106,53 @@ return require('packer').startup(function(use)
   use {
     'folke/noice.nvim',
     config = function() require('noice').setup({
-      lsp = {
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
         },
-      },
-      routes = {
-        filter = {
-          warning = true,
-          find = "multiple different client offset_encodings",
+        routes = {
+          filter = {
+            warning = true,
+            find = "multiple different client offset_encodings",
+          },
+          opts = {
+            skip = true,
+          },
         },
-        opts = {
-          skip = true,
+        presets = {
+          bottom_search = true,
+          command_palette = true, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false, -- add a border to hover docs and signature help
         },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true, -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
-      },
-    }) end,
+      })
+    end,
     requires = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' },
   }
   use {
     'nvim-lualine/lualine.nvim',
     config = function() require('lualine').setup({
-      options = {
-        globalstatus = true,
-        theme = "gruvbox-material",
-        component_separators = "",
-        section_separators = "",
-      },
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch", "diagnostics" },
-        lualine_c = { "filename" },
-        lualine_x = { "" },
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
-      },
-    }) end,
+        options = {
+          globalstatus = true,
+          theme = "gruvbox-material",
+          component_separators = "",
+          section_separators = "",
+        },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch", "diagnostics" },
+          lualine_c = { "filename" },
+          lualine_x = { "" },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
+        },
+      })
+    end,
   }
   use {
     'romgrk/barbar.nvim',

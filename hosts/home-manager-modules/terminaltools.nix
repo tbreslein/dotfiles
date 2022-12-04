@@ -10,7 +10,6 @@
       pass
       playerctl
       pamixer
-      python3Minimal
       ripgrep
       trash-cli
       zenith
@@ -24,7 +23,6 @@
       git
       tldr
       procs
-      just
     ]; # ++ [ repoteer.packages.x86_64-linux.default ];
   };
 

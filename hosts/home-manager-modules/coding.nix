@@ -33,39 +33,42 @@
     packages = with pkgs; [
       # compilers, builders, etc.
       gcc
-      fennel
       gnumake
       nodejs
+      cargo
+      just
+      (python310.withPackages (ps: with ps; with python310Packages; [
+        pip
+      ]))
 
       # editors
       android-studio
 
       # tools
       hyperfine
-
+      editorconfig-core-c
+      nixpkgs-fmt
 
       # lua
-      sumneko-lua-language-server
+      # sumneko-lua-language-server
 
       # nix
-      rnix-lsp
-      nixpkgs-fmt
-      statix
+      # rnix-lsp
+      # statix
 
       # shell
-      nodePackages.bash-language-server
-      shellcheck
-      shellharden
+      # nodePackages.bash-language-server
+      # shellcheck
+      # shellharden
 
-      nodePackages.cspell
-      nodePackages.prettier
-      nodePackages.yaml-language-server
-      yamllint
+      # nodePackages.cspell
+      # nodePackages.prettier
+      # nodePackages.yaml-language-server
+      # yamllint
 
       # misc
-      cbfmt # code block formatting in markdown files
-      editorconfig-core-c
-      hadolint
+      # cbfmt # code block formatting in markdown files
+      # hadolint
     ];
   };
 
