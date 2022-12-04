@@ -1,0 +1,4 @@
+- cmp tweaks:
+  - stop the "3 char minimum thingy"
+  - reintroduce i as the completion insert
+
