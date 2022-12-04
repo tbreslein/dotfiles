@@ -24,6 +24,7 @@
       git
       tldr
       procs
+      just
     ]; # ++ [ repoteer.packages.x86_64-linux.default ];
   };
 
@@ -35,7 +36,6 @@
     exa.enable = true;
     feh.enable = true;
     lazygit.enable = true;
-    just.enable = true;
     pandoc.enable = true;
 
     bat = {
