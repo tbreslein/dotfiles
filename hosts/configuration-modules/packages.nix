@@ -23,11 +23,11 @@
       cmake
       gnumake
       gcc
-      (writeshellscriptbin "backup-to-styx" ''
-        rsync -a --info=progress2 ${homedir}/work ganymedroot:/archive/admin/audron/$(date +%f)/
+      (writeShellScriptBin "backup-to-styx" ''
+        rsync -a --info=progress2 ${homeDir}/work ganymedroot:/archive/admin/audron/$(date +%f)/
       '')
-      (writeshellscriptbin "sync-from-styx" ''
-        rsync -a --info=progress2 ganymedroot:/archive/admin/audron/$1 ${homedir}/work/
+      (writeShellScriptBin "sync-from-styx" ''
+        rsync -a --info=progress2 ganymedroot:/archive/admin/audron/$1 ${homeDir}/work/
       '')
       (writeShellScriptBin "update-nixos" ''
         pushd ${homeDir}/.dotfiles && {

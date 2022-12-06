@@ -25,16 +25,16 @@ in
       bars = {
         top = {
           blocks = [
-            { block = "focused_window"; }
-            { block = "battery"; full_threshold = "60"; }
+            { block = "focused_window"; max_width = 50; }
+            { block = "battery"; full_threshold = 60; }
             { block = "cpu"; }
-            { block = "memory"; }
+            { block = "memory"; format = "{mem_used;M}/{mem_total;M}({mem_total_used_percents})"; }
             { block = "sound"; }
             { block = "time"; format = "%d-%m-%Y  %R"; }
           ];
+          theme = "gruvbox-dark";
         };
       };
-      theme = "gruvbox-dark";
     };
   };
 
@@ -93,11 +93,13 @@ in
     enable = true;
     config = {
       assigns = {
-        "2: www" = [{ class = "^Brave-browser$"; }];
-        "3: mail" = [{ class = "^thunderbird$"; }];
-        "4" = [{ class = "^discord$"; }];
-        "4" = [{ class = "^TelegramDesktop$"; }];
-        "4" = [{ class = "^zoom$"; }];
+        "2" = [{ class = "^Brave-browser$"; }];
+        "3" = [{ class = "^thunderbird$"; }];
+        "4" = [
+          { class = "^discord$"; }
+          { class = "^TelegramDesktop$"; }
+          { class = "^zoom$"; }
+        ];
       };
       floating.criteria = [
         { title = "Steam - Update News"; }
@@ -107,22 +109,23 @@ in
       focus.mouseWarping = false;
       modifier = "Mod4";
       keybindings =
-        let modifier = config.xsession.windowManager.i3.config.modifier;
+        let modifier = "Mod4";
         in
         lib.mkOptionDefault {
-          "${modifier}+Return" = "exec \${pkgs.alacritty}/bin/alacritty";
-          "${modifier}+d" = ''exec \${pkgs.dmenu}/bin/dmenu_run -i -m 0 -fn Hack:size=12 -nb #${colors.primary.background} -nf #${colors.parimary.foreground} -sb #${colors.normal.black} -sf #${colors.primary.accent}'';
+          "${modifier}+Return" = "exec alacritty";
+          "${modifier}+d" = ''exec dmenu_run -i -m 0 -fn Hack:size=12 -nb "#${colors.primary.background}" -nf "#${colors.primary.foreground}" -sb "#${colors.normal.black}" -sf "#${colors.primary.accent}"'';
+          "${modifier}+q" = "kill";
           "${modifier}+h" = "focus left";
           "${modifier}+j" = "focus down";
           "${modifier}+k" = "focus up";
           "${modifier}+l" = "focus right";
-          "${modifier}+Control+l" = "exec \${pkgs.slock}/bin/slock";
-          "XF86AudioMute" = "pamixer -t";
-          "XF86AudioLowerVolume" = "pamixer --allow-boost -d5";
-          "XF86AudioRaiseVolume" = "pamixer --allow-boost -i5";
-          "XF86AudioPlay" = "playerctl play-pause";
-          "XF86AudioNext" = "playerctl next";
-          "XF86AudioPrev" = "playerctl previous";
+          "${modifier}+Control+l" = "exec slock";
+          "XF86AudioMute" = "exec pamixer -t";
+          "XF86AudioLowerVolume" = "exec pamixer --allow-boost -d5";
+          "XF86AudioRaiseVolume" = "exec pamixer --allow-boost -i5";
+          "XF86AudioPlay" = "exec playerctl play-pause";
+          "XF86AudioNext" = "exec playerctl next";
+          "XF86AudioPrev" = "exec playerctl previous";
         };
       startup = [
         { command = "megasync"; }
@@ -130,7 +133,10 @@ in
         { command = "xset m 1.5 1"; always = false; }
       ];
       terminal = "alacritty";
-      window.border = 2;
+      window = {
+        border = 1;
+        titlebar = false;
+      };
       colors = {
         background = "#${colors.primary.background}";
         focused = {
@@ -138,24 +144,28 @@ in
           border = "#${colors.borders.focused}";
           childBorder = "#${colors.primary.foreground}";
           text = "#${colors.selection.foreground}";
+          indicator = "#${colors.primary.accent}";
         };
         focusedInactive = {
           background = "#${colors.primary.background}";
           border = "#${colors.borders.unfocused}";
           childBorder = "#${colors.normal.black}";
           text = "#${colors.primary.foreground}";
+          indicator = "#${colors.primary.foreground}";
         };
         unfocused = {
           background = "#${colors.primary.background}";
           border = "#${colors.borders.unfocused}";
           childBorder = "#${colors.normal.black}";
           text = "#${colors.primary.foreground}";
+          indicator = "#${colors.primary.foreground}";
         };
         urgent = {
           background = "#${colors.primary.foreground}";
           border = "#${colors.primary.alert}";
           childBorder = "#${colors.primary.alert}";
           text = "#${colors.primary.alert}";
+          indicator = "#${colors.primary.alert}";
         };
       };
       fonts = {
