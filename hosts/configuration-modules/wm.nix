@@ -35,14 +35,23 @@
       enable = true;
       layout = "us";
       displayManager = {
-        defaultSession = "none+dwm";
+        # defaultSession = "none+dwm";
+        defaultSession = "none+i3";
         lightdm.enable = true;
         autoLogin = {
           enable = true;
           user = "tommy";
         };
       };
-      windowManager.dwm.enable = true;
+      windowManager.i3 = {
+        enable = true;
+        extraPackages = with pkgs; [
+          dmenu
+          i3status-rust
+          slock
+        ];
+      };
+      # windowManager.dwm.enable = true;
     };
   };
 }
