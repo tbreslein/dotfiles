@@ -124,7 +124,7 @@
         set -g status-left-length 30
         # set -g status-left '#[fg=cyan](#S) #(whoami)@#(hostname) :: #[default]'
         set -g status-left '#[fg=cyan]Session: #S'
-        # set -g status-right '#[fg=yellow]%H:%M#[default]'
+        set -g status-right '#[fg=yellow]%H:%M:S#[default]'
         set -g status-right ' '
         set-option -g status-justify centre
       '';
