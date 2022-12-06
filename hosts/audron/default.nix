@@ -28,7 +28,7 @@ in
   };
 
   environment = {
-    systempackages = with pkgs; [
+    systemPackages = with pkgs; [
       # (writeshellscriptbin "backup-to-styx" ''
       #   rsync -a --info=progress2 ${homedir}/work ganymedroot:/archive/admin/audron/$(date +%f)/
       # '')
