@@ -28,10 +28,13 @@ in
   };
 
   environment = {
-    systemPackages = with pkgs; [
-      (writeShellScriptBin "backup-to-styx" ''
-        rsync -a --info=progress2 ${homeDir}/work ganymedroot:/archive/admin/audron/$(date +%F)/
-      '')
+    systempackages = with pkgs; [
+      # (writeshellscriptbin "backup-to-styx" ''
+      #   rsync -a --info=progress2 ${homedir}/work ganymedroot:/archive/admin/audron/$(date +%f)/
+      # '')
+      # (writeshellscriptbin "sync-from-styx" ''
+      #   rsync -a --info=progress2 ganymedroot:/archive/admin/audron/$1 ${homedir}/work/
+      # '')
 
       # needed for eduroam:
       openssl
@@ -316,7 +319,7 @@ in
       # Lenovo Thinkpad T560; formerly Wolf notebook; runs ubuntu
       134.245.66.19 skoll.astrophysik.uni-kiel.de skoll
 
-      # 
+      #
       172.19.66.12 kronos-ipmi.astrophysik.uni-kiel.de kronos-ipmi
 
       # samsung multiport adapter
@@ -325,7 +328,7 @@ in
       # R.340
       134.245.66.66 mifo-hp3.astrophysik.uni-kiel.de mifo-hp3
 
-      # 
+      #
       172.19.66.10 oberon-ipmi.astrophysik.uni-kiel.de oberon-ipmi
 
       # R.327
@@ -334,7 +337,7 @@ in
       # R.159
       134.245.66.76 dwarf17.astrophysik.uni-kiel.de dwarf17
 
-      # 
+      #
       172.19.66.15 atlas-ipmi.astrophysik.uni-kiel.de atlas-ipmi
 
       # R.340
@@ -343,7 +346,7 @@ in
       # R.338
       134.245.66.77 dwarf18.astrophysik.uni-kiel.de dwarf18
 
-      # 
+      #
       172.19.66.16 rhea-ipmi.astrophysik.uni-kiel.de rhea-ipmi
 
       # R.141
@@ -352,7 +355,7 @@ in
       # R.338
       134.245.66.78 dwarf19.astrophysik.uni-kiel.de dwarf19
 
-      # 
+      #
       172.19.66.17 hydra-ipmi.astrophysik.uni-kiel.de hydra-ipmi
 
       # R.340
@@ -361,7 +364,7 @@ in
       # R.331
       134.245.66.31 dwarf21.astrophysik.uni-kiel.de dwarf21
 
-      # 
+      #
       172.19.66.11 prometheus-ipmi.astrophysik.uni-kiel.de prometheus-ipmi
 
       # R.144
@@ -370,7 +373,7 @@ in
       # R.137
       134.245.66.32 dwarf22.astrophysik.uni-kiel.de dwarf22
 
-      # 
+      #
       172.19.66.18 hera-ipmi.astrophysik.uni-kiel.de hera-ipmi
 
       # R.145
@@ -379,7 +382,7 @@ in
       # R.142
       134.245.66.33 dwarf23.astrophysik.uni-kiel.de dwarf23
 
-      # 
+      #
       172.19.66.19 ganymed-ipmi.astrophysik.uni-kiel.de ganymed-ipmi
 
       # R.331
