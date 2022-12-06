@@ -49,27 +49,7 @@
       hyperfine
       editorconfig-core-c
       nixpkgs-fmt
-
-      # lua
-      # sumneko-lua-language-server
-
-      # nix
-      # rnix-lsp
-      # statix
-
-      # shell
-      # nodePackages.bash-language-server
-      # shellcheck
-      # shellharden
-
-      # nodePackages.cspell
-      # nodePackages.prettier
-      # nodePackages.yaml-language-server
-      # yamllint
-
-      # misc
-      # cbfmt # code block formatting in markdown files
-      # hadolint
+      statix
     ];
   };
 
