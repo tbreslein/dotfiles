@@ -28,7 +28,7 @@ in
             { block = "focused_window"; max_width = 50; }
             { block = "battery"; full_threshold = 60; }
             { block = "cpu"; }
-            { block = "memory"; format = "{mem_used;M}/{mem_total;M}({mem_total_used_percents})"; }
+            { block = "memory"; }
             { block = "sound"; }
             { block = "time"; format = "%d-%m-%Y  %R"; }
           ];
