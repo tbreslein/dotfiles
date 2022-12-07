@@ -147,11 +147,11 @@ in
           indicator = "#${colors.primary.accent}";
         };
         focusedInactive = {
-          background = "#${colors.primary.background}";
-          border = "#${colors.borders.unfocused}";
-          childBorder = "#${colors.normal.black}";
-          text = "#${colors.primary.foreground}";
-          indicator = "#${colors.primary.foreground}";
+          background = "#${colors.normal.black}";
+          border = "#${colors.borders.focused}";
+          childBorder = "#${colors.primary.foreground}";
+          text = "#${colors.selection.foreground}";
+          indicator = "#${colors.primary.accent}";
         };
         unfocused = {
           background = "#${colors.primary.background}";
