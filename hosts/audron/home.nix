@@ -93,7 +93,6 @@
       };
     };
   };
-  services.blueman-applet.enable = true;
 
   home.file = {
     "zellij_audron_layout" = {

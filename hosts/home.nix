@@ -49,6 +49,7 @@ in
       DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/docker.sock";
     };
   };
+  services.blueman-applet.enable = true;
 
   nixpkgs.config = {
     allowUnfree = true;
