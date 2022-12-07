@@ -25,7 +25,7 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [ dwmblocks ];
+  environment.systemPackages = with pkgs; [ dwmblocks dmenu slock ];
 
   programs.light.enable = true;
 
@@ -35,23 +35,14 @@
       enable = true;
       layout = "us";
       displayManager = {
-        # defaultSession = "none+dwm";
-        defaultSession = "none+i3";
+        defaultSession = "none+dwm";
         lightdm.enable = true;
         autoLogin = {
           enable = true;
           user = "tommy";
         };
       };
-      windowManager.i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          dmenu
-          i3status-rust
-          slock
-        ];
-      };
-      # windowManager.dwm.enable = true;
+      windowManager.dwm.enable = true;
     };
   };
 }
