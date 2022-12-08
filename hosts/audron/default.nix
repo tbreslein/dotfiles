@@ -29,13 +29,6 @@ in
 
   environment = {
     systemPackages = with pkgs; [
-      # (writeshellscriptbin "backup-to-styx" ''
-      #   rsync -a --info=progress2 ${homedir}/work ganymedroot:/archive/admin/audron/$(date +%f)/
-      # '')
-      # (writeshellscriptbin "sync-from-styx" ''
-      #   rsync -a --info=progress2 ganymedroot:/archive/admin/audron/$1 ${homedir}/work/
-      # '')
-
       # needed for eduroam:
       openssl
       cacert
@@ -71,8 +64,17 @@ in
 
   services = {
     avahi.interfaces = [ home-eth-interface wifi-interface ];
-    blueman.enable = true;
     fprintd.enable = true; #fingerprint support
+    interception-tools = {
+      enable = true;
+      plugins = with pkgs; [ interception-tools-plugins.caps2esc ];
+      udevmonConfig = ''
+        - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+          DEVICE:
+            EVENTS:
+              EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+      '';
+    };
     tlp = {
       enable = true;
       settings = {

@@ -56,5 +56,8 @@ in
   };
 
   programs.home-manager.enable = true;
-  xsession.enable = true;
+  xsession = {
+    enable = true;
+    numlock.enable = true;
+  };
 }
