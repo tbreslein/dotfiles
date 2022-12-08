@@ -36,6 +36,7 @@
       gnumake
       nodejs
       cargo
+      luajitPackages.luarocks
       go
       just
       (python310.withPackages (ps: with ps; with python310Packages; [
