@@ -1,5 +1,19 @@
 local lsp = require('lsp-zero')
-lsp.preset('recommended')
+lsp.set_preferences({
+  suggest_lsp_servers = false,
+  setup_servers_on_start = true,
+  set_lsp_keymaps = true,
+  configure_diagnostics = true,
+  cmp_capabilities = true,
+  manage_nvim_cmp = true,
+  call_servers = 'local',
+  sign_icons = {
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = ''
+  }
+})
 
 local null_ls = require('null-ls')
 local null_opts = lsp.build_options('null-ls', {
@@ -17,13 +31,39 @@ local null_opts = lsp.build_options('null-ls', {
   end
 })
 
-lsp.ensure_installed({
+lsp.setup_servers({
+  -- nix
+  "rnix",
+  -- js/ts/html
   "html",
   "cssls",
   "tsserver",
   "eslint",
-  "rnix-lsp",
-  -- "sumneko_lua",
+  -- c/c++
+  "ccls",
+  -- haskell
+  "hls",
+  -- shell, docker, config files, etc
+  "dockerls",
+  "shellcheck",
+  "ansiblels",
+  "bashls",
+  "yamlls",
+  -- mardown + tex
+  "cbfmt",
+  "cspell",
+  "ltex-ls",
+  -- go
+  "gopls",
+  "gofumpt",
+  "revive",
+  "staticcheck",
+  -- python
+  "black",
+  "flake8",
+  -- rust
+  "rust-analyzer",
+  "rustfmt",
 })
 lsp.nvim_workspace() -- nvim lua stuff
 local rust_lsp = lsp.build_options('rust_analyzer', {})
@@ -38,50 +78,50 @@ lsp.setup_nvim_cmp({
   })
 })
 
-local nc = nls.builtins.code_actions
-local nd = nls.builtins.diagnostics
-local nf = nls.builtins.formatting
+local nc = null_ls.builtins.code_actions
+local nd = null_ls.builtins.diagnostics
+local nf = null_ls.builtins.formatting
 null_ls.setup({
   on_attach = null_opts.on_attach,
   sources = {
---     nc.statix,
---     nd.statix,
---     nf.nixpkgs_fmt,
+    -- nix
+    nc.statix,
+    nd.statix,
+    nf.nixpkgs_fmt,
+    -- c/c++
+    -- nd.cppcheck,
+    nf.clang_format,
+    -- js/ts
     nd.eslint,
     nf.prettier,
+    nd.tsc.with({prefer_local = "node_modules/.bin"}),
+    -- nf.rome.with({
+    --   filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
+    --   prefer_local = "node_modules/.bin"
+    -- }),
+    -- lua
     nf.stylua,
---     nc.shellcheck,
---     nc.statix,
---     nd.ansiblelint,
---     nd.chktex,
---     nd.cppcheck,
---     nd.cspell.with({filetypes = {"markdown", "markdown.mdx"}}),
---     nd.hadolint,
---     nd.revive,
---     nd.shellcheck,
---     nd.statix,
---     nd.tsc.with({prefer_local = "node_modules/.bin"}),
---     nd.yamllint,
---     nf.black,
---     nf.cbfmt,
---     nf.clang_format,
---     nf.gofmt,
---     nf.latexindent,
---     nf.stylua,
---     nf.nixpkgs_fmt,
---     nf.prettier.with({
---       filetypes = {
---         "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "css", "scss", "less"
---       },
---       prefer_local = "node_modules/.bin"
---     }),
---     nf.rome.with({
---       filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
---       prefer_local = "node_modules/.bin"
---     }),
---     nf.rustfmt,
---     nf.shellharden,
---     nf.stylish_haskell,
+    nd.luacheck,
+    -- haskell
+    nf.stylish_haskell,
+    -- shell, docker, config files, etc
+    nd.shellcheck,
+    nd.ansiblelint,
+    nd.hadolint,
+    -- markdown
+    nd.cspell.with({filetypes = {"markdown", "markdown.mdx"}}),
+    nf.cbfmt,
+    -- go
+    nf.gofumpt,
+    nd.revive,
+    nd.staticcheck,
+    -- python
+    nf.black,
+    -- tex
+    nd.chktex,
+    nf.latexindent,
+    -- rust
+    nf.rustfmt,
   }
 })
 

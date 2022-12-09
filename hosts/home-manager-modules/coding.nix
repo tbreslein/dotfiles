@@ -39,6 +39,7 @@
       luajitPackages.luarocks
       go
       just
+      stack
       (python310.withPackages (ps: with ps; with python310Packages; [
         pip
       ]))
@@ -49,9 +50,15 @@
       # tools
       hyperfine
       editorconfig-core-c
+      cbfmt
+      nodePackages.cspell
+      ltex-ls
       nixpkgs-fmt
+      hadolint
+      shellcheck
       statix
       stylua
+      luajitPackages.luacheck
     ];
   };
 
