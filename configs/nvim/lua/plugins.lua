@@ -53,15 +53,19 @@ return require('packer').startup(function(use)
   }
 
   -- languages
+  use 'folke/neodev.nvim'
   use 'rust-lang/rust.vim'
-  -- use 'jose-elias-alvarez/typescript.nvim'
+  use 'jose-elias-alvarez/typescript.nvim'
   use 'vmchale/just-vim'
   use {
     'simrat39/rust-tools.nvim',
+    config = function() require('rust-tools').setup({ tools = { inlay_hints = { only_current_line = true } } }) end,
     requires = 'neovim/nvim-lspconfig',
   }
 
   -- LSP and Treesitter
+  use 'neovim/nvim-lspconfig'
+  use 'jose-elias-alvarez/null-ls.nvim'
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -78,29 +82,19 @@ return require('packer').startup(function(use)
     requires = 'kyazdani42/nvim-web-devicons',
   }
   use {
-    'VonHeikemen/lsp-zero.nvim',
+    'hrsh7th/nvim-cmp',
     requires = {
-      -- LSP support
-      'neovim/nvim-lspconfig',
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      -- cmp
-      'hrsh7th/nvim-cmp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-calc',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lua',
       'saadparwaiz1/cmp_luasnip',
       'L3MON4D3/LuaSnip',
       'rafamadriz/friendly-snippets',
+      'davidsierradz/cmp-conventionalcommits',
     },
   }
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'jay-babu/mason-null-ls.nvim'
 
   -- UI
   use 'elihunter173/dirbuf.nvim'

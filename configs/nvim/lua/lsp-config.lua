@@ -1,95 +1,118 @@
-local lsp = require('lsp-zero')
-lsp.set_preferences({
-  suggest_lsp_servers = false,
-  setup_servers_on_start = true,
-  set_lsp_keymaps = true,
-  configure_diagnostics = true,
-  cmp_capabilities = true,
-  manage_nvim_cmp = true,
-  call_servers = 'local',
-  sign_icons = {
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = ''
-  }
-})
-
-local null_ls = require('null-ls')
-local null_opts = lsp.build_options('null-ls', {
-  on_attach = function(client, bufnr)
-    local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-    vim.api.nvim_exec_autocmds("User", {pattern = "LspAttached"})
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function() return vim.lsp.buf.format({ bufnr = bufnr }) end
-      })
+require('neodev').setup({
+  override = function(root_dir, library)
+    if require('neodev.util').has_file(root_dir, '/etc/nixos') then
+      library.enabled = true
+      library.plugins = true
     end
+  end,
+})
+
+local function on_attach(client, bufnr)
+  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+  vim.api.nvim_exec_autocmds("User", {pattern = "LspAttached"})
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function() return vim.lsp.buf.format({ bufnr = bufnr }) end
+    })
   end
+end
+
+local lsp_defaults = {
+  flags = {
+    debounce_text_changes = 150
+  },
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  on_attach = on_attach
+}
+
+local nvim_lsp = require("lspconfig")
+nvim_lsp.util.default_config = vim.tbl_deep_extend("force", nvim_lsp.util.default_config, lsp_defaults)
+
+do local _ = (require("luasnip.loaders.from_vscode")).lazy_load end
+
+vim.opt.completeopt = {"menu", "menuone", "noselect"}
+local cmp = require("cmp")
+local luasnip = require("luasnip")
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+
+cmp.setup({
+  snippet = {expand = function(x) return luasnip.lsp_expand(x.body) end},
+  sources = {
+    {name = "buffer"},
+    {name = "calc"},
+    {name = "conventionalcommits"},
+    {name = "luasnip"},
+    {name = "nvim_lsp"},
+    {name = "path"}
+  },
+  window = {
+    documentation = cmp.config.window.bordered()
+  },
+  formatting = {
+    fields = {"menu", "abbr", "kind"}
+  },
+  mapping = {
+    ["<c-p>"] = cmp.mapping.select_prev_item(select_opts),
+    ["<c-n>"] = cmp.mapping.select_next_item(select_opts),
+    ["<c-f>"] = cmp.mapping.scroll_docs(4),
+    ["<c-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<c-e>"] = cmp.mapping.abort(),
+    ["<c-i>"] = cmp.mapping.confirm({select = true})
+  },
+  ["<c-d>"] = cmp.mapping(
+    function(fallback)
+      if luasnip.jumpable(1) then
+        return luasnip.jump(1)
+      else
+        return fallback()
+      end
+    end,
+    {"i", "s"}
+  ),
+  ["<c-b>"] = cmp.mapping(
+    function(fallback)
+      if luasnip.jumpable(-1) then
+        return luasnip.jump(-1)
+      else
+        return fallback()
+      end
+    end
+    , {"i", "s"}
+  )
 })
 
-lsp.setup_servers({
-  -- nix
-  "rnix",
-  -- js/ts/html
-  "html",
-  "cssls",
-  "tsserver",
-  "eslint",
-  -- c/c++
-  "ccls",
-  -- haskell
-  "hls",
-  -- shell, docker, config files, etc
-  "dockerls",
-  "shellcheck",
-  "ansiblels",
-  "bashls",
-  "yamlls",
-  -- mardown + tex
-  "cbfmt",
-  "cspell",
-  "ltex-ls",
-  -- go
-  "gopls",
-  "gofumpt",
-  "revive",
-  "staticcheck",
-  -- python
-  "black",
-  "flake8",
-  -- rust
-  "rust-analyzer",
-  "rustfmt",
-})
-lsp.nvim_workspace() -- nvim lua stuff
-local rust_lsp = lsp.build_options('rust_analyzer', {})
+cmp.setup.cmdline(":", {sources = {{name = "cmdline"}}})
+cmp.setup.cmdline("/", {sources = {{name = "buffer"}}})
 
--- cmp config
-local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-lsp.setup_nvim_cmp({
-  mapping = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  })
-})
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    underline = true,
+    virtual_text = {
+      spacing = 5,
+      severity_limit = "Warning"
+    },
+    update_in_insert = true
+  }
+)
 
-local nc = null_ls.builtins.code_actions
-local nd = null_ls.builtins.diagnostics
-local nf = null_ls.builtins.formatting
-null_ls.setup({
-  on_attach = null_opts.on_attach,
+require("typescript").setup({server = {on_attach = on_attach}})
+
+local nls = require("null-ls")
+local nc = nls.builtins.code_actions
+local nd = nls.builtins.diagnostics
+local nf = nls.builtins.formatting
+nls.setup({
   sources = {
     -- nix
     nc.statix,
     nd.statix,
     nf.nixpkgs_fmt,
     -- c/c++
-    -- nd.cppcheck,
+    nd.cppcheck,
     nf.clang_format,
     -- js/ts
     nd.eslint,
@@ -122,147 +145,32 @@ null_ls.setup({
     nf.latexindent,
     -- rust
     nf.rustfmt,
-  }
+  },
+  on_attach = on_attach
 })
 
-require('mason-null-ls').setup({
-  ensure_installed = nil,
-  automatic_installation = true,
-  automatic_setup = true,
-})
-require('mason-null-ls').setup_handlers()
+local servers = {
+  "ansiblels",
+  "bashls",
+  "ccls",
+  "cssls",
+  "gopls",
+  "hls",
+  "html",
+  "pyright",
+  "rnix",
+  "sumneko_lua",
+  "yamlls",
+}
 
-lsp.setup()
-
-require('rust-tools').setup({
-  server = rust_lsp,
-  tools = {
-    inlay_hints = {
-      only_current_line = true
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup({
+    capabilities = lsp_defaults.capabilities,
+    on_attach = on_attach,
+    init_options = {
+      onlyAnalyzeProjectsWithOpenFiles = true,
+      closingLabels = true,
+      suggestFromUnimportedLibraries = false
     }
-  }
-})
-
--- local servers = {
---   'ansible-language-server',
---   'astro-language-server',
---   'bash-language-server',
---   'cbfmt',
---   'clang-format',
---   'cpplint',
---   'cspell',
---   'eslint_d',
---   'black', -- python formatter
---   'flake8', -- python linter
---   'gopls',
---   'revive', -- go linter
---   'staticcheck',
---   'dockerfile-language-server',
---   'hadolint', -- docker lint
---   -- 'haskell-language-server',
---   'lua-language-server',
---   -- 'stylua',
---   'markdownlint',
---   'prettierd',
---   'rnix-lsp',
---   'rust-analyzer',
---   'rustfmt',
---   'shellcheck',
---   'shellharden',
---   'shfmt',
---   'typescript-language-server',
---   'yamlfmt',
---   'yamllint',
--- }
---
--- require('mason').setup()
--- require('mason-tool-installer').setup({ ensure_installed = servers })
---
--- -- servers that need special care
--- lsp.nvim_workspace() -- nvim lua stuff
--- local rust_lsp = lsp.build_options('rust_analyzer', {})
---
--- -- cmp config
--- local cmp = require('cmp')
--- local cmp_select = {behavior = cmp.SelectBehavior.Select}
--- lsp.setup_nvim_cmp({
---   mapping = lsp.defaults.cmp_mappings({
---     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
---     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
---   })
--- })
---
--- lsp.setup_servers(servers)
--- lsp.setup()
---
--- require('rust-tools').setup({
---   server = rust_lsp,
---   tools = {
---     inlay_hints = {
---       only_current_line = true
---     }
---   }
--- })
---
--- -- Null-LS
--- local nls = require("null-ls")
--- local nls_opts = lsp.build_options('null-ls', {})
--- local nc = nls.builtins.code_actions
--- local nd = nls.builtins.diagnostics
--- local nf = nls.builtins.formatting
--- nls.setup({
---   sources = {
---     nc.shellcheck,
---     nc.statix,
---     nd.ansiblelint,
---     nd.chktex,
---     nd.cppcheck,
---     nd.cspell.with({filetypes = {"markdown", "markdown.mdx"}}),
---     nd.hadolint,
---     nd.revive,
---     nd.shellcheck,
---     nd.statix,
---     nd.tsc.with({prefer_local = "node_modules/.bin"}),
---     nd.yamllint,
---     nf.black,
---     nf.cbfmt,
---     nf.clang_format,
---     nf.gofmt,
---     nf.latexindent,
---     nf.stylua,
---     nf.nixpkgs_fmt,
---     nf.prettier.with({
---       filetypes = {
---         "html", "json", "jsonc", "yaml", "markdown", "markdown.mdx", "graphql", "handlebars", "css", "scss", "less"
---       },
---       prefer_local = "node_modules/.bin"
---     }),
---     nf.rome.with({
---       filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
---       prefer_local = "node_modules/.bin"
---     }),
---     nf.rustfmt,
---     nf.shellharden,
---     nf.stylish_haskell,
---   },
---   on_attach = function(client, bufnr)
---     if client.supports_method("textDocument/formatting") then
---       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
---       vim.api.nvim_create_autocmd("BufWritePre", {
---         group = augroup,
---         buffer = bufnr,
---         callback = function()
---           -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
---           vim.lsp.buf.format({bufnr = bufnr})
---         end,
---       })
---     end
---   end,
--- })
---
--- require('mason-null-ls').setup({
---   ensure_installed = nil,
---   automatic_installation = true,
---   automatic_setup = true,
--- })
--- require('mason-null-ls').setup_handlers()
+  })
+end
