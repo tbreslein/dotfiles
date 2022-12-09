@@ -51,6 +51,7 @@
       editorconfig-core-c
       nixpkgs-fmt
       statix
+      stylua
     ];
   };
 
