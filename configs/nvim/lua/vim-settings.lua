@@ -1,7 +1,7 @@
-require('telescope').load_extension('notify')
+require("telescope").load_extension("notify")
 
 -- Misc
-vim.cmd('filetype plugin indent on')
+vim.cmd("filetype plugin indent on")
 vim.opt.encoding = "utf-8"
 
 -- themeing
