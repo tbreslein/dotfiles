@@ -114,7 +114,7 @@ return require("packer").startup(function(use)
     end,
   })
   use({
-    "kosayoda/nvim-lightbuild",
+    "kosayoda/nvim-lightbulb",
     requires = "antoinemadec/FixCursorHold.nvim",
     config = function()
       require("nvim-lightbulb").setup({ autocmd = { enabled = true } })
