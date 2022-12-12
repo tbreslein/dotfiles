@@ -38,7 +38,6 @@
       cargo
       luajitPackages.luarocks
       go
-      just
       stack
       (python310.withPackages (ps: with ps; with python310Packages; [
         pip
@@ -48,15 +47,31 @@
       android-studio
 
       # tools
+      just
       hyperfine
       editorconfig-core-c
+
+      # LSPs, linters, etc
+      # text, tex, markdown
       cbfmt
       nodePackages.cspell
       ltex-ls
+
+      # nix
       nixpkgs-fmt
-      hadolint
-      shellcheck
+      rnix
       statix
+
+      # shell, docker, configs
+      nodePackages.bash-language-server
+      nodePackages.bash-language-server
+      ansible-language-server
+      ansible-lint
+      shellcheck
+      hadolint
+
+      # lua
+      sumneko-lua-language-server
       stylua
       luajitPackages.luacheck
     ];
