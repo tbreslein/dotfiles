@@ -274,7 +274,6 @@ require("which-key").register({
   },
   e = { vim.diagnostic.open_float, "open float" },
   E = { vim.diagnostic.setloclist, "set loclist" },
-  -- c = { vim.lsp.buf.code_action, "code action" },
   c = { "<cmd>CodeActionMenu<cr>", "code action" },
   J = { "<cmd>resize -2<cr>", "resize down" },
   K = { "<cmd>resize +2<cr>", "resize up" },
