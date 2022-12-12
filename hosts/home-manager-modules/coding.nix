@@ -59,7 +59,7 @@
 
       # nix
       nixpkgs-fmt
-      rnix
+      rnix-lsp
       statix
 
       # shell, docker, configs
