@@ -17,9 +17,6 @@ in
     linkneovimconfig = ''
       ln -sf ${homedir}/.dotfiles/configs/nvim ${homedir}/.config/
     '';
-    linkleftwmconfig = ''
-      ln -sf ${homedir}/.dotfiles/configs/leftwm ${homedir}/.config/
-    '';
     linkawesomewmconfig = ''
       ln -sf ${homedir}/.dotfiles/configs/awesome ${homedir}/.config/
     '';
