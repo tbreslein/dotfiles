@@ -43,6 +43,7 @@
         };
       };
       windowManager.dwm.enable = true;
+      windowManager.leftwm.enable = true;
     };
   };
 }
