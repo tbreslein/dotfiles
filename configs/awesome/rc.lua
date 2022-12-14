@@ -51,11 +51,11 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init("/home/tommy/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -69,25 +69,14 @@ modkey = "Mod4"
 awful.layout.layouts = {
   awful.layout.suit.floating,
   awful.layout.suit.tile,
-  awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
-  awful.layout.suit.tile.top,
-  awful.layout.suit.fair,
-  awful.layout.suit.fair.horizontal,
-  awful.layout.suit.spiral,
-  awful.layout.suit.spiral.dwindle,
   awful.layout.suit.max,
   awful.layout.suit.max.fullscreen,
-  awful.layout.suit.magnifier,
-  awful.layout.suit.corner.nw,
-  -- awful.layout.suit.corner.ne,
-  -- awful.layout.suit.corner.sw,
-  -- awful.layout.suit.corner.se,
 }
 -- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
+-- TODO: get rid of this
 myawesomemenu = {
   {
     "hotkeys",
@@ -106,6 +95,7 @@ myawesomemenu = {
   },
 }
 
+-- TODO: get rid of this
 mymainmenu = awful.menu({
   items = {
     { "awesome", myawesomemenu, beautiful.awesome_icon },
@@ -113,13 +103,16 @@ mymainmenu = awful.menu({
   },
 })
 
+-- TODO: get rid of this
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
 
 -- Menubar configuration
+-- TODO: get rid of this
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
+-- TODO: get rid of this
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
@@ -127,6 +120,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
+-- TODO: can I get rid of this?
 local taglist_buttons = gears.table.join(
   awful.button({}, 1, function(t)
     t:view_only()
@@ -150,6 +144,7 @@ local taglist_buttons = gears.table.join(
   end)
 )
 
+-- TODO: can I get rid of this?
 local tasklist_buttons = gears.table.join(
   awful.button({}, 1, function(c)
     if c == client.focus then
@@ -169,6 +164,7 @@ local tasklist_buttons = gears.table.join(
   end)
 )
 
+-- TODO: change this to my wallpapers or get red of it and let autorandr manage this
 local function set_wallpaper(s)
   -- Wallpaper
   if beautiful.wallpaper then
