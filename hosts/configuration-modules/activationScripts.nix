@@ -14,8 +14,14 @@ in
     removeInitVim = ''
       rm -fr ${homeDir}/.config/nvim/init.vim
     '';
-    linkNeovimConfig = ''
-      ln -sf ${homeDir}/.dotfiles/configs/nvim ${homeDir}/.config/
+    linkneovimconfig = ''
+      ln -sf ${homedir}/.dotfiles/configs/nvim ${homedir}/.config/
+    '';
+    linkleftwmconfig = ''
+      ln -sf ${homedir}/.dotfiles/configs/leftwm ${homedir}/.config/
+    '';
+    linkawesomewmconfig = ''
+      ln -sf ${homedir}/.dotfiles/configs/awesome ${homedir}/.config/
     '';
   };
 }
