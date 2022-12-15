@@ -15,10 +15,10 @@ in
       rm -fr ${homeDir}/.config/nvim/init.vim
     '';
     linkneovimconfig = ''
-      ln -sf ${homedir}/.dotfiles/configs/nvim ${homedir}/.config/
+      ln -sf ${homeDir}/.dotfiles/configs/nvim ${homeDir}/.config/
     '';
     linkawesomewmconfig = ''
-      ln -sf ${homedir}/.dotfiles/configs/awesome ${homedir}/.config/
+      ln -sf ${homeDir}/.dotfiles/configs/awesome ${homeDir}/.config/
     '';
   };
 }
