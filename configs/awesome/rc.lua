@@ -269,9 +269,9 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, "k", function()
     awful.client.focus.byidx(-1)
   end, { description = "focus previous by index", group = "client" }),
-  awful.key({ modkey }, "w", function()
-    mymainmenu:show()
-  end, { description = "show main menu", group = "awesome" }),
+  -- awful.key({ modkey }, "w", function()
+  --   mymainmenu:show()
+  -- end, { description = "show main menu", group = "awesome" }),
 
   -- Layout manipulation
   awful.key({ modkey, "Shift" }, "j", function()
@@ -280,19 +280,19 @@ globalkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "k", function()
     awful.client.swap.byidx(-1)
   end, { description = "swap with previous client by index", group = "client" }),
-  awful.key({ modkey, "Control" }, "j", function()
+  awful.key({ modkey }, "u", function()
     awful.screen.focus_relative(1)
   end, { description = "focus the next screen", group = "screen" }),
-  awful.key({ modkey, "Control" }, "k", function()
+  awful.key({ modkey }, "y", function()
     awful.screen.focus_relative(-1)
   end, { description = "focus the previous screen", group = "screen" }),
-  awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
-  awful.key({ modkey }, "Tab", function()
-    awful.client.focus.history.previous()
-    if client.focus then
-      client.focus:raise()
-    end
-  end, { description = "go back", group = "client" }),
+  -- awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
+  -- awful.key({ modkey }, "Tab", function()
+  --   awful.client.focus.history.previous()
+  --   if client.focus then
+  --     client.focus:raise()
+  --   end
+  -- end, { description = "go back", group = "client" }),
 
   -- Standard program
   awful.key({ modkey }, "Return", function()
@@ -319,12 +319,12 @@ globalkeys = gears.table.join(
   awful.key({ modkey, "Control" }, "l", function()
     awful.tag.incncol(-1, nil, true)
   end, { description = "decrease the number of columns", group = "layout" }),
-  awful.key({ modkey }, "space", function()
-    awful.layout.inc(1)
-  end, { description = "select next", group = "layout" }),
-  awful.key({ modkey, "Shift" }, "space", function()
-    awful.layout.inc(-1)
-  end, { description = "select previous", group = "layout" }),
+  -- awful.key({ modkey }, "space", function()
+  --   awful.layout.inc(1)
+  -- end, { description = "select next", group = "layout" }),
+  -- awful.key({ modkey, "Shift" }, "space", function()
+  --   awful.layout.inc(-1)
+  -- end, { description = "select previous", group = "layout" }),
 
   awful.key({ modkey, "Control" }, "n", function()
     local c = awful.client.restore()
@@ -332,25 +332,25 @@ globalkeys = gears.table.join(
     if c then
       c:emit_signal("request::activate", "key.unminimize", { raise = true })
     end
-  end, { description = "restore minimized", group = "client" }),
+  end, { description = "restore minimized", group = "client" })
 
-  -- Prompt
-  awful.key({ modkey }, "r", function()
-    awful.screen.focused().mypromptbox:run()
-  end, { description = "run prompt", group = "launcher" }),
+-- Prompt
+-- awful.key({ modkey }, "r", function()
+--   awful.screen.focused().mypromptbox:run()
+-- end, { description = "run prompt", group = "launcher" }),
 
-  awful.key({ modkey }, "x", function()
-    awful.prompt.run({
-      prompt = "Run Lua code: ",
-      textbox = awful.screen.focused().mypromptbox.widget,
-      exe_callback = awful.util.eval,
-      history_path = awful.util.get_cache_dir() .. "/history_eval",
-    })
-  end, { description = "lua execute prompt", group = "awesome" }),
-  -- Menubar
-  awful.key({ modkey }, "p", function()
-    menubar.show()
-  end, { description = "show the menubar", group = "launcher" })
+-- awful.key({ modkey }, "x", function()
+--   awful.prompt.run({
+--     prompt = "Run Lua code: ",
+--     textbox = awful.screen.focused().mypromptbox.widget,
+--     exe_callback = awful.util.eval,
+--     history_path = awful.util.get_cache_dir() .. "/history_eval",
+--   })
+-- end, { description = "lua execute prompt", group = "awesome" }),
+-- Menubar
+-- awful.key({ modkey }, "p", function()
+--   menubar.show()
+-- end, { description = "show the menubar", group = "launcher" })
 )
 
 clientkeys = gears.table.join(
@@ -358,7 +358,7 @@ clientkeys = gears.table.join(
     c.fullscreen = not c.fullscreen
     c:raise()
   end, { description = "toggle fullscreen", group = "client" }),
-  awful.key({ modkey, "Shift" }, "c", function(c)
+  awful.key({ modkey }, "q", function(c)
     c:kill()
   end, { description = "close", group = "client" }),
   awful.key(
@@ -367,7 +367,7 @@ clientkeys = gears.table.join(
     awful.client.floating.toggle,
     { description = "toggle floating", group = "client" }
   ),
-  awful.key({ modkey, "Control" }, "Return", function(c)
+  awful.key({ modkey }, "n", function(c)
     c:swap(awful.client.getmaster())
   end, { description = "move to master", group = "client" }),
   awful.key({ modkey }, "o", function(c)
@@ -376,7 +376,7 @@ clientkeys = gears.table.join(
   awful.key({ modkey }, "t", function(c)
     c.ontop = not c.ontop
   end, { description = "toggle keep on top", group = "client" }),
-  awful.key({ modkey }, "n", function(c)
+  awful.key({ modkey, "Shift" }, "n", function(c)
     -- The client currently has the input focus, so it cannot be
     -- minimized, since minimized clients can't have the focus.
     c.minimized = true
@@ -486,26 +486,26 @@ awful.rules.rules = {
       class = {
         "Arandr",
         "Blueman-manager",
-        "Gpick",
-        "Kruler",
-        "MessageWin", -- kalarm.
-        "Sxiv",
-        "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-        "Wpa_gui",
-        "veromix",
-        "xtightvncviewer",
+        "Gimp",
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
       -- and the name shown there might not match defined rules here.
       name = {
-        "Event Tester", -- xev.
+        "Picture in picture",
       },
       role = {
         "AlarmWindow", -- Thunderbird's calendar.
         "ConfigManager", -- Thunderbird's about:config.
         "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
       },
+    },
+    properties = { floating = true },
+  },
+  {
+    rule = {
+      class = { "Steam " },
+      name = { "Friends List" },
     },
     properties = { floating = true },
   },
@@ -532,45 +532,45 @@ client.connect_signal("manage", function(c)
   end
 end)
 
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-  -- buttons for the titlebar
-  local buttons = gears.table.join(
-    awful.button({}, 1, function()
-      c:emit_signal("request::activate", "titlebar", { raise = true })
-      awful.mouse.client.move(c)
-    end),
-    awful.button({}, 3, function()
-      c:emit_signal("request::activate", "titlebar", { raise = true })
-      awful.mouse.client.resize(c)
-    end)
-  )
-
-  awful.titlebar(c):setup({
-    { -- Left
-      awful.titlebar.widget.iconwidget(c),
-      buttons = buttons,
-      layout = wibox.layout.fixed.horizontal,
-    },
-    { -- Middle
-      { -- Title
-        align = "center",
-        widget = awful.titlebar.widget.titlewidget(c),
-      },
-      buttons = buttons,
-      layout = wibox.layout.flex.horizontal,
-    },
-    { -- Right
-      awful.titlebar.widget.floatingbutton(c),
-      awful.titlebar.widget.maximizedbutton(c),
-      awful.titlebar.widget.stickybutton(c),
-      awful.titlebar.widget.ontopbutton(c),
-      awful.titlebar.widget.closebutton(c),
-      layout = wibox.layout.fixed.horizontal(),
-    },
-    layout = wibox.layout.align.horizontal,
-  })
-end)
+-- -- Add a titlebar if titlebars_enabled is set to true in the rules.
+-- client.connect_signal("request::titlebars", function(c)
+--   -- buttons for the titlebar
+--   local buttons = gears.table.join(
+--     awful.button({}, 1, function()
+--       c:emit_signal("request::activate", "titlebar", { raise = true })
+--       awful.mouse.client.move(c)
+--     end),
+--     awful.button({}, 3, function()
+--       c:emit_signal("request::activate", "titlebar", { raise = true })
+--       awful.mouse.client.resize(c)
+--     end)
+--   )
+--
+--   awful.titlebar(c):setup({
+--     { -- Left
+--       awful.titlebar.widget.iconwidget(c),
+--       buttons = buttons,
+--       layout = wibox.layout.fixed.horizontal,
+--     },
+--     { -- Middle
+--       { -- Title
+--         align = "center",
+--         widget = awful.titlebar.widget.titlewidget(c),
+--       },
+--       buttons = buttons,
+--       layout = wibox.layout.flex.horizontal,
+--     },
+--     { -- Right
+--       awful.titlebar.widget.floatingbutton(c),
+--       awful.titlebar.widget.maximizedbutton(c),
+--       awful.titlebar.widget.stickybutton(c),
+--       awful.titlebar.widget.ontopbutton(c),
+--       awful.titlebar.widget.closebutton(c),
+--       layout = wibox.layout.fixed.horizontal(),
+--     },
+--     layout = wibox.layout.align.horizontal,
+--   })
+-- end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
