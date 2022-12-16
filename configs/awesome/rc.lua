@@ -12,7 +12,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local menubar = require("menubar")
+-- local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -77,43 +77,43 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 -- TODO: get rid of this
-myawesomemenu = {
-  {
-    "hotkeys",
-    function()
-      hotkeys_popup.show_help(nil, awful.screen.focused())
-    end,
-  },
-  { "manual", terminal .. " -e man awesome" },
-  { "edit config", editor_cmd .. " " .. awesome.conffile },
-  { "restart", awesome.restart },
-  {
-    "quit",
-    function()
-      awesome.quit()
-    end,
-  },
-}
+-- myawesomemenu = {
+--   {
+--     "hotkeys",
+--     function()
+--       hotkeys_popup.show_help(nil, awful.screen.focused())
+--     end,
+--   },
+--   { "manual", terminal .. " -e man awesome" },
+--   { "edit config", editor_cmd .. " " .. awesome.conffile },
+--   { "restart", awesome.restart },
+--   {
+--     "quit",
+--     function()
+--       awesome.quit()
+--     end,
+--   },
+-- }
 
 -- TODO: get rid of this
-mymainmenu = awful.menu({
-  items = {
-    { "awesome", myawesomemenu, beautiful.awesome_icon },
-    { "open terminal", terminal },
-  },
-})
+-- mymainmenu = awful.menu({
+--   items = {
+--     { "awesome", myawesomemenu, beautiful.awesome_icon },
+--     { "open terminal", terminal },
+--   },
+-- })
 
 -- TODO: get rid of this
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
+-- mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
 
 -- Menubar configuration
 -- TODO: get rid of this
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
 -- TODO: get rid of this
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -145,24 +145,24 @@ local taglist_buttons = gears.table.join(
 )
 
 -- TODO: can I get rid of this?
-local tasklist_buttons = gears.table.join(
-  awful.button({}, 1, function(c)
-    if c == client.focus then
-      c.minimized = true
-    else
-      c:emit_signal("request::activate", "tasklist", { raise = true })
-    end
-  end),
-  awful.button({}, 3, function()
-    awful.menu.client_list({ theme = { width = 250 } })
-  end),
-  awful.button({}, 4, function()
-    awful.client.focus.byidx(1)
-  end),
-  awful.button({}, 5, function()
-    awful.client.focus.byidx(-1)
-  end)
-)
+-- local tasklist_buttons = gears.table.join(
+--   awful.button({}, 1, function(c)
+--     if c == client.focus then
+--       c.minimized = true
+--     else
+--       c:emit_signal("request::activate", "tasklist", { raise = true })
+--     end
+--   end),
+--   awful.button({}, 3, function()
+--     awful.menu.client_list({ theme = { width = 250 } })
+--   end),
+--   awful.button({}, 4, function()
+--     awful.client.focus.byidx(1)
+--   end),
+--   awful.button({}, 5, function()
+--     awful.client.focus.byidx(-1)
+--   end)
+-- )
 
 -- TODO: change this to my wallpapers or get red of it and let autorandr manage this
 -- local function set_wallpaper(s)
@@ -248,9 +248,9 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-  awful.button({}, 3, function()
-    mymainmenu:toggle()
-  end),
+-- awful.button({}, 3, function()
+--   mymainmenu:toggle()
+-- end),
   awful.button({}, 4, awful.tag.viewnext),
   awful.button({}, 5, awful.tag.viewprev)
 ))
@@ -298,9 +298,29 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, "Return", function()
     awful.spawn(terminal)
   end, { description = "open a terminal", group = "launcher" }),
+  awful.key({ modkey }, "d", function()
+    awful.spawn([[dmenu_run -i -m 0 -fn Hack:size=12 -nb "#1d2021" -nf "#ebdbb2" -sb "#3c3836" -sf "#fe8019"]])
+  end, { description = "open dmenu", group = "launcher" }),
   awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
-
+  awful.key({}, "XF86AudioRaiseVolume", function()
+    awful.util.spawn("pamixer --allow-boost -i5")
+  end),
+  awful.key({}, "XF86AudioLowerVolume", function()
+    awful.util.spawn("pamixer --allow-boost -d5")
+  end),
+  awful.key({}, "XF86AudioMute", function()
+    awful.util.spawn("pamixer -t")
+  end),
+  awful.key({}, "XF86AudioPlay", function()
+    awful.util.spawn("playerctl play-pause")
+  end),
+  awful.key({}, "XF86AudioNext", function()
+    awful.util.spawn("playerctl next")
+  end),
+  awful.key({}, "XF86AudioPrev", function()
+    awful.util.spawn("playerctl previous")
+  end),
   awful.key({ modkey }, "l", function()
     awful.tag.incmwfact(0.05)
   end, { description = "increase master width factor", group = "layout" }),

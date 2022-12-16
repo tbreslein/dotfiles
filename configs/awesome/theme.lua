@@ -11,24 +11,24 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font = "sans 8"
+theme.font = "Hack 12"
 
-theme.bg_normal = "#222222"
-theme.bg_focus = "#535d6c"
-theme.bg_urgent = "#ff0000"
-theme.bg_minimize = "#444444"
+theme.bg_normal = "#1d2021"
+theme.bg_focus = "#3c3836"
+theme.bg_urgent = theme.bg_focus
+theme.bg_minimize = theme.bg_focus
 theme.bg_systray = theme.bg_normal
 
-theme.fg_normal = "#aaaaaa"
-theme.fg_focus = "#ffffff"
-theme.fg_urgent = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.fg_normal = "#ebdbb2"
+theme.fg_focus = "#fe8019"
+theme.fg_urgent = "#fb4934"
+theme.fg_minimize = "#fbf1c7"
 
 theme.useless_gap = dpi(0)
 theme.border_width = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus = "#535d6c"
-theme.border_marked = "#91231c"
+theme.border_normal = theme.bg_normal
+theme.border_focus = theme.bg_focus
+theme.border_marked = "#fabd2f"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -43,12 +43,22 @@ theme.border_marked = "#91231c"
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 
+theme.hotkeys_bg = theme.bg_normal
+theme.hotkeys_fg = theme.fg_normal
+theme.hotkeys_border_width = theme.border_width
+theme.hotkeys_border_color = theme.border_focus
+
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size, theme.fg_normal)
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 
 -- Variables set for theming notifications:
+theme.notification_font = theme.font
+theme.notification_bg = theme.bg_normal
+theme.notification_fg = theme.fg_normal
+theme.notification_border_color = theme.border_normal
+theme.notification_border_width = theme.border_width
 -- notification_font
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
