@@ -189,36 +189,67 @@ local keymaps = {
     mode = { "n" },
     description = "prev buffer",
     opts = default_opts,
-    "<a-j>",
+    "<c-j>",
     "<cmd>BufferPrevious<cr>",
   },
   {
     mode = { "n" },
     description = "next buffer",
     opts = default_opts,
-    "<a-k>",
+    "<c-k>",
     "<cmd>BufferNext<cr>",
-  },
-  {
-    mode = { "n" },
-    description = "move buffer prev",
-    opts = default_opts,
-    "<a-<>",
-    "<cmd>BufferMovePrevious<cr>",
-  },
-  {
-    mode = { "n" },
-    description = "move buffer next",
-    opts = default_opts,
-    "<a->>",
-    "<cmd>BufferMoveNext<cr>",
   },
   {
     mode = { "n" },
     description = "close buffer",
     opts = default_opts,
-    "<a-x>",
+    "<c-x>",
     "<cmd>BufferClose<cr>",
+  },
+  {
+    mode = { "n" },
+    description = "harpoon file 1",
+    opts = default_opts,
+    "<c-1>",
+    function()
+      require("harpoon.ui").nav_file(1)
+    end,
+  },
+  {
+    mode = { "n" },
+    description = "harpoon file 2",
+    opts = default_opts,
+    "<c-2>",
+    function()
+      require("harpoon.ui").nav_file(2)
+    end,
+  },
+  {
+    mode = { "n" },
+    description = "harpoon file 3",
+    opts = default_opts,
+    "<c-3>",
+    function()
+      require("harpoon.ui").nav_file(3)
+    end,
+  },
+  {
+    mode = { "n" },
+    description = "harpoon file 4",
+    opts = default_opts,
+    "<c-4>",
+    function()
+      require("harpoon.ui").nav_file(4)
+    end,
+  },
+  {
+    mode = { "n" },
+    description = "harpoon file 5",
+    opts = default_opts,
+    "<c-4>",
+    function()
+      require("harpoon.ui").nav_file(5)
+    end,
   },
 }
 local autocmds = {
@@ -272,6 +303,8 @@ require("which-key").register({
     f = { "<cmd>q!<cr>", "force quit" },
     a = { "<cmd>qa!<cr>", "force quit all" },
   },
+  a = { require("harpoon.mark").add_file, "add file to harpoon list" },
+  u = { vim.cmd.UndotreeToggle, "open undotree" },
   e = { vim.diagnostic.open_float, "open float" },
   E = { vim.diagnostic.setloclist, "set loclist" },
   c = { "<cmd>CodeActionMenu<cr>", "code action" },
@@ -280,20 +313,6 @@ require("which-key").register({
   H = { "<cmd>vertical resize -2<cr>", "resize left" },
   L = { "<cmd>vertical resize +2<cr>", "resize right" },
   g = { "<cmd>LazyGit<cr>", "LazyGit" },
-  f = {
-    name = "Telescope",
-    l = { "<cmd>Telescope builtin<cr>", "list builtin pickers" },
-    b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "buffer fzf" },
-    F = { "<cmd>Telescope git_files hidden=true<cr>", "git ls-files" },
-    f = { "<cmd>Telescope find_files hidden=true<cr>", "file finder" },
-    g = { "<cmd>Telescope live_grep<cr>", "live grep" },
-    h = { "<cmd>Telescope notify<cr>", "notify history" },
-    r = { "<cmd>Telescope lsp_references<cr>", "LSP references" },
-    D = { "<cmd>Telescope diagnostics<cr>", "LSP diagnostics" },
-    i = { "<cmd>Telescope lsp_implementations<cr>", "LSP implementations" },
-    d = { "<cmd>Telescope lsp_definitions<cr>", "LSP definitions" },
-    t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP type definitions" },
-  },
   l = {
     name = "Lsp",
     t = {
@@ -307,8 +326,20 @@ require("which-key").register({
     },
   },
   p = {
-    name = "File explorer",
+    name = "explorers",
     v = { "<cmd>Dirbuf<cr>", "dirbuf" },
+    l = { "<cmd>Telescope builtin<cr>", "list builtin pickers" },
+    b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "buffer fzf" },
+    F = { "<cmd>Telescope git_files hidden=true<cr>", "git ls-files" },
+    f = { "<cmd>Telescope find_files hidden=true<cr>", "file finder" },
+    g = { "<cmd>Telescope live_grep<cr>", "live grep" },
+    h = { require("harpoon.ui").toggle_quick_menu, "harpoon menu" },
+    n = { "<cmd>Telescope notify<cr>", "notify history" },
+    r = { "<cmd>Telescope lsp_references<cr>", "LSP references" },
+    D = { "<cmd>Telescope diagnostics<cr>", "LSP diagnostics" },
+    i = { "<cmd>Telescope lsp_implementations<cr>", "LSP implementations" },
+    d = { "<cmd>Telescope lsp_definitions<cr>", "LSP definitions" },
+    t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP type definitions" },
   },
   r = {
     name = "refactor",
@@ -328,12 +359,6 @@ require("which-key").register({
     p = { "<esc><cmd>lua require('refactoring').debug.printf({below = false})<cr>", "add print statement" },
     d = { "<esc><cmd>lua require('refactoring').debug.print_var()<cr>", "add print statement for selected var" },
     c = { "<esc><cmd>lua require('refactoring').debug.cleanup({})<cr>", "clean up debug statements" },
-  },
-  s = {
-    name = "Spectre",
-    s = { ":lua require('spectre').open()<cr>", "open spectre" },
-    v = { ":lua require('spectre').open_visual()<cr>", "open spectre on visual selection" },
-    f = { ":lua require('spectre').open_file_search()<cr>", "open spectre file search" },
   },
   t = {
     name = "Tabs",

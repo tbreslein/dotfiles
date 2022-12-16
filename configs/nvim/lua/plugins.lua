@@ -31,10 +31,6 @@ return require("packer").startup(function(use)
 
   -- editing
   use({
-    "nvim-pack/nvim-spectre",
-    requires = "nvim-lua/plenary.nvim",
-  })
-  use({
     "ThePrimeagen/refactoring.nvim",
     requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
   })
@@ -42,12 +38,6 @@ return require("packer").startup(function(use)
     "numToStr/Comment.nvim",
     config = function()
       require("Comment").setup({})
-    end,
-  })
-  use({
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({})
     end,
   })
   use("windwp/nvim-ts-autotag")
@@ -59,6 +49,8 @@ return require("packer").startup(function(use)
     end,
     requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "kyazdani42/nvim-web-devicons" },
   })
+  use("mbbill/undotree")
+  use( "ThePrimeagen/harpoon")
 
   -- languages
   use("folke/neodev.nvim")
