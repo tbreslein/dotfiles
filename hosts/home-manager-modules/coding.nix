@@ -50,6 +50,7 @@
       just
       hyperfine
       editorconfig-core-c
+      tree-sitter
 
       # LSPs, linters, etc
       # text, tex, markdown

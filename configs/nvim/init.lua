@@ -1,4 +1,3 @@
 require("plugins")
-require("vim-settings")
+require("settings")
 require("keymaps")
-require("lsp-config")
