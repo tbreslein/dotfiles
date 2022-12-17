@@ -1,0 +1,8 @@
+- nvim keybind list, especially for lsp zero defaults
+- update my nvim update function using headless mode:
+  "# Update Packer plugins
+  nvim --headless -c 'autocmd User PaqDoneSync quitall' -c 'PaqSync'
+
+  # Update Mason packages
+  nvim --headless -c 'autocmd User MasonUpdateAllComplete quitall' -c 'MasonUpdateAll'
+"
