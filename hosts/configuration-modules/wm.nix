@@ -38,7 +38,7 @@
         defaultSession = "none+dwm";
         lightdm.enable = true;
         autoLogin = {
-          enable = false;
+          enable = true;
           user = "tommy";
         };
       };
