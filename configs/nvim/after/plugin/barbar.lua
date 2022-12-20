@@ -1,3 +1,3 @@
-vim.keymap.set("n", "<c-j>", vim.cmd("BufferPrevious"))
-vim.keymap.set("n", "<c-k>", vim.cmd("BufferNext"))
-vim.keymap.set("n", "<c-k>", vim.cmd("BufferClose"))
+vim.keymap.set("n", "<c-j>", "<cmd>BufferPrevious<cr>")
+vim.keymap.set("n", "<c-k>", "<cmd>BufferNext<cr>")
+vim.keymap.set("n", "<c-x>", "<cmd>BufferClose<cr>")
