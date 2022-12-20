@@ -17,6 +17,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+local vicious = require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -67,7 +68,15 @@ awful.layout.layouts = {
 }
 
 -- {{{ Wibar
-mytextclock = wibox.widget.textclock()
+datewidget = wibox.widget.textbox()
+vicious.register(datewidget, vicious.widgets.date, " %b %d, %R")
+batwidget = wibox.widget.textbox()
+vicious.register(batwidget, vicious.widgets.bat, " BAT: $2% |", 61, "BAT0")
+cpuwidget = wibox.widget.textbox()
+vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1% |", 5)
+memwidget = wibox.widget.textbox()
+vicious.cache(vicious.widgets.mem)
+vicious.register(memwidget, vicious.widgets.mem, " MEM: $1% ", 5)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -123,22 +132,28 @@ awful.screen.connect_for_each_screen(function(s)
 
 	-- Add widgets to the wibox
 	s.mywibox:setup({
-    layout = wibox.layout.align.horizontal,
-    { -- Left widgets
-      layout = wibox.layout.fixed.horizontal,
-      -- mylauncher,
-      s.mytaglist,
-      -- s.mypromptbox,
-      s.mylayoutbox,
-    },
-    nil,
-    { -- Right widgets
-      layout = wibox.layout.fixed.horizontal,
-      -- mykeyboardlayout,
-      wibox.widget.systray(),
-      mytextclock,
-    },
-  })
+		layout = wibox.layout.align.horizontal,
+		{
+			layout = wibox.layout.fixed.horizontal,
+			s.mytaglist,
+			s.mylayoutbox,
+		},
+		nil,
+		{ -- Right widgets
+			layout = wibox.layout.fixed.horizontal,
+			{
+				layout = wibox.layout.fixed.horizontal,
+				batwidget,
+				cpuwidget,
+				memwidget,
+			},
+			{
+				layout = wibox.layout.fixed.horizontal,
+				wibox.widget.systray(),
+				datewidget,
+			},
+		},
+	})
 end)
 -- }}}
 
@@ -221,10 +236,10 @@ globalkeys = gears.table.join(
 		awful.tag.incncol(-1, nil, true)
 	end, { description = "decrease the number of columns", group = "layout" }),
 	awful.key({ modkey }, "space", function()
-	  awful.layout.inc(1)
+		awful.layout.inc(1)
 	end, { description = "select next", group = "layout" }),
 	awful.key({ modkey, "Shift" }, "space", function()
-	  awful.layout.inc(-1)
+		awful.layout.inc(-1)
 	end, { description = "select previous", group = "layout" }),
 
 	awful.key({ modkey, "Control" }, "n", function()
