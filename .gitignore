@@ -2,3 +2,4 @@
 .luarc.json
 configs/nvim-fnl/lua/
 configs/nvim-fnl/fnl/*.lua
+configs/nvim/lazy-lock.json

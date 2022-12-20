@@ -42,3 +42,52 @@ vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>
 
 -- leave insert mode inside terminal mode
 vim.keymap.set("t", "jk", "<c-\\><c-n>")
+
+-- plugin keymaps
+-- barbar
+vim.keymap.set("n", "<c-j>", "<cmd>BufferPrevious<cr>")
+vim.keymap.set("n", "<c-k>", "<cmd>BufferNext<cr>")
+vim.keymap.set("n", "<c-x>", "<cmd>BufferClose<cr>")
+
+-- zenmode
+vim.keymap.set("n", "<leader>zz", function()
+  require("zen-mode").toggle()
+  vim.wo.wrap = false
+end)
+
+-- harpoon
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+vim.keymap.set("n", "<leader>a", mark.add_file)
+vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+vim.keymap.set("n", "<C-1>", function()
+  ui.nav_file(1)
+end)
+vim.keymap.set("n", "<C-2>", function()
+  ui.nav_file(2)
+end)
+vim.keymap.set("n", "<C-3>", function()
+  ui.nav_file(3)
+end)
+vim.keymap.set("n", "<C-4>", function()
+  ui.nav_file(4)
+end)
+vim.keymap.set("n", "<C-5>", function()
+  ui.nav_file(5)
+end)
+
+-- telescope
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
+vim.keymap.set("n", "<leader>pg", builtin.git_files, {})
+vim.keymap.set("n", "<leader>pg", builtin.live_grep, {})
+vim.keymap.set("n", "<leader>pb", builtin.live_grep, {})
+
+-- dirbuf
+vim.keymap.set("n", "<leader>pv", "<cmd>Dirbuf<cr>")
+
+-- leap
+require("leap").add_default_mappings()
+
+-- undotree
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")

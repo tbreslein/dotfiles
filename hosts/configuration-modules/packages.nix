@@ -38,12 +38,12 @@
                 git commit -m "update flake.lock"
                 git push
             fi && \
-            sudo nixos-rebuild --upgrade-all switch --flake .#"$(cat /etc/hostname)" && \
-            nvim --headless -c 'autocmd User PaqDoneSync quitall' -c 'PaqSync'
-            nvim --headless -c 'autocmd User MasonUpdateAllComplete quitall' -c 'MasonUpdateAll'
+            sudo nixos-rebuild --upgrade-all switch --flake .#"$(cat /etc/hostname)"
             if [[ ! "$(readlink /run/booted-system/{initrd,kernel,kernel-modules})" == "$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})" ]]; then
                 printf "\033[1;31minitrd or kernel packages have been rebuilt; reboot required!\033[0m\n"
             fi
+            nvim --headless -c 'autocmd User MasonUpdateAllComplete quitall' -c 'MasonUpdateAll'
+            nvim --headless -c 'lua require("lazy").sync()'
         }
         popd || exit
       '')
