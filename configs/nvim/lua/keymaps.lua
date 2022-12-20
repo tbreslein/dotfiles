@@ -51,8 +51,8 @@ vim.keymap.set("n", "<c-x>", "<cmd>BufferClose<cr>")
 
 -- zenmode
 vim.keymap.set("n", "<leader>zz", function()
-  require("zen-mode").toggle()
-  vim.wo.wrap = false
+	require("zen-mode").toggle()
+	vim.wo.wrap = false
 end)
 
 -- harpoon
@@ -61,19 +61,19 @@ local ui = require("harpoon.ui")
 vim.keymap.set("n", "<leader>a", mark.add_file)
 vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
 vim.keymap.set("n", "<C-1>", function()
-  ui.nav_file(1)
+	ui.nav_file(1)
 end)
 vim.keymap.set("n", "<C-2>", function()
-  ui.nav_file(2)
+	ui.nav_file(2)
 end)
 vim.keymap.set("n", "<C-3>", function()
-  ui.nav_file(3)
+	ui.nav_file(3)
 end)
 vim.keymap.set("n", "<C-4>", function()
-  ui.nav_file(4)
+	ui.nav_file(4)
 end)
 vim.keymap.set("n", "<C-5>", function()
-  ui.nav_file(5)
+	ui.nav_file(5)
 end)
 
 -- telescope
@@ -91,3 +91,6 @@ require("leap").add_default_mappings()
 
 -- undotree
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
+
+-- trouble
+vim.keymap.set("n", "<leader>t", "<cmd>TroubleToggle<cr>")

@@ -157,6 +157,13 @@ require("lazy").setup({
 	-- LSP
 	"jose-elias-alvarez/null-ls.nvim",
 	"rubixdev/mason-update-all",
+	{
+		"folke/trouble.nvim",
+		dependencies = { "kyazdani42/nvim-web-devicons" },
+		config = function()
+			require("trouble").setup({})
+		end,
+	},
 
 	-- LSP zero
 	{
