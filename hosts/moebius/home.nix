@@ -90,7 +90,6 @@
   xsession = {
     initExtra = ''
       megasync &
-      dwmblocks &
       autorandr -c
       xset m 1.5 1
     '';
