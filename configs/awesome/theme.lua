@@ -27,7 +27,7 @@ theme.fg_minimize = "#fbf1c7"
 theme.useless_gap = dpi(0)
 theme.border_width = dpi(1)
 theme.border_normal = theme.bg_normal
-theme.border_focus = theme.bg_focus
+theme.border_focus = theme.fg_focus
 theme.border_marked = "#fabd2f"
 
 -- There are other variable sets
@@ -59,6 +59,7 @@ theme.notification_bg = theme.bg_normal
 theme.notification_fg = theme.fg_normal
 theme.notification_border_color = theme.border_normal
 theme.notification_border_width = theme.border_width
+theme.notification_width = dpi(300)
 -- notification_font
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
