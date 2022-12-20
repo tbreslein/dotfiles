@@ -83,9 +83,12 @@
         unbind C-b
         set-option -g prefix C-a
         bind-key C-a send-prefix
-        #set -g default-terminal "xterm-256color"
-        set -g default-terminal "alacritty"
-        set -ag terminal-overrides ",alacritty:RGB"
+        #set -g default-terminal "tmux-256color"
+        #set -ag terminal-overrides ",xterm-256color:RGB"
+        #set -g default-terminal "alacritty"
+        #set -ag terminal-overrides ",alacritty:RGB"
+        set -g default-terminal "tmux-256color"
+        set -ag terminal-overrides ",*:RGB"
         #set -ga terminal-overrides ",*:Tc"
         #set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
         #set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
@@ -124,8 +127,7 @@
         set -g status-left-length 30
         # set -g status-left '#[fg=cyan](#S) #(whoami)@#(hostname) :: #[default]'
         set -g status-left '#[fg=cyan]Session: #S'
-        set -g status-right '#[fg=yellow]%H:%M:S#[default]'
-        set -g status-right ' '
+        set -g status-right '#[fg=yellow]%H:%M#[default]'
         set-option -g status-justify centre
       '';
     };
