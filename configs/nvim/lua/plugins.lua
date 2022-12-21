@@ -58,7 +58,7 @@ require("lazy").setup({
 		config = function()
 			require("zen-mode").setup({
 				window = {
-					width = 90,
+					width = 140,
 					options = {
 						number = true,
 						relativenumber = true,
