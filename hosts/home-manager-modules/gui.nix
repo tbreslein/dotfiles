@@ -13,8 +13,8 @@
       thunderbird
       zoom-us
       obs-studio
-      megacmd
       megasync
+      obsidian
     ];
   };
 
