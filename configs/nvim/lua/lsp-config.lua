@@ -23,14 +23,18 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 -- servers that are installed globally and only need to be setup
--- lsp.setup_servers({"ccls", force = true})
-
--- lsp.set_preferences({
---   sign_icons = { }
--- })
+lsp.setup_servers({ "julials", force = true })
 
 lsp.setup_nvim_cmp({
 	mapping = cmp_mappings,
+	sources = {
+		{
+			name = "latex_symbols",
+			option = {
+				strategy = 0,
+			},
+		},
+	},
 })
 
 local null_opts = lsp.build_options("null-ls", {

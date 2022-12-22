@@ -42,6 +42,7 @@
             if [[ ! "$(readlink /run/booted-system/{initrd,kernel,kernel-modules})" == "$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})" ]]; then
                 printf "\033[1;31minitrd or kernel packages have been rebuilt; reboot required!\033[0m\n"
             fi
+            julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.update()'
             nvim --headless -c 'autocmd User MasonUpdateAllComplete quitall' -c 'MasonUpdateAll'
             nvim -c 'lua require("lazy").sync()'
         }
