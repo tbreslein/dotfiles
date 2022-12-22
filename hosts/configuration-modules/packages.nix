@@ -47,7 +47,7 @@
             else
               julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
             fi
-            julia -e 'using Pkg; Pkg.add(["Revise", "IJulia", "Makie", "CairoMakie", "Plots", "PyPlot", "PlotlyJS"]); Pkg.update()'
+            julia -e 'using Pkg; Pkg.add(["Revise", "IJulia", "Makie", "CairoMakie", "Plots"]); Pkg.update()'
             nvim --headless -c 'autocmd User MasonUpdateAllComplete quitall' -c 'MasonUpdateAll'
             nvim -c 'lua require("lazy").sync()'
         }
