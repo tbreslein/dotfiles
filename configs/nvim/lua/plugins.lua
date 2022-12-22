@@ -12,6 +12,15 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
+	{
+		"epwalsh/obsidian.nvim",
+		config = function()
+			require("obsidian").setup({
+				dir = "~/MEGA/obsidian-vault",
+				completion = { nvim_cmp = true },
+			})
+		end,
+	},
 	-- UI
 	{
 		"sainnhe/gruvbox-material",
