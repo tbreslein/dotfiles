@@ -43,7 +43,7 @@
                 printf "\033[1;31minitrd or kernel packages have been rebuilt; reboot required!\033[0m\n"
             fi
             nvim --headless -c 'autocmd User MasonUpdateAllComplete quitall' -c 'MasonUpdateAll'
-            nvim --headless -c 'lua require("lazy").sync()'
+            nvim -c 'lua require("lazy").sync()'
         }
         popd || exit
       '')
