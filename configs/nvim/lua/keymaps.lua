@@ -94,3 +94,17 @@ vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 
 -- trouble
 vim.keymap.set("n", "<leader>t", "<cmd>TroubleToggle<cr>")
+
+-- obsidian
+vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianOpen<cr>")
+vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<cr>")
+vim.keymap.set("n", "<leader>po", "<cmd>ObsidianSearch<cr>")
+vim.keymap.set("n", "<leader>oll", "<cmd>ObsidianLink<cr>")
+vim.keymap.set("n", "<leader>oln", "<cmd>ObsidianLinkNew<cr>")
+vim.keymap.set("n", "gf", function()
+	if require("obsidian").util.cursor_on_markdown_link() then
+		return "<cmd>ObsidianFollowLink<cr>"
+	else
+		return "gf"
+	end
+end, { noremap = false, expr = true })
