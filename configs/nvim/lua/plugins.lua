@@ -59,8 +59,11 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"romgrk/barbar.nvim",
+		"matbme/JABS.nvim",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
+    config = function()
+      require("jabs").setup()
+    end
 	},
 	{
 		"folke/zen-mode.nvim",

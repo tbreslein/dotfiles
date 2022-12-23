@@ -45,9 +45,12 @@ vim.keymap.set("t", "jk", "<c-\\><c-n>")
 
 -- plugin keymaps
 -- barbar
-vim.keymap.set("n", "<leader>,", "<cmd>BufferPrevious<cr>")
-vim.keymap.set("n", "<leader>.", "<cmd>BufferNext<cr>")
-vim.keymap.set("n", "<leader>x", "<cmd>BufferClose<cr>")
+-- vim.keymap.set("n", "<leader>,", "<cmd>BufferPrevious<cr>")
+-- vim.keymap.set("n", "<leader>.", "<cmd>BufferNext<cr>")
+-- vim.keymap.set("n", "<leader>x", "<cmd>BufferClose<cr>")
+
+-- JABS
+vim.keymap.set("n", "<leader>x", "<cmd>JABSOpen<cr>")
 
 -- zenmode
 vim.keymap.set("n", "<leader>zz", function()
