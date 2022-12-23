@@ -2,7 +2,7 @@ require("mason-update-all").setup({})
 
 local lsp = require("lsp-zero")
 
-lsp.preset("recommended")
+lsp.preset("lsp-compe")
 
 lsp.ensure_installed({
 	"tsserver",
@@ -13,29 +13,8 @@ lsp.ensure_installed({
 lsp.nvim_workspace()
 local rust_lsp = lsp.build_options("rust_analyzer", {})
 
-local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-	["<C-y>"] = cmp.mapping.confirm({ select = true }),
-	["<C-Space>"] = cmp.mapping.complete(),
-})
-
 -- servers that are installed globally and only need to be setup
 lsp.setup_servers({ "julials", force = true })
-
-lsp.setup_nvim_cmp({
-	mapping = cmp_mappings,
-	sources = {
-		{
-			name = "latex_symbols",
-			option = {
-				strategy = 0,
-			},
-		},
-	},
-})
 
 local null_opts = lsp.build_options("null-ls", {
 	on_attach = function(client, bufnr)
@@ -100,4 +79,45 @@ lsp.setup()
 require("rust-tools").setup({
 	server = rust_lsp,
 	tools = { inlay_hints = { only_current_line = true } },
+})
+
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+local cmp = require("cmp")
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_mappings = lsp.defaults.cmp_mappings({
+	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+	["<C-y>"] = cmp.mapping.confirm({ select = true }),
+	["<C-Space>"] = cmp.mapping.complete(),
+})
+
+cmp.setup(lsp.defaults.cmp_config({
+	mapping = cmp_mappings,
+	sources = {
+		{ name = "lua-latex-symbols", option = { cache = true } },
+	},
+}))
+
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = { 'Man', '!' }
+      }
+    }
+  })
 })
