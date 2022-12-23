@@ -19,7 +19,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-local vicious = require("vicious")
 local lain = require("lain")
 
 -- {{{ Error handling
@@ -72,15 +71,37 @@ awful.layout.layouts = {
 }
 
 -- {{{ Wibar
-datewidget = wibox.widget.textbox()
-vicious.register(datewidget, vicious.widgets.date, " %b %d, %R")
-batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, " BAT: $2% |", 61, "BAT0")
-cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1% |", 5)
-memwidget = wibox.widget.textbox()
-vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, " MEM: $1% ", 5)
+datewidget = wibox.widget.textclock(" %b %d, %R ")
+
+cpuwidget = lain.widget.cpu({
+	settings = function()
+		widget:set_markup(" CPU: " .. cpu_now.usage .. "% |")
+	end,
+})
+
+memwidget = lain.widget.mem({
+	settings = function()
+		widget:set_markup(" MEM: " .. mem_now.perc .. "% |")
+	end,
+})
+
+batwidget = lain.widget.bat({
+	settings = function()
+		widget:set_markup(" BAT: " .. bat_now.perc .. "%; " .. bat_now.status .. " |")
+	end,
+})
+
+-- PulseAudio volume (based on multicolor theme)
+volumewidget = lain.widget.pulse({
+	settings = function()
+		vlevel = volume_now.left
+		if volume_now.muted == "yes" then
+			vlevel = vlevel .. " M"
+		end
+		-- widget:set_markup(lain.util.markup("#7493d2", " VOL: " .. vlevel .. " "))
+		widget:set_markup(" VOL: " .. vlevel .. "% ")
+	end,
+})
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -147,12 +168,13 @@ awful.screen.connect_for_each_screen(function(s)
 			layout = wibox.layout.fixed.horizontal,
 			{
 				layout = wibox.layout.fixed.horizontal,
-				batwidget,
-				cpuwidget,
-				memwidget,
+				batwidget.widget,
+				cpuwidget.widget,
+				memwidget.widget,
 			},
 			{
 				layout = wibox.layout.fixed.horizontal,
+				volumewidget.widget,
 				wibox.widget.systray(),
 				datewidget,
 			},
@@ -199,7 +221,7 @@ globalkeys = gears.table.join(
 		awful.spawn(terminal)
 	end, { description = "open a terminal", group = "launcher" }),
 	awful.key({ modkey }, "d", function()
-		awful.spawn([[dmenu_run -i -m 0 -fn Hack:size=12 -nb "#1d2021" -nf "#ebdbb2" -sb "#3c3836" -sf "#fe8019"]])
+		awful.spawn([[dmenu_run -i -fn Hack:size=18 -nb "#1d2021" -nf "#ebdbb2" -sb "#3c3836" -sf "#fe8019"]])
 	end, { description = "open dmenu", group = "launcher" }),
 	awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
@@ -426,53 +448,15 @@ awful.rules.rules = {
 client.connect_signal("manage", function(c)
 	-- Set the windows at the slave,
 	-- i.e. put it at the end of others instead of setting it master.
-	-- if not awesome.startup then awful.client.setslave(c) end
+	if not awesome.startup then
+		awful.client.setslave(c)
+	end
 
 	if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
 		-- Prevent clients from being unreachable after screen count changes.
 		awful.placement.no_offscreen(c)
 	end
 end)
-
--- -- Add a titlebar if titlebars_enabled is set to true in the rules.
--- client.connect_signal("request::titlebars", function(c)
---   -- buttons for the titlebar
---   local buttons = gears.table.join(
---     awful.button({}, 1, function()
---       c:emit_signal("request::activate", "titlebar", { raise = true })
---       awful.mouse.client.move(c)
---     end),
---     awful.button({}, 3, function()
---       c:emit_signal("request::activate", "titlebar", { raise = true })
---       awful.mouse.client.resize(c)
---     end)
---   )
---
---   awful.titlebar(c):setup({
---     { -- Left
---       awful.titlebar.widget.iconwidget(c),
---       buttons = buttons,
---       layout = wibox.layout.fixed.horizontal,
---     },
---     { -- Middle
---       { -- Title
---         align = "center",
---         widget = awful.titlebar.widget.titlewidget(c),
---       },
---       buttons = buttons,
---       layout = wibox.layout.flex.horizontal,
---     },
---     { -- Right
---       awful.titlebar.widget.floatingbutton(c),
---       awful.titlebar.widget.maximizedbutton(c),
---       awful.titlebar.widget.stickybutton(c),
---       awful.titlebar.widget.ontopbutton(c),
---       awful.titlebar.widget.closebutton(c),
---       layout = wibox.layout.fixed.horizontal(),
---     },
---     layout = wibox.layout.align.horizontal,
---   })
--- end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)

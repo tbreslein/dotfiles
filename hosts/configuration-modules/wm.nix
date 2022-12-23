@@ -1,7 +1,7 @@
 { config, pkgs, homeDir, ... }:
 
 {
- strategy = 0 # nixpkgs = {
+  # nixpkgs = {
   #   overlays = [
   #     (self: super: {
   #       dwm = super.dwm.overrideAttrs (oldattrs: {
@@ -52,7 +52,6 @@
         luaModules = with pkgs.luaPackages; [
           luarocks
           luadbi-mysql
-          vicious
         ];
       };
     };
