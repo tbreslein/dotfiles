@@ -1,7 +1,7 @@
 { config, pkgs, homeDir, ... }:
 
 {
-  # nixpkgs = {
+ strategy = 0 # nixpkgs = {
   #   overlays = [
   #     (self: super: {
   #       dwm = super.dwm.overrideAttrs (oldattrs: {

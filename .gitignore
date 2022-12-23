@@ -1,5 +1,4 @@
 **/packer_compiled.lua
 .luarc.json
-configs/nvim-fnl/lua/
-configs/nvim-fnl/fnl/*.lua
 configs/nvim/lazy-lock.json
+configs/awesome/lain
