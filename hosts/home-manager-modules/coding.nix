@@ -57,6 +57,7 @@
       # text, tex, markdown
       cbfmt
       nodePackages.cspell
+      nodePackages.prettier
       ltex-ls
 
       # nix
@@ -66,7 +67,7 @@
 
       # shell, docker, configs
       nodePackages.bash-language-server
-      nodePackages.bash-language-server
+      nodePackages.yaml-language-server
       ansible-language-server
       ansible-lint
       shellcheck
