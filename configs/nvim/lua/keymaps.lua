@@ -1,5 +1,9 @@
 vim.g.mapleader = " "
 
+-- move between wrapped lines
+vim.keymap.set({ "n", "v" }, "j", "gj")
+vim.keymap.set({ "n", "v" }, "k", "gk")
+
 -- indentation
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
