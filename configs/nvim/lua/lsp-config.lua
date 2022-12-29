@@ -2,7 +2,7 @@ require("mason-update-all").setup({})
 
 local lsp = require("lsp-zero")
 
-lsp.preset("lsp-compe")
+lsp.preset("recommended")
 
 lsp.ensure_installed({
 	"tsserver",
@@ -14,7 +14,7 @@ lsp.nvim_workspace()
 local rust_lsp = lsp.build_options("rust_analyzer", {})
 
 -- servers that are installed globally and only need to be setup
-lsp.setup_servers({ "julials", force = true })
+lsp.setup_servers({ "julials", "ccls", force = true })
 
 local null_opts = lsp.build_options("null-ls", {
 	on_attach = function(client, bufnr)
@@ -74,50 +74,44 @@ null_ls.setup({
 	on_attach = null_opts.on_attach,
 })
 
+local cmp = require("cmp")
+local cmp_mappings = lsp.defaults.cmp_mappings()
+cmp_mappings['<Tab>'] = nil
+cmp_mappings['<S-Tab>'] = nil
+cmp_mappings['<CR>'] = nil
+local cmp_sources = lsp.defaults.cmp_sources()
+table.insert(cmp_sources, { name = "lua-latex-symbols", option = { cache = true } })
+
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings,
+  sources = cmp_sources
+})
 lsp.setup()
 
 require("rust-tools").setup({
-	server = rust_lsp,
-	tools = { inlay_hints = { only_current_line = true } },
+  server = rust_lsp,
+  tools = { inlay_hints = { only_current_line = true } },
 })
-
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
-
-local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-	["<C-y>"] = cmp.mapping.confirm({ select = true }),
-	["<C-Space>"] = cmp.mapping.complete(),
-})
-
-cmp.setup(lsp.defaults.cmp_config({
-	mapping = cmp_mappings,
-	sources = {
-		{ name = "lua-latex-symbols", option = { cache = true } },
-	},
-}))
 
 -- `/` cmdline setup.
-cmp.setup.cmdline('/', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' }
-  }
+cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
 })
 
 -- `:` cmdline setup.
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    {
-      name = 'cmdline',
-      option = {
-        ignore_cmds = { 'Man', '!' }
-      }
-    }
-  })
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{
+			name = "cmdline",
+			option = {
+				ignore_cmds = { "Man", "!" },
+			},
+		},
+	}),
 })
