@@ -27,10 +27,6 @@
   };
 
   programs = {
-    broot = {
-      enable = true;
-      settings.modal = true;
-    };
     exa.enable = true;
     feh.enable = true;
     lazygit.enable = true;
