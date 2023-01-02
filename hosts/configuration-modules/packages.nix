@@ -48,6 +48,7 @@
               julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
             fi
             julia -e 'using Pkg; Pkg.add(["Revise", "IJulia", "Makie", "CairoMakie", "Plots"]); Pkg.update()'
+            [ ! -d ${homeDir}/Downloads/lain ] && git clone --depth=1 --branch=master https://github.com/lcpz/lain.git ${homeDir}/Downloads/lain || { pushd ${homeDir}/Downloads/lain && git pull && popd }
             nvim --headless -c 'autocmd User MasonUpdateAllComplete quitall' -c 'MasonUpdateAll'
             nvim -c 'lua require("lazy").sync()'
         }

@@ -21,7 +21,6 @@ in
       ln -sf ${homeDir}/.dotfiles/configs/awesome ${homeDir}/.config/
     '';
     linkawesomelain = ''
-      [ ! -d ${homeDir}/Downloads/lain ] && git clone --depth=1 --branch=master https://github.com/lcpz/lain.git ${homeDir}/Downloads/lain
       ln -sf ${homeDir}/Downloads/lain ${homeDir}/.config/awesome/
     '';
   };
