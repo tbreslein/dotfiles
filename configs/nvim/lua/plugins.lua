@@ -61,9 +61,9 @@ require("lazy").setup({
 	{
 		"matbme/JABS.nvim",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
-    config = function()
-      require("jabs").setup()
-    end
+		config = function()
+			require("jabs").setup()
+		end,
 	},
 	{
 		"folke/zen-mode.nvim",
@@ -158,6 +158,7 @@ require("lazy").setup({
 
 	-- languages
 	"vmchale/just-vim",
+	"alaviss/nim.nvim",
 	"simrat39/rust-tools.nvim",
 	{
 		"simrat39/rust-tools.nvim",
