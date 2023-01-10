@@ -39,7 +39,6 @@
       luajitPackages.luarocks
       go
       stack
-      julia
       (python310.withPackages (ps: with ps; with python310Packages; [
         pip
       ]))

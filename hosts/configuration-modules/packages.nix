@@ -43,13 +43,6 @@
                 printf "\033[1;31minitrd or kernel packages have been rebuilt; reboot required!\033[0m\n"
             fi
 
-            if [ -d "~/.julia/environments/nvim-lspconfig" ]; then
-              julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.update()'
-            else
-              julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer")'
-            fi
-            julia -e 'using Pkg; Pkg.add(["Revise", "IJulia", "Makie", "CairoMakie", "Plots"]); Pkg.update()'
-
             if [ ! -d ${homeDir}/Downloads/lain ]; then
               git clone --depth=1 --branch=master https://github.com/lcpz/lain.git ${homeDir}/Downloads/lain
             else

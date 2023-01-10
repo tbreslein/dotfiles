@@ -14,7 +14,7 @@ lsp.nvim_workspace()
 local rust_lsp = lsp.build_options("rust_analyzer", {})
 
 -- servers that are installed globally and only need to be setup
-lsp.setup_servers({ "julials", "ccls", force = true })
+lsp.setup_servers({ "ccls", force = true })
 
 local null_opts = lsp.build_options("null-ls", {
 	on_attach = function(client, bufnr)
@@ -76,21 +76,21 @@ null_ls.setup({
 
 local cmp = require("cmp")
 local cmp_mappings = lsp.defaults.cmp_mappings()
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
-cmp_mappings['<CR>'] = nil
+cmp_mappings["<Tab>"] = nil
+cmp_mappings["<S-Tab>"] = nil
+cmp_mappings["<CR>"] = nil
 local cmp_sources = lsp.defaults.cmp_sources()
 table.insert(cmp_sources, { name = "lua-latex-symbols", option = { cache = true } })
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings,
-  sources = cmp_sources
+	mapping = cmp_mappings,
+	sources = cmp_sources,
 })
 lsp.setup()
 
 require("rust-tools").setup({
-  server = rust_lsp,
-  tools = { inlay_hints = { only_current_line = true } },
+	server = rust_lsp,
+	tools = { inlay_hints = { only_current_line = true } },
 })
 
 -- `/` cmdline setup.
